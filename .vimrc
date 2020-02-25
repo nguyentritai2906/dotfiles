@@ -36,7 +36,7 @@ syntax on
 set encoding=utf-8
 set number relativenumber
 " Copy selected text to system clipboard (requires gvim installed):
-"set clipboard=unnamedplus
+set clipboard=unnamedplus
 " Enable autocompletion:
 set wildmode=longest,list,full
 " Use vim-markdown as default and keep snippets
