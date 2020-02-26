@@ -129,14 +129,14 @@ neofetch
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/pop/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('$HOME/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/pop/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/pop/anaconda3/etc/profile.d/conda.sh"
+    if [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "$HOME/anaconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/pop/anaconda3/bin:$PATH"
+        export PATH="$HOME/anaconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
@@ -147,5 +147,5 @@ unset __conda_setup
 export PATH="$HOME/.cargo/bin:$PATH"
 
 
-source /home/pop/.config/broot/launcher/bash/br
-alias config='/usr/bin/git --git-dir=/home/pop/.cfg/ --work-tree=/home/pop'
+source $HOME/.config/broot/launcher/bash/br
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
