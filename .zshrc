@@ -120,11 +120,11 @@ function cs () {
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
 
 # Load zsh-syntax-highlighting; should be last.
-source /home/pop/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Add Rust to $PATH
 export PATH="$HOME/.cargo/bin:$PATH"
 
 
-source /home/pop/.config/broot/launcher/bash/br
-alias config='/usr/bin/git --git-dir=/home/pop/.cfg/ --work-tree=/home/pop'
+source $HOME/.config/broot/launcher/bash/br
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
