@@ -33,7 +33,6 @@ Plug 'junegunn/goyo.vim'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'preservim/nerdcommenter'
 Plug 'davidhalter/jedi-vim'
-Plug 'https://github.com/airblade/vim-gitgutter'
 call plug#end()
 
 " Some basic:
@@ -49,9 +48,6 @@ set wildmode=longest,list,full
 " Use vim-markdown as default and keep snippets
 autocmd FileType vimwiki set ft=markdown
 let g:notes_alt_indents = 1
-
-" Set update time for GitGutter diff makers to appear
-set updatetime=100
 
 " From http://vim.wikia.com/wiki/Quickly_adding_and_deleting_empty_lines
 " Leader-j/k insert blank line below/above
