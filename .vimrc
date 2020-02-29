@@ -33,6 +33,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'preservim/nerdcommenter'
 Plug 'davidhalter/jedi-vim'
+Plug 'https://github.com/airblade/vim-gitgutter'
 call plug#end()
 
 " Some basic:
@@ -48,6 +49,9 @@ set wildmode=longest,list,full
 " Use vim-markdown as default and keep snippets
 autocmd FileType vimwiki set ft=markdown
 let g:notes_alt_indents = 1
+
+" Set update time for GitGutter diff makers to appear
+set updatetime=100
 
 " From http://vim.wikia.com/wiki/Quickly_adding_and_deleting_empty_lines
 " Leader-j/k insert blank line below/above
@@ -168,7 +172,7 @@ let g:ycm_semantic_triggers = {
 	\}
 " Trigger completion for C
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
-let g:ycm_show_diagnostics_ui = 0
+let g:ycm_show_diagnostics_ui = 1
 
 " Enable Autopair's Fly Mode for always force closed-pair jumping instead of inserting
 " and map some short cuts
