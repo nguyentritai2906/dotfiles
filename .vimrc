@@ -49,6 +49,11 @@ set wildmode=longest,list,full
 autocmd FileType vimwiki set ft=markdown
 let g:notes_alt_indents = 1
 
+" From http://vim.wikia.com/wiki/Quickly_adding_and_deleting_empty_lines
+" Leader-j/k insert blank line below/above
+nnoremap <leader>j mao<Esc>`a
+nnoremap <leader>k maO<Esc>`a
+
 " Navigation
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -163,6 +168,7 @@ let g:ycm_semantic_triggers = {
 	\}
 " Trigger completion for C
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+let g:ycm_show_diagnostics_ui = 0
 
 " Enable Autopair's Fly Mode for always force closed-pair jumping instead of inserting
 " and map some short cuts
