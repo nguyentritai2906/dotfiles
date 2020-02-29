@@ -235,4 +235,6 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
      br -h --only-folders --cmd "$1 :cd"
 
  }
+
+# Alias 'config' for git
 alias config='/usr/bin/git --git-dir=/home/solus/.cfg/ --work-tree=/home/solus'
