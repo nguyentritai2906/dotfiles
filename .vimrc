@@ -22,7 +22,7 @@ Plug 'xolox/vim-misc'
 Plug 'preservim/nerdtree'
 Plug 'Valloric/YouCompleteMe'
 Plug 'jiangmiao/auto-pairs'
-Plug 'vim-syntastic/syntastic'
+"Plug 'vim-syntastic/syntastic'
 Plug 'vim-airline/vim-airline'
 Plug 'morhetz/gruvbox'
 Plug 'majutsushi/tagbar'
@@ -48,6 +48,8 @@ set wildmode=longest,list,full
 " Use vim-markdown as default and keep snippets
 autocmd FileType vimwiki set ft=markdown
 let g:notes_alt_indents = 1
+" Write, compile and execute C code
+map <F9> :w<CR> :!gcc % -o %< && ./%<<CR>
 
 " From http://vim.wikia.com/wiki/Quickly_adding_and_deleting_empty_lines
 " Leader-j/k insert blank line below/above
@@ -114,22 +116,22 @@ cnoremap ii <ESC>
 " Paste without messing up indentation
 noremap <leader>p :set paste<CR>"*p<CR>:set nopaste<CR>"
 
-" Some setting for Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-let g:syntastic_auto_jump = 1
-" Make Syntastic error window smaller if fewer than 10 errors are found
-    function! SyntasticCheckHook(errors)
-        if !empty(a:errors)
-            let g:syntastic_loc_list_height = min([len(a:errors), 10])
-        endif
-    endfunction
+"" Some setting for Syntastic
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"let g:syntastic_python_checkers = ['flake8']
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 1
+"let g:syntastic_auto_jump = 1
+"" Make Syntastic error window smaller if fewer than 10 errors are found
+    "function! SyntasticCheckHook(errors)
+        "if !empty(a:errors)
+            "let g:syntastic_loc_list_height = min([len(a:errors), 10])
+        "endif
+    "endfunction
 
 " Change the default mapping and the default command to invoke CtrlP
 let g:ctrlp_map = '<c-p>'
