@@ -15,24 +15,36 @@ set runtimepath^=~/.vim/plugged/ctrlp.vim
 
 " Plugin
 call plug#begin('~/.vim/plugged')
-Plug 'vimwiki/vimwiki'
-Plug 'xolox/vim-notes'
-Plug 'tpope/vim-surround'
-Plug 'xolox/vim-misc'
-Plug 'preservim/nerdtree'
-Plug 'Valloric/YouCompleteMe'
-Plug 'jiangmiao/auto-pairs'
+
+Plug 'vimwiki/vimwiki'		" A Personal Wiki For Vim
+Plug 'xolox/vim-notes'		" For taking note, of course
+Plug 'tpope/vim-surround'	" Change parentheses and stuff with ease
+Plug 'xolox/vim-misc'		" Miscellaneous auto-load Vim scripts
+Plug 'preservim/nerdtree'	" A tree explorer plugin for vim
+Plug 'Valloric/YouCompleteMe'	" Ycm code-suggestion engine
+Plug 'jiangmiao/auto-pairs'	" Autopair parentheses and stuff
 "Plug 'vim-syntastic/syntastic'
-Plug 'vim-airline/vim-airline'
-Plug 'morhetz/gruvbox'
-Plug 'majutsushi/tagbar'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'universal-ctags/ctags'
-Plug 'gioele/vim-autoswap'
-Plug 'junegunn/goyo.vim'
+Plug 'vim-airline/vim-airline'	" Lean & mean tabline for vim that's light as air
+Plug 'morhetz/gruvbox'		" GruvBox colorscheme
+"Plug 'majutsushi/tagbar'
+Plug 'ctrlpvim/ctrlp.vim'	" Fuzzy file, buffer, mru, tag, ... finder
+Plug 'universal-ctags/ctags'	" Universal tags for codes
+Plug 'gioele/vim-autoswap'	" No more .swap files!
+Plug 'junegunn/goyo.vim'	" <Leader>gy toggle reading mode
+
 Plug 'jeetsukumaran/vim-buffergator'
-Plug 'preservim/nerdcommenter'
-Plug 'davidhalter/jedi-vim'
+"Use <Leader>b to open a window listing all buffers
+"<ENTER> to edit the selected buffer in the previous window
+"<C-V> to edit the selected buffer in a new vertical split
+"<C-S> to edit the selected buffer in a new horizontal split
+"<C-T> to edit the selected buffer in a new tab page
+"Use gb and gB to flip through the most-recently used buffer
+"Use <Leader><LEFT>, <Leader><UP>, <Leader><RIGHT>, <Leader><DOWN> to
+"split a new window left, up, right, or down, respectively,
+"and edit the previous MRU buffer there.
+Plug 'preservim/nerdcommenter'	" Easy comment out lines of codes
+Plug 'davidhalter/jedi-vim'	" Awesome Python autocompletion
+Plug 'frazrepo/vim-rainbow'	" Rainbow parentheses
 call plug#end()
 
 " Some basic:
@@ -103,7 +115,8 @@ set hlsearch        " Highlight all matches
 highlight clear Search
 highlight       Search    ctermfg=White  ctermbg=Cyan  cterm=bold
 highlight    IncSearch    ctermfg=White  ctermbg=Red    cterm=bold
-nnoremap <leader>hl :noh<CR> " Remove all hightlight
+" Remove all hightlight
+nnoremap <leader>hl :noh<CR>
 
 " Remap ESC key
 " Press ii to return to normal mode
@@ -189,3 +202,6 @@ if &term =~ '^screen'
     execute "set <xRight>=\e[1;*C"
     execute "set <xLeft>=\e[1;*D"
 endif
+
+" Enable vim-rainbow globally
+let g:rainbow_active = 1

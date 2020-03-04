@@ -8,7 +8,10 @@ export ZSH="/home/solus/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="jnrowe"
+#ZSH_THEME="muse"
+#ZSH_THEME="minimal"
+#ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -101,23 +104,23 @@ source $ZSH/oh-my-zsh.sh
 
 # neofetch
 
-# Powerline Shell for Zsh
-function powerline_precmd() {
-    PS1="$(powerline-shell --shell zsh $?)"
-}
+## Powerline Shell for Zsh
+#function powerline_precmd() {
+    #PS1="$(powerline-shell --shell zsh $?)"
+#}
 
-function install_powerline_precmd() {
-  for s in "${precmd_functions[@]}"; do
-    if [ "$s" = "powerline_precmd" ]; then
-      return
-    fi
-  done
-  precmd_functions+=(powerline_precmd)
-}
+#function install_powerline_precmd() {
+  #for s in "${precmd_functions[@]}"; do
+    #if [ "$s" = "powerline_precmd" ]; then
+      #return
+    #fi
+  #done
+  #precmd_functions+=(powerline_precmd)
+#}
 
-if [ "$TERM" != "linux" ]; then
-    install_powerline_precmd
-fi
+#if [ "$TERM" != "linux" ]; then
+    #install_powerline_precmd
+#fi
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
