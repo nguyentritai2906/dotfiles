@@ -96,10 +96,10 @@ colorscheme gruvbox
 set title titlestring=
 
 " Set up smarter search behaviour
-set incsearch       "Lookahead as search pattern is specified
-set ignorecase      "Ignore case in all searches...
-set smartcase       "...unless uppercase letters used
-set hlsearch        "Highlight all matches
+set incsearch       " Lookahead as search pattern is specified
+set ignorecase      " Ignore case in all searches...
+set smartcase       " ...unless uppercase letters used
+set hlsearch        " Highlight all matches
 highlight clear Search
 highlight       Search    ctermfg=White  ctermbg=Cyan  cterm=bold
 highlight    IncSearch    ctermfg=White  ctermbg=Red    cterm=bold
@@ -144,6 +144,7 @@ let g:ctrlp_custom_ignore = {
   \ 'link': 'some_bad_symbolic_links',}
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+let g:ctrlp_show_hidden = 1
 " Tagbar toggle
 nmap <F8> :TagbarToggle<CR>
 " Goyo toggle
