@@ -237,7 +237,7 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
  }
 
 # Bind Broot to Ctrl+i
-bindkey -s '^i' 'br\n'
+bindkey -s '\C-u' "br\n"
 
 # Alias 'config' for git
 alias config='/usr/bin/git --git-dir=/home/solus/.cfg/ --work-tree=/home/solus'
