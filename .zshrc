@@ -139,6 +139,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias lc='ls -l -h -a -t'
+alias lg='lc | grep'
 alias hg='history | grep'
 alias notes='cd ~/Documents/Notes/ && ll'
 alias open='xdg-open'
@@ -240,7 +241,7 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
  }
 
 # Bind Broot to Ctrl+i
-bindkey -s '\C-u' "br\n"
+bindkey -s '\C-u' "br -h\n"
 
 # Alias 'config' for git
 alias config='/usr/bin/git --git-dir=/home/solus/.cfg/ --work-tree=/home/solus'
