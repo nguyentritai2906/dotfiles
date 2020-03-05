@@ -57,9 +57,9 @@ set number relativenumber
 set clipboard=unnamedplus
 " Enable autocompletion:
 set wildmode=longest,list,full
-"" Use vim-markdown as default and keep snippets
-"autocmd FileType vimwiki set ft=markdown
-"let g:notes_alt_indents = 1
+" Use vim-markdown as default and keep snippets
+autocmd FileType vimwiki set ft=markdown
+let g:notes_alt_indents = 1
 " Write, compile and execute C code
 map <F9> :w<CR> :!gcc % -o %< && ./%<<CR>
 
