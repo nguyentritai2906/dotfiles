@@ -8,8 +8,8 @@ export ZSH="/home/solus/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="jnrowe"
-#ZSH_THEME="muse"
+#ZSH_THEME="jnrowe"
+ZSH_THEME="muse"
 #ZSH_THEME="minimal"
 #ZSH_THEME="robbyrussell"
 
@@ -143,15 +143,21 @@ alias lg='lc | grep'
 alias hg='history | grep'
 alias notes='cd ~/Documents/Notes/ && ll'
 alias open='xdg-open'
+# Alias 'config' for git
+alias config='/usr/bin/git --git-dir=/home/solus/.cfg/ --work-tree=/home/solus'
+# Create an alias for cd and ls:
+function cs () {
+    cd $1;
+    ls
+}
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.zsh_aliases ]; then
-    . ~/.zsh_aliases
-fi
+## Alias definitions.
+## You may want to put all your additions into a separate file like
+## ~/.bash_aliases, instead of adding them here directly.
+## See /usr/share/doc/bash-doc/examples in the bash-doc package.
+#if [ -f ~/.zsh_aliases ]; then
+    #. ~/.zsh_aliases
+#fi
 
 # History in cache directory:
 HISTSIZE=10000
@@ -214,18 +220,10 @@ bindkey -s '^o' 'lfcd\n'
 #autoload edit-command-line; zle -N edit-command-line
 #bindkey '^e' edit-command-line
 
-# Create an alias for cd and ls:
-function cs () {
-    cd $1;
-    ls
-}
 
 # Load aliases and shortcuts if existent.
 [ -f "$HOME/.config/shortcutrc" ] && source "$HOME/.config/shortcutrc"
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
-
-# Load zsh-syntax-highlighting; should be last.
-source $HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Add Rust to $PATH
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -233,15 +231,13 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # Broot file manager
 source $HOME/.config/broot/launcher/bash/br
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-
-# deep fuzzy cd
+# Bind Broot to Ctrl+i
+bindkey -s '\C-u' "br -h\n"
+# Deep fuzzy cd
  function dcd {
      br -h --only-folders --cmd "$1 :cd"
 
  }
 
-# Bind Broot to Ctrl+i
-bindkey -s '\C-u' "br -h\n"
-
-# Alias 'config' for git
-alias config='/usr/bin/git --git-dir=/home/solus/.cfg/ --work-tree=/home/solus'
+# Load zsh-syntax-highlighting; should be last.
+source $HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
