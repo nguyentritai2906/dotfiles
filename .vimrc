@@ -26,7 +26,7 @@ Plug 'jiangmiao/auto-pairs'	" Autopair parentheses and stuff
 "Plug 'vim-syntastic/syntastic'
 Plug 'vim-airline/vim-airline'	" Lean & mean tabline for vim that's light as air
 Plug 'morhetz/gruvbox'		" GruvBox colorscheme
-"Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 Plug 'ctrlpvim/ctrlp.vim'	" Fuzzy file, buffer, mru, tag, ... finder
 Plug 'universal-ctags/ctags'	" Universal tags for codes
 Plug 'gioele/vim-autoswap'	" No more .swap files!
@@ -42,6 +42,7 @@ Plug 'jeetsukumaran/vim-buffergator'
 "Use <Leader><LEFT>, <Leader><UP>, <Leader><RIGHT>, <Leader><DOWN> to
 "split a new window left, up, right, or down, respectively,
 "and edit the previous MRU buffer there.
+
 Plug 'preservim/nerdcommenter'	" Easy comment out lines of codes
 Plug 'davidhalter/jedi-vim'	" Awesome Python autocompletion
 Plug 'frazrepo/vim-rainbow'	" Rainbow parentheses
