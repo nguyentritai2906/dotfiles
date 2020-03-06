@@ -24,16 +24,20 @@ Plug 'preservim/nerdtree'	" A tree explorer plugin for vim
 Plug 'Valloric/YouCompleteMe'	" Ycm code-suggestion engine
 Plug 'jiangmiao/auto-pairs'	" Autopair parentheses and stuff
 "Plug 'vim-syntastic/syntastic'
-Plug 'vim-airline/vim-airline'	" Lean & mean tabline for vim that's light as air
-Plug 'morhetz/gruvbox'		" GruvBox colorscheme
-Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'	" Vim plugin that displays tags in a window
 Plug 'ctrlpvim/ctrlp.vim'	" Fuzzy file, buffer, mru, tag, ... finder
 Plug 'universal-ctags/ctags'	" Universal tags for codes
 "Install Exuberant Ctags 'sudo eopkg it ctags' which is a dependency
 "To build with Autotools, see docs/autotools.rst for more information
+Plug 'airblade/vim-gitgutter'
+" A Vim plugin which shows a git diff in the gutter (sign column)
+" and stages/undoes hunks and partial hunks
 
-Plug 'gioele/vim-autoswap'	" No more .swap files!
+Plug 'gioele/vim-autoswap'	" No more swap files!
+Plug 'vim-airline/vim-airline'	" Lean & mean tabline for vim
+Plug 'morhetz/gruvbox'		" GruvBox colorscheme
 Plug 'junegunn/goyo.vim'	" <Leader>gy toggle reading mode
+Plug 'frazrepo/vim-rainbow'	" Rainbow parentheses
 
 Plug 'jeetsukumaran/vim-buffergator'
 "Use <Leader>b to open a window listing all buffers
@@ -48,7 +52,6 @@ Plug 'jeetsukumaran/vim-buffergator'
 
 Plug 'preservim/nerdcommenter'	" Easy comment out lines of codes
 Plug 'davidhalter/jedi-vim'	" Awesome Python autocompletion
-Plug 'frazrepo/vim-rainbow'	" Rainbow parentheses
 call plug#end()
 
 " Some basic:
@@ -66,6 +69,8 @@ autocmd FileType vimwiki set ft=markdown
 let g:notes_alt_indents = 1
 " Write, compile and execute C code
 map <F9> :w<CR> :!gcc % -o %< && ./%<<CR>
+" Reduce update time for GitGutter
+set updatetime=100
 
 " From http://vim.wikia.com/wiki/Quickly_adding_and_deleting_empty_lines
 " Leader-j/k insert blank line below/above
