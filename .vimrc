@@ -29,6 +29,9 @@ Plug 'morhetz/gruvbox'		" GruvBox colorscheme
 Plug 'majutsushi/tagbar'
 Plug 'ctrlpvim/ctrlp.vim'	" Fuzzy file, buffer, mru, tag, ... finder
 Plug 'universal-ctags/ctags'	" Universal tags for codes
+"Install Exuberant Ctags 'sudo eopkg it ctags' which is a dependency
+"To build with Autotools, see docs/autotools.rst for more information
+
 Plug 'gioele/vim-autoswap'	" No more .swap files!
 Plug 'junegunn/goyo.vim'	" <Leader>gy toggle reading mode
 
