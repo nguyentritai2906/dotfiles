@@ -78,7 +78,7 @@ let g:gitgutter_sign_modified = '>'
 let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_removed_first_line = '^'
 let g:gitgutter_sign_modified_removed = '<'
-" Setting background color of sign column to general background color
+" Turn off sign column highlight
 let g:gitgutter_override_sign_column_highlight = 1
 " Jump between hunks
 nmap <Leader>gn <Plug>(GitGutterNextHunk)
