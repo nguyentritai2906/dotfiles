@@ -83,9 +83,6 @@ let g:gitgutter_override_sign_column_highlight = 1
 " Jump between hunks
 nmap <Leader>gn <Plug>(GitGutterNextHunk)
 nmap <Leader>gp <Plug>(GitGutterPrevHunk)
-" Hunk-add and hunk-revert for chunk staging
-nmap <Leader>ga <Plug>(GitGutterStageHunk)
-nmap <Leader>gu <Plug>(GitGutterUndoHunk)
 
 " From http://vim.wikia.com/wiki/Quickly_adding_and_deleting_empty_lines
 " Leader-j/k insert blank line below/above
