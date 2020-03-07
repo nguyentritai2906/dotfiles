@@ -69,8 +69,25 @@ autocmd FileType vimwiki set ft=markdown
 let g:notes_alt_indents = 1
 " Write, compile and execute C code
 map <F9> :w<CR> :!gcc % -o %< && ./%<<CR>
-" Reduce update time for GitGutter
+
+" GitGutter update sign column every 1/10 second
 set updatetime=100
+" Use fontawesome icons as signs
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '>'
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_removed_first_line = '^'
+let g:gitgutter_sign_modified_removed = '<'
+" Setting background color of sign column to general background color
+let g:gitgutter_override_sign_column_highlight = 1
+highlight SignColumn guibg=bg
+highlight SignColumn ctermbg=bg
+" Jump between hunks
+nmap <Leader>gn <Plug>GitGutterNextHunk
+nmap <Leader>gp <Plug>GitGutterPrevHunk
+" Hunk-add and hunk-revert for chunk staging
+nmap <Leader>ga <Plug>GitGutterStageHunk
+nmap <Leader>gu <Plug>GitGutterUndoHunk
 
 " From http://vim.wikia.com/wiki/Quickly_adding_and_deleting_empty_lines
 " Leader-j/k insert blank line below/above
