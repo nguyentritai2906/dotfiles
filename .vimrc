@@ -57,7 +57,7 @@ call plug#end()
 " Some basic:
 set nocompatible	" be iMproved, required
 filetype plugin on
-syntax on
+syntax on 		" For C syntax check, change C++11 to C99 in .vim/.ycm_extra_conf.py
 set encoding=utf-8
 set number relativenumber
 " Copy selected text to system clipboard (requires gvim installed):
