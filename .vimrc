@@ -38,6 +38,7 @@ Plug 'vim-airline/vim-airline'	" Lean & mean tabline for vim
 Plug 'morhetz/gruvbox'		" GruvBox colorscheme
 Plug 'junegunn/goyo.vim'	" <Leader>gy toggle reading mode
 Plug 'frazrepo/vim-rainbow'	" Rainbow parentheses
+Plug 'yuttie/comfortable-motion.vim' 	" Physics-based smooth scrolling
 
 Plug 'jeetsukumaran/vim-buffergator'
 "Use <Leader>b to open a window listing all buffers
@@ -226,3 +227,4 @@ endif
 
 " Enable vim-rainbow globally
 let g:rainbow_active = 1
+
