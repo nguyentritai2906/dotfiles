@@ -232,7 +232,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 source $HOME/.config/broot/launcher/bash/br
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 # Bind Broot to Ctrl+i
-bindkey -s '\C-u' "br -h\n"
+bindkey -s '\C-u' "br\n"
 # Deep fuzzy cd
  function dcd {
      br -h --only-folders --cmd "$1 :cd"
