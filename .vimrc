@@ -208,11 +208,9 @@ let g:ycm_semantic_triggers = {
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 let g:ycm_show_diagnostics_ui = 1
 
-"" Enable Autopair's Fly Mode for always force closed-pair jumping instead of inserting
-"" and map some short cuts
-"let g:AutoPairsFlyMode = 1
-"" let g:AutoPairsShortcutBackInsert = '<leader>b'
-let g:AutoPairsShortcutJump = '<leader>gc'
+" Enable Autopair's Fly Mode for always force closed-pair jumping instead of inserting
+" and map some short cuts
+let g:AutoPairsFlyMode = 1
 
 " Fix Ctrl+Arrows
 " Need to add the following to .tmux.conf.local
