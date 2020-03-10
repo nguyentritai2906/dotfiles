@@ -212,7 +212,7 @@ let g:ycm_show_diagnostics_ui = 1
 "" and map some short cuts
 "let g:AutoPairsFlyMode = 1
 "" let g:AutoPairsShortcutBackInsert = '<leader>b'
-"" let g:AutoPairsShortcutJump = '<leader>n'
+let g:AutoPairsShortcutJump = '<leader>gc'
 
 " Fix Ctrl+Arrows
 " Need to add the following to .tmux.conf.local
@@ -227,4 +227,7 @@ endif
 
 " Enable vim-rainbow globally
 let g:rainbow_active = 1
+
+" Arrange Termdebug windows
+autocmd filetype cpp,c nnoremap <F6> :Termdebug %:r<CR><c-w>2j<c-w>L
 
