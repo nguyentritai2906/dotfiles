@@ -239,5 +239,8 @@ bindkey -s '\C-u' "br\n"
 
  }
 
+# CS50 library https://github.com/cs50/libcs50
+export LIBRARY_PATH=/usr/local/lib
+
 # Load zsh-syntax-highlighting; should be last.
 source $HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
