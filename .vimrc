@@ -29,6 +29,7 @@ Plug 'ctrlpvim/ctrlp.vim'	" Fuzzy file, buffer, mru, tag, ... finder
 Plug 'universal-ctags/ctags'	" Universal tags for codes
 "Install Exuberant Ctags 'sudo eopkg it ctags' which is a dependency
 "To build with Autotools, see docs/autotools.rst for more information
+Plug 'xolox/vim-easytags' 	" Automated tag file generation and syntax highlighting of tags in Vim
 Plug 'airblade/vim-gitgutter'
 " A Vim plugin which shows a git diff in the gutter (sign column)
 " and stages/undoes hunks and partial hunks
