@@ -11,7 +11,7 @@ export ZSH="/home/solus/.oh-my-zsh"
 #ZSH_THEME="jnrowe"
 #ZSH_THEME="muse"
 #ZSH_THEME="minimal"
-#ZSH_THEME="robbyrussell"
+ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -98,29 +98,30 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
+alias zshconfig="vim ~/.zshrc"
+alias vimconfig="vim ~/.vimrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
 # neofetch
 
-# Powerline Shell for Zsh
-function powerline_precmd() {
-    PS1="$(powerline-shell --shell zsh $?)"
-}
+## Powerline Shell for Zsh
+#function powerline_precmd() {
+    #PS1="$(powerline-shell --shell zsh $?)"
+#}
 
-function install_powerline_precmd() {
-  for s in "${precmd_functions[@]}"; do
-    if [ "$s" = "powerline_precmd" ]; then
-      return
-    fi
-  done
-  precmd_functions+=(powerline_precmd)
-}
+#function install_powerline_precmd() {
+  #for s in "${precmd_functions[@]}"; do
+    #if [ "$s" = "powerline_precmd" ]; then
+      #return
+    #fi
+  #done
+  #precmd_functions+=(powerline_precmd)
+#}
 
-if [ "$TERM" != "linux" ]; then
-    install_powerline_precmd
-fi
+#if [ "$TERM" != "linux" ]; then
+    #install_powerline_precmd
+#fi
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -174,7 +175,7 @@ _comp_options+=(globdots)		# Include hidden files.
 # vi mode
 bindkey -v
 bindkey '^R' history-incremental-search-backward
-export KEYTIMEOUT=1
+export KEYTIMEOUT=20
 
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
@@ -203,6 +204,9 @@ zle-line-init() {
 zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
+# Map ii to ESC
+bindkey -M viins 'ii' vi-cmd-mode
 
 # Use lf to switch directories and bind it to ctrl-o
 lfcd () {
