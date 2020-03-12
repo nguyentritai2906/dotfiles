@@ -126,6 +126,7 @@ call matchadd('ColorColumn', '\%81v', 100)
 set t_Co=256
 set background=dark
 colorscheme gruvbox
+hi Normal guibg=NONE ctermbg=NONE
 " Get title for Autoswap
 set title titlestring=
 
