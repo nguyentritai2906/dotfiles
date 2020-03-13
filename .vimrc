@@ -6,12 +6,6 @@
 "    #####   ### ##   ##      ###  ## ###  ## ###  ## ###     ### ###  ##
 "     ###    ### ##   ##       #####   #####  ###  ## ###     ###  #####
 
-" Map leader to space
-let mapleader =" "
-" ~/Documents/notes/
-let g:notes_directories = ['~/Documents/Notes']
-" CtrlP runtimepath
-set runtimepath^=~/.vim/plugged/ctrlp.vim
 
 " Plugin
 call plug#begin('~/.vim/plugged')
@@ -23,7 +17,6 @@ Plug 'xolox/vim-misc'		" Miscellaneous auto-load Vim scripts
 Plug 'preservim/nerdtree'	" A tree explorer plugin for vim
 Plug 'Valloric/YouCompleteMe'	" Ycm code-suggestion engine
 Plug 'jiangmiao/auto-pairs'	" Autopair parentheses and stuff
-"Plug 'vim-syntastic/syntastic'
 Plug 'majutsushi/tagbar'	" Vim plugin that displays tags in a window
 Plug 'ctrlpvim/ctrlp.vim'	" Fuzzy file, buffer, mru, tag, ... finder
 Plug 'universal-ctags/ctags'	" Universal tags for codes
@@ -37,7 +30,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'gioele/vim-autoswap'	" No more swap files!
 Plug 'vim-airline/vim-airline'	" Lean & mean tabline for vim
 Plug 'morhetz/gruvbox'		" GruvBox colorscheme
-Plug 'junegunn/goyo.vim'	" <Leader>gy toggle reading mode
+"Plug 'junegunn/goyo.vim'	" <Leader>gy toggle reading mode
 Plug 'frazrepo/vim-rainbow'	" Rainbow parentheses
 Plug 'yuttie/comfortable-motion.vim' 	" Physics-based smooth scrolling
 
@@ -56,23 +49,121 @@ Plug 'preservim/nerdcommenter'	" Easy comment out lines of codes
 Plug 'davidhalter/jedi-vim'	" Awesome Python autocompletion
 call plug#end()
 
-" Some basic:
-set nocompatible	" be iMproved, required
-filetype plugin on
+" Basic settings
+set nocompatible	" Be iMproved, required
+filetype plugin on	" Required
 syntax on 		" For C syntax check, change C++11 to C99 in .vim/.ycm_extra_conf.py
 set encoding=utf-8
 set number relativenumber
-" Copy selected text to system clipboard (requires gvim installed):
-set clipboard=unnamedplus
-" Enable autocompletion:
-set wildmode=longest,list,full
-" Use vim-markdown as default and keep snippets
-autocmd FileType vimwiki set ft=markdown
-let g:notes_alt_indents = 1
+let mapleader =" "	" Map leader to space
+
+" UI
+" Change cursor shape for different vi modes.
+if has("autocmd")
+au VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
+au InsertEnter,InsertChange *
+\ if v:insertmode == 'i' |
+\   silent execute '!echo -ne "\e[5 q"' | redraw! |
+\ elseif v:insertmode == 'r' |
+\   silent execute '!echo -ne "\e[3 q"' | redraw! |
+\ endif
+au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+endif
+" Automatically VimResized
+autocmd VimResized * wincmd =
+" Make Vim open help in a vertical split
+augroup vimrc_help
+  autocmd!
+  autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
+augroup END
+" Make the 81st column stand out
+highlight ColorColumn ctermbg=cyan
+call matchadd('ColorColumn', '\%81v', 100)
+
+" Macro
 " Write, compile and execute C code
 map <F9> :w<CR> :!gcc % -o %< && ./%<<CR>
+" From http://vim.wikia.com/wiki/Quickly_adding_and_deleting_empty_lines
+" Leader-j/k insert blank line below/above
+nnoremap <leader>j mao<Esc>`a
+nnoremap <leader>k maO<Esc>`a
+" Automatically deletes all trailing whitespace on save:
+autocmd BufWritePre * %s/\s\+$//e
+" Save folds when exit, load folds when open
+augroup remember_folds
+	autocmd!
+	autocmd BufWinLeave * mkview
+	autocmd BufWinEnter * silent! loadview
+augroup END
 
-" GitGutter update sign column every 1/10 second
+" Markdown
+" Use vim-markdown as default and keep snippets
+"autocmd FileType vimwiki set ft=markdown
+
+" Search
+" Smarter search
+set incsearch       " Lookahead as search pattern is specified
+set ignorecase      " Ignore case in all searches...
+set smartcase       " ...unless uppercase letters used
+set hlsearch        " Highlight all matches
+"highlight clear Search
+"highlight       Search    ctermfg=White  ctermbg=Cyan  cterm=bold
+"highlight    IncSearch    ctermfg=White  ctermbg=Red    cterm=bold
+" Remove all hightlight
+nnoremap <leader>hl :noh<CR>
+
+" Notes
+" ~/Documents/notes/
+let g:notes_directories = ['~/Documents/Notes']
+
+" Autoswap
+" Get title
+set title titlestring=
+
+" Remap ESC
+" Press ii to return to normal mode
+inoremap ii <ESC>
+" inoremap <ESC> <NOP>
+set t_BE=	" Fix paste bug caused by the above inoremap
+vnoremap ii <ESC>
+" vnoremap <ESC> <NOP>
+cnoremap ii <ESC>
+
+" Copy and Paste
+" Copy selected text to system clipboard (requires gvim installed):
+set clipboard=unnamedplus
+" Paste without messing up indentation
+noremap <leader>p :set paste<CR>"*p<CR>:set nopaste<CR>"
+
+" Navigation
+"map <C-h> <C-w>h
+"map <C-j> <C-w>j
+"map <C-k> <C-w>k
+"map <C-l> <C-w>l
+"nnoremap <C-up> :tabr<CR>
+"nnoremap <C-down> :tabl<CR>
+"nnoremap <C-left> :tabp<CR>
+"nnoremap <C-right> :tabn<CR>
+"" Fix Ctrl+Arrows
+"" Need to add the following to .tmux.conf.local
+"" set-window-option -g xterm-keys on
+"if &term =~ '^screen'
+    "" tmux will send xterm-style keys when its xterm-keys option is on
+    "execute "set <xUp>=\e[1;*A"
+    "execute "set <xDown>=\e[1;*B"
+    "execute "set <xRight>=\e[1;*C"
+    "execute "set <xLeft>=\e[1;*D"
+"endif
+
+" Gruvbox
+" Setup for gruvbox
+set t_Co=256
+set background=dark
+colorscheme gruvbox
+hi Normal guibg=NONE ctermbg=NONE
+
+" GitGutter
+" Update sign column every 1/10 second
 set updatetime=100
 " Use fontawesome icons as signs
 let g:gitgutter_sign_added = '+'
@@ -86,90 +177,7 @@ let g:gitgutter_override_sign_column_highlight = 1
 nmap <Leader>gn <Plug>(GitGutterNextHunk)
 nmap <Leader>gp <Plug>(GitGutterPrevHunk)
 
-" From http://vim.wikia.com/wiki/Quickly_adding_and_deleting_empty_lines
-" Leader-j/k insert blank line below/above
-nnoremap <leader>j mao<Esc>`a
-nnoremap <leader>k maO<Esc>`a
-
-" Navigation
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-nnoremap <C-up> :tabr<CR>
-nnoremap <C-down> :tabl<CR>
-nnoremap <C-left> :tabp<CR>
-nnoremap <C-right> :tabn<CR>
-" Automatically VimResized
-autocmd VimResized * wincmd =
-" Automatically deletes all trailing whitespace on save:
-autocmd BufWritePre * %s/\s\+$//e
-" Make Vim open help in a vertical split
-augroup vimrc_help
-  autocmd!
-  autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
-augroup END
-" Change cursor shape for different vi modes.
-if has("autocmd")
-au VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
-au InsertEnter,InsertChange *
-\ if v:insertmode == 'i' |
-\   silent execute '!echo -ne "\e[5 q"' | redraw! |
-\ elseif v:insertmode == 'r' |
-\   silent execute '!echo -ne "\e[3 q"' | redraw! |
-\ endif
-au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
-endif
-" Make the 81st column stand out
-highlight ColorColumn ctermbg=cyan
-call matchadd('ColorColumn', '\%81v', 100)
-" Setup for gruvbox
-set t_Co=256
-set background=dark
-colorscheme gruvbox
-hi Normal guibg=NONE ctermbg=NONE
-" Get title for Autoswap
-set title titlestring=
-
-" Set up smarter search behaviour
-set incsearch       " Lookahead as search pattern is specified
-set ignorecase      " Ignore case in all searches...
-set smartcase       " ...unless uppercase letters used
-set hlsearch        " Highlight all matches
-highlight clear Search
-highlight       Search    ctermfg=White  ctermbg=Cyan  cterm=bold
-highlight    IncSearch    ctermfg=White  ctermbg=Red    cterm=bold
-" Remove all hightlight
-nnoremap <leader>hl :noh<CR>
-
-" Remap ESC key
-" Press ii to return to normal mode
-inoremap ii <ESC>
-" inoremap <ESC> <NOP>
-set t_BE=	" Fix paste bug caused by the above inoremap
-vnoremap ii <ESC>
-" vnoremap <ESC> <NOP>
-cnoremap ii <ESC>
-" Paste without messing up indentation
-noremap <leader>p :set paste<CR>"*p<CR>:set nopaste<CR>"
-
-"" Some setting for Syntastic
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"let g:syntastic_python_checkers = ['flake8']
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 1
-"let g:syntastic_auto_jump = 1
-"" Make Syntastic error window smaller if fewer than 10 errors are found
-    "function! SyntasticCheckHook(errors)
-        "if !empty(a:errors)
-            "let g:syntastic_loc_list_height = min([len(a:errors), 10])
-        "endif
-    "endfunction
-
+" CtrlP
 " Change the default mapping and the default command to invoke CtrlP
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
@@ -182,12 +190,15 @@ let g:ctrlp_custom_ignore = {
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_show_hidden = 1
-" Tagbar toggle
-nmap <F8> :TagbarToggle<CR>
-" Goyo toggle
-nmap <leader>gy :Goyo<CR>
+" CtrlP runtimepath
+set runtimepath^=~/.vim/plugged/ctrlp.vim
 
-" NERDtree shortcut
+" Tagbar
+" Toggle
+nmap <F8> :TagbarToggle<CR>
+
+" NERDtree
+" Toggle
 map <C-n> :NERDTreeToggle<CR>
 " Open NERDTree automatically when vim starts up if no files were specified
 autocmd StdinReadPre * let s:std_in=1
@@ -195,10 +206,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " Close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" Tab completion
-set wildmode=longest,list,full
-set wildmenu
-
+" YouCompeleteMe
 " Installed YouCompleteMe with both 'libclang' and 'clangd' enabled. In that case 'clangd' will
 " be preferred unless you have the following
 " let g:ycm_use_clangd = 0
@@ -209,25 +217,19 @@ let g:ycm_semantic_triggers = {
 " Trigger completion for C
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 let g:ycm_show_diagnostics_ui = 1
+" Tab completion
+set wildmode=longest,list,full
+set wildmenu
 
+" AutoPair
 " Enable Autopair's Fly Mode for always force closed-pair jumping instead of inserting
 " and map some short cuts
 let g:AutoPairsFlyMode = 1
 
-" Fix Ctrl+Arrows
-" Need to add the following to .tmux.conf.local
-" set-window-option -g xterm-keys on
-if &term =~ '^screen'
-    " tmux will send xterm-style keys when its xterm-keys option is on
-    execute "set <xUp>=\e[1;*A"
-    execute "set <xDown>=\e[1;*B"
-    execute "set <xRight>=\e[1;*C"
-    execute "set <xLeft>=\e[1;*D"
-endif
-
+" Rainbow
 " Enable vim-rainbow globally
 let g:rainbow_active = 1
 
-" Arrange Termdebug windows
+" Termdebug
+" Arrange windows
 autocmd filetype cpp,c nnoremap <F6> :Termdebug %:r<CR><c-w>2j<c-w>L
-
