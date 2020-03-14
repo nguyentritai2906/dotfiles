@@ -142,7 +142,7 @@ alias l='ls -CF'
 alias lc='ls -l -h -a -t'
 alias lg='lc | grep'
 alias hg='history | grep'
-alias notes='cd ~/Documents/Notes/ && ll'
+alias note='cd ~/Documents/note/ && ll'
 alias open='xdg-open'
 # Alias 'config' for git
 alias config='/usr/bin/git --git-dir=/home/solus/.cfg/ --work-tree=/home/solus'

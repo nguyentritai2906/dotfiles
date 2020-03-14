@@ -10,30 +10,42 @@
 " Plugin
 call plug#begin('~/.vim/plugged')
 
-Plug 'vimwiki/vimwiki'		" A Personal Wiki For Vim
+" Writing
+" Wiki for Vim
+"Plug 'vimwiki/vimwiki', {'branch': 'dev'}
+"Plug 'plasticboy/vim-markdown'	" Syntax highlighting, matching rules and mappings for the original Markdown and extensions.
 Plug 'xolox/vim-notes'		" For taking note, of course
-Plug 'tpope/vim-surround'	" Change parentheses and stuff with ease
-Plug 'xolox/vim-misc'		" Miscellaneous auto-load Vim scripts
-Plug 'preservim/nerdtree'	" A tree explorer plugin for vim
+
+" Dev
 Plug 'Valloric/YouCompleteMe'	" Ycm code-suggestion engine
-Plug 'jiangmiao/auto-pairs'	" Autopair parentheses and stuff
-Plug 'majutsushi/tagbar'	" Vim plugin that displays tags in a window
+Plug 'davidhalter/jedi-vim'	" Awesome Python autocompletion
 Plug 'ctrlpvim/ctrlp.vim'	" Fuzzy file, buffer, mru, tag, ... finder
+Plug 'preservim/nerdtree'	" A tree explorer plugin for vim
+Plug 'tpope/vim-surround'	" Change parentheses and stuff with ease
+Plug 'jiangmiao/auto-pairs'	" Autopair parentheses and stuff
+Plug 'frazrepo/vim-rainbow'	" Rainbow parentheses
+Plug 'preservim/nerdcommenter'	" Easy comment out lines of codes
+
+" Tags
+Plug 'majutsushi/tagbar'	" Vim plugin that displays tags in a window
 Plug 'universal-ctags/ctags'	" Universal tags for codes
 "Install Exuberant Ctags 'sudo eopkg it ctags' which is a dependency
 "To build with Autotools, see docs/autotools.rst for more information
 Plug 'xolox/vim-easytags' 	" Automated tag file generation and syntax highlighting of tags in Vim
+Plug 'xolox/vim-misc'		" Miscellaneous auto-load Vim scripts, required for xolox's pluggin
+
+" Git
 Plug 'airblade/vim-gitgutter'
 " A Vim plugin which shows a git diff in the gutter (sign column)
 " and stages/undoes hunks and partial hunks
 
 Plug 'gioele/vim-autoswap'	" No more swap files!
+
+" UI
 Plug 'vim-airline/vim-airline'	" Lean & mean tabline for vim
 Plug 'morhetz/gruvbox'		" GruvBox colorscheme
-"Plug 'junegunn/goyo.vim'	" <Leader>gy toggle reading mode
-Plug 'frazrepo/vim-rainbow'	" Rainbow parentheses
 Plug 'yuttie/comfortable-motion.vim' 	" Physics-based smooth scrolling
-
+"Plug 'junegunn/goyo.vim'	" <Leader>gy toggle reading mode
 Plug 'jeetsukumaran/vim-buffergator'
 "Use <Leader>b to open a window listing all buffers
 "<ENTER> to edit the selected buffer in the previous window
@@ -45,8 +57,6 @@ Plug 'jeetsukumaran/vim-buffergator'
 "split a new window left, up, right, or down, respectively,
 "and edit the previous MRU buffer there.
 
-Plug 'preservim/nerdcommenter'	" Easy comment out lines of codes
-Plug 'davidhalter/jedi-vim'	" Awesome Python autocompletion
 call plug#end()
 
 " Basic settings
@@ -96,9 +106,26 @@ augroup remember_folds
 	autocmd BufWinEnter * silent! loadview
 augroup END
 
-" Markdown
-" Use vim-markdown as default and keep snippets
-"autocmd FileType vimwiki set ft=markdown
+" Writing
+
+"" From https://dev.to/konstantin/taking-notes-with-vim-3619
+"" Vimwiki
+""let g:vimwiki_list = [{ 'path': '~/Documents/note/' }]
+""let g:vimwiki_list = [{'path': '~/Documents/note/',
+		       ""\ 'syntax': 'markdown', 'ext': '.md'}]
+"" Markdown
+"" Use vim-markdown as default and keep snippets
+""autocmd FileType vimwiki set ft=markdown
+"" Disable default mapping
+""let g:vim_markdown_no_default_key_mappings = 1
+
+" Notes
+" ~/Documents/note/
+let g:notes_directories = ['~/Documents/note']
+" Indents
+" Redefine as 4 space
+" From here https://stackoverflow.com/questions/1878974/redefine-tab-as-4-spaces
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 " Search
 " Smarter search
@@ -111,10 +138,6 @@ set hlsearch        " Highlight all matches
 "highlight    IncSearch    ctermfg=White  ctermbg=Red    cterm=bold
 " Remove all hightlight
 nnoremap <leader>hl :noh<CR>
-
-" Notes
-" ~/Documents/notes/
-let g:notes_directories = ['~/Documents/Notes']
 
 " Autoswap
 " Get title
@@ -233,3 +256,9 @@ let g:rainbow_active = 1
 " Termdebug
 " Arrange windows
 autocmd filetype cpp,c nnoremap <F6> :Termdebug %:r<CR><c-w>2j<c-w>L
+
+" Buffergator
+" Disable default mapping
+let g:buffergator_suppress_keymaps = 1
+" Toggle open
+nmap <leader>b :BuffergatorOpen<CR>
