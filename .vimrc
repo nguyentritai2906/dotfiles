@@ -45,7 +45,7 @@ Plug 'gioele/vim-autoswap'	" No more swap files!
 Plug 'vim-airline/vim-airline'	" Lean & mean tabline for vim
 Plug 'morhetz/gruvbox'		" GruvBox colorscheme
 Plug 'yuttie/comfortable-motion.vim' 	" Physics-based smooth scrolling
-"Plug 'junegunn/goyo.vim'	" <Leader>gy toggle reading mode
+Plug 'junegunn/goyo.vim'	" <Leader>gy toggle reading mode
 Plug 'jeetsukumaran/vim-buffergator'
 "Use <Leader>b to open a window listing all buffers
 "<ENTER> to edit the selected buffer in the previous window
@@ -100,14 +100,14 @@ nnoremap <leader>k maO<Esc>`a
 " Automatically deletes all trailing whitespace on save:
 autocmd BufWritePre * %s/\s\+$//e
 " Save folds when exit, load folds when open
+" https://github.com/spf13/spf13-vim/issues/766
 augroup remember_folds
 	autocmd!
-	autocmd BufWinLeave * mkview
-	autocmd BufWinEnter * silent! loadview
+	autocmd BufWinLeave ?* mkview
+	autocmd BufWinEnter ?* silent! loadview
 augroup END
 
 " Writing
-
 "" From https://dev.to/konstantin/taking-notes-with-vim-3619
 "" Vimwiki
 ""let g:vimwiki_list = [{ 'path': '~/Documents/note/' }]
@@ -118,7 +118,6 @@ augroup END
 ""autocmd FileType vimwiki set ft=markdown
 "" Disable default mapping
 ""let g:vim_markdown_no_default_key_mappings = 1
-
 " Notes
 " ~/Documents/note/
 let g:notes_directories = ['~/Documents/note']
