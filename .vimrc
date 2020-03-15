@@ -100,10 +100,11 @@ nnoremap <leader>k maO<Esc>`a
 " Automatically deletes all trailing whitespace on save:
 autocmd BufWritePre * %s/\s\+$//e
 " Save folds when exit, load folds when open
+" https://github.com/spf13/spf13-vim/issues/766
 augroup remember_folds
 	autocmd!
-	autocmd BufWinLeave * mkview
-	autocmd BufWinEnter * silent! loadview
+	autocmd BufWinLeave ?* mkview
+	autocmd BufWinEnter ?* silent! loadview
 augroup END
 
 " Writing
