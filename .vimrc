@@ -245,6 +245,7 @@ let g:ycm_semantic_triggers = {
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 let g:ycm_show_diagnostics_ui = 1
 "Populate vims location list with new diagnostic data
+"Use :lnext and :lprev - Jump to next or previous error in list
 let g:ycm_always_populate_location_list = 1
 " Tab completion
 set wildmode=longest,list,full
