@@ -232,6 +232,9 @@ bindkey -s '^o' 'lfcd\n'
 # Add Rust to $PATH
 export PATH="$HOME/.cargo/bin:$PATH"
 
+# Add brew to $PATH
+export PATH="$HOME/linuxbrew/.linuxbrew/bin:$PATH"
+
 # Broot file manager
 source $HOME/.config/broot/launcher/bash/br
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
