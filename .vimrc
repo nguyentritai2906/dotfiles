@@ -86,9 +86,6 @@ augroup vimrc_help
   autocmd!
   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
 augroup END
-" Make the 81st column stand out
-highlight ColorColumn ctermbg=cyan
-call matchadd('ColorColumn', '\%81v', 100)
 
 " Macro
 " Write, compile and execute C code
@@ -132,10 +129,7 @@ set incsearch       " Lookahead as search pattern is specified
 set ignorecase      " Ignore case in all searches...
 set smartcase       " ...unless uppercase letters used
 set hlsearch        " Highlight all matches
-"highlight clear Search
-"highlight       Search    ctermfg=White  ctermbg=Cyan  cterm=bold
-"highlight    IncSearch    ctermfg=White  ctermbg=Red    cterm=bold
-" Remove all hightlight
+" Remove all highlight
 nnoremap <leader>hl :noh<CR>
 
 " Autoswap
@@ -183,6 +177,17 @@ set t_Co=256
 set background=dark
 colorscheme gruvbox
 hi Normal guibg=NONE ctermbg=NONE
+" Make the 81st column stand out
+" It's important to load the colorscheme before the ctermbg settings in .vimrc
+" because they need to override the same ones set by the colorscheme.
+highlight ColorColumn ctermbg=darkcyan
+call matchadd('ColorColumn', '\%81v', 100)
+"Clear Search which is the highlight that vim uses to highlight search matches
+"Then add new custom config
+"highlight clear Search
+"highlight clear IncSearch
+highlight       Search    ctermfg=Black  ctermbg=208    cterm=bold
+highlight    IncSearch    ctermfg=Black  ctermbg=Red    cterm=bold
 
 " GitGutter
 " Update sign column every 1/10 second
@@ -239,6 +244,8 @@ let g:ycm_semantic_triggers = {
 " Trigger completion for C
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 let g:ycm_show_diagnostics_ui = 1
+"Populate vims location list with new diagnostic data
+let g:ycm_always_populate_location_list = 1
 " Tab completion
 set wildmode=longest,list,full
 set wildmenu
