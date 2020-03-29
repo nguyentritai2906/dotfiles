@@ -19,7 +19,12 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+w kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id rofi -show run
+#bindsym $mod+d exec --no-startup-id rofi -show run
+# start window switcher
+#bindsym $mod+Shift+d exec --no-startup-id rofi -show window
+# start rofi combi mode
+bindsym $mod+d exec --no-startup-id "rofi -combi-modi window,drun -show combi -modi combi"
+
 # file manager
 bindsym $mod+e exec --no-startup-id nautilus
 # browser
@@ -186,11 +191,10 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # Set shut down, restart and locking features
 set $mode_system [l] lock,  [e] exit, [u] switch_user, [s] suspend, [h] hibernate, [r] reboot, [S] shutdown
 mode "$mode_system" {
-    #bindsym l exec --no-startup-id i3exit lock, mode "default"
-    #bindsym s exec --no-startup-id i3exit suspend, mode "default"
-    #bindsym u exec --no-startup-id i3exit switch_user, mode "default"
-    #bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym l exec --no-startup-id ~/.config/i3/lock.sh
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
     bindsym e exec --no-startup-id i3exit logout, mode "default"
     bindsym r exec --no-startup-id i3exit reboot, mode "default"
     bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
@@ -238,6 +242,7 @@ exec_always --no-startup-id setxkbmap -layout us -option ctrl:nocaps
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id python3 $HOME/.config/i3/autotiling.py
 exec_always --no-startup-id compton -f -I 0.1 -O 0.1 -D 10
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 #exec_always --no-startup-id spotify
 #exec_always --no-startup-id google-chrome-stable
 #
@@ -245,7 +250,7 @@ exec_always --no-startup-id compton -f -I 0.1 -O 0.1 -D 10
 #exec_always --no-startup-id feh --bg-scale /home/solus/Pictures/Wallpapers/fern-green-black.jpg
 
 # Theme colors
-client.focused #d9d6ca #1c1c22 #d9d6ca #00ff00 #00ff00
+client.focused #00ff00 #1c1c22 #d9d6ca #00ff00 #00ff00
 #client.focused #d9d6ca #1c1c22 #d9d6ca #5c828d #5c828d
 client.focused_inactive #d9d6ca #1c1c22 #d9d6ca #3e646f #3e646f
 client.unfocused #d9d6ca #1c1c22 #d9d6ca #3e646f #3e646f
