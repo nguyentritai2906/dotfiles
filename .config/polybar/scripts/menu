@@ -38,11 +38,11 @@ rofi -no-lazy-grab -show drun \
 -display-drun "Applications" -drun-display-format "{name}" \
 -hide-scrollbar true \
 -bw 0 \
--lines 16 \
+-lines 32 \
 -line-padding 11 \
 -padding 10 \
 -width 25 \
--xoffset 1 -yoffset -3 \
+-xoffset 1 -yoffset -0 \
 -location 7 \
 -columns 2 \
 -show-icons -icon-theme "Papirus" \
