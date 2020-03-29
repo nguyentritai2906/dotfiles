@@ -41,17 +41,17 @@ MENU="$(rofi -no-lazy-grab -sep "|" -dmenu -i -p 'System' \
 -line-padding 10 \
 -padding 20 \
 -width 15 \
--xoffset -1 -yoffset -522 \
+-xoffset -1 -yoffset -616 \
 -location 5 \
 -columns 1 \
 -show-icons -icon-theme "Papirus" \
--font "Fantasque Sans Mono 10" \
+-font "System San Francisco Display 10" \
 -color-enabled true \
 -color-window "$BACKGROUND,$BORDER,$SEPARATOR" \
 -color-normal "$BACKGROUND_ALT,$FOREGROUND,$BACKGROUND_ALT,$HIGHLIGHT_BACKGROUND,$HIGHLIGHT_FOREGROUND" \
 -color-active "$BACKGROUND,$MAGENTA,$BACKGROUND_ALT,$HIGHLIGHT_BACKGROUND,$HIGHLIGHT_FOREGROUND" \
 -color-urgent "$BACKGROUND,$YELLOW,$BACKGROUND_ALT,$HIGHLIGHT_BACKGROUND,$HIGHLIGHT_FOREGROUND" \
-<<< "  Lock|  Logout|  Reboot|  Shutdown")"
+<<< "Lock|Logout|Reboot|Shutdown")"
 case "$MENU" in
   *Lock) i3lock ;;
   *Logout) openbox --exit;;
