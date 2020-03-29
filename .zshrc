@@ -163,7 +163,9 @@ function cs () {
 # History in cache directory:
 HISTSIZE=10000
 SAVEHIST=10000
-HISTFILE=~/.cache/zsh/history
+HISTFILE=~/.zsh_history
+setopt inc_append_history
+setopt hist_ignore_dups
 
 # Basic auto/tab complete:
 autoload -U compinit
