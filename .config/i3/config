@@ -245,6 +245,7 @@ exec_always --no-startup-id python3 $HOME/.config/i3/autotiling.py
 exec_always --no-startup-id compton -f -I 0.1 -O 0.1 -D 10
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 exec --no-startup-id ibus-daemon -drx
+exec --no-startup-id xset r rate 200 30
 #exec_always --no-startup-id spotify
 #exec_always --no-startup-id google-chrome-stable
 #
