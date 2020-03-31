@@ -76,7 +76,7 @@ env:
   #
   # Override the variant of the GTK theme. Commonly supported values are `dark` and `light`.
   # Set this to `None` to use the default theme variant.
-  #gtk_theme_variant: None
+  #gtk_theme_variant: dark
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -109,7 +109,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: Source Code Pro
+    family: Source Code Pro Semibold
 
     # The `style` can be specified to pick a specific face.
     style: Regular
@@ -120,7 +120,7 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Source Code Pro
+    family: Source Code Pro Semibold
 
     # The `style` can be specified to pick a specific face.
     style: Bold
@@ -131,7 +131,7 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Source Code Pro
+    family: Source Code Pro Semibold
 
     # The `style` can be specified to pick a specific face.
     style: Italic
@@ -142,13 +142,13 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Source Code Pro
+    family: Source Code Pro Semibold
 
     # The `style` can be specified to pick a specific face.
     style: Bold Italic
 
   # Point size
-  size: 9.0
+  size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -183,10 +183,10 @@ font:
 #draw_bold_text_with_bright_colors: true
 
 # Colors (Tomorrow Night Bright)
-#colors:
+colors:
   # Default colors
-  #primary:
-  #  background: '0x000000'
+  primary:
+    background: '#2E3436'
   #  foreground: '0xeaeaea'
 
     # Bright and dim foreground colors
