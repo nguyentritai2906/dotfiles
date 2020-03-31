@@ -13,17 +13,18 @@ font xft:URWGothic-Book 11
 
 floating_modifier $mod
 
-bindsym $mod+Return exec i3-sensible-terminal
+#bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec alacritty
 
 # window kill command
 bindsym $mod+w kill
 
 # start program launcher
-#bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+d exec --no-startup-id rofi -show run
 # start window switcher
-#bindsym $mod+Shift+d exec --no-startup-id rofi -show window
+bindsym $mod+Shift+d exec --no-startup-id rofi -show window
 # start rofi combi mode
-bindsym $mod+d exec --no-startup-id "rofi -combi-modi window,drun -show combi -modi combi"
+bindsym $mod+r exec --no-startup-id "rofi -combi-modi window,drun -show combi -modi combi"
 
 # file manager
 bindsym $mod+e exec --no-startup-id nautilus
@@ -207,7 +208,7 @@ bindsym $mod+Pause mode "$mode_system"
 bindsym $mod+Shift+x exec --no-startup-id ~/.config/i3/lock.sh
 
 # Resize window (you can also use the mouse for that)
-bindsym $mod+r mode "resize"
+bindsym $mod+s mode "resize"
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
         # Pressing left will shrink the window’s width.
@@ -243,6 +244,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id python3 $HOME/.config/i3/autotiling.py
 exec_always --no-startup-id compton -f -I 0.1 -O 0.1 -D 10
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+exec --no-startup-id ibus-daemon -drx
 #exec_always --no-startup-id spotify
 #exec_always --no-startup-id google-chrome-stable
 #
@@ -321,4 +323,3 @@ bindsym XF86AudioPrev exec playerctl previous
 ## sreen brightness controls
 #bindsym XF86KbdBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 #bindsym XF86KbdBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
-
