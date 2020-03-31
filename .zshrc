@@ -100,6 +100,11 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
 alias vimconfig="vim ~/.vimrc"
+alias i3config="vim ~/.config/i3/config"
+alias polyconfig="vim ~/.config/polybar/config.ini"
+alias alaconfig="vim ~/.config/alacritty/alacritty.yml"
+alias tmuxconfig="vim ~/.tmux/.tmux.conf"
+alias tmuxconfiglc="vim ~/.tmux/.tmux.conf.local"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
