@@ -1,10 +1,25 @@
 #!/usr/bin/env bash
 
 count=0
-disconnected=""
-wireless_connected=""
+#wireless_connected=""
 ethernet_connected=""
 network_name="$(nmcli -t -f active,ssid dev wifi | egrep '^yes' | cut -d\: -f2)"
+network_strength="$(nmcli dev wifi list | awk '/\*/{if (NR!=1) {print $11}}')"
+
+##Icons
+##Pack1
+#icon1=""
+#icon2=""
+#icon3=""
+#icon4=""
+#disconnected=""
+
+#Pack2
+icon1=""
+icon2=""
+icon3=""
+icon4=""
+disconnected=""
 
 ID="$(ip link | awk '/state UP/ {print $2}')"
 
@@ -13,7 +28,16 @@ while true; do
         if [[ $ID == e* ]]; then
             echo "$ethernet_connected" ; sleep 25
         else
-            echo "$wireless_connected $network_name" ; sleep 25
+            if [[ $network_strength == ▂___  ]] ; then
+                echo "$icon1 $network_name" ; sleep 25
+            elif [[ $network_strength == ▂▄__  ]] ; then
+                echo "$icon2 $network_name" ; sleep 25
+            elif [[ $network_strength == ▂▄▆_  ]] ; then
+                echo "$icon3 $network_name" ; sleep 25
+            else
+                echo "$icon4 $network_name"; sleep 25
+            fi
+            #echo "$network_strength $network_name" ; sleep 25
         fi
     else
         echo "$disconnected" ; sleep 0.5
