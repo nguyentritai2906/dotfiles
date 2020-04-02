@@ -44,6 +44,7 @@ Plug 'gioele/vim-autoswap'	" No more swap files!
 " UI
 Plug 'vim-airline/vim-airline'	" Lean & mean tabline for vim
 Plug 'morhetz/gruvbox'		" GruvBox colorscheme
+Plug 'lilydjwg/colorizer'	" Colorize all text in form of #rrggbb and #rgb
 Plug 'yuttie/comfortable-motion.vim' 	" Physics-based smooth scrolling
 Plug 'junegunn/goyo.vim'	" <Leader>gy toggle reading mode
 Plug 'jeetsukumaran/vim-buffergator'
