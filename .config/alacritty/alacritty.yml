@@ -88,7 +88,8 @@ scrolling:
   multiplier: 3
 
   # Scroll to the bottom when new text is written to the terminal.
-  auto_scroll: false
+  # Has been removed and can be safely remove from the config
+  #auto_scroll: false
 
 # Spaces per Tab (changes require restart)
 #
