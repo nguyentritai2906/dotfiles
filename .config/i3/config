@@ -70,8 +70,8 @@ bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+## toggle tiling / floating
+#bindsym $mod+Shift+space floating toggle
 
 # change container layout (stacked, tabbed, toggle split)
 #bindsym $mod+s layout stacking
@@ -84,16 +84,16 @@ bindsym $mod+Shift+space floating toggle
 # focus the parent container
 #bindsym $mod+a focus parent
 
-# move the currently focused window to the scratchpad
-bindsym $mod+Shift+minus move scratchpad
+## move the currently focused window to the scratchpad
+#bindsym $mod+Shift+minus move scratchpad
 
-# Show the next scratchpad window or hide the focused scratchpad window.
-# If there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+minus scratchpad show
+## Show the next scratchpad window or hide the focused scratchpad window.
+## If there are multiple scratchpad windows, this command cycles through them.
+#bindsym $mod+minus scratchpad show
 
-# navigate workspaces next / previous
-bindsym $mod+Ctrl+Right workspace next
-bindsym $mod+Ctrl+Left workspace prev
+## navigate workspaces next / previous
+#bindsym $mod+Ctrl+Right workspace next
+#bindsym $mod+Ctrl+Left workspace prev
 
 # workspaces
 set $ws1 1
@@ -316,10 +316,10 @@ bindsym XF86TouchpadOn exec --no-startup-id synclient Touchpadoff=0
 bindsym XF86TouchpadOff exec --no-startup-id synclient Touchpadoff=1
 
 # media player controls
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioStop exec playerctl stop
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioStop exec --no-startup-id playerctl stop
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
 ## sreen brightness controls
 #bindsym XF86KbdBrightnessUp exec xbacklight -inc 20 # increase screen brightness
