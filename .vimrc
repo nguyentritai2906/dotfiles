@@ -91,6 +91,23 @@ augroup END
 " Macro
 " Write, compile and execute C code
 map <F9> :w<CR> :!gcc % -o %< && ./%<<CR>
+" Visual selection of lines that have same indent level
+function SelectIndent()
+  let cur_line = line(".")
+  let cur_ind = indent(cur_line)
+  let line = cur_line
+  while indent(line - 1) >= cur_ind
+    let line = line - 1
+  endw
+  exe "normal " . line . "G"
+  exe "normal V"
+  let line = cur_line
+  while indent(line + 1) >= cur_ind
+    let line = line + 1
+  endw
+  exe "normal " . line . "G"
+endfunction
+nnoremap vil :call SelectIndent()<CR>
 " From http://vim.wikia.com/wiki/Quickly_adding_and_deleting_empty_lines
 " Leader-j/k insert blank line below/above
 nnoremap <leader>j mao<Esc>`a
