@@ -185,7 +185,6 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 #bindsym $mod+Shift+r restart
 bindsym $mod+Shift+r exec --no-startup-id pkill compton; restart
-#bindsym $mod+Shift+r exec --no-startup-id pkill polybar -r bar; restart
 
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
@@ -216,10 +215,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 5 px or 5 ppt
+        bindsym h resize shrink width 5 px or 5 ppt
+        bindsym j resize shrink height 5 px or 5 ppt
         bindsym k resize grow height 5 px or 5 ppt
-        bindsym l resize shrink height 5 px or 5 ppt
-        bindsym semicolon resize grow width 5 px or 5 ppt
+        bindsym l resize grow width 5 px or 5 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -233,20 +232,22 @@ mode "resize" {
 }
 
 # Autostart applications
-exec --no-startup-id nitrogen --restore; sleep 1; compton -b
+exec --no-startup-id nitrogen --restore
+#exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+exec --no-startup-id ibus-daemon -drx
+exec --no-startup-id xset r rate 200 30
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id setxkbmap -layout us -option ctrl:nocaps
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id python3 $HOME/.config/i3/autotiling.py
-#exec_always --no-startup-id compton -f -I 0.1 -O 0.1 -D 10
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-exec --no-startup-id ibus-daemon -drx
-exec --no-startup-id xset r rate 200 30
+exec_always --no-startup-id compton -b
+#exec_always --no-startup-id compton -b -f -I 0.1 -O 0.1 -D 10
 #exec_always --no-startup-id spotify
 #exec_always --no-startup-id google-chrome-stable
 #
