@@ -1,3 +1,11 @@
+#██╗██████╗ ██╗    ██╗███╗   ███╗     ██████╗ ██████╗ ███╗   ██╗███████╗██╗ ██████╗
+#██║╚════██╗██║    ██║████╗ ████║    ██╔════╝██╔═══██╗████╗  ██║██╔════╝██║██╔════╝
+#██║ █████╔╝██║ █╗ ██║██╔████╔██║    ██║     ██║   ██║██╔██╗ ██║█████╗  ██║██║  ███╗
+#██║ ╚═══██╗██║███╗██║██║╚██╔╝██║    ██║     ██║   ██║██║╚██╗██║██╔══╝  ██║██║   ██║
+#██║██████╔╝╚███╔███╔╝██║ ╚═╝ ██║    ╚██████╗╚██████╔╝██║ ╚████║██║     ██║╚██████╔╝
+#╚═╝╚═════╝  ╚══╝╚══╝ ╚═╝     ╚═╝     ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝ ╚═════╝
+
+
 set $mod Mod4
 
 new_window pixel 1
@@ -187,7 +195,8 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r exec --no-startup-id pkill compton; restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec --no-startup-id i3exit logout, mode "default"
 
 # Set shut down, restart and locking features
 set $mode_system [l] lock,  [e] exit, [u] switch_user, [s] suspend, [h] hibernate, [r] reboot, [S] shutdown
