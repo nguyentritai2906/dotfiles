@@ -158,6 +158,7 @@ alias lg='lc | grep'
 alias hg='history | grep'
 alias note='cd ~/Documents/note/ && ll'
 alias open='xdg-open'
+alias suvim='sudo -E vim'
 # Alias 'config' for git
 alias config='/usr/bin/git --git-dir=/home/solus/.cfg/ --work-tree=/home/solus'
 # Create an alias for cd and ls:
