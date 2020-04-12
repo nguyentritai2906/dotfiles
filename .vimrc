@@ -71,6 +71,7 @@ set number relativenumber
 set backupdir=~/.vim/tmp//,.
 set directory=~/.vim/tmp//,.
 let mapleader =" "	" Map leader to space
+colorscheme gruvbox
 
 " UI
 " Change cursor shape for different vi modes.
@@ -193,11 +194,10 @@ noremap <leader>p :set paste<CR>"*p<CR>:set nopaste<CR>"
     "execute "set <xLeft>=\e[1;*D"
 "endif
 
-" Gruvbox
-" Setup for gruvbox
+" Highlight
+" Term and background color
 set t_Co=256
 set background=dark
-colorscheme gruvbox
 hi Normal guibg=NONE ctermbg=NONE
 " Make the 81st column stand out
 " It's important to load the colorscheme before the ctermbg settings in .vimrc
