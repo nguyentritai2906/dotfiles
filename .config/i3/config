@@ -40,7 +40,8 @@ bindsym $mod+e exec --no-startup-id nautilus
 bindsym Ctrl+Shift+f exec --no-startup-id google-chrome-stable
 
 # screenshot
-bindsym Print exec --no-startup-id flameshot gui
+bindsym Print exec --no-startup-id flameshot full -c
+bindsym Shift+Print exec --no-startup-id flameshot gui
 bindsym Ctrl+Print exec --no-startup-id flameshot full -c -p ~/Pictures/screenshot
 
 # change focus
@@ -191,8 +192,11 @@ for_window [urgent=latest] focus
 bindsym $mod+Shift+c reload
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-#bindsym $mod+Shift+r restart
-bindsym $mod+Shift+r exec --no-startup-id pkill compton; restart
+bindsym $mod+Shift+r restart
+#bindsym $mod+Shift+r exec --no-startup-id pkill compton; restart
+
+# Restart polybar
+bindsym $mod+Shift+p exec --no-startup-id $HOME/.config/polybar/launch.sh
 
 # exit i3 (logs you out of your X session)
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
@@ -242,20 +246,20 @@ mode "resize" {
 
 # Autostart applications
 exec --no-startup-id nitrogen --restore
-#exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 exec --no-startup-id ibus-daemon -drx
-exec --no-startup-id xset r rate 200 30
+exec_always --no-startup-id xset r rate 200 30
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id setxkbmap -layout us -option ctrl:nocaps
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id python3 $HOME/.config/i3/autotiling.py
-exec_always --no-startup-id compton -b
+exec_always --no-startup-id "killall -q compton; sleep 0.1; compton -b"
+#exec --no-startup-id nitrogen --restore; sleep 1; compton -b
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 #exec_always --no-startup-id compton -b -f -I 0.1 -O 0.1 -D 10
 #exec_always --no-startup-id spotify
 #exec_always --no-startup-id google-chrome-stable
