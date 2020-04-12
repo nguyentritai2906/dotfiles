@@ -66,6 +66,10 @@ filetype plugin on	" Required
 syntax on 		" For C syntax check, change C++11 to C99 in .vim/.ycm_extra_conf.py
 set encoding=utf-8
 set number relativenumber
+"Set directory for backup files (*~) and .swap files
+"https://stackoverflow.com/a/1625850/12434677
+set backupdir=~/.vim/tmp//,.
+set directory=~/.vim/tmp//,.
 let mapleader =" "	" Map leader to space
 
 " UI
