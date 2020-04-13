@@ -44,7 +44,6 @@ Plug 'gioele/vim-autoswap'	" No more swap files!
 " UI
 Plug 'vim-airline/vim-airline'	" Lean & mean tabline for vim
 Plug 'morhetz/gruvbox'		" GruvBox colorscheme
-Plug 'joshdick/onedark.vim'	" Onedark colorscheme
 Plug 'lilydjwg/colorizer'	" Colorize all text in form of #rrggbb and #rgb
 Plug 'Yggdroot/indentLine'	" Display indentation level
 Plug 'yuttie/comfortable-motion.vim' 	" Physics-based smooth scrolling
@@ -73,8 +72,7 @@ set number relativenumber
 set backupdir=~/.vim/tmp//,.
 set directory=~/.vim/tmp//,.
 let mapleader =" "	" Map leader to space
-"colorscheme gruvbox
-colorscheme onedark
+colorscheme gruvbox
 
 " UI
 " Change cursor shape for different vi modes.
