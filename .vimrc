@@ -123,9 +123,9 @@ autocmd BufWritePre * %s/\s\+$//e
 " Save folds when exit, load folds when open
 " https://github.com/spf13/spf13-vim/issues/766
 augroup remember_folds
-	autocmd!
-	autocmd BufWinLeave ?* mkview
-	autocmd BufWinEnter ?* silent! loadview
+        autocmd!
+        autocmd BufWinLeave ?* mkview 1
+        autocmd BufWinEnter ?* silent loadview 1
 augroup END
 
 " Writing
