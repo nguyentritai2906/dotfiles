@@ -120,13 +120,14 @@ nnoremap <leader>j mao<Esc>`a
 nnoremap <leader>k maO<Esc>`a
 " Automatically deletes all trailing whitespace on save:
 autocmd BufWritePre * %s/\s\+$//e
-" Save folds when exit, load folds when open
-" https://github.com/spf13/spf13-vim/issues/766
-augroup remember_folds
-        autocmd!
-        autocmd BufWinLeave ?* mkview 1
-        autocmd BufWinEnter ?* silent loadview 1
-augroup END
+"" Save folds when exit, load folds when open
+"" https://github.com/spf13/spf13-vim/issues/766
+"" 'autocmd BufWinEnter' cause NERDtree to minimized when it's opened with Tagbar
+"augroup remember_folds
+        "autocmd!
+        "autocmd BufWinLeave ?* mkview 1
+        "autocmd BufWinEnter ?* silent loadview 1
+"augroup END
 
 " Writing
 "" From https://dev.to/konstantin/taking-notes-with-vim-3619
@@ -243,13 +244,14 @@ let g:ctrlp_show_hidden = 1
 " CtrlP runtimepath
 set runtimepath^=~/.vim/plugged/ctrlp.vim
 
+" NERDtree and Tagbar
+nnoremap <F8> :NERDTreeToggle<CR> :TagbarToggle<CR>
 " Tagbar
 " Toggle
-nmap <F8> :TagbarToggle<CR>
-
+"nmap <F8> :TagbarToggle<CR>
 " NERDtree
 " Toggle
-map <C-n> :NERDTreeToggle<CR>
+"map <C-n> :NERDTreeToggle<CR>
 
 "" Open NERDTree automatically when vim starts up if no files were specified
 "autocmd StdinReadPre * let s:std_in=1
