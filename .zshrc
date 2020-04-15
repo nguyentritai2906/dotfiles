@@ -155,7 +155,7 @@ alias la='ls -A'
 alias l='ls -CF'
 alias lc='ls -l -h -a -t'
 alias lg='lc | grep'
-alias rm='rm -i'
+alias rm='rm -I'
 alias mv='mv -i'
 alias ..='cd ..'
 alias hg='history | grep'
@@ -271,3 +271,9 @@ export LIBRARY_PATH=/usr/local/lib
 
 # Load zsh-syntax-highlighting; should be last.
 source $HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/solus/google-cloud-sdk/path.zsh.inc' ]; then . '/home/solus/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/solus/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/solus/google-cloud-sdk/completion.zsh.inc'; fi

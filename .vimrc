@@ -245,7 +245,7 @@ let g:ctrlp_show_hidden = 1
 set runtimepath^=~/.vim/plugged/ctrlp.vim
 
 " NERDtree and Tagbar
-nnoremap <F8> :NERDTreeToggle<CR> :TagbarToggle<CR>
+nnoremap <F8> :TagbarToggle<CR> :NERDTreeToggle<CR>
 " Tagbar
 " Toggle
 "nmap <F8> :TagbarToggle<CR>
