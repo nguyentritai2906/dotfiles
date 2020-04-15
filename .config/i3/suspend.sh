@@ -1,8 +1,10 @@
 #!/bin/bash
 
+#Capture then pixelate the image to use as lock screen
 scrot /tmp/screen.png
 convert /tmp/screen.png -scale 10% -scale 1000% /tmp/screen.png
 
+#Add the lock icon the image
 if [[ -f $HOME/Pictures/icons/lock-green-20.png ]]
 then
     # placement x/y
@@ -28,6 +30,10 @@ then
         echo "done"
     done
 fi
+
+#Lock the machine using above image then remove it
 i3lock -e -u -n -i /tmp/screen.png
 rm /tmp/screen.png
+
+#Suspend
 systemctl suspend
