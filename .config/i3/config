@@ -326,10 +326,6 @@ mode "$mode_gaps_outer" {
 exec --no-startup-id mate-power-manager
 
 # Volume control
-#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $(pactl list short sinks | head -n1 | cut -f1) +5% && paplay /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
-#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $(pactl list short sinks | head -n1 | cut -f1) -5% && paplay /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
-#bindsym XF86AudioMute exec --no-startup-id amixer -D pulse sset Master toggle-mute # Toggle muting
-#
 bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/volume.sh +1%
 bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/volume.sh -1%
 bindsym XF86AudioMute exec --no-startup-id ~/.config/i3/volume.sh M
@@ -343,7 +339,3 @@ bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioStop exec --no-startup-id playerctl stop
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
-
-## sreen brightness controls
-#bindsym XF86KbdBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-#bindsym XF86KbdBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
