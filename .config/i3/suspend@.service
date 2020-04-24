@@ -1,0 +1,20 @@
+[Unit]
+Description=User suspend actions
+Before=sleep.target suspend.target hibernate.target
+
+[Service]
+User=%I
+Type=simple
+Environment=DISPLAY=:0
+ExecStart=/usr/local/bin/i3exit lock
+;ExecStart=/usr/local/bin/i3exit suspend
+;ExecStart=$HOME/.config/i3/lock.sh
+;ExecStart=/usr/local/bin/lock
+ExecStartPost=/bin/sleep 1
+
+[Install]
+WantedBy=sleep.target suspend.target hibernate.target
+
+/*Put this in /etc/systemd/system and enable it*/
+/*sudo cp ./suspend@.service /etc/systemd/system/suspend@.service*/
+/*sudo systemctl enable /etc/systemd/system/suspend@solus.service*/
