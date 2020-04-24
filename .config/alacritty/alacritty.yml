@@ -110,10 +110,12 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: Source Code Pro Semibold
+    #family: Source Code Pro Semibold
+    family: Hack Nerd Font
 
     # The `style` can be specified to pick a specific face.
-    style: Regular
+    #style: Regular
+    style: Bold
 
   # Bold font face
   bold:
@@ -121,7 +123,8 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Source Code Pro Semibold
+    #family: Source Code Pro Semibold
+    family: Hack Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Bold
@@ -132,7 +135,8 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Source Code Pro Semibold
+    #family: Source Code Pro Semibold
+    family: Hack Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Italic
@@ -143,13 +147,14 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Source Code Pro Semibold
+    #family: Source Code Pro Semibold
+    family: Hack Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Bold Italic
 
   # Point size
-  size: 10.0
+  size: 9.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
