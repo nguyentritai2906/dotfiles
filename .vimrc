@@ -97,6 +97,8 @@ augroup END
 " Macro
 " Write, compile and execute C code
 map <F9> :w<CR> :!gcc % -o %< && ./%<<CR>
+" Terminal inside Vim
+nmap <Leader>\t :bel vert term<CR>
 " Visual selection of lines that have same indent level
 function SelectIndent()
   let cur_line = line(".")
@@ -158,7 +160,7 @@ set hlsearch        " Highlight all matches
 nnoremap <leader>hl :noh<CR>
 
 " Autoswap
-" Get title
+" Get title - dealing with swap files
 set title titlestring=
 
 " Remap ESC
