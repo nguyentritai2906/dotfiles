@@ -106,8 +106,7 @@
 	" Change cursor shape for different vi modes.
 	if has("autocmd")
 	au VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
-	au InsertEnter,InsertChange *
-				\if v:insertmode == 'i' |
+	au InsertEnter,InsertChange * if v:insertmode == 'i' |
 				\silent execute '!echo -ne "\e[5 q"' | redraw! |
 				\elseif v:insertmode == 'r' |
 				\silent execute '!echo -ne "\e[3 q"' | redraw! |
@@ -236,9 +235,7 @@
 	"autocmd StdinReadPre * let s:std_in=1
 	"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 	" Close vim if the only window left open is a NERDTree
-	autocmd bufenter * if (winnr("$") == 1
-				\&& exists("b:NERDTree")
-				\&& b:NERDTree.isTabTree()) | q | endif
+	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 	" YouCompeleteMe
 	" Installed YouCompleteMe with both 'libclang' and 'clangd' enabled. In that case 'clangd' will
