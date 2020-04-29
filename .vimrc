@@ -60,6 +60,7 @@
 	"and edit the previous MRU buffer there.
 
 	call plug#end()
+
 " }}}
 
 " General settings {{{
@@ -95,6 +96,7 @@
     set shell=$SHELL
     set autoindent " automatically set indent of new line
     set signcolumn=auto " only show signcolumn when there's sign
+    set ttyfast " faster redrawing
 
     " Tab control
     set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
@@ -178,6 +180,7 @@
 	" custom search highlight
 	highlight       Search    ctermfg=Black  ctermbg=208    cterm=bold
 	highlight    IncSearch    ctermfg=Black  ctermbg=Red    cterm=bold
+
 " }}}
 
 " AutoGroups {{{
@@ -186,8 +189,8 @@
 
 	" Make Vim open help in a vertical split
 	augroup vimrc_help
-	autocmd!
-	autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
+		autocmd!
+		autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
 	augroup END
 
 " }}}
@@ -281,6 +284,7 @@
 	""autocmd FileType vimwiki set ft=markdown
 	"" Disable default mapping
 	""let g:vim_markdown_no_default_key_mappings = 1
+
 " }}}
 
 
