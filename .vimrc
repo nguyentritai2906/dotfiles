@@ -8,6 +8,7 @@
 
 
 " Plugin {{{
+
 	call plug#begin('~/.vim/plugged')
 
 	" Writing
@@ -119,6 +120,7 @@
 " }}}
 
 " General mapping {{{
+
 	" map leader to space
     let mapleader=" "
 
@@ -184,6 +186,7 @@
 " }}}
 
 " AutoGroups {{{
+
 	" Automatically VimResized
 	autocmd VimResized * wincmd =
 
@@ -196,6 +199,7 @@
 " }}}
 
 " General Functionality {{{
+
 	" Notes
 	" ~/Documents/note/
 	let g:notes_directories = ['~/Documents/note']
