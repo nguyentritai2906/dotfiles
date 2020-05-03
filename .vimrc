@@ -15,16 +15,16 @@
 	" Wiki for Vim
 	"Plug 'vimwiki/vimwiki', {'branch': 'dev'}
 	"Plug 'plasticboy/vim-markdown'	" Syntax highlighting, matching rules and mappings for the original Markdown and extensions.
-	Plug 'xolox/vim-notes'		" For taking note, of course
+	Plug 'xolox/vim-notes'			" For taking note, of course
 
 	" Dev
 	Plug 'Valloric/YouCompleteMe'	" Ycm code-suggestion engine
-	Plug 'davidhalter/jedi-vim'	" Awesome Python autocompletion
-	Plug 'ctrlpvim/ctrlp.vim'	" Fuzzy file, buffer, mru, tag, ... finder
-	Plug 'preservim/nerdtree'	" A tree explorer plugin for vim
-	Plug 'tpope/vim-surround'	" Change parentheses and stuff with ease
-	Plug 'jiangmiao/auto-pairs'	" Autopair parentheses and stuff
-	Plug 'frazrepo/vim-rainbow'	" Rainbow parentheses
+	Plug 'davidhalter/jedi-vim'		" Awesome Python autocompletion
+	Plug 'ctrlpvim/ctrlp.vim'		" Fuzzy file, buffer, mru, tag, ... finder
+	Plug 'preservim/nerdtree'		" A tree explorer plugin for vim
+	Plug 'tpope/vim-surround'		" Change parentheses and stuff with ease
+	Plug 'jiangmiao/auto-pairs'		" Autopair parentheses and stuff
+	Plug 'frazrepo/vim-rainbow'		" Rainbow parentheses
 	Plug 'preservim/nerdcommenter'	" Easy comment out lines of codes
 
 	" Tags
