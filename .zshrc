@@ -150,9 +150,9 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
+alias ls='ls -CF --color=auto'
 alias ll='ls -ahlF'
 alias la='ls -A'
-alias ls='ls -CF'
 alias lg='ll | grep'
 alias rm='rm -I'
 alias mv='mv -i'
