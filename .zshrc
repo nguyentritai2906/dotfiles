@@ -166,7 +166,7 @@ alias config='/usr/bin/git --git-dir=/home/solus/.cfg/ --work-tree=/home/solus'
 # Create an alias for cd and ls:
 function cs () {
     cd $1;
-    la
+    ll
 }
 
 ## Alias definitions.
