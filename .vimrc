@@ -139,8 +139,9 @@
     vmap < <gv
     vmap > >gv
 
-	" write, compile and execute C code
-	map <F6> :w<CR> :!gcc % -o %< && ./%<<CR>
+	" write, compile and execute
+	map <F6> :!javac % && java %<<CR>
+	"map <F6> :w<CR> :!gcc % -o %< && ./%<<CR>
 
 	" terminal inside Vim
 	nmap <Leader>\t :bel vert term<CR>
