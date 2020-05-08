@@ -107,13 +107,13 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="vim ~/.zshrc"
-alias vimconfig="vim ~/.vimrc"
-alias i3config="vim ~/.config/i3/config"
-alias polyconfig="vim ~/.config/polybar/config.ini"
-alias alaconfig="vim ~/.config/alacritty/alacritty.yml"
-alias tmuxconfig="vim ~/.tmux/.tmux.conf"
-alias tmuxconfiglc="vim ~/.tmux/.tmux.conf.local"
+alias zshconf="vim ~/.zshrc"
+alias vimconf="vim ~/.vimrc"
+alias i3conf="vim ~/.config/i3/config"
+alias polyconf="vim ~/.config/polybar/config.ini"
+alias alaconf="vim ~/.config/alacritty/alacritty.yml"
+alias tmuxconf="vim ~/.tmux/.tmux.conf"
+alias tmuxconflc="vim ~/.tmux.conf.local"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
@@ -276,3 +276,9 @@ if [ -f '/home/solus/google-cloud-sdk/path.zsh.inc' ]; then . '/home/solus/googl
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/solus/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/solus/google-cloud-sdk/completion.zsh.inc'; fi
+
+# FZF command-line fuzzy finder
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPS='--extended'
+export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
