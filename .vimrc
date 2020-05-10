@@ -11,12 +11,6 @@
 
 	call plug#begin('~/.vim/plugged')
 
-	" Writing
-	" Wiki for Vim
-	"Plug 'vimwiki/vimwiki', {'branch': 'dev'}
-	"Plug 'plasticboy/vim-markdown'	" Syntax highlighting, matching rules and mappings for the original Markdown and extensions.
-	Plug 'xolox/vim-notes'			" For taking note, of course
-
 	" Dev
 	Plug 'Valloric/YouCompleteMe'	" Ycm code-suggestion engine
 	Plug 'davidhalter/jedi-vim'		" Awesome Python autocompletion
@@ -61,6 +55,15 @@
 	"Use <Leader><LEFT>, <Leader><UP>, <Leader><RIGHT>, <Leader><DOWN> to
 	"split a new window left, up, right, or down, respectively,
 	"and edit the previous MRU buffer there.
+
+	" Navigation
+	Plug 'easymotion/vim-easymotion' " Vim motions on speed
+
+	" Writing
+	" Wiki for Vim
+	"Plug 'vimwiki/vimwiki', {'branch': 'dev'}
+	"Plug 'plasticboy/vim-markdown'	" Syntax highlighting, matching rules and mappings for the original Markdown and extensions.
+	Plug 'xolox/vim-notes'			" For taking note, of course
 
 	call plug#end()
 
@@ -188,6 +191,21 @@
 	highlight       Search    ctermfg=Black  ctermbg=208    cterm=bold
 	highlight    IncSearch    ctermfg=Black  ctermbg=Red    cterm=bold
 
+	" Easy Motion
+	let g:EasyMotion_do_mapping = 0 " Disable default mappings
+	" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+	" `<leader>s{char}{label}`
+	"nmap <leader>s <Plug>(easymotion-overwin-f)
+	" or
+	" `<leader>s{char}{char}{label}`
+	" Need one more keystroke, but on average, it may be more comfortable.
+	nmap <leader>s <Plug>(easymotion-overwin-f2)
+	" Turn on case-insensitive feature
+	let g:EasyMotion_smartcase = 1
+	" JK motions: Line motions
+	map <Leader>j <Plug>(easymotion-j)
+	map <Leader>k <Plug>(easymotion-k)
+
 " }}}
 
 " AutoGroups {{{
@@ -295,10 +313,3 @@
 	""let g:vim_markdown_no_default_key_mappings = 1
 
 " }}}
-
-
-
-
-
-
-
