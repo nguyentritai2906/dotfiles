@@ -6,16 +6,16 @@ alias alaconf="vim ~/.config/alacritty/alacritty.yml"
 alias tmuxconf="vim ~/.tmux/.tmux.conf"
 alias tmuxconflc="vim ~/.tmux.conf.local"
 
-alias ls='ls -CF --color=auto'
-alias ll='ls -ahlF'
-alias la='ls -A'
-alias lg='ll | grep'
-alias rm='rm -I'
-alias mv='mv -i'
 alias ..='cd ..'
 alias hg='history | grep'
+alias la='ls -A'
+alias lg='ll | grep'
+alias ll='ls -ahlF'
+alias ls='ls -CF --color=auto'
+alias mv='mv -i'
 alias note='cd ~/Documents/note/ && ll'
 alias open='xdg-open'
+alias rm='rm -I'
 alias suvim='sudo -E vim'
 # Alias 'config' for git
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
