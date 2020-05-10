@@ -109,13 +109,11 @@ export EDITOR=$(which vim)
 #
 # Example aliases
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias zshconf="vim ~/.zshrc"
-alias vimconf="vim ~/.vimrc"
-alias i3conf="vim ~/.config/i3/config"
-alias polyconf="vim ~/.config/polybar/config.ini"
-alias alaconf="vim ~/.config/alacritty/alacritty.yml"
-alias tmuxconf="vim ~/.tmux/.tmux.conf"
-alias tmuxconflc="vim ~/.tmux.conf.local"
+#
+# Alias definitions.
+# Load aliases and shortcuts if existent.
+[ -f "$HOME/.config/.zsh_shortcuts" ] && source "$HOME/.config/.zsh_shortcuts"
+[ -f "$HOME/.config/.zsh_aliases" ] && source "$HOME/.config/.zsh_aliases"
 
 # neofetch
 
@@ -135,46 +133,6 @@ alias tmuxconflc="vim ~/.tmux.conf.local"
 
 #if [ "$TERM" != "linux" ]; then
     #install_powerline_precmd
-#fi
-
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-# some more ls aliases
-alias ls='ls -CF --color=auto'
-alias ll='ls -ahlF'
-alias la='ls -A'
-alias lg='ll | grep'
-alias rm='rm -I'
-alias mv='mv -i'
-alias ..='cd ..'
-alias hg='history | grep'
-alias note='cd ~/Documents/note/ && ll'
-alias open='xdg-open'
-alias suvim='sudo -E vim'
-# Alias 'config' for git
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-# Create an alias for cd and ls:
-function cs () {
-    cd $1;
-    ll
-}
-
-## Alias definitions.
-## You may want to put all your additions into a separate file like
-## ~/.bash_aliases, instead of adding them here directly.
-## See /usr/share/doc/bash-doc/examples in the bash-doc package.
-#if [ -f ~/.zsh_aliases ]; then
-    #. ~/.zsh_aliases
 #fi
 
 # History in cache directory:
@@ -242,11 +200,6 @@ bindkey -s '^o' 'lfcd\n'
 ## Edit line in vim with ctrl-e:
 #autoload edit-command-line; zle -N edit-command-line
 #bindkey '^e' edit-command-line
-
-
-# Load aliases and shortcuts if existent.
-[ -f "$HOME/.config/shortcutrc" ] && source "$HOME/.config/shortcutrc"
-[ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
 
 # Add Rust to $PATH
 export PATH="$HOME/.cargo/bin:$PATH"
