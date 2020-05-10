@@ -2,7 +2,7 @@
 
 # Use fd and fzf to get the args to a command.
 f() {
-	sels=( "${(@f)$(fd "${fd_default[@]}" "${@:2}"| fzf)}"  )
+	sels=( "${(@f)$(fd --hidden "${fd_default[@]}" "${@:2}"| fzf)}"  )
 	test -n "$sels" && print -z -- "$1 ${sels[@]:q:q}"
 }
 
