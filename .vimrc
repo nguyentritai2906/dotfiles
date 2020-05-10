@@ -24,7 +24,8 @@
 	Plug 'preservim/nerdtree'		" A tree explorer plugin for vim
 	Plug 'tpope/vim-surround'		" Change parentheses and stuff with ease
 	Plug 'jiangmiao/auto-pairs'		" Autopair parentheses and stuff
-	Plug 'frazrepo/vim-rainbow'		" Rainbow parentheses
+	"Plug 'frazrepo/vim-rainbow'		" Rainbow parentheses
+	Plug 'luochen1990/rainbow'
 	Plug 'preservim/nerdcommenter'	" Easy comment out lines of codes
 
 	" Tags
@@ -45,6 +46,7 @@
 	" UI
 	Plug 'vim-airline/vim-airline'	" Lean & mean tabline for vim
 	Plug 'morhetz/gruvbox'		" GruvBox colorscheme
+	Plug 'dracula/vim', { 'as': 'dracula'  } " GruvBox colorscheme
 	Plug 'lilydjwg/colorizer'	" Colorize all text in form of #rrggbb and #rgb
 	Plug 'Yggdroot/indentLine'	" Display indentation level
 	Plug 'yuttie/comfortable-motion.vim' 	" Physics-based smooth scrolling
@@ -90,13 +92,15 @@
     set nolazyredraw " don't redraw while executing macros
 
     " Apprearance
-    colorscheme gruvbox
+	colorscheme dracula
+	let g:dracula_italic = 0 " Fix Dracula highlight because terminal doesn't support Italic
     set t_Co=256 " explicitly tell vim that the terminal supports 256 colors
     set number relativenumber
     set background=dark
     set shell=$SHELL
     set autoindent " automatically set indent of new line
     set signcolumn=auto " only show signcolumn when there's sign
+	set cursorline
     set ttyfast " faster redrawing
 
     " Tab control
@@ -266,7 +270,7 @@
 	" Rainbow
 	" Enable vim-rainbow globally
 	let g:rainbow_active = 1
-
+	let g:rainbow_conf = {'ctermfgs': ['red', 'green', 'cyan', 'magenta']}
 	" Termdebug
 	" Arrange windows
 	"autocmd filetype cpp,c nnoremap <F6> :Termdebug %:r<CR><c-w>2j<c-w>L
