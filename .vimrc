@@ -194,17 +194,17 @@
 	" Easy Motion
 	let g:EasyMotion_do_mapping = 0 " Disable default mappings
 	" Jump to anywhere you want with minimal keystrokes, with just one key binding.
-	" `<leader>s{char}{label}`
-	"nmap <leader>s <Plug>(easymotion-overwin-f)
+	" `<Leader>s{char}{label}`
+	"nmap <Leader>s <Plug>(easymotion-overwin-f)
 	" or
-	" `<leader>s{char}{char}{label}`
+	" `<Leader>s{char}{char}{label}`
 	" Need one more keystroke, but on average, it may be more comfortable.
 	nmap <leader>s <Plug>(easymotion-overwin-f2)
 	" Turn on case-insensitive feature
 	let g:EasyMotion_smartcase = 1
 	" JK motions: Line motions
-	map <Leader>j <Plug>(easymotion-j)
-	map <Leader>k <Plug>(easymotion-k)
+	nmap <Leader>J <Plug>(easymotion-j)
+	nmap <Leader>K <Plug>(easymotion-k)
 
 " }}}
 
@@ -242,17 +242,21 @@
 
 	" CtrlP
 	" Change the default mapping and the default command to invoke CtrlP
-	let g:ctrlp_map = '<c-p>'
+	let g:ctrlp_map = '<C-p>'
 	let g:ctrlp_cmd = 'CtrlP'
 	let g:ctrlp_working_path_mode = 'ra'
-	let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-	let g:ctrlp_custom_ignore = {
-				\'dir':  '\v[\/]\.(git|hg|svn)$',
-				\'file': '\v\.(exe|so|dll)$',
-				\'link': 'some_bad_symbolic_links',}
 	set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-	let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-	let g:ctrlp_show_hidden = 1
+	" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+	if executable('ag')
+		" Use Ag over Grep
+		set grepprg=ag\ --nogroup\ --nocolor
+		" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+		let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+	else
+		let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+		let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+		let g:ctrlp_show_hidden = 1
+	endif
 
 	" NERDtree and Tagbar
 	" Toggle Tagbar
