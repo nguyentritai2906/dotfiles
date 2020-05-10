@@ -92,11 +92,12 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+ #if [[ -n $SSH_CONNECTION ]]; then
+   #export EDITOR='vim'
+ #else
+   #export EDITOR='mvim'
+ #fi
+export EDITOR=$(which vim)
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -107,6 +108,7 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias zshconf="vim ~/.zshrc"
 alias vimconf="vim ~/.vimrc"
 alias i3conf="vim ~/.config/i3/config"
@@ -114,8 +116,6 @@ alias polyconf="vim ~/.config/polybar/config.ini"
 alias alaconf="vim ~/.config/alacritty/alacritty.yml"
 alias tmuxconf="vim ~/.tmux/.tmux.conf"
 alias tmuxconflc="vim ~/.tmux.conf.local"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
 
 # neofetch
 
@@ -258,12 +258,11 @@ export PATH="$HOME/linuxbrew/.linuxbrew/bin:$PATH"
 source $HOME/.config/broot/launcher/bash/br
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 # Bind Broot to Ctrl+i
-bindkey -s '\C-u' "br\n"
+bindkey -s '^u' "br\n"
 # Deep fuzzy cd
- function dcd {
-     br -h --only-folders --cmd "$1 :cd"
-
- }
+function dcd {
+    br -h --only-folders --cmd "$1 :cd"
+}
 
 # CS50 library https://github.com/cs50/libcs50
 export LIBRARY_PATH=/usr/local/lib
@@ -274,7 +273,7 @@ if [ -f '/home/solus/google-cloud-sdk/path.zsh.inc' ]; then . '/home/solus/googl
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/solus/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/solus/google-cloud-sdk/completion.zsh.inc'; fi
 
-# Configure fzf, command line fuzzyf finder
+# Configure fzf, command line fuzzy finder
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 FD_OPTIONS="--hidden --follow --exclude .git --exclude node_modules"
 export FZF_DEFAULT_OPTS="--no-mouse --height 50% -1 --reverse --multi --inline-info --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' --preview-window='right:hidden:wrap' --bind='f3:execute(bat --style=numbers {} || less -f {}),f2:toggle-preview,ctrl-d:half-page-down,ctrl-u:half-page-up,ctrl-a:select-all+accept,ctrl-y:execute-silent(echo {+} | pbcopy),ctrl-x:execute(rm -i {+})+abort'"
@@ -282,6 +281,8 @@ export FZF_DEFAULT_OPTS="--no-mouse --height 50% -1 --reverse --multi --inline-i
 export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard || fd --type f --type l $FD_OPTIONS"
 export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
 export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
+# Search with fzf and open in vim
+bindkey -s '^t' "fzf-vim\n"
 
 # Load zsh-syntax-highlighting; should be last.
 source $HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
