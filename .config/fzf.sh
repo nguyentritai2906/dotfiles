@@ -49,6 +49,13 @@ fpd(){
 	cd "$DIR"
 }
 
+# cdf - cd into the directory of the selected file
+cdf() {
+   local file
+   local dir
+   file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+}
+
 # fkill - kill process
 # Similar to "kill -9 **" fzf default completion
 fkill() {
@@ -68,3 +75,5 @@ fzf-vim() {
 		${EDITOR:-vim} "$file"
 	fi
 }
+# Search with fzf and open in vim
+bindkey -s '^t' "fzf-vim\n"
