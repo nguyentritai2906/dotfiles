@@ -162,7 +162,7 @@ alias note='cd ~/Documents/note/ && ll'
 alias open='xdg-open'
 alias suvim='sudo -E vim'
 # Alias 'config' for git
-alias config='/usr/bin/git --git-dir=/home/solus/.cfg/ --work-tree=/home/solus'
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 # Create an alias for cd and ls:
 function cs () {
     cd $1;
@@ -256,7 +256,6 @@ export PATH="$HOME/linuxbrew/.linuxbrew/bin:$PATH"
 
 # Broot file manager
 source $HOME/.config/broot/launcher/bash/br
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 # Bind Broot to Ctrl+i
 bindkey -s '^u' "br\n"
 # Deep fuzzy cd
