@@ -42,6 +42,7 @@
 	" UI
 	Plug 'vim-airline/vim-airline'	" Lean & mean tabline for vim
 	Plug 'morhetz/gruvbox'		" GruvBox colorscheme
+	Plug 'joshdick/onedark.vim'	" OneDark colorscheme
 	Plug 'dracula/vim', { 'as': 'dracula'  } " GruvBox colorscheme
 	Plug 'lilydjwg/colorizer'	" Colorize all text in form of #rrggbb and #rgb
 	Plug 'Yggdroot/indentLine'	" Display indentation level
@@ -95,6 +96,7 @@
     set ignorecase " ignore case in all searches...
     set smartcase " unless uppercase letters used
     set hlsearch " highlight all matches
+	let @/ = "" " highlight search but not when source .vimrc
     set nolazyredraw " don't redraw while executing macros
 
     " Apprearance
@@ -218,11 +220,10 @@
 	nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
 	nnoremap <silent> <Leader>C        :Colors<CR>
 	nnoremap <silent> <Leader><Enter>  :Buffers<CR>
-	nnoremap <silent> <Leader>L        :Lines<CR>
-	nnoremap <silent> <Leader>`        :Marks<CR>
 	nnoremap <silent> <Leader>H        :Helptags<CR>
 	nnoremap <silent> <Leader>/        :BLines<CR>
 	nnoremap <silent> <Leader>?        :Lines<CR>
+	"nnoremap <silent> <Leader>`        :Marks<CR>
 	"nnoremap <silent> q: :History:<CR>
 	"nnoremap <silent> q/ :History/<CR>
 	let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
