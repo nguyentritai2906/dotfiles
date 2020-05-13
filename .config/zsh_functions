@@ -1,0 +1,9 @@
+# Function to allow Ctrl-z to toggle between suspend and resume
+function Resume {
+  zle push-input
+  BUFFER="fg"
+  zle accept-line
+}
+zle -N Resume
+
+bindkey "^Z" Resume
