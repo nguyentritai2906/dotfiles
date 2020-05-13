@@ -14,15 +14,16 @@
 	" Dev
 	Plug 'Valloric/YouCompleteMe'	" Ycm code-suggestion engine
 	Plug 'davidhalter/jedi-vim'		" Awesome Python autocompletion
-	"Plug 'ctrlpvim/ctrlp.vim'		" Fuzzy file, buffer, mru, tag, ... finder
 	Plug 'rking/ag.vim'				" Vim plugin for The-Silver-Searcher
 	Plug 'junegunn/fzf'
 	Plug 'junegunn/fzf.vim'			" General-purpose command-line fuzzy finder vim integration
 	Plug 'preservim/nerdtree'		" A tree explorer plugin for vim
+	Plug 'simnalamburt/vim-mundo'	" Graph vim undo tree
 	Plug 'tpope/vim-surround'		" Change parentheses and stuff with ease
 	Plug 'jiangmiao/auto-pairs'		" Autopair parentheses and stuff
 	Plug 'luochen1990/rainbow'		" Rainbow parentheses
 	Plug 'preservim/nerdcommenter'	" Easy comment out lines of codes
+	Plug 'airblade/vim-gitgutter' " Git diff, stages/undoes hunks and partial hunks
 
 	" Tags
 	Plug 'majutsushi/tagbar'	" Vim plugin that displays tags in a window
@@ -32,11 +33,7 @@
 	Plug 'xolox/vim-easytags' 	" Automated tag file generation and syntax highlighting of tags in Vim
 	Plug 'xolox/vim-misc'		" Miscellaneous auto-load Vim scripts, required for xolox's pluggin
 
-	" Git
-	Plug 'airblade/vim-gitgutter'
-	" A Vim plugin which shows a git diff in the gutter (sign column)
-	" and stages/undoes hunks and partial hunks
-
+	" Make life easier
 	Plug 'gioele/vim-autoswap'	" No more swap files!
 
 	" UI
@@ -46,8 +43,12 @@
 	Plug 'dracula/vim', { 'as': 'dracula'  } " GruvBox colorscheme
 	Plug 'lilydjwg/colorizer'	" Colorize all text in form of #rrggbb and #rgb
 	Plug 'Yggdroot/indentLine'	" Display indentation level
-	Plug 'yuttie/comfortable-motion.vim' 	" Physics-based smooth scrolling
 	Plug 'junegunn/goyo.vim'	" <Leader>gy toggle reading mode
+	Plug 'haya14busa/is.vim'	" Incremental search improved
+
+	" Navigation
+	Plug 'easymotion/vim-easymotion' " Vim motions on speed
+	Plug 'yuttie/comfortable-motion.vim' " Physics-based smooth scrolling
 	Plug 'jeetsukumaran/vim-buffergator'
 	"Use <Leader>b to open a window listing all buffers
 	"<ENTER> to edit the selected buffer in the previous window
@@ -58,10 +59,6 @@
 	"Use <Leader><LEFT>, <Leader><UP>, <Leader><RIGHT>, <Leader><DOWN> to
 	"split a new window left, up, right, or down, respectively,
 	"and edit the previous MRU buffer there.
-	Plug 'haya14busa/is.vim'	" Incremental search improved
-
-	" Navigation
-	Plug 'easymotion/vim-easymotion' " Vim motions on speed
 
 	" Writing
 	" Wiki for Vim
@@ -80,9 +77,10 @@
     syntax on 		" For C syntax check, change C++11 to C99 in .vim/.ycm_extra_conf.py
     set encoding=utf-8
     set autoread " detect when a file is changed
-    set backupdir=~/.vim/tmp//,. " set directory for backup files
-    set directory=~/.vim/tmp//,. " and swap files
-    "set runtimepath^=~/.vim/plugged/ctrlp.vim "CtrlP runtimepath
+    set backupdir=~/.vim/tmp/backup//,. " set directory for backup files
+    set directory=~/.vim/tmp/swap//,. " ... swap files
+    set undodir=~/.vim/tmp/undo//,. " ... and undo files
+	set undofile
     set title titlestring= " Get title - dealing with swap files - Autoswap
     set backspace=indent,eol,start " make backspace behave in a sane manner
     set clipboard=unnamedplus
@@ -215,7 +213,6 @@
 	if has('nvim') || has('gui_running')
 		let $FZF_DEFAULT_OPTS .= ' --inline-info'
 	endif
-	" Mapping
 	" nnoremap <silent> <Leader><Leader> :Files<CR>
 	nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
 	nnoremap <silent> <Leader>C        :Colors<CR>
@@ -227,11 +224,10 @@
 	"nnoremap <silent> q: :History:<CR>
 	"nnoremap <silent> q/ :History/<CR>
 	let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
-	"" All files
-	"command! -nargs=? -complete=dir AF
-	"\ call fzf#run(fzf#wrap(fzf#vim#with_preview({
-	"\   'source': 'fd --type f --hidden --follow --exclude .git --no-ignore . '.expand(<q-args>)
-	"\ })))
+
+	" Mundo
+	nnoremap <F5> :MundoToggle<CR>
+	let g:mundo_auto_preview_delay=0
 
 " }}}
 
@@ -266,24 +262,6 @@
 	" Jump between hunks
 	nmap <Leader>gn <Plug>(GitGutterNextHunk)
 	nmap <Leader>gN <Plug>(GitGutterPrevHunk)
-
-	"" CtrlP
-	"" Change the default mapping and the default command to invoke CtrlP
-	"let g:ctrlp_map = '<C-p>'
-	"let g:ctrlp_cmd = 'CtrlP'
-	"let g:ctrlp_working_path_mode = 'ra'
-	"set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-	"" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-	"if executable('ag')
-		"" Use Ag over Grep
-		"set grepprg=ag\ --nogroup\ --nocolor
-		"" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-		"let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-	"else
-		"let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-		"let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-		"let g:ctrlp_show_hidden = 1
-	"endif
 
 	" NERDtree and Tagbar
 	" Toggle Tagbar
@@ -320,9 +298,6 @@
 	" Enable vim-rainbow globally
 	let g:rainbow_active = 1
 	let g:rainbow_conf = {'ctermfgs': ['red', 'green', 'cyan', 'magenta']}
-	" Termdebug
-	" Arrange windows
-	"autocmd filetype cpp,c nnoremap <F6> :Termdebug %:r<CR><c-w>2j<c-w>L
 
 	" Buffergator
 	" Disable default mapping
@@ -342,8 +317,5 @@
 	""autocmd FileType vimwiki set ft=markdown
 	"" Disable default mapping
 	""let g:vim_markdown_no_default_key_mappings = 1
-
-	" Is.vim
-	let g:is#do_default_mappings=0
 
 " }}}
