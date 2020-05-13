@@ -213,8 +213,7 @@
 	if has('nvim') || has('gui_running')
 		let $FZF_DEFAULT_OPTS .= ' --inline-info'
 	endif
-	" nnoremap <silent> <Leader><Leader> :Files<CR>
-	nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
+	nnoremap <silent> <Leader><Leader> :Files<CR>
 	nnoremap <silent> <Leader>C        :Colors<CR>
 	nnoremap <silent> <Leader><Enter>  :Buffers<CR>
 	nnoremap <silent> <Leader>H        :Helptags<CR>
