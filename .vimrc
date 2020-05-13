@@ -36,6 +36,16 @@
 	" Make life easier
 	Plug 'gioele/vim-autoswap'	" No more swap files!
 
+	" UI
+	Plug 'vim-airline/vim-airline'	" Lean & mean tabline for vim
+	Plug 'morhetz/gruvbox'		" GruvBox colorscheme
+	Plug 'joshdick/onedark.vim'	" OneDark colorscheme
+	Plug 'dracula/vim', { 'as': 'dracula'  } " GruvBox colorscheme
+	Plug 'lilydjwg/colorizer'	" Colorize all text in form of #rrggbb and #rgb
+	Plug 'Yggdroot/indentLine'	" Display indentation level
+	Plug 'junegunn/goyo.vim'	" <Leader>gy toggle reading mode
+	Plug 'haya14busa/is.vim'	" Incremental search improved
+
 	" Navigation
 	Plug 'easymotion/vim-easymotion' " Vim motions on speed
 	Plug 'yuttie/comfortable-motion.vim' " Physics-based smooth scrolling
@@ -56,17 +66,6 @@
 	"Plug 'plasticboy/vim-markdown'	" Syntax highlighting, matching rules and mappings for the original Markdown and extensions.
 	Plug 'xolox/vim-notes'			" For taking note, of course
 
-	" UI
-	Plug 'vim-airline/vim-airline'	" Lean & mean tabline for vim
-	Plug 'morhetz/gruvbox'		" GruvBox colorscheme
-	Plug 'joshdick/onedark.vim'	" OneDark colorscheme
-	Plug 'dracula/vim', { 'as': 'dracula'  } " GruvBox colorscheme
-	Plug 'lilydjwg/colorizer'	" Colorize all text in form of #rrggbb and #rgb
-	Plug 'Yggdroot/indentLine'	" Display indentation level
-	Plug 'junegunn/goyo.vim'	" <Leader>gy toggle reading mode
-	Plug 'haya14busa/is.vim'	" Incremental search improved
-	Plug 'ryanoasis/vim-devicons' " Always load the vim-devicons as the very last one
-
 	call plug#end()
 
 " }}}
@@ -75,7 +74,7 @@
 
     set nocompatible	" Be iMproved, required
     filetype plugin on	" Required
-    syntax on 		" For C syntax check, change C++11 to C99 in .vim/.ycm_extra_conf.py
+	syntax on			" For C syntax check, change C++11 to C99 in .vim/.ycm_extra_conf.py
     set encoding=utf-8
     set autoread " detect when a file is changed
     set backupdir=~/.vim/tmp/backup//,. " set directory for backup files
