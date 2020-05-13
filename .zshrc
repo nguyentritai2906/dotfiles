@@ -99,6 +99,9 @@ source $ZSH/oh-my-zsh.sh
  #fi
 export EDITOR=$(which vim)
 
+# Disable flow control, since it realy just annoys me
+stty -ixon &>/dev/null
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -114,6 +117,7 @@ export EDITOR=$(which vim)
 # Load aliases and shortcuts if existent.
 [ -f "$HOME/.config/zsh_shortcuts" ] && source "$HOME/.config/zsh_shortcuts"
 [ -f "$HOME/.config/zsh_aliases" ] && source "$HOME/.config/zsh_aliases"
+[ -f "$HOME/.config/zsh_functions" ] && source "$HOME/.config/zsh_functions"
 
 # History in cache directory:
 HISTSIZE=10000
