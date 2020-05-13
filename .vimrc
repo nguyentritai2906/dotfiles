@@ -120,10 +120,10 @@
 	if has("autocmd")
 	au VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
 	au InsertEnter,InsertChange * if v:insertmode == 'i' |
-				\silent execute '!echo -ne "\e[5 q"' | redraw! |
-				\elseif v:insertmode == 'r' |
-				\silent execute '!echo -ne "\e[3 q"' | redraw! |
-				\endif
+		\silent execute '!echo -ne "\e[5 q"' | redraw! |
+		\elseif v:insertmode == 'r' |
+		\silent execute '!echo -ne "\e[3 q"' | redraw! |
+		\endif
 	au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
 	endif
 
@@ -158,19 +158,19 @@
 
 	" visual selection of indent level
 	function SelectIndent()
-	let cur_line = line(".")
-	let cur_ind = indent(cur_line)
-	let line = cur_line
-	while indent(line - 1) >= cur_ind
-		let line = line - 1
-	endw
-	exe "normal " . line . "G"
-	exe "normal V"
-	let line = cur_line
-	while indent(line + 1) >= cur_ind
-		let line = line + 1
-	endw
-	exe "normal " . line . "G"
+		let cur_line = line(".")
+		let cur_ind = indent(cur_line)
+		let line = cur_line
+		while indent(line - 1) >= cur_ind
+			let line = line - 1
+		endw
+		exe "normal " . line . "G"
+		exe "normal V"
+		let line = cur_line
+		while indent(line + 1) >= cur_ind
+			let line = line + 1
+		endw
+		exe "normal " . line . "G"
 	endfunction
 	nnoremap vil :call SelectIndent()<CR>
 
@@ -210,19 +210,14 @@
 	nmap <Leader>K <Plug>(easymotion-k)
 
 	" Fzf
-	if has('nvim') || has('gui_running')
-		let $FZF_DEFAULT_OPTS .= ' --inline-info'
-	endif
 	nnoremap <silent> <Leader><Leader> :Files<CR>
 	nnoremap <silent> <Leader>C        :Colors<CR>
 	nnoremap <silent> <Leader><Enter>  :Buffers<CR>
 	nnoremap <silent> <Leader>H        :Helptags<CR>
 	nnoremap <silent> <Leader>/        :BLines<CR>
 	nnoremap <silent> <Leader>?        :Lines<CR>
-	"nnoremap <silent> <Leader>`        :Marks<CR>
-	"nnoremap <silent> q: :History:<CR>
-	"nnoremap <silent> q/ :History/<CR>
-	let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+	nnoremap <silent> <Leader>`        :Marks<CR>
+	nnoremap <silent> <Leader>M        :Maps<CR>
 
 	" Mundo
 	nnoremap <F5> :MundoToggle<CR>
@@ -316,5 +311,15 @@
 	""autocmd FileType vimwiki set ft=markdown
 	"" Disable default mapping
 	""let g:vim_markdown_no_default_key_mappings = 1
+
+	" Fzf
+	if has('nvim') || has('gui_running')
+		let $FZF_DEFAULT_OPTS .= ' --inline-info'
+	endif
+    let g:fzf_action = {
+		\ 'ctrl-t': 'tab split',
+		\ 'ctrl-s': 'split',
+		\ 'ctrl-v': 'vsplit' }
+	let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
 " }}}
