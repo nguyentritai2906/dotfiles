@@ -45,6 +45,7 @@
 	Plug 'Yggdroot/indentLine'	" Display indentation level
 	Plug 'junegunn/goyo.vim'	" <Leader>gy toggle reading mode
 	Plug 'haya14busa/is.vim'	" Incremental search improved
+	Plug 'PeterRincker/vim-searchlight' " Highlight current search match
 
 	" Navigation
 	Plug 'easymotion/vim-easymotion' " Vim motions on speed
@@ -181,9 +182,6 @@
 	" Paste without messing up indentation
 	"noremap <leader>p :set paste<CR>"*p<CR>:set nopaste<CR>"
 
-	" Highlight
-	hi Normal guibg=NONE ctermbg=NONE
-
 	" Make the 81st column stand out
 	" IMPORTANT: load the colorscheme before ctermbg settings in .vimrc
 	" because they need to override the same ones set by the colorscheme.
@@ -192,11 +190,36 @@
 
 	" Search
 	" Highlight
+	highlight		Normal		guibg=NONE	 ctermbg=NONE
 	highlight       Search    ctermfg=Black  ctermbg=208    cterm=bold
-	highlight    IncSearch    ctermfg=Black  ctermbg=Red    cterm=bold
+	highlight  Searchlight    ctermfg=Black  ctermbg=196    cterm=bold
+	highlight    IncSearch    ctermfg=Black  ctermbg=196    cterm=bold
 	" Center search hit and automatically clear highlight with is.vim
-	nmap n <Plug>(is-n)zz
-	nmap N <Plug>(is-N)zz
+	nnoremap <silent> <F4> :call <SID>SearchMode()<CR>
+	function s:SearchMode()
+		if !exists('s:searchmode') || s:searchmode == 0
+			echo 'SearchMode: Maybe'
+			nmap <silent> n <Plug>(is-n):call <SID>MaybeMiddle()<CR>
+			nmap <silent> N <Plug>(is-N):call <SID>MaybeMiddle()<CR>
+			let s:searchmode = 1
+		elseif s:searchmode == 1
+			echo 'SearchMode: Middle'
+			nmap <silent> n <Plug>(is-n)zz
+			nmap <silent> N <Plug>(is-N)zz
+			let s:searchmode = 2
+		else
+			echo 'SearchMode: Normal'
+			nmap n <Plug>(is-n)
+			nmap N <Plug>(is-N)
+			let s:searchmode = 0
+		endif
+	endfunction
+	" If cursor is in first or last line of window, scroll to middle line.
+	function s:MaybeMiddle()
+		if winline() == 1 || winline() == winheight(0)
+			normal! zz
+		endif
+	endfunction
 
 	" Easy Motion
 	let g:EasyMotion_do_mapping = 0 " Disable default mappings
