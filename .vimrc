@@ -209,8 +209,8 @@
 			let s:searchmode = 2
 		else
 			echo 'SearchMode: Normal'
-			nmap n <Plug>(is-n)
-			nmap N <Plug>(is-N)
+			nmap <silent> n <Plug>(is-n)
+			nmap <silent> N <Plug>(is-N)
 			let s:searchmode = 0
 		endif
 	endfunction
