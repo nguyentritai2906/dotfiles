@@ -190,9 +190,13 @@
 	highlight ColorColumn ctermbg=darkcyan
 	call matchadd('ColorColumn', '\%81v', 100)
 
-	" custom search highlight
+	" Search
+	" Highlight
 	highlight       Search    ctermfg=Black  ctermbg=208    cterm=bold
 	highlight    IncSearch    ctermfg=Black  ctermbg=Red    cterm=bold
+	" Center search hit and automatically clear highlight with is.vim
+	nmap n <Plug>(is-n)zz
+	nmap N <Plug>(is-N)zz
 
 	" Easy Motion
 	let g:EasyMotion_do_mapping = 0 " Disable default mappings
