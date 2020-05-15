@@ -12,39 +12,39 @@
 	call plug#begin('~/.vim/plugged')
 
 	" Dev
-	Plug 'Valloric/YouCompleteMe'	" Ycm code-suggestion engine
-	Plug 'davidhalter/jedi-vim'		" Awesome Python autocompletion
-	Plug 'rking/ag.vim'				" Vim plugin for The-Silver-Searcher
+	Plug 'Valloric/YouCompleteMe' " Ycm code-suggestion engine
+	Plug 'davidhalter/jedi-vim' " Awesome Python autocompletion
+	Plug 'rking/ag.vim' " Vim plugin for The-Silver-Searcher
 	Plug 'junegunn/fzf'
-	Plug 'junegunn/fzf.vim'			" General-purpose command-line fuzzy finder vim integration
-	Plug 'preservim/nerdtree'		" A tree explorer plugin for vim
-	Plug 'simnalamburt/vim-mundo'	" Graph vim undo tree
-	Plug 'tpope/vim-surround'		" Change parentheses and stuff with ease
-	Plug 'jiangmiao/auto-pairs'		" Autopair parentheses and stuff
-	Plug 'luochen1990/rainbow'		" Rainbow parentheses
-	Plug 'preservim/nerdcommenter'	" Easy comment out lines of codes
+	Plug 'junegunn/fzf.vim' " General-purpose command-line fuzzy finder vim integration
+	Plug 'preservim/nerdtree' " A tree explorer plugin for vim
+	Plug 'simnalamburt/vim-mundo' " Graph vim undo tree
+	Plug 'tpope/vim-surround' " Change parentheses and stuff with ease
+	Plug 'jiangmiao/auto-pairs' " Autopair parentheses and stuff
+	Plug 'luochen1990/rainbow' " Rainbow parentheses
+	Plug 'preservim/nerdcommenter' " Easy comment out lines of codes
 	Plug 'airblade/vim-gitgutter' " Git diff, stages/undoes hunks and partial hunks
 
 	" Tags
-	Plug 'majutsushi/tagbar'	" Vim plugin that displays tags in a window
-	Plug 'universal-ctags/ctags'	" Universal tags for codes
+	Plug 'majutsushi/tagbar' " Vim plugin that displays tags in a window
+	Plug 'universal-ctags/ctags' " Universal tags for codes
 	"Install Exuberant Ctags 'sudo eopkg it ctags' which is a dependency
 	"To build with Autotools, see docs/autotools.rst for more information
-	Plug 'xolox/vim-easytags' 	" Automated tag file generation and syntax highlighting of tags in Vim
-	Plug 'xolox/vim-misc'		" Miscellaneous auto-load Vim scripts, required for xolox's pluggin
+	Plug 'xolox/vim-easytags' " Automated tag file generation and syntax highlighting of tags in Vim
+	Plug 'xolox/vim-misc' " Miscellaneous auto-load Vim scripts, required for xolox's pluggin
 
 	" Make life easier
-	Plug 'gioele/vim-autoswap'	" No more swap files!
+	Plug 'gioele/vim-autoswap' " No more swap files!
 
 	" UI
-	Plug 'vim-airline/vim-airline'	" Lean & mean tabline for vim
-	Plug 'morhetz/gruvbox'		" GruvBox colorscheme
-	Plug 'joshdick/onedark.vim'	" OneDark colorscheme
+	Plug 'vim-airline/vim-airline' " Lean & mean tabline for vim
+	Plug 'morhetz/gruvbox' " GruvBox colorscheme
+	Plug 'joshdick/onedark.vim' " OneDark colorscheme
 	Plug 'dracula/vim', { 'as': 'dracula'  } " GruvBox colorscheme
-	Plug 'lilydjwg/colorizer'	" Colorize all text in form of #rrggbb and #rgb
-	Plug 'Yggdroot/indentLine'	" Display indentation level
-	Plug 'junegunn/goyo.vim'	" <Leader>gy toggle reading mode
-	Plug 'haya14busa/is.vim'	" Incremental search improved
+	Plug 'lilydjwg/colorizer' " Colorize all text in form of #rrggbb and #rgb
+	Plug 'Yggdroot/indentLine' " Display indentation level
+	Plug 'junegunn/goyo.vim' " <Leader>gy toggle reading mode
+	Plug 'haya14busa/is.vim' " Incremental search improved
 	Plug 'PeterRincker/vim-searchlight' " Highlight current search match
 
 	" Navigation
@@ -65,7 +65,7 @@
 	" Wiki for Vim
 	"Plug 'vimwiki/vimwiki', {'branch': 'dev'}
 	"Plug 'plasticboy/vim-markdown'	" Syntax highlighting, matching rules and mappings for the original Markdown and extensions.
-	Plug 'xolox/vim-notes'			" For taking note, of course
+	Plug 'xolox/vim-notes' " For taking note, of course
 
 	call plug#end()
 
@@ -73,9 +73,9 @@
 
 " General settings {{{
 
-    set nocompatible	" Be iMproved, required
-    filetype plugin on	" Required
-	syntax on			" For C syntax check, change C++11 to C99 in .vim/.ycm_extra_conf.py
+    set nocompatible " Be iMproved, required
+    filetype plugin on " Required
+    syntax on " For C syntax check, change C++11 to C99 in .vim/.ycm_extra_conf.py
     set encoding=utf-8
     set autoread " detect when a file is changed
     set backupdir=~/.vim/tmp/backup//,. " set directory for backup files
