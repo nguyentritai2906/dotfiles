@@ -100,7 +100,6 @@
 
     " Apprearance
 	colorscheme dracula
-	let g:dracula_italic = 0 " Fix Dracula highlight because terminal doesn't support Italic
     set t_Co=256 " explicitly tell vim that the terminal supports 256 colors
     set number relativenumber
     set background=dark

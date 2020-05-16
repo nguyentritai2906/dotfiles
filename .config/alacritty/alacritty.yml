@@ -4,7 +4,7 @@
 # environment variables. Some entries may override variables
 # set by alacritty itself.
 env:
-  TERM: tmux-256color
+  TERM: alacritty
   #
   # This value is used to set the `$TERM` environment variable for
   # each instance of Alacritty. If it is not present, alacritty will
@@ -114,7 +114,6 @@ font:
     family: Hack Nerd Font
 
     # The `style` can be specified to pick a specific face.
-    #style: Regular
     style: Bold
 
   # Bold font face
@@ -139,7 +138,7 @@ font:
     family: Hack Nerd Font
 
     # The `style` can be specified to pick a specific face.
-    style: Italic
+    style: Bold Italic
 
   # Bold italic font face
   bold_italic:
@@ -314,7 +313,7 @@ cursor:
      #- ▇ Block
      #- _ Underline
      #- | Beam
-  style: Beam
+  style: Block
 
   # If this is `true`, the cursor will be rendered as a hollow box when the
   # window is not focused.
