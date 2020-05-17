@@ -24,6 +24,7 @@
 	Plug 'luochen1990/rainbow' " Rainbow parentheses
 	Plug 'preservim/nerdcommenter' " Easy comment out lines of codes
 	Plug 'airblade/vim-gitgutter' " Git diff, stages/undoes hunks and partial hunks
+	Plug 'tpope/vim-fugitive' " Git wrapper
 
 	" Tags
 	Plug 'majutsushi/tagbar' " Vim plugin that displays tags in a window
@@ -195,8 +196,11 @@
 	highlight    IncSearch    ctermfg=Black  ctermbg=196    cterm=bold
 	" Center search hit and automatically clear highlight with is.vim
 	nnoremap <silent> <F4> :call <SID>SearchMode()<CR>
+	" Default to 'Maybe'
+	nmap <silent> n <Plug>(is-n):call <SID>MaybeMiddle()<CR>
+	nmap <silent> N <Plug>(is-N):call <SID>MaybeMiddle()<CR>
 	function s:SearchMode()
-		if !exists('s:searchmode') || s:searchmode == 0
+		if !exists('s:searchmode') || s:searchmode == 1
 			echo 'SearchMode: Maybe'
 			nmap <silent> n <Plug>(is-n):call <SID>MaybeMiddle()<CR>
 			nmap <silent> N <Plug>(is-N):call <SID>MaybeMiddle()<CR>
