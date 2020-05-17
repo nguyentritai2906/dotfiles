@@ -242,7 +242,7 @@
 	" Fzf
 	nnoremap <silent> <Leader><Leader> :Files<CR>
 	nnoremap <silent> <Leader>C        :Colors<CR>
-	nnoremap <silent> <Leader><Enter>  :Buffers<CR>
+	nnoremap <silent> <Leader>B        :Buffers<CR>
 	nnoremap <silent> <Leader>H        :Helptags<CR>
 	nnoremap <silent> <Leader>/        :BLines<CR>
 	nnoremap <silent> <Leader>?        :Lines<CR>
@@ -346,10 +346,30 @@
 	if has('nvim') || has('gui_running')
 		let $FZF_DEFAULT_OPTS .= ' --inline-info'
 	endif
-    let g:fzf_action = {
+	let g:fzf_action = {
 		\ 'ctrl-t': 'tab split',
 		\ 'ctrl-s': 'split',
 		\ 'ctrl-v': 'vsplit' }
-	"let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+	let g:fzf_layout = {'window': {'width': 0.9, 'height': 0.6}}
+
+	" Jump to tab: <Leader>T
+	" Source get a list of strings whose format is ['tabNumber tabName']
+	" JumpToTab receives the selected item,
+	" Get the tab number using split()
+	" And then execute command ':normal #gt'
+	function TabName(n)
+		let buflist = tabpagebuflist(a:n)
+		let winnr = tabpagewinnr(a:n)
+		return fnamemodify(bufname(buflist[winnr - 1]), ':t')
+	endfunction
+	function! s:JumpToTab(line)
+		let pair = split(a:line, ' ')
+		let cmd = pair[0].'gt'
+		execute 'normal' cmd
+	endfunction
+	nnoremap <silent> <Leader>T :call fzf#run(fzf#wrap({
+		\   'source':  map(range(1, tabpagenr('$')), 'v:val." "." ".TabName(v:val)'),
+		\   'sink':    function('<SID>JumpToTab'),
+		\ }))<CR>
 
 " }}}
