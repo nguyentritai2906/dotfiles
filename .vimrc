@@ -346,6 +346,6 @@
 		\ 'ctrl-t': 'tab split',
 		\ 'ctrl-s': 'split',
 		\ 'ctrl-v': 'vsplit' }
-	let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+	"let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
 " }}}
