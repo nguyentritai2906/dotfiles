@@ -23,6 +23,7 @@
 	Plug 'jiangmiao/auto-pairs' " Autopair parentheses and stuff
 	Plug 'luochen1990/rainbow' " Rainbow parentheses
 	Plug 'preservim/nerdcommenter' " Easy comment out lines of codes
+    let g:NERDCreateDefaultMappings = 0
 	Plug 'airblade/vim-gitgutter' " Git diff, stages/undoes hunks and partial hunks
 	Plug 'tpope/vim-fugitive' " Git wrapper
 
@@ -115,7 +116,8 @@
     set tabstop=4 " the visible width of tabs
     set softtabstop=4 " edit as if the tabs are 4 characters wide
     set shiftwidth=4 " number of spaces to use for indent and unindent
-    set shiftround " round indent to a multiple of 'shiftwidth'
+	set shiftround " round indent to a multiple of 'shiftwidth'
+	set expandtab
 
 	" Change cursor shape for different vi modes.
 	if has("autocmd")
@@ -132,32 +134,32 @@
 
 " General mapping {{{
 
-	" map leader to space
+	" Map leader to space
     let mapleader=" "
 
-	" remap ESC
+	" Remap ESC
 	inoremap ii <ESC>
 	vnoremap ii <ESC>
 	cnoremap ii <ESC>
 
-	" clear all highlight
+	" Clear all highlight
 	nnoremap <leader>hl :noh<CR>
 
-	" remove trailing whilespace
+	" Remove trailing whilespace
 	autocmd BufWritePre * %s/\s\+$//e
 
-    " keep visual selection when indenting/outdenting
+    " Keep visual selection when indenting/outdenting/commemt/uncomment
     vmap < <gv
     vmap > >gv
 
-	" write, compile and execute
+	" Write, compile and execute
 	map <F6> :!javac % && java %<<CR>
 	"map <F6> :w<CR> :!gcc % -o %< && ./%<<CR>
 
-	" terminal inside Vim
+	" Terminal inside Vim
 	nmap <Leader>\t :bel vert term<CR>
 
-	" visual selection of indent level
+	" Visual selection of indent level
 	function SelectIndent()
 		let cur_line = line(".")
 		let cur_ind = indent(cur_line)
@@ -175,9 +177,15 @@
 	endfunction
 	nnoremap vil :call SelectIndent()<CR>
 
-	" insert blank line
+	" Insert blank line
 	nnoremap <leader>j mao<Esc>`a
 	nnoremap <leader>k maO<Esc>`a
+
+    " Navigate between tab
+    nnoremap <C-h> :-tabnext<CR>
+    nnoremap <C-l> :+tabnext<CR>
+    nnoremap <C-j> :-tabmove<CR>
+    nnoremap <C-k> :+tabmove<CR>
 
 	" Paste without messing up indentation
 	"noremap <leader>p :set paste<CR>"*p<CR>:set nopaste<CR>"
@@ -248,10 +256,17 @@
 	nnoremap <silent> <Leader>?        :Lines<CR>
 	nnoremap <silent> <Leader>`        :Marks<CR>
 	nnoremap <silent> <Leader>M        :Maps<CR>
+    nnoremap <silent> <Leader>T        :JumpTo<CR>
 
 	" Mundo
 	nnoremap <F5> :MundoToggle<CR>
 	let g:mundo_auto_preview_delay=0
+
+    " NERDCommenter
+    vmap <leader>cc <Plug>NERDCommenterCommentgv
+    vmap <leader>cu <Plug>NERDCommenterUncommentgv
+    nnoremap <leader>cc <Plug>NERDCommenterComment
+    nnoremap <leader>cu <Plug>NERDCommenterUncomment
 
 " }}}
 
@@ -351,25 +366,26 @@
 		\ 'ctrl-s': 'split',
 		\ 'ctrl-v': 'vsplit' }
 	let g:fzf_layout = {'window': {'width': 0.9, 'height': 0.6}}
+    let g:fzf_buffers_jump = 1
 
-	" Jump to tab: <Leader>T
-	" Source get a list of strings whose format is ['tabNumber tabName']
-	" JumpToTab receives the selected item,
-	" Get the tab number using split()
-	" And then execute command ':normal #gt'
-	function TabName(n)
-		let buflist = tabpagebuflist(a:n)
-		let winnr = tabpagewinnr(a:n)
-		return fnamemodify(bufname(buflist[winnr - 1]), ':t')
-	endfunction
-	function! s:JumpToTab(line)
-		let pair = split(a:line, ' ')
-		let cmd = pair[0].'gt'
-		execute 'normal' cmd
-	endfunction
-	nnoremap <silent> <Leader>T :call fzf#run(fzf#wrap({
-		\   'source':  map(range(1, tabpagenr('$')), 'v:val." "." ".TabName(v:val)'),
-		\   'sink':    function('<SID>JumpToTab'),
-		\ }))<CR>
+    " Jump to tab: <Leader>T
+    " Source get a list of strings whose format is ['tabNumber tabName']
+    " JumpToTab receives the selected item,
+    " Get the tab number using split()
+    " And then execute command ':normal #gt'
+    function TabName(n)
+        let buflist = tabpagebuflist(a:n)
+        let winnr = tabpagewinnr(a:n)
+        return fnamemodify(bufname(buflist[winnr - 1]), ':t')
+    endfunction
+    function! s:JumpToTab(line)
+        let pair = split(a:line, ' ')
+        let cmd = pair[0].'gt'
+        execute 'normal' cmd
+    endfunction
+    command! JumpTo call fzf#run(fzf#wrap({
+            \   'source':  map(range(1, tabpagenr('$')), 'v:val." "." ".TabName(v:val)'),
+            \   'sink':    function('<SID>JumpToTab'),
+            \}))
 
 " }}}
