@@ -204,7 +204,8 @@ bindsym $mod+Shift+p exec --no-startup-id $HOME/.config/polybar/launch.sh
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 bindsym $mod+Shift+e exec --no-startup-id i3exit logout, mode "default"
 # Lock i3
-bindsym $mod+Shift+x exec --no-startup-id ~/.config/i3/lock.sh
+bindsym $mod+Shift+x exec --no-startup-id betterlockscreen -l
+#bindsym $mod+Shift+x exec --no-startup-id ~/.config/i3/lock.sh
 
 # Set shut down, restart and locking features
 set $mode_system [l] lock,  [e] exit, [u] switch_user, [s] suspend, [h] hibernate, [r] reboot, [S] shutdown
