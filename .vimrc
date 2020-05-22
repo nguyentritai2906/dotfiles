@@ -13,18 +13,48 @@
 
 	" Dev
 	Plug 'Valloric/YouCompleteMe' " Ycm code-suggestion engine
+        " Installed YouCompleteMe with both 'libclang' and 'clangd' enabled. In that case 'clangd' will
+        " be preferred unless you have the following
+        " let g:ycm_use_clangd = 0
+        " YCM semantic completion to automatically trigger after typing two characters
+        let g:ycm_semantic_triggers = {'python': [ 're!\w{2}' ]}
+        " Trigger completion for C
+        let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+        let g:ycm_show_diagnostics_ui = 1
+        "Populate vims location list with new diagnostic data
+        "Use :lnext and :lprev - Jump to next or previous error in list
+        let g:ycm_always_populate_location_list = 1
 	Plug 'davidhalter/jedi-vim' " Awesome Python autocompletion
 	Plug 'rking/ag.vim' " Vim plugin for The-Silver-Searcher
 	Plug 'junegunn/fzf'
 	Plug 'junegunn/fzf.vim' " General-purpose command-line fuzzy finder vim integration
+        let g:fzf_action = {
+            \ 'ctrl-t': 'tab split',
+            \ 'ctrl-s': 'split',
+            \ 'ctrl-v': 'vsplit' }
+        let g:fzf_layout = {'window': {'width': 0.9, 'height': 0.6}}
+        "let g:fzf_buffers_jump = 1
 	Plug 'preservim/nerdtree' " A tree explorer plugin for vim
 	Plug 'simnalamburt/vim-mundo' " Graph vim undo tree
+        let g:mundo_auto_preview_delay=0
+        let g:mundo_inline_undo=1
 	Plug 'tpope/vim-surround' " Change parentheses and stuff with ease
 	Plug 'jiangmiao/auto-pairs' " Autopair parentheses and stuff
+        let g:AutoPairsFlyMode = 1
 	Plug 'luochen1990/rainbow' " Rainbow parentheses
+        let g:rainbow_active = 1    " Enable vim-rainbow globally
+        let g:rainbow_conf = {'ctermfgs': ['red', 'green', 'cyan', 'magenta']}
 	Plug 'preservim/nerdcommenter' " Easy comment out lines of codes
-    let g:NERDCreateDefaultMappings = 0
+        let g:NERDCreateDefaultMappings = 0
 	Plug 'airblade/vim-gitgutter' " Git diff, stages/undoes hunks and partial hunks
+        " Use fontawesome icons as signs
+        let g:gitgutter_sign_added = '+'
+        let g:gitgutter_sign_modified = '>'
+        let g:gitgutter_sign_removed = '-'
+        let g:gitgutter_sign_removed_first_line = '^'
+        let g:gitgutter_sign_modified_removed = '<'
+        " Turn off sign column highlight
+        let g:gitgutter_override_sign_column_highlight = 1
 	Plug 'tpope/vim-fugitive' " Git wrapper
 
 	" Tags
@@ -51,29 +81,31 @@
 
 	" Navigation
 	Plug 'easymotion/vim-easymotion' " Vim motions on speed
+        let g:EasyMotion_do_mapping = 0 " Disable default mappings
+        let g:EasyMotion_smartcase = 1 " Turn on case-insensitive feature
 	Plug 'yuttie/comfortable-motion.vim' " Physics-based smooth scrolling
-	Plug 'jeetsukumaran/vim-buffergator'
-	"Use <Leader>b to open a window listing all buffers
-	"<ENTER> to edit the selected buffer in the previous window
-	"<C-V> to edit the selected buffer in a new vertical split
-	"<C-S> to edit the selected buffer in a new horizontal split
-	"<C-T> to edit the selected buffer in a new tab page
-	"Use gb and gB to flip through the most-recently used buffer
-	"Use <Leader><LEFT>, <Leader><UP>, <Leader><RIGHT>, <Leader><DOWN> to
-	"split a new window left, up, right, or down, respectively,
-	"and edit the previous MRU buffer there.
 
 	" Writing
 	" Wiki for Vim
 	"Plug 'vimwiki/vimwiki', {'branch': 'dev'}
+        " From https://dev.to/konstantin/taking-notes-with-vim-3619
+        " Vimwiki
+        "let g:vimwiki_list = [{ 'path': '~/Documents/note/' }]
+        "let g:vimwiki_list = [{'path': '~/Documents/note/',
+                    "\ 'syntax': 'markdown', 'ext': '.md'}]
 	"Plug 'plasticboy/vim-markdown'	" Syntax highlighting, matching rules and mappings for the original Markdown and extensions.
+        " Use vim-markdown as default and keep snippets
+        "autocmd FileType vimwiki set ft=markdown
+        " Disable default mapping
+        "let g:vim_markdown_no_default_key_mappings = 1
 	Plug 'xolox/vim-notes' " For taking note, of course
+        let g:notes_directories = ['~/Documents/note']
 
 	call plug#end()
 
 " }}}
 
-" General settings {{{
+" Settings {{{
 
     set nocompatible " Be iMproved, required
     filetype plugin on " Required
@@ -119,20 +151,9 @@
 	set shiftround " round indent to a multiple of 'shiftwidth'
 	set expandtab
 
-	" Change cursor shape for different vi modes.
-	if has("autocmd")
-	au VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
-	au InsertEnter,InsertChange * if v:insertmode == 'i' |
-		\silent execute '!echo -ne "\e[5 q"' | redraw! |
-		\elseif v:insertmode == 'r' |
-		\silent execute '!echo -ne "\e[3 q"' | redraw! |
-		\endif
-	au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
-	endif
-
 " }}}
 
-" General mapping {{{
+" Mapping {{{
 
 	" Map leader to space
     let mapleader=" "
@@ -144,9 +165,6 @@
 
 	" Clear all highlight
 	nnoremap <leader>hl :noh<CR>
-
-	" Remove trailing whilespace
-	autocmd BufWritePre * %s/\s\+$//e
 
     " Keep visual selection when indenting/outdenting/commemt/uncomment
     vmap < <gv
@@ -182,13 +200,14 @@
 	nnoremap <leader>k maO<Esc>`a
 
     " Navigate between tab
-    nnoremap <C-h> :-tabnext<CR>
-    nnoremap <C-l> :+tabnext<CR>
-    nnoremap <C-j> :-tabmove<CR>
-    nnoremap <C-k> :+tabmove<CR>
-
-	" Paste without messing up indentation
-	"noremap <leader>p :set paste<CR>"*p<CR>:set nopaste<CR>"
+    nnoremap th gT
+    nnoremap tl gt
+    nnoremap tH :tabfirst<CR>
+    nnoremap tL :tablast<CR>
+    nnoremap tj :-tabmove<CR>
+    nnoremap tk :+tabmove<CR>
+    nnoremap tc :tabclose<CR>
+    nnoremap tn :tabnew<SPACE>
 
 	" Make the 81st column stand out
 	" IMPORTANT: load the colorscheme before ctermbg settings in .vimrc
@@ -233,21 +252,18 @@
 	endfunction
 
 	" Easy Motion
-	let g:EasyMotion_do_mapping = 0 " Disable default mappings
 	" Jump to anywhere you want with minimal keystrokes, with just one key binding.
-	" `<Leader>s{char}{label}`
-	"nmap <Leader>s <Plug>(easymotion-overwin-f)
-	" or
-	" `<Leader>s{char}{char}{label}`
+    "nmap <Leader>s <Plug>(easymotion-overwin-f)
 	" Need one more keystroke, but on average, it may be more comfortable.
-	nmap <leader>s <Plug>(easymotion-overwin-f2)
-	" Turn on case-insensitive feature
-	let g:EasyMotion_smartcase = 1
-	" JK motions: Line motions
+    nmap <leader>s <Plug>(easymotion-overwin-f2)
+	" Line motions
 	nmap <Leader>J <Plug>(easymotion-j)
 	nmap <Leader>K <Plug>(easymotion-k)
 
 	" Fzf
+	if has('nvim') || has('gui_running')
+		let $FZF_DEFAULT_OPTS .= ' --inline-info'
+	endif
 	nnoremap <silent> <Leader><Leader> :Files<CR>
 	nnoremap <silent> <Leader>C        :Colors<CR>
 	nnoremap <silent> <Leader>B        :Buffers<CR>
@@ -256,118 +272,6 @@
 	nnoremap <silent> <Leader>?        :Lines<CR>
 	nnoremap <silent> <Leader>`        :Marks<CR>
 	nnoremap <silent> <Leader>M        :Maps<CR>
-    nnoremap <silent> <Leader>T        :JumpTo<CR>
-
-	" Mundo
-	nnoremap <F5> :MundoToggle<CR>
-	let g:mundo_auto_preview_delay=0
-
-    " NERDCommenter
-    vmap <leader>cc <Plug>NERDCommenterCommentgv
-    vmap <leader>cu <Plug>NERDCommenterUncommentgv
-    nnoremap <leader>cc <Plug>NERDCommenterComment
-    nnoremap <leader>cu <Plug>NERDCommenterUncomment
-
-" }}}
-
-" AutoGroups {{{
-
-	" Automatically VimResized
-	autocmd VimResized * wincmd =
-
-	" Make Vim open help in a vertical split
-	augroup vimrc_help
-		autocmd!
-		autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
-	augroup END
-
-" }}}
-
-" General Functionality {{{
-
-	" Notes
-	" ~/Documents/note/
-	let g:notes_directories = ['~/Documents/note']
-
-	" GitGutter
-	" Use fontawesome icons as signs
-	let g:gitgutter_sign_added = '+'
-	let g:gitgutter_sign_modified = '>'
-	let g:gitgutter_sign_removed = '-'
-	let g:gitgutter_sign_removed_first_line = '^'
-	let g:gitgutter_sign_modified_removed = '<'
-	" Turn off sign column highlight
-	let g:gitgutter_override_sign_column_highlight = 1
-	" Jump between hunks
-	nmap <Leader>gn <Plug>(GitGutterNextHunk)
-	nmap <Leader>gN <Plug>(GitGutterPrevHunk)
-
-	" NERDtree and Tagbar
-	" Toggle Tagbar
-	nmap <F8> :TagbarToggle<CR>
-	" Toggle NERDtree
-	nmap <F7> :NERDTreeToggle<CR>
-	" Toggle both
-	nnoremap <F9> :TagbarToggle<CR> :NERDTreeToggle<CR>
-	"" Open NERDTree automatically when vim starts up if no files were specified
-	"autocmd StdinReadPre * let s:std_in=1
-	"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-	" Close vim if the only window left open is a NERDTree
-	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-	" YouCompeleteMe
-	" Installed YouCompleteMe with both 'libclang' and 'clangd' enabled. In that case 'clangd' will
-	" be preferred unless you have the following
-	" let g:ycm_use_clangd = 0
-	" YCM semantic completion to automatically trigger after typing two characters
-	let g:ycm_semantic_triggers = {'python': [ 're!\w{2}' ]}
-	" Trigger completion for C
-	let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
-	let g:ycm_show_diagnostics_ui = 1
-	"Populate vims location list with new diagnostic data
-	"Use :lnext and :lprev - Jump to next or previous error in list
-	let g:ycm_always_populate_location_list = 1
-
-	" AutoPair
-	" Enable Autopair's Fly Mode for always force closed-pair jumping instead of inserting
-	" and map some short cuts
-	let g:AutoPairsFlyMode = 1
-
-	" Rainbow
-	" Enable vim-rainbow globally
-	let g:rainbow_active = 1
-	let g:rainbow_conf = {'ctermfgs': ['red', 'green', 'cyan', 'magenta']}
-
-	" Buffergator
-	" Disable default mapping
-	let g:buffergator_suppress_keymaps = 1
-	" Toggle open
-	nmap <leader>b :BuffergatorOpen<CR>
-
-	"" Writing
-	"" From https://dev.to/konstantin/taking-notes-with-vim-3619
-	"" Vimwiki
-	""let g:vimwiki_list = [{ 'path': '~/Documents/note/' }]
-	""let g:vimwiki_list = [{'path': '~/Documents/note/',
-				""\ 'syntax': 'markdown', 'ext': '.md'}]
-
-	"" Markdown
-	"" Use vim-markdown as default and keep snippets
-	""autocmd FileType vimwiki set ft=markdown
-	"" Disable default mapping
-	""let g:vim_markdown_no_default_key_mappings = 1
-
-	" Fzf
-	if has('nvim') || has('gui_running')
-		let $FZF_DEFAULT_OPTS .= ' --inline-info'
-	endif
-	let g:fzf_action = {
-		\ 'ctrl-t': 'tab split',
-		\ 'ctrl-s': 'split',
-		\ 'ctrl-v': 'vsplit' }
-	let g:fzf_layout = {'window': {'width': 0.9, 'height': 0.6}}
-    let g:fzf_buffers_jump = 1
-
     " Jump to tab: <Leader>T
     " Source get a list of strings whose format is ['tabNumber tabName']
     " JumpToTab receives the selected item,
@@ -387,5 +291,58 @@
             \   'source':  map(range(1, tabpagenr('$')), 'v:val." "." ".TabName(v:val)'),
             \   'sink':    function('<SID>JumpToTab'),
             \}))
+    nnoremap <silent> <Leader>T        :JumpTo<CR>
+
+	" Mundo
+	nnoremap <F5> :MundoToggle<CR>
+
+    " NERDCommenter
+    vmap <leader>cc <Plug>NERDCommenterCommentgv
+    vmap <leader>cu <Plug>NERDCommenterUncommentgv
+    nmap <leader>cc <Plug>NERDCommenterComment
+    nmap <leader>cu <Plug>NERDCommenterUncomment
+
+	" NERDtree and Tagbar
+	nmap <F8> :TagbarToggle<CR>
+	nmap <F7> :NERDTreeToggle<CR>
+	nnoremap <F9> :TagbarToggle<CR> :NERDTreeToggle<CR>
+
+	" GitGutter
+	nmap <Leader>gn <Plug>(GitGutterNextHunk)
+	nmap <Leader>gN <Plug>(GitGutterPrevHunk)
+
+" }}}
+
+" AutoGroups {{{
+
+	" Automatically VimResized
+	autocmd VimResized * wincmd =
+
+	" Make Vim open help in a vertical split
+	augroup vimrc_help
+		autocmd!
+		autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
+	augroup END
+
+    "NERDTree
+	"" Open NERDTree automatically when vim starts up if no files were specified
+	"autocmd StdinReadPre * let s:std_in=1
+	"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+	" Close vim if the only window left open is a NERDTree
+	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+	" Change cursor shape for different vi modes.
+	if has("autocmd")
+	au VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
+	au InsertEnter,InsertChange * if v:insertmode == 'i' |
+		\silent execute '!echo -ne "\e[5 q"' | redraw! |
+		\elseif v:insertmode == 'r' |
+		\silent execute '!echo -ne "\e[3 q"' | redraw! |
+		\endif
+	au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+	endif
+
+	" Remove trailing whilespace
+	autocmd BufWritePre * %s/\s\+$//e
 
 " }}}
