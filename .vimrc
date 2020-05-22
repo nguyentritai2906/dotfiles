@@ -17,7 +17,19 @@
         " be preferred unless you have the following
         " let g:ycm_use_clangd = 0
         " YCM semantic completion to automatically trigger after typing two characters
-        let g:ycm_semantic_triggers = {'python': [ 're!\w{2}' ]}
+        let g:ycm_semantic_triggers =  {
+            \   'c': ['->', '.'],
+            \   'objc': ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
+            \            're!\[.*\]\s'],
+            \   'ocaml': ['.', '#'],
+            \   'cpp,cuda,objcpp': ['->', '.', '::'],
+            \   'perl': ['->'],
+            \   'php': ['->', '::'],
+            \   'cs,d,elixir,go,groovy,java,javascript,julia,perl6,python,scala,typescript,vb': ['.', 're!\w{2}'],
+            \   'ruby,rust': ['.', '::'],
+            \   'lua': ['.', ':'],
+            \   'erlang': [':'],
+            \ }
         " Trigger completion for C
         let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
         let g:ycm_show_diagnostics_ui = 1
