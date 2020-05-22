@@ -95,7 +95,7 @@
 	Plug 'easymotion/vim-easymotion' " Vim motions on speed
         let g:EasyMotion_do_mapping = 0 " Disable default mappings
         let g:EasyMotion_smartcase = 1 " Turn on case-insensitive feature
-	Plug 'yuttie/comfortable-motion.vim' " Physics-based smooth scrolling
+	"Plug 'yuttie/comfortable-motion.vim' " Physics-based smooth scrolling
 
 	" Writing
 	" Wiki for Vim
