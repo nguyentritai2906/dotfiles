@@ -51,9 +51,9 @@ fpd(){
 
 # cdf - cd into the directory of the selected file
 cdf() {
-   local file
-   local dir
-   file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+    local file
+    local dir
+    file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
 }
 
 # fkill - kill process
@@ -78,18 +78,12 @@ fzf-vim() {
 # Search with fzf and open in vim
 bindkey -s '^t' "fzf-vim\n"
 
-pacit() {
-  local inst=$(eopkg la | fzf -m --ansi)
-  if [[ $inst ]]; then
-    for prog in $(echo $inst | awk '{print $1;}');
-    do; sudo eopkg it $prog; done;
-  fi
+pacli() {
+    local inst=$(eopkg li | fzf --ansi)
+    print -z -- "$(echo $inst | awk '{print $1;}') "
 }
 
-pacli() {
-  local inst=$(eopkg li | fzf -m --ansi)
-  if [[ $inst ]]; then
-    for prog in $(echo $inst | awk '{print $1;}');
-    do; print -z -- "$prog "; done;
-  fi
+pacit() {
+    local inst=$(eopkg la | fzf -m --ansi)
+    test -n "$inst" && print -z -- "sudo eopkg it $(echo $inst | cut -d' ' -f1 | tr '\n' ' ')"
 }
