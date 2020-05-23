@@ -77,3 +77,12 @@ fzf-vim() {
 }
 # Search with fzf and open in vim
 bindkey -s '^t' "fzf-vim\n"
+
+pacit() {
+  local inst=$(eopkg la | fzf -m --ansi)
+
+  if [[ $inst ]]; then
+    for prog in $(echo $inst | awk '{print $1;}');
+    do; sudo eopkg it $prog; done;
+  fi
+}
