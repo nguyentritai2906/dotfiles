@@ -26,7 +26,7 @@ fm() f "$@" --max-depth 1
 fo() {
     local file=$(fzf --query="$1" --exit-0)
     if [ -n "$file"  ]; then
-        open "$file &"
+        open "$file" &
     fi
 }
 
@@ -87,7 +87,7 @@ fzf-vim() {
 bindkey -s '^t' "fzf-vim\n"
 
 pacli() {
-    local inst=$(eopkg li | fzf --ansi)
+    local inst=$(eopkg li | fzf --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat --style=numbers --color=always ")
     print -z -- "$(echo $inst | awk '{print $1;}') "
 }
 
