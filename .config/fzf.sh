@@ -84,6 +84,7 @@ bindkey -s '^t' "fzf-vim\n"
 #}
 
 pacit() {
-    local inst=$(eopkg la | fzf -m --ansi)
+    local inst=$(eopkg la | fzf -m --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat --style=numbers --color=always " --preview-window=:hidden --bind=ctrl-p:toggle-preview)
+    #local inst=$(eopkg la | fzf -m --ansi --preview="eopkg info {}" --preview-window=:hidden --bind=space:toggle-preview)
     test -n "$inst" && print -z -- "sudo eopkg it $(echo $inst | cut -d' ' -f1 | tr '\n' ' ')"
 }
