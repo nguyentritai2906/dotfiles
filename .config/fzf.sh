@@ -12,14 +12,22 @@ fm() f "$@" --max-depth 1
 # Open the selected filewith default editor
 #   - CTRL-O to open with `open` command,
 #   - CTRL-E or Enter key to open with the $EDITOR
+#fo() {
+	#local out file key
+	#IFS=$'\n' out=("$(fzf --query="$1" --exit-0 --expect=ctrl-o,ctrl-e)")
+	#key=$(head -1 <<< "$out")
+	#file=$(head -2 <<< "$out" | tail -1)
+	#if [ -n "$file"  ]; then
+		#[ "$key" = ctrl-o  ] && open "$file" || ${EDITOR:-vim} "$file"
+	#fi
+#}
+
+# Or just open it
 fo() {
-	local out file key
-	IFS=$'\n' out=("$(fzf --query="$1" --exit-0 --expect=ctrl-o,ctrl-e)")
-	key=$(head -1 <<< "$out")
-	file=$(head -2 <<< "$out" | tail -1)
-	if [ -n "$file"  ]; then
-		[ "$key" = ctrl-o  ] && open "$file" || ${EDITOR:-vim} "$file"
-	fi
+    local file=$(fzf --query="$1" --exit-0)
+    if [ -n "$file"  ]; then
+        open "$file &"
+    fi
 }
 
 # fcd - cd to selected directory
@@ -78,10 +86,10 @@ fzf-vim() {
 # Search with fzf and open in vim
 bindkey -s '^t' "fzf-vim\n"
 
-#pacli() {
-    #local inst=$(eopkg li | fzf --ansi)
-    #print -z -- "$(echo $inst | awk '{print $1;}') "
-#}
+pacli() {
+    local inst=$(eopkg li | fzf --ansi)
+    print -z -- "$(echo $inst | awk '{print $1;}') "
+}
 
 pacit() {
     local inst=$(eopkg la | fzf -m --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat --style=numbers --color=always " --preview-window=:hidden --bind=ctrl-p:toggle-preview)
