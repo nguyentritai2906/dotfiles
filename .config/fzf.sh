@@ -78,10 +78,10 @@ fzf-vim() {
 # Search with fzf and open in vim
 bindkey -s '^t' "fzf-vim\n"
 
-pacli() {
-    local inst=$(eopkg li | fzf --ansi)
-    print -z -- "$(echo $inst | awk '{print $1;}') "
-}
+#pacli() {
+    #local inst=$(eopkg li | fzf --ansi)
+    #print -z -- "$(echo $inst | awk '{print $1;}') "
+#}
 
 pacit() {
     local inst=$(eopkg la | fzf -m --ansi)

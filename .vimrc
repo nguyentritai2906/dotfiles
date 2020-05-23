@@ -95,7 +95,7 @@
 	Plug 'easymotion/vim-easymotion' " Vim motions on speed
         let g:EasyMotion_do_mapping = 0 " Disable default mappings
         let g:EasyMotion_smartcase = 1 " Turn on case-insensitive feature
-	"Plug 'yuttie/comfortable-motion.vim' " Physics-based smooth scrolling
+    Plug 'yuttie/comfortable-motion.vim' " Physics-based smooth scrolling
 
 	" Writing
 	" Wiki for Vim
@@ -186,8 +186,8 @@
 	map <F6> :!javac % && java %<<CR>
 	"map <F6> :w<CR> :!gcc % -o %< && ./%<<CR>
 
-	" Terminal inside Vim
-	nmap <Leader>\t :bel vert term<CR>
+	"" Terminal inside Vim
+	"nmap <Leader>\t :bel vert term<CR>
 
 	" Visual selection of indent level
 	function SelectIndent()
