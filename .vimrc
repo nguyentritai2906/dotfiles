@@ -96,22 +96,29 @@
         let g:EasyMotion_do_mapping = 0 " Disable default mappings
         let g:EasyMotion_smartcase = 1 " Turn on case-insensitive feature
     Plug 'yuttie/comfortable-motion.vim' " Physics-based smooth scrolling
+    Plug 'matze/vim-move' " Move lines and selections up and down
+        " For terms that send Alt as Escape sequence
+        " see http://vim.wikia.com/wiki/Mapping_fast_keycodes_in_terminal_Vim
+        " for why the <F20> hack. Keeps Esc from waiting for other keys to exit visual
+        " https://github.com/matze/vim-move/issues/15#issuecomment-168177827
+        set <F20>=j
+        set <F21>=k
 
 	" Writing
 	" Wiki for Vim
 	"Plug 'vimwiki/vimwiki', {'branch': 'dev'}
         " From https://dev.to/konstantin/taking-notes-with-vim-3619
         " Vimwiki
-        "let g:vimwiki_list = [{ 'path': '~/Documents/note/' }]
-        "let g:vimwiki_list = [{'path': '~/Documents/note/',
+        "let g:vimwiki_list = [{ 'path': '~/Documents/notes/' }]
+        "let g:vimwiki_list = [{'path': '~/Documents/notes/',
                     "\ 'syntax': 'markdown', 'ext': '.md'}]
-	"Plug 'plasticboy/vim-markdown'	" Syntax highlighting, matching rules and mappings for the original Markdown and extensions.
+	"Plug 'plasticboy/vim-markdown'	" Syntax highlighting, matching rules and mappings Markdown
         " Use vim-markdown as default and keep snippets
         "autocmd FileType vimwiki set ft=markdown
         " Disable default mapping
         "let g:vim_markdown_no_default_key_mappings = 1
 	Plug 'xolox/vim-notes' " For taking note, of course
-        let g:notes_directories = ['~/Documents/note']
+        let g:notes_directories = ['~/Documents/notes']
 
 	call plug#end()
 
@@ -132,6 +139,7 @@
     set backspace=indent,eol,start " make backspace behave in a sane manner
     set clipboard=unnamedplus
     set updatetime=100 " Update sign column every 1/10 second
+    set ttimeoutlen=0
 
     set wildmode=longest,list,full " Tab completion
     set wildmenu " enhanced command line completion
@@ -322,6 +330,12 @@
 	" GitGutter
 	nmap <Leader>gn <Plug>(GitGutterNextHunk)
 	nmap <Leader>gN <Plug>(GitGutterPrevHunk)
+
+    " Vim-move
+    vmap <F20> <Plug>MoveBlockDown
+    vmap <F21> <Plug>MoveBlockUp
+    nmap <F20> <Plug>MoveLineDown
+    nmap <F21> <Plug>MoveLineUp
 
 " }}}
 
