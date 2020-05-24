@@ -86,13 +86,17 @@ fzf-vim() {
 # Search with fzf and open in vim
 bindkey -s '^t' "fzf-vim\n"
 
-pacli() {
-    local inst=$(eopkg li | fzf --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat --style=numbers --color=always ")
+packli() {
+    local inst=$(eopkg li | sed -e '1,3d' | fzf --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat --style=numbers --color=always ")
     print -z -- "$(echo $inst | awk '{print $1;}') "
 }
 
-pacit() {
-    local inst=$(eopkg la | fzf -m --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat --style=numbers --color=always " --preview-window=:hidden --bind=ctrl-p:toggle-preview)
-    #local inst=$(eopkg la | fzf -m --ansi --preview="eopkg info {}" --preview-window=:hidden --bind=space:toggle-preview)
+packit() {
+    local inst=$(eopkg la | sed -e '1,3d' | fzf -m --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat --style=numbers --color=always ")
     test -n "$inst" && print -z -- "sudo eopkg it $(echo $inst | cut -d' ' -f1 | tr '\n' ' ')"
+}
+
+packrm() {
+    local inst=$(eopkg li | sed -e '1,3d' | fzf -m --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat --style=numbers --color=always ")
+    test -n "$inst" && print -z -- "sudo eopkg rm $(echo $inst | cut -d' ' -f1 | tr '\n' ' ')"
 }
