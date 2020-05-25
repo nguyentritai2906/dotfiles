@@ -275,7 +275,7 @@
 	" Jump to anywhere you want with minimal keystrokes, with just one key binding.
     "nmap <Leader>s <Plug>(easymotion-overwin-f)
 	" Need one more keystroke, but on average, it may be more comfortable.
-    nmap <leader>s <Plug>(easymotion-overwin-f2)
+    nmap <leader><leader> <Plug>(easymotion-overwin-f2)
 	" Line motions
 	nmap <Leader>J <Plug>(easymotion-j)
 	nmap <Leader>K <Plug>(easymotion-k)
@@ -284,7 +284,7 @@
 	if has('nvim') || has('gui_running')
 		let $FZF_DEFAULT_OPTS .= ' --inline-info'
 	endif
-	nnoremap <silent> <Leader><Leader> :Files<CR>
+	nnoremap <silent> <Leader><CR>     :Files<CR>
 	nnoremap <silent> <Leader>C        :Colors<CR>
 	nnoremap <silent> <Leader>B        :Buffers<CR>
 	nnoremap <silent> <Leader>H        :Helptags<CR>

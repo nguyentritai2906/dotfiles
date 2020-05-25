@@ -99,7 +99,7 @@ source $ZSH/oh-my-zsh.sh
  #fi
 export EDITOR=$(which vim)
 
-# Disable flow control, since it realy just annoys me
+# Disable flow control Ctrl+S, since it realy just annoys me
 stty -ixon &>/dev/null
 
 # Compilation flags
@@ -110,10 +110,6 @@ stty -ixon &>/dev/null
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-# Alias definitions.
 # Load aliases and shortcuts if existent.
 [ -f "$HOME/.config/zsh_shortcuts" ] && source "$HOME/.config/zsh_shortcuts"
 [ -f "$HOME/.config/zsh_aliases" ] && source "$HOME/.config/zsh_aliases"
