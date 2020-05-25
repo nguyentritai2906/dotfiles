@@ -88,20 +88,24 @@ bindkey -s '^t' "fzf-vim\n"
 
 #Search for installed packages
 pli() {
-    local inst=$(eopkg li | sed -e '1,3d' | fzf --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat ")
-    print -z -- "$(echo $inst | awk '{print $1;}') "
+    local inst=$(eopkg li | sed -e '1,3d' | fzf --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat")
+    print -z -- "$(echo $inst | awk '{print $1;}')"
 }
 #Search for packages in the repositories and install
 pit() {
-    local inst=$(cat $HOME/.config/repo-la.txt | sed -e '1,3d' | fzf -m --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat ")
+    local inst=$(cat $HOME/.config/repo-la.txt | sed -e '1,3d' | fzf -m --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat")
     test -n "$inst" && print -z -- "sudo eopkg it $(echo $inst | cut -d' ' -f1 | tr '\n' ' ')"
 }
 #Search for installed packages and remove
 prm() {
-    local inst=$(eopkg li | sed -e '1,3d' | fzf -m --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat ")
+    local inst=$(eopkg li | sed -e '1,3d' | fzf -m --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat")
     test -n "$inst" && print -z -- "sudo eopkg rm $(echo $inst | cut -d' ' -f1 | tr '\n' ' ')"
 }
 #Cache all available packages in the repositories for faster 'pacit' search
-if [ $(expr $(date +%s) - $(date +%s -r $HOME/.config/repo-la.txt)) -gt 1296000 ];
-    then eopkg la | sed -e '1,3d' > $HOME/.config/repo-la.txt;
+if [ -f "$HOME/.config/repo-la.txt" ]; then
+    if [ $(expr $(date +%s) - $(date +%s -r $HOME/.config/repo-la.txt)) -gt 1296000 ]; then
+        echo "Caching available packages in Solus repository";
+        eopkg la | sed -e '1,3d' > $HOME/.config/repo-la.txt;
+        echo "Done!";
+    fi
 fi
