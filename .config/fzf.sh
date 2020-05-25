@@ -86,17 +86,22 @@ fzf-vim() {
 # Search with fzf and open in vim
 bindkey -s '^t' "fzf-vim\n"
 
-packli() {
-    local inst=$(eopkg li | sed -e '1,3d' | fzf --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat --style=numbers --color=always ")
+#Search for installed packages
+pli() {
+    local inst=$(eopkg li | sed -e '1,3d' | fzf --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat ")
     print -z -- "$(echo $inst | awk '{print $1;}') "
 }
-
-packit() {
-    local inst=$(eopkg la | sed -e '1,3d' | fzf -m --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat --style=numbers --color=always ")
+#Search for packages in the repositories and install
+pit() {
+    local inst=$(cat $HOME/.config/repo-la.txt | sed -e '1,3d' | fzf -m --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat ")
     test -n "$inst" && print -z -- "sudo eopkg it $(echo $inst | cut -d' ' -f1 | tr '\n' ' ')"
 }
-
-packrm() {
-    local inst=$(eopkg li | sed -e '1,3d' | fzf -m --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat --style=numbers --color=always ")
+#Search for installed packages and remove
+prm() {
+    local inst=$(eopkg li | sed -e '1,3d' | fzf -m --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat ")
     test -n "$inst" && print -z -- "sudo eopkg rm $(echo $inst | cut -d' ' -f1 | tr '\n' ' ')"
 }
+#Cache all available packages in the repositories for faster 'pacit' search
+if [ $(expr $(date +%s) - $(date +%s -r $HOME/.config/repo-la.txt)) -gt 1296000 ];
+    then eopkg la | sed -e '1,3d' > $HOME/.config/repo-la.txt;
+fi
