@@ -104,8 +104,12 @@ prm() {
 #Cache all available packages in the repositories for faster 'pacit' search
 if [ -f "$HOME/.config/repo-la.txt" ]; then
     if [ $(expr $(date +%s) - $(date +%s -r $HOME/.config/repo-la.txt)) -gt 1296000 ]; then
-        echo "Caching available packages in Solus repository";
-        eopkg la | sed -e '1,3d' > $HOME/.config/repo-la.txt;
-        echo "Done!";
+    echo "[Cache available packages] Would you like to update? [Y/n]: \c"
+    read line
+        if [[ "$line" == Y* ]] || [[ "$line" == y* ]] || [ -z "$line" ]; then
+            echo "Caching available packages in Solus repository";
+            eopkg la | sed -e '1,3d' > $HOME/.config/repo-la.txt;
+            echo "Done!";
+        fi
     fi
 fi
