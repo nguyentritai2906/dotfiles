@@ -105,20 +105,12 @@
         set <F21>=k
 
 	" Writing
-	" Wiki for Vim
-	"Plug 'vimwiki/vimwiki', {'branch': 'dev'}
-        " From https://dev.to/konstantin/taking-notes-with-vim-3619
-        " Vimwiki
-        "let g:vimwiki_list = [{ 'path': '~/Documents/notes/' }]
-        "let g:vimwiki_list = [{'path': '~/Documents/notes/',
-                    "\ 'syntax': 'markdown', 'ext': '.md'}]
-	"Plug 'plasticboy/vim-markdown'	" Syntax highlighting, matching rules and mappings Markdown
-        " Use vim-markdown as default and keep snippets
-        "autocmd FileType vimwiki set ft=markdown
-        " Disable default mapping
-        "let g:vim_markdown_no_default_key_mappings = 1
-	Plug 'xolox/vim-notes' " For taking note, of course
+    Plug 'plasticboy/vim-markdown'	" Syntax highlighting, matching rules and mappings Markdown
+        let g:vim_markdown_no_default_key_mappings = 1
+    Plug 'xolox/vim-notes' " For taking note, of course
         let g:notes_directories = ['~/Documents/notes']
+        let g:notes_suffix = '.md'
+        let g:notes_conceal_url = 0
 
 	call plug#end()
 
@@ -331,11 +323,15 @@
 	nmap <Leader>gn <Plug>(GitGutterNextHunk)
 	nmap <Leader>gN <Plug>(GitGutterPrevHunk)
 
-    " Vim-move
+    " Vim-Move
     vmap <F20> <Plug>MoveBlockDown
     vmap <F21> <Plug>MoveBlockUp
     nmap <F20> <Plug>MoveLineDown
     nmap <F21> <Plug>MoveLineUp
+
+    "Vim-Note
+    nmap \nw :Note Index<CR>
+    vmap \ns :NoteFromSelectedText<CR>
 
 " }}}
 
