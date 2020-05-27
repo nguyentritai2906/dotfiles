@@ -262,7 +262,7 @@ exec --no-startup-id spotify
 exec --no-startup-id alacritty
 exec --no-startup-id google-chrome-stable
 exec --no-startup-id nohup unclutter -idle 2 &
-exec --no-startup-id redshift &
+exec --no-startup-id redshift -t 6500:4000 &
 exec_always --no-startup-id xset r rate 200 50
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
