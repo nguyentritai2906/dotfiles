@@ -29,6 +29,7 @@ fo() {
         open "$file" &
     fi
 }
+bindkey -s '^o' 'fo\n'
 
 # fcd - cd to selected directory
 # Similar to default ALT+C fzf key binding
@@ -101,7 +102,7 @@ prm() {
     local inst=$(eopkg li | sed -e '1,3d' | fzf -m --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat")
     test -n "$inst" && print -z -- "sudo eopkg rm $(echo $inst | cut -d' ' -f1 | tr '\n' ' ')"
 }
-#Cache all available packages in the repositories for faster 'pacit' search
+#Cache all available packages in the repositories for faster 'pit' search
 if [ -f "$HOME/.config/repo-la.txt" ]; then
     if [ $(expr $(date +%s) - $(date +%s -r $HOME/.config/repo-la.txt)) -gt 1296000 ]; then
     echo "[Cache available packages] Would you like to update? [Y/n]: \c"
@@ -115,3 +116,13 @@ if [ -f "$HOME/.config/repo-la.txt" ]; then
         fi
     fi
 fi
+
+#Use The-Silver-Searcher to search for code then open it in EDITOR or vim
+sag() {
+    local file=$(ag "$1" | fzf | cut -d':' -f1)
+    # Open the file if it exists
+    if [ -n "$file"  ]; then
+        # Use the default editor if it's defined, otherwise Vim
+        ${EDITOR:-vim} "$file"
+    fi
+}
