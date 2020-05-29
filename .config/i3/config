@@ -205,6 +205,7 @@ bindsym $mod+Shift+p exec --no-startup-id $HOME/.config/polybar/launch.sh
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 bindsym $mod+Shift+e exec --no-startup-id i3exit logout, mode "default"
 # Lock i3
+#bindsym $mod+Shift+x exec --no-startup-id dm-tool lock
 bindsym $mod+Shift+x exec --no-startup-id betterlockscreen -l
 #bindsym $mod+Shift+x exec --no-startup-id ~/.config/i3/lock.sh
 
@@ -251,9 +252,7 @@ mode "resize" {
 
 # Autostart applications
 exec --no-startup-id nitrogen --restore
-exec --no-startup-id nm-applet
-exec --no-startup-id xfce4-power-manager
-exec --no-startup-id pamac-tray
+exec --no-startup-id mate-power-manager
 exec --no-startup-id clipit
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 exec --no-startup-id ibus-daemon -drx
@@ -263,6 +262,7 @@ exec --no-startup-id alacritty
 exec --no-startup-id google-chrome-stable
 exec --no-startup-id nohup unclutter -idle 2 &
 exec --no-startup-id redshift -t 6500:4000 &
+exec --no-startup-id xss-lock -l -- i3exit lock &
 exec_always --no-startup-id xset r rate 200 50
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
@@ -325,9 +325,6 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-
-# set power-manager
-exec --no-startup-id mate-power-manager
 
 # Volume control
 bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/volume.sh +1%
