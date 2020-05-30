@@ -87,6 +87,7 @@
     Plug 'dracula/vim', { 'as': 'dracula'  } " GruvBox colorscheme
     Plug 'lilydjwg/colorizer' " Colorize all text in form of #rrggbb and #rgb
     Plug 'Yggdroot/indentLine' " Display indentation level
+        let g:indentLine_fileTypeExclude = ['markdown']
     Plug 'junegunn/goyo.vim' " <Leader>gy toggle reading mode
     Plug 'haya14busa/is.vim' " Incremental search improved
     Plug 'PeterRincker/vim-searchlight' " Highlight current search match
@@ -95,7 +96,6 @@
     Plug 'easymotion/vim-easymotion' " Vim motions on speed
         let g:EasyMotion_do_mapping = 0 " Disable default mappings
         let g:EasyMotion_smartcase = 1 " Turn on case-insensitive feature
-    "Plug 'yuttie/comfortable-motion.vim' " Physics-based smooth scrolling
     Plug 'matze/vim-move' " Move lines and selections up and down
         " For terms that send Alt as Escape sequence
         " see http://vim.wikia.com/wiki/Mapping_fast_keycodes_in_terminal_Vim
@@ -105,12 +105,15 @@
         set <F21>=k
 
     " Writing
+    Plug 'vimwiki/vimwiki'
+        " From https://dev.to/konstantin/taking-notes-with-vim-3619
+        let g:vimwiki_list = [{'path': '$HOME/Documents/notes/',
+                    \ 'syntax': 'markdown', 'ext': '.md'}]
     Plug 'plasticboy/vim-markdown'	" Syntax highlighting, matching rules and mappings Markdown
+        " Set filetype to Markdown for Vimwiki
+        autocmd FileType vimwiki setl ft=markdown
         let g:vim_markdown_no_default_key_mappings = 1
-    Plug 'xolox/vim-notes' " For taking note, of course
-        let g:notes_directories = ['~/Documents/notes']
-        let g:notes_suffix = '.md'
-        let g:notes_conceal_url = 0
+        let g:vim_markdown_folding_disabled = 1
 
     call plug#end()
 
@@ -132,7 +135,7 @@
     set clipboard=unnamedplus
     set updatetime=100 " Update sign column every 1/10 second
     set ttimeoutlen=0
-
+    "set conceallevel=2
     set wildmode=longest,list,full " Tab completion
     set wildmenu " enhanced command line completion
 
@@ -169,6 +172,10 @@
 
     " Map leader to space
     let mapleader=" "
+    nmap <C-U> <C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y>
+                \<C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y>
+    nmap <C-D> <C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E>
+                \<C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E>
 
     " Remap ESC
     inoremap ii <ESC>
@@ -176,7 +183,7 @@
     cnoremap ii <ESC>
 
     " Clear all highlight
-    nnoremap <leader>hl :noh<CR>
+    nnoremap <Leader>hl :noh<CR>
 
     " Keep visual selection when indenting/outdenting/commemt/uncomment
     vmap < <gv
@@ -184,6 +191,7 @@
 
     " Write, compile and execute
     map <F6> :!javac % && java %<<CR>
+    map <Leader><F6> :!javac %<CR>
     "map <F6> :w<CR> :!gcc % -o %< && ./%<<CR>
 
     " Visual selection of indent level
@@ -205,8 +213,8 @@
     nnoremap vil :call SelectIndent()<CR>
 
     " Insert blank line
-    nnoremap <leader>j mao<Esc>`a
-    nnoremap <leader>k maO<Esc>`a
+    nnoremap <Leader>j mao<Esc>`a
+    nnoremap <Leader>k maO<Esc>`a
 
     " Navigate between tab
     nnoremap th gT
@@ -230,13 +238,21 @@
     highlight       Search    ctermfg=Black  ctermbg=208    cterm=bold
     highlight  Searchlight    ctermfg=Black  ctermbg=196    cterm=bold
     highlight    IncSearch    ctermfg=Black  ctermbg=196    cterm=bold
+    highlight link VimwikiHeader1 DraculaRed
+    highlight link VimwikiHeader2 DraculaGreen
+    highlight link VimwikiHeader3 DraculaComment
+    highlight link VimwikiHeader4 DraculaPurple
+    highlight link VimwikiHeader5 DraculaCyan
+    highlight link VimwikiHeader6 DraculaYellow
     " Center search hit and automatically clear highlight with is.vim
     nnoremap <silent> <F4> :call <SID>SearchMode()<CR>
     " Default to 'Maybe'
-    nmap <silent> n <Plug>(is-n):call <SID>MaybeMiddle()<CR>
-    nmap <silent> N <Plug>(is-N):call <SID>MaybeMiddle()<CR>
+    nmap <silent> n <Plug>(is-n)zz
+    nmap <silent> N <Plug>(is-N)zz
     function s:SearchMode()
-        if !exists('s:searchmode') || s:searchmode == 1
+        nunmap n
+        nunmap N
+        if !exists('s:searchmode') || s:searchmode == 0
             echo 'SearchMode: Maybe'
             nmap <silent> n <Plug>(is-n):call <SID>MaybeMiddle()<CR>
             nmap <silent> N <Plug>(is-N):call <SID>MaybeMiddle()<CR>
@@ -264,7 +280,7 @@
     " Jump to anywhere you want with minimal keystrokes, with just one key binding.
     "nmap <Leader>s <Plug>(easymotion-overwin-f)
     " Need one more keystroke, but on average, it may be more comfortable.
-    nmap <leader><leader> <Plug>(easymotion-overwin-f2)
+    nmap <Leader><Leader> <Plug>(easymotion-overwin-f2)
     " Line motions
     nmap <Leader>J <Plug>(easymotion-j)
     nmap <Leader>K <Plug>(easymotion-k)
@@ -297,7 +313,8 @@
         execute 'normal' cmd
     endfunction
     command! JumpTo call fzf#run(fzf#wrap({
-                \   'source':  map(range(1, tabpagenr('$')), 'v:val." "." ".TabName(v:val)'),
+                \   'source':  map(range(1, tabpagenr('$')),
+                \   'v:val." "." ".TabName(v:val)'),
                 \   'sink':    function('<SID>JumpToTab'),
                 \}))
     nnoremap <silent> <Leader>T        :JumpTo<CR>
@@ -306,10 +323,10 @@
     nnoremap <F5> :MundoToggle<CR>
 
     " NERDCommenter
-    vmap <leader>cc <Plug>NERDCommenterCommentgv=gv
-    vmap <leader>cu <Plug>NERDCommenterUncommentgv=gv
-    nmap <leader>cc <Plug>NERDCommenterComment
-    nmap <leader>cu <Plug>NERDCommenterUncomment
+    vmap <Leader>cc <Plug>NERDCommenterCommentgv
+    vmap <Leader>cu <Plug>NERDCommenterUncommentgv
+    nmap <Leader>cc <Plug>NERDCommenterComment
+    nmap <Leader>cu <Plug>NERDCommenterUncomment
 
     " NERDtree and Tagbar
     nmap <F8> :TagbarToggle<CR>
@@ -325,10 +342,6 @@
     vmap <F21> <Plug>MoveBlockUp
     nmap <F20> <Plug>MoveLineDown
     nmap <F21> <Plug>MoveLineUp
-
-    "Vim-Note
-    nmap \nw :Note Index<CR>
-    vmap \ns :NoteFromSelectedText<CR>
 
 " }}}
 
@@ -348,7 +361,9 @@
     "autocmd StdinReadPre * let s:std_in=1
     "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
     " Close vim if the only window left open is a NERDTree
-    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    autocmd bufenter * if (winnr("$") == 1
+                \&& exists("b:NERDTree")
+                \&& b:NERDTree.isTabTree()) | q | endif
 
     " Change cursor shape for different vi modes.
     if has("autocmd")
