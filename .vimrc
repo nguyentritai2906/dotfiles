@@ -60,6 +60,7 @@
                     \ 'separately': {
                     \ 'markdown': {'parentheses_options': 'containedin=markdownCode contained',},
                     \ 'vimwiki': {'parentheses_options': 'containedin=vimwikiCode contained',},
+                    \ 'vim': {'parentheses_options': 'containedin=vimFuncBody',},
                     \ }}
     Plug 'preservim/nerdcommenter' " Easy comment out lines of codes
         let g:NERDCreateDefaultMappings = 0
