@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-count=0
 #wireless_connected=""
 ethernet_connected=""
 network_name="$(nmcli -t -f active,ssid dev wifi | egrep '^yes' | cut -d\: -f2)"
@@ -24,7 +23,7 @@ disconnected=""
 ID="$(ip link | awk '/state UP/ {print $2}')"
 
 while true; do
-    if (ping -c 1 archlinux.org || ping -c 1 google.com || ping -c 1 github.com) &>/dev/null; then
+    if (ping -c 1 google.com) &>/dev/null; then
         if [[ $ID == e* ]]; then
             echo "$ethernet_connected" ; sleep 3
         else
