@@ -39,6 +39,6 @@ while true; do
             #echo "$network_strength $network_name" ; sleep 3
         fi
     else
-        echo "$disconnected" ; sleep 0.5
+        echo "$disconnected" ; sleep 1
     fi
 done
