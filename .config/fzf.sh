@@ -75,7 +75,7 @@ fkill() {
 	fi
 }
 
-# Search a file with fzf inside a Tmux pane and then open it in an editor
+# Search with fzf and open in vim
 fzf-vim() {
 	local file=$(fzf)
 	# Open the file if it exists
@@ -84,8 +84,18 @@ fzf-vim() {
 		${EDITOR:-vim} "$file"
 	fi
 }
-# Search with fzf and open in vim
 bindkey -s '^t' "fzf-vim\n"
+
+# Search with fzf and open in vim from anywhere to anyfile
+fzf-home-vim() {
+	local file=$(cd $HOME && fzf)
+	# Open the file if it exists
+	if [ -n "$HOME/$file" ]; then
+		# Use the default editor if it's defined, otherwise Vim
+		${EDITOR:-vim} "$HOME/$file"
+	fi
+}
+bindkey -s '\et' "fzf-home-vim\n"
 
 #Search for installed packages
 pli() {
@@ -126,3 +136,25 @@ sag() {
         ${EDITOR:-vim} "$file"
     fi
 }
+
+# Similar to ALT+C default keybinding
+# But from anywhere to anywhere
+fzf-home-cd-widget() {
+  cd $HOME
+  local cmd="${FZF_ALT_C_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
+    -o -type d -print 2> /dev/null | cut -b3-"}"
+  setopt localoptions pipefail no_aliases 2> /dev/null
+  local dir="$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS" $(__fzfcmd) +m)"
+  if [[ -z "$dir" ]]; then
+    zle redisplay
+    return 0
+  fi
+  cd "$dir"
+  unset dir # ensure this doesn't end up appearing in prompt expansion
+  local ret=$?
+  zle fzf-redraw-prompt
+  return $ret
+}
+zle     -N    fzf-home-cd-widget
+bindkey '\ed' fzf-home-cd-widget
+
