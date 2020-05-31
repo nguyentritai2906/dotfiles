@@ -55,7 +55,12 @@
         let g:AutoPairsFlyMode = 1
     Plug 'luochen1990/rainbow' " Rainbow parentheses
         let g:rainbow_active = 1    " Enable vim-rainbow globally
-        let g:rainbow_conf = {'ctermfgs': ['red', 'green', 'cyan', 'magenta']}
+        let g:rainbow_conf = {
+                    \ 'ctermfgs': ['red', 'green', 'cyan', 'magenta'],
+                    \ 'separately': {
+                    \ 'markdown': {'parentheses_options': 'containedin=markdownCode contained',},
+                    \ 'vimwiki': {'parentheses_options': 'containedin=vimwikiCode contained',},
+                    \ }}
     Plug 'preservim/nerdcommenter' " Easy comment out lines of codes
         let g:NERDCreateDefaultMappings = 0
     Plug 'airblade/vim-gitgutter' " Git diff, stages/undoes hunks and partial hunks
@@ -108,10 +113,10 @@
     Plug 'vimwiki/vimwiki'
         " From https://dev.to/konstantin/taking-notes-with-vim-3619
         let g:vimwiki_list = [{'path': '$HOME/Documents/notes/',
-                    \ 'syntax': 'markdown', 'ext': '.md'}]
+                    \ 'syntax': 'markdown', 'ext': '.md',
+                    \ 'links_space_char': '-'}]
+        let g:vimwiki_auto_header = 1
     Plug 'plasticboy/vim-markdown'	" Syntax highlighting, matching rules and mappings Markdown
-        " Set filetype to Markdown for Vimwiki
-        autocmd FileType vimwiki setl ft=markdown
         let g:vim_markdown_no_default_key_mappings = 1
         let g:vim_markdown_folding_disabled = 1
 
@@ -135,7 +140,7 @@
     set clipboard=unnamedplus
     set updatetime=100 " Update sign column every 1/10 second
     set ttimeoutlen=0
-    "set conceallevel=2
+    set conceallevel=2
     set wildmode=longest,list,full " Tab completion
     set wildmenu " enhanced command line completion
 
@@ -246,7 +251,7 @@
     highlight link VimwikiHeader6 DraculaYellow
     " Center search hit and automatically clear highlight with is.vim
     nnoremap <silent> <F4> :call <SID>SearchMode()<CR>
-    " Default to 'Maybe'
+    " Default to 'Middle'
     nmap <silent> n <Plug>(is-n)zz
     nmap <silent> N <Plug>(is-N)zz
     function s:SearchMode()
