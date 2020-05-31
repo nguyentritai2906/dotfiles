@@ -93,10 +93,13 @@
     Plug 'dracula/vim', { 'as': 'dracula'  } " GruvBox colorscheme
     Plug 'lilydjwg/colorizer' " Colorize all text in form of #rrggbb and #rgb
     Plug 'Yggdroot/indentLine' " Display indentation level
-        let g:indentLine_fileTypeExclude = ['markdown']
+        let g:indentLine_fileTypeExclude = ['markdown', 'vimwiki']
     Plug 'junegunn/goyo.vim' " <Leader>gy toggle reading mode
     Plug 'haya14busa/is.vim' " Incremental search improved
     Plug 'PeterRincker/vim-searchlight' " Highlight current search match
+    Plug 'machakann/vim-highlightedyank' " Just like it's name
+        let g:highlightedyank_highlight_duration = 100
+    Plug 'markonm/traces.vim' " Range, pattern and substitute preview
 
     " Navigation
     Plug 'easymotion/vim-easymotion' " Vim motions on speed
@@ -154,6 +157,7 @@
     set nolazyredraw " don't redraw while executing macros
 
     " Apprearance
+    "colorscheme gruvbox
     colorscheme dracula
     set t_Co=256 " explicitly tell vim that the terminal supports 256 colors
     set number relativenumber
