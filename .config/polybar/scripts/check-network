@@ -26,18 +26,18 @@ ID="$(ip link | awk '/state UP/ {print $2}')"
 while true; do
     if (ping -c 1 archlinux.org || ping -c 1 google.com || ping -c 1 github.com) &>/dev/null; then
         if [[ $ID == e* ]]; then
-            echo "$ethernet_connected" ; sleep 25
+            echo "$ethernet_connected" ; sleep 3
         else
             if [[ $network_strength == ▂___  ]] ; then
-                echo "$icon1 $network_name" ; sleep 25
+                echo "$icon1 $network_name" ; sleep 3
             elif [[ $network_strength == ▂▄__  ]] ; then
-                echo "$icon2 $network_name" ; sleep 25
+                echo "$icon2 $network_name" ; sleep 3
             elif [[ $network_strength == ▂▄▆_  ]] ; then
-                echo "$icon3 $network_name" ; sleep 25
+                echo "$icon3 $network_name" ; sleep 3
             else
-                echo "$icon4 $network_name"; sleep 25
+                echo "$icon4 $network_name"; sleep 3
             fi
-            #echo "$network_strength $network_name" ; sleep 25
+            #echo "$network_strength $network_name" ; sleep 3
         fi
     else
         echo "$disconnected" ; sleep 0.5
