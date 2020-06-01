@@ -112,6 +112,8 @@
         " https://github.com/matze/vim-move/issues/15#issuecomment-168177827
         set <F20>=j
         set <F21>=k
+    Plug 'unblevable/quick-scope' " Quick find <char> movement
+        let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
     " Writing
     Plug 'vimwiki/vimwiki'
