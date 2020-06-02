@@ -88,13 +88,16 @@ bindkey -s '^t' "fzf-vim\n"
 
 # Search with fzf and open in vim from anywhere to anyfile
 fzf-home-vim() {
-	local file=$(cd $HOME && fzf)
-	# Open the file if it exists
-	if [ -n "$HOME/$file" ]; then
-		# Use the default editor if it's defined, otherwise Vim
-		${EDITOR:-vim} "$HOME/$file"
-	fi
+    local file=$(cd $HOME && fzf)
+    # Open the file if it exists
+    if [ -n "$file" ]; then
+        # Use the default editor if it's defined, otherwise Vim
+        ${EDITOR:-vim} "$HOME/$file"
+    fi
 }
+
+#zle     -N    fzf-home-vim
+#bindkey '\et' fzf-home-vim
 bindkey -s '\et' "fzf-home-vim\n"
 
 #Search for installed packages
@@ -128,23 +131,35 @@ if [ -f "$HOME/.config/repo-la.txt" ]; then
 fi
 
 #Use The-Silver-Searcher to search for code then open it in EDITOR or vim
+#sag() {
+    #local file=$(ag "$1" | fzf | cut -d':' -f1)
+    ## Open the file if it exists
+    #if [ -n "$file"  ]; then
+        ## Use the default editor if it's defined, otherwise Vim
+        #${EDITOR:-vim} "$file"
+    #fi
+#}
+
+# fuzzy grep open via ag with line number
 sag() {
-    local file=$(ag "$1" | fzf | cut -d':' -f1)
-    # Open the file if it exists
-    if [ -n "$file"  ]; then
-        # Use the default editor if it's defined, otherwise Vim
-        ${EDITOR:-vim} "$file"
-    fi
+  local file
+  local line
+
+  read -r file line <<<"$(ag --nobreak --noheading $@ | fzf -0 -1 | awk -F: '{print $1, $2}')"
+
+  if [[ -n $file ]]
+  then
+     vim $file +$line
+  fi
 }
 
 # Similar to ALT+C default keybinding
 # But from anywhere to anywhere
 fzf-home-cd-widget() {
-  cd $HOME
   local cmd="${FZF_ALT_C_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
     -o -type d -print 2> /dev/null | cut -b3-"}"
   setopt localoptions pipefail no_aliases 2> /dev/null
-  local dir="$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS" $(__fzfcmd) +m)"
+  local dir="$(cd $HOME && eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS" $(__fzfcmd) +m)"
   if [[ -z "$dir" ]]; then
     zle redisplay
     return 0
