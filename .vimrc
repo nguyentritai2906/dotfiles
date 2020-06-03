@@ -125,6 +125,7 @@
     Plug 'plasticboy/vim-markdown'	" Syntax highlighting, matching rules and mappings Markdown
         let g:vim_markdown_no_default_key_mappings = 1
         let g:vim_markdown_folding_disabled = 1
+    Plug 'SirVer/ultisnips'
 
     call plug#end()
 
@@ -256,6 +257,7 @@
     highlight link VimwikiHeader4 DraculaPurple
     highlight link VimwikiHeader5 DraculaCyan
     highlight link VimwikiHeader6 DraculaYellow
+    match Todo /DONE/ " Add DONE to TODO highlighting group https://stackoverflow.com/questions/4162664/vim-highlight-a-list-of-words
     " Center search hit and automatically clear highlight with is.vim
     nnoremap <silent> <F4> :call <SID>SearchMode()<CR>
     " Default to 'Middle'
