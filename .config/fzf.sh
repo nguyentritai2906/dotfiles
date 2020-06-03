@@ -87,18 +87,37 @@ fzf-vim() {
 bindkey -s '^t' "fzf-vim\n"
 
 # Search with fzf and open in vim from anywhere to anyfile
+#fzf-home-vim() {
+    #local file=$(cd $HOME && fzf)
+    ## Open the file if it exists
+    #if [ -n "$file" ]; then
+        ## Use the default editor if it's defined, otherwise Vim
+        #${EDITOR:-vim} "$HOME/$file"
+    #fi
+#}
+#bindkey -s '\et' "fzf-home-vim\n"
+
 fzf-home-vim() {
-    local file=$(cd $HOME && fzf)
-    # Open the file if it exists
-    if [ -n "$file" ]; then
-        # Use the default editor if it's defined, otherwise Vim
-        ${EDITOR:-vim} "$HOME/$file"
+    local cmd="${FZF_CTRL_T_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
+        -o -type f -print \
+        -o -type d -print \
+        -o -type l -print 2> /dev/null | cut -b3-"}"
+    setopt localoptions pipefail no_aliases 2> /dev/null
+    local file="$(cd $HOME && eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) +m "$@")"
+    if [[ -z "$file" ]]; then
+        zle redisplay
+        return 0
     fi
+    vim "$HOME/$file" </dev/tty # </dev/tty to tell vim input is from the terminal and not from standard input.
+    unset file # ensure this doesn't end up appearing in prompt expansion
+    local ret=$?
+    zle reset-prompt
+    zle zle-line-init # Vi cursor shape not init for some reason
+    return $ret
 }
 
-#zle     -N    fzf-home-vim
-#bindkey '\et' fzf-home-vim
-bindkey -s '\et' "fzf-home-vim\n"
+zle     -N    fzf-home-vim
+bindkey '\et' fzf-home-vim
 
 #Search for installed packages
 pli() {
@@ -172,4 +191,3 @@ fzf-home-cd-widget() {
 }
 zle     -N    fzf-home-cd-widget
 bindkey '\ed' fzf-home-cd-widget
-
