@@ -38,7 +38,8 @@
         let g:ycm_always_populate_location_list = 1
     Plug 'davidhalter/jedi-vim' " Awesome Python autocompletion
     Plug 'rking/ag.vim' " Vim plugin for The-Silver-Searcher
-    Plug 'junegunn/fzf'
+    "Plug 'junegunn/fzf'
+    Plug '~/.fzf'
     Plug 'junegunn/fzf.vim' " General-purpose command-line fuzzy finder vim integration
         let g:fzf_action = {
                     \ 'ctrl-t': 'tab split',
@@ -155,6 +156,7 @@
     set incsearch " lookahead as search pattern is specified
     set ignorecase " ignore case in all searches...
     set smartcase " unless uppercase letters used
+    set wildignorecase " Command line completion ignore case
     set hlsearch " highlight all matches
     let @/ = "" " highlight search but not when source .vimrc
     set nolazyredraw " don't redraw while executing macros
