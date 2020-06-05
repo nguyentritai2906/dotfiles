@@ -126,7 +126,7 @@ setopt hist_ignore_dups
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # Add brew to $PATH
-export PATH="$HOME/linuxbrew/.linuxbrew/bin:$PATH"
+#export PATH="$HOME/linuxbrew/.linuxbrew/bin:$PATH"
 
 # CS50 library https://github.com/cs50/libcs50
 export LIBRARY_PATH=/usr/local/lib
@@ -143,7 +143,7 @@ FD_OPTIONS="--hidden --follow --exclude .git --exclude node_modules"
 export FZF_DEFAULT_OPTS="--no-mouse --height 50% -1 --reverse --multi --inline-info --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' --preview-window='right:70%:hidden:wrap' --bind='ctrl-p:toggle-preview,ctrl-d:half-page-down,ctrl-u:half-page-up,ctrl-x:execute(rm -i {+})+abort,alt-k:preview-up,alt-j:preview-down,alt-d:preview-page-down,alt-u:preview-page-up'"
 # Use git-ls-files inside git repo, otherwise fd
 export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard || fd --type f --type l $FD_OPTIONS"
-export FZF_CTRL_T_COMMAND="fd $FD_OPTIONS"
+export FZF_CTRL_T_COMMAND="fd --type f $FD_OPTIONS"
 export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 
 # Load zsh-syntax-highlighting; should be last.
