@@ -21,7 +21,7 @@ fm() f "$@" --max-depth 1
 		#[ "$key" = ctrl-o  ] && open "$file" || ${EDITOR:-vim} "$file"
 	#fi
 #}
-
+#
 # Or just open it
 fo() {
     local file=$(fzf --query="$1" --exit-0)
@@ -30,14 +30,6 @@ fo() {
     fi
 }
 bindkey -s '^o' 'fo\n'
-
-# fcd - cd to selected directory
-# Similar to default ALT+C fzf key binding
-fcd() {
-	local dir
-	dir=$(find ${1:-.} -path '*/\.*' -prune \
-		-o -type d -print 2> /dev/null | fzf +m) && cd "$dir"
-}
 
 # cd to selected parent dir
 fpd(){
@@ -76,64 +68,53 @@ fkill() {
 }
 
 # Search with fzf and open in vim
-fzf-vim() {
-	local file=$(fzf)
-	# Open the file if it exists
-	if [ -n "$file" ]; then
-		# Use the default editor if it's defined, otherwise Vim
-		${EDITOR:-vim} "$file"
-	fi
-}
+fzf-vim() (
+  IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
+  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+)
 bindkey -s '^t' "fzf-vim\n"
 
-# Search with fzf and open in vim from anywhere to anyfile
-#fzf-home-vim() {
-    #local file=$(cd $HOME && fzf)
-    ## Open the file if it exists
-    #if [ -n "$file" ]; then
-        ## Use the default editor if it's defined, otherwise Vim
-        #${EDITOR:-vim} "$HOME/$file"
-    #fi
+#fzf-vim() {
+    #setopt localoptions pipefail no_aliases 2> /dev/null
+    #local file="$(eval "$FZF_CTRL_T_COMMAND" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")"
+    #[[ -z "$file" ]] && zle redisplay && return 0
+    ## Use the default editor if it's defined, otherwise Vim
+    #${EDITOR:-vim} "$file" </dev/tty # </dev/tty tell vim input from terminal
+    ##${EDITOR:-vim} "$file"
+    #unset file # ensure this doesn't end up appearing in prompt expansion
+    #local ret=$?
+    #zle fzf-redraw-prompt
+    #zle zle-line-init # Vi cursor shape does not init for some reason
+    #return $ret
 #}
-#bindkey -s '\et' "fzf-home-vim\n"
+#zle -N fzf-vim
+#bindkey '^t' fzf-vim
 
-fzf-home-vim() {
-    local cmd="${FZF_CTRL_T_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
-        -o -type f -print \
-        -o -type d -print \
-        -o -type l -print 2> /dev/null | cut -b3-"}"
-    setopt localoptions pipefail no_aliases 2> /dev/null
-    local file="$(cd $HOME && eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) +m "$@")"
-    if [[ -z "$file" ]]; then
-        zle redisplay
-        return 0
-    fi
-    vim "$HOME/$file" </dev/tty # </dev/tty to tell vim input is from the terminal and not from standard input.
-    unset file # ensure this doesn't end up appearing in prompt expansion
-    local ret=$?
-    zle reset-prompt
-    zle zle-line-init # Vi cursor shape not init for some reason
-    return $ret
-}
-
-zle     -N    fzf-home-vim
-bindkey '\et' fzf-home-vim
+# Search with fzf and open in vim from anywhere to anyfile
+fzf-home-vim() (
+  IFS=$'\n' files=($(cd $HOME && fzf --query="$1" --multi --select-1 --exit-0))
+  [[ -n "$files" ]] && ${EDITOR:-vim} "$HOME/${files[@]}"
+)
+bindkey -s '\et' "fzf-home-vim\n"
 
 #Search for installed packages
 pli() {
     local inst=$(eopkg li | sed -e '1,3d' | fzf --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat")
     print -z -- "$(echo $inst | awk '{print $1;}')"
 }
+
 #Search for packages in the repositories and install
 pit() {
     local inst=$(cat $HOME/.config/repo-la.txt | sed -e '1,3d' | fzf -m --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat")
     test -n "$inst" && print -z -- "sudo eopkg it $(echo $inst | cut -d' ' -f1 | tr '\n' ' ')"
 }
+
 #Search for installed packages and remove
 prm() {
     local inst=$(eopkg li | sed -e '1,3d' | fzf -m --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat")
     test -n "$inst" && print -z -- "sudo eopkg rm $(echo $inst | cut -d' ' -f1 | tr '\n' ' ')"
 }
+
 #Cache all available packages in the repositories for faster 'pit' search
 if [ -f "$HOME/.config/repo-la.txt" ]; then
     if [ $(expr $(date +%s) - $(date +%s -r $HOME/.config/repo-la.txt)) -gt 1296000 ]; then
@@ -149,23 +130,12 @@ if [ -f "$HOME/.config/repo-la.txt" ]; then
     fi
 fi
 
-#Use The-Silver-Searcher to search for code then open it in EDITOR or vim
-#sag() {
-    #local file=$(ag "$1" | fzf | cut -d':' -f1)
-    ## Open the file if it exists
-    #if [ -n "$file"  ]; then
-        ## Use the default editor if it's defined, otherwise Vim
-        #${EDITOR:-vim} "$file"
-    #fi
-#}
-
+# Use The-Silver-Searcher to search for code then open it in EDITOR or vim
 # fuzzy grep open via ag with line number
 sag() {
   local file
   local line
-
   read -r file line <<<"$(ag --nobreak --noheading $@ | fzf -0 -1 | awk -F: '{print $1, $2}')"
-
   if [[ -n $file ]]
   then
      vim $file +$line
@@ -183,7 +153,7 @@ fzf-home-cd-widget() {
     zle redisplay
     return 0
   fi
-  cd "$dir"
+  cd "$HOME/$dir"
   unset dir # ensure this doesn't end up appearing in prompt expansion
   local ret=$?
   zle fzf-redraw-prompt
