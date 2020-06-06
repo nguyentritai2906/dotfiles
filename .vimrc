@@ -30,6 +30,10 @@
                     \   'lua': ['.', ':'],
                     \   'erlang': [':'],
                     \ }
+        " Make YCM compatible with UltiSnips (using <Tab> through Supertab)
+        let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+        let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+        let g:SuperTabDefaultCompletionType = '<C-n>'
         " Trigger completion for C
         let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
         let g:ycm_show_diagnostics_ui = 1
@@ -73,7 +77,8 @@
         let g:gitgutter_sign_modified_removed = '<'
         " Turn off sign column highlight
         let g:gitgutter_override_sign_column_highlight = 1
-    Plug 'tpope/vim-fugitive' " Git wrapper
+    "Plug 'tpope/vim-fugitive' " Git wrapper
+    Plug 'ervandew/supertab'
 
     " Tags
     Plug 'majutsushi/tagbar' " Vim plugin that displays tags in a window
@@ -125,7 +130,10 @@
     Plug 'plasticboy/vim-markdown'	" Syntax highlighting, matching rules and mappings Markdown
         let g:vim_markdown_no_default_key_mappings = 1
         let g:vim_markdown_folding_disabled = 1
-    Plug 'SirVer/ultisnips'
+    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+        let g:UltiSnipsExpandTrigger = "<tab>"
+        let g:UltiSnipsJumpForwardTrigger = "<tab>"
+        let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
     call plug#end()
 
@@ -134,7 +142,7 @@
 " Settings {{{
 
     set nocompatible " Be iMproved, required
-    filetype plugin on " Required
+    filetype plugin indent on " https://vi.stackexchange.com/questions/10124/what-is-the-difference-between-filetype-plugin-indent-on-and-filetype-indent
     syntax on " For C syntax check, change C++11 to C99 in .vim/.ycm_extra_conf.py
     set encoding=utf-8
     set autoread " detect when a file is changed
