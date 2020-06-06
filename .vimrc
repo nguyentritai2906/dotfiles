@@ -37,7 +37,7 @@
         "Use :lnext and :lprev - Jump to next or previous error in list
         let g:ycm_always_populate_location_list = 1
     Plug 'davidhalter/jedi-vim' " Awesome Python autocompletion
-    Plug 'rking/ag.vim' " Vim plugin for The-Silver-Searcher
+    "Plug 'rking/ag.vim' " Vim plugin for The-Silver-Searcher
     "Plug 'junegunn/fzf'
     Plug '~/.fzf'
     Plug 'junegunn/fzf.vim' " General-purpose command-line fuzzy finder vim integration
@@ -46,7 +46,6 @@
                     \ 'ctrl-s': 'split',
                     \ 'ctrl-v': 'vsplit' }
         let g:fzf_layout = {'window': {'width': 0.9, 'height': 0.6}}
-        "let g:fzf_buffers_jump = 1
     Plug 'preservim/nerdtree' " A tree explorer plugin for vim
     Plug 'simnalamburt/vim-mundo' " Graph vim undo tree
         let g:mundo_auto_preview_delay=0
@@ -247,50 +246,51 @@
     highlight ColorColumn ctermbg=darkcyan
     call matchadd('ColorColumn', '\%81v', 100)
 
-    " Search
-    " Highlight
-    highlight		Normal		guibg=NONE	 ctermbg=NONE
-    highlight       Search    ctermfg=Black  ctermbg=208    cterm=bold
-    highlight  Searchlight    ctermfg=Black  ctermbg=196    cterm=bold
-    highlight    IncSearch    ctermfg=Black  ctermbg=196    cterm=bold
-    highlight link VimwikiHeader1 DraculaRed
-    highlight link VimwikiHeader2 DraculaGreen
-    highlight link VimwikiHeader3 DraculaComment
-    highlight link VimwikiHeader4 DraculaPurple
-    highlight link VimwikiHeader5 DraculaCyan
-    highlight link VimwikiHeader6 DraculaYellow
-    match Todo /DONE/ " Add DONE to TODO highlighting group https://stackoverflow.com/questions/4162664/vim-highlight-a-list-of-words
-    " Center search hit and automatically clear highlight with is.vim
-    nnoremap <silent> <F4> :call <SID>SearchMode()<CR>
-    " Default to 'Middle'
-    nmap <silent> n <Plug>(is-n)zz
-    nmap <silent> N <Plug>(is-N)zz
-    function s:SearchMode()
-        nunmap n
-        nunmap N
-        if !exists('s:searchmode') || s:searchmode == 0
-            echo 'SearchMode: Maybe'
-            nmap <silent> n <Plug>(is-n):call <SID>MaybeMiddle()<CR>
-            nmap <silent> N <Plug>(is-N):call <SID>MaybeMiddle()<CR>
-            let s:searchmode = 1
-        elseif s:searchmode == 1
-            echo 'SearchMode: Middle'
-            nmap <silent> n <Plug>(is-n)zz
-            nmap <silent> N <Plug>(is-N)zz
-            let s:searchmode = 2
-        else
-            echo 'SearchMode: Normal'
-            nmap <silent> n <Plug>(is-n)
-            nmap <silent> N <Plug>(is-N)
-            let s:searchmode = 0
-        endif
-    endfunction
-    " If cursor is in first or last line of window, scroll to middle line.
-    function s:MaybeMiddle()
-        if winline() == 1 || winline() == winheight(0)
-            normal! zz
-        endif
-    endfunction
+    " Search {{{
+        " Highlight
+        highlight		Normal		guibg=NONE	 ctermbg=NONE
+        highlight       Search    ctermfg=Black  ctermbg=208    cterm=bold
+        highlight  Searchlight    ctermfg=Black  ctermbg=196    cterm=bold
+        highlight    IncSearch    ctermfg=Black  ctermbg=196    cterm=bold
+        highlight link VimwikiHeader1 DraculaRed
+        highlight link VimwikiHeader2 DraculaGreen
+        highlight link VimwikiHeader3 DraculaComment
+        highlight link VimwikiHeader4 DraculaPurple
+        highlight link VimwikiHeader5 DraculaCyan
+        highlight link VimwikiHeader6 DraculaYellow
+        match Todo /DONE/ " Add DONE to TODO highlighting group https://stackoverflow.com/questions/4162664/vim-highlight-a-list-of-words
+        " Center search hit and automatically clear highlight with is.vim
+        nnoremap <silent> <F4> :call <SID>SearchMode()<CR>
+        " Default to 'Middle'
+        nmap <silent> n <Plug>(is-n)zz
+        nmap <silent> N <Plug>(is-N)zz
+        function s:SearchMode()
+            nunmap n
+            nunmap N
+            if !exists('s:searchmode') || s:searchmode == 0
+                echo 'SearchMode: Maybe'
+                nmap <silent> n <Plug>(is-n):call <SID>MaybeMiddle()<CR>
+                nmap <silent> N <Plug>(is-N):call <SID>MaybeMiddle()<CR>
+                let s:searchmode = 1
+            elseif s:searchmode == 1
+                echo 'SearchMode: Middle'
+                nmap <silent> n <Plug>(is-n)zz
+                nmap <silent> N <Plug>(is-N)zz
+                let s:searchmode = 2
+            else
+                echo 'SearchMode: Normal'
+                nmap <silent> n <Plug>(is-n)
+                nmap <silent> N <Plug>(is-N)
+                let s:searchmode = 0
+            endif
+        endfunction
+        " If cursor is in first or last line of window, scroll to middle line.
+        function s:MaybeMiddle()
+            if winline() == 1 || winline() == winheight(0)
+                normal! zz
+            endif
+        endfunction
+    " }}}
 
     " Easy Motion
     " Jump to anywhere you want with minimal keystrokes, with just one key binding.
@@ -301,39 +301,76 @@
     nmap <Leader>J <Plug>(easymotion-j)
     nmap <Leader>K <Plug>(easymotion-k)
 
-    " Fzf
-    if has('nvim') || has('gui_running')
-        let $FZF_DEFAULT_OPTS .= ' --inline-info'
-    endif
-    nnoremap <silent> <Leader><CR>     :Files<CR>
-    nnoremap <silent> <Leader>C        :Colors<CR>
-    nnoremap <silent> <Leader>B        :Buffers<CR>
-    nnoremap <silent> <Leader>H        :Helptags<CR>
-    nnoremap <silent> <Leader>/        :BLines<CR>
-    nnoremap <silent> <Leader>?        :Lines<CR>
-    nnoremap <silent> <Leader>`        :Marks<CR>
-    nnoremap <silent> <Leader>M        :Maps<CR>
-    " Jump to tab: <Leader>T
-    " Source get a list of strings whose format is ['tabNumber tabName']
-    " JumpToTab receives the selected item,
-    " Get the tab number using split()
-    " And then execute command ':normal #gt'
-    function TabName(n)
-        let buflist = tabpagebuflist(a:n)
-        let winnr = tabpagewinnr(a:n)
-        return fnamemodify(bufname(buflist[winnr - 1]), ':t')
-    endfunction
-    function! s:JumpToTab(line)
-        let pair = split(a:line, ' ')
-        let cmd = pair[0].'gt'
-        execute 'normal' cmd
-    endfunction
-    command! JumpTo call fzf#run(fzf#wrap({
-                \   'source':  map(range(1, tabpagenr('$')),
-                \   'v:val." "." ".TabName(v:val)'),
-                \   'sink':    function('<SID>JumpToTab'),
-                \}))
-    nnoremap <silent> <Leader>T        :JumpTo<CR>
+    " Fzf {{{
+        if has('nvim') || has('gui_running')
+            let $FZF_DEFAULT_OPTS .= ' --inline-info'
+        endif
+        nnoremap <silent> <Leader>/        :BLines<CR>
+        nnoremap <silent> <Leader><CR>     :Files<CR>
+        nnoremap <silent> <Leader>?        :Lines<CR>
+        nnoremap <silent> <Leader>B        :Buffers<CR>
+        nnoremap <silent> <Leader>C        :Colors<CR>
+        nnoremap <silent> <Leader>T        :FZF ~<CR>
+        nnoremap <silent> <Leader>H        :Helptags<CR>
+        nnoremap <silent> <Leader>M        :Maps<CR>
+        nnoremap <silent> <Leader>R        :History<CR>
+        nnoremap <silent> <Leader>J        :JumpTo<CR>
+        nnoremap <silent> <Leader>`        :Marks<CR>
+        nnoremap <silent> <leader>.        :Ag<CR>
+        nnoremap <silent> K                :call SearchWordWithAg()<CR>
+        vnoremap <silent> K                :call SearchVisualSelectionWithAg()<CR>
+
+        " Jump to tab
+        " Source get a list of strings whose format is ['tabNumber tabName']
+        " JumpToTab receives the selected item,
+        " Get the tab number using split()
+        " And then execute command ':normal #gt'
+        function TabName(n)
+            let buflist = tabpagebuflist(a:n)
+            let winnr = tabpagewinnr(a:n)
+            return fnamemodify(bufname(buflist[winnr - 1]), ':t')
+        endfunction
+
+        function! s:JumpToTab(line)
+            let pair = split(a:line, ' ')
+            let cmd = pair[0].'gt'
+            execute 'normal' cmd
+        endfunction
+
+        command! JumpTo call fzf#run(fzf#wrap({
+                    \   'source':  map(range(1, tabpagenr('$')),
+                    \   'v:val." "." ".TabName(v:val)'),
+                    \   'sink':    function('<SID>JumpToTab'),
+                    \}))
+
+        function! SearchWordWithAg()
+            execute 'Ag' expand('<cword>')
+        endfunction
+
+        function! SearchVisualSelectionWithAg() range
+            let old_reg = getreg('"')
+            let old_regtype = getregtype('"')
+            let old_clipboard = &clipboard
+            set clipboard&
+            normal! ""gvy
+            let selection = getreg('"')
+            call setreg('"', old_reg, old_regtype)
+            let &clipboard = old_clipboard
+            execute 'Ag' selection
+        endfunction
+
+        " Default options are --nogroup --column --color
+        let s:ag_options = ' --one-device --skip-vcs-ignores --smart-case '
+
+        command! -bang -nargs=* Ag
+                    \ call fzf#vim#ag(
+                    \   <q-args>,
+                    \   s:ag_options,
+                    \  <bang>0 ? fzf#vim#with_preview('up:60%')
+                    \        : fzf#vim#with_preview('right:50%:hidden', '?'),
+                    \   <bang>0
+                    \ )
+    " }}}
 
     " Mundo
     nnoremap <F5> :MundoToggle<CR>
