@@ -130,8 +130,8 @@ if [ -f "$HOME/.config/repo-la.txt" ]; then
     fi
 fi
 
-# Use The-Silver-Searcher to search for code then open it in EDITOR or vim
-# fuzzy grep open via ag with line number
+# Fuzzy grep via Ag then open it in the default editor if it's defined,
+# otherwise Vim (with line number)
 sag() {
   local file
   local line
