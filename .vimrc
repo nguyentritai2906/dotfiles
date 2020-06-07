@@ -167,6 +167,7 @@
     set hlsearch " highlight all matches
     let @/ = "" " highlight search but not when source .vimrc
     set nolazyredraw " don't redraw while executing macros
+    set tags=tags;/ " Check current folder for tags file and keep going one directory up all the way to the root folder
 
     " Apprearance
     "colorscheme gruvbox
@@ -426,16 +427,29 @@
                 \&& exists("b:NERDTree")
                 \&& b:NERDTree.isTabTree()) | q | endif
 
-    " Change cursor shape for different vi modes.
-    if has("autocmd")
-        au VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
-        au InsertEnter,InsertChange * if v:insertmode == 'i' |
-                    \silent execute '!echo -ne "\e[5 q"' | redraw! |
-                    \elseif v:insertmode == 'r' |
-                    \silent execute '!echo -ne "\e[3 q"' | redraw! |
-                    \endif
-        au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
-    endif
+    "" Change cursor shape for different vi modes.
+    "if has("autocmd")
+        "au VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
+        "au InsertEnter,InsertChange * if v:insertmode == 'i' |
+                    "\silent execute '!echo -ne "\e[5 q"' | redraw! |
+                    "\elseif v:insertmode == 'r' |
+                    "\silent execute '!echo -ne "\e[3 q"' | redraw! |
+                    "\endif
+        "au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+    "endif
+
+    " Change cursor shape for different VI modes.
+    " Vim cursor escape codes for the terminal emulator
+    " INSERT (&t_SI)  - vertical bar
+    " REPLACE (&t_SR) - underscore
+    " VISUAL (&t_EI)  - block
+    let &t_SI = "\<Esc>[5 q"
+    let &t_SR = "\<Esc>[3 q"
+    let &t_EI = "\<Esc>[1 q"
+    " Set cursor to vertical bar when entering cmd line and
+    autocmd CmdlineEnter * execute 'silent !echo -ne "' . &t_SI . '"'
+    " Revert cursor back to block when leaving cmd line
+    autocmd CmdlineLeave * execute 'silent !echo -ne "' . &t_EI . '"'
 
     " Remove trailing whilespace
     autocmd BufWritePre * %s/\s\+$//e
