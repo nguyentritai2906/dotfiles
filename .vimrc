@@ -101,10 +101,13 @@
         let g:indentLine_fileTypeExclude = ['markdown', 'vimwiki']
     Plug 'junegunn/goyo.vim' " <Leader>gy toggle reading mode
     Plug 'haya14busa/is.vim' " Incremental search improved
+        let g:incsearch#auto_nohlsearch = 1
     Plug 'PeterRincker/vim-searchlight' " Highlight current search match
     Plug 'machakann/vim-highlightedyank' " Just like it's name
         let g:highlightedyank_highlight_duration = 100
     Plug 'markonm/traces.vim' " Range, pattern and substitute preview
+    Plug 'osyo-manga/vim-anzu' " Search status
+        let g:anzu_status_format = "[%i/%l]"
 
     " Navigation
     Plug 'easymotion/vim-easymotion' " Vim motions on speed
@@ -273,23 +276,41 @@
         " Default to 'Middle'
         nmap <silent> n <Plug>(is-n)zz
         nmap <silent> N <Plug>(is-N)zz
+        " Is.Vim
+        nmap <silent> *  <Plug>(is-*)zz
+        nmap <silent> #  <Plug>(is-#)zz
+        nmap <silent> g* <Plug>(is-g*)zz
+        nmap <silent> g# <Plug>(is-g#)zz
+        " Search mode
         function s:SearchMode()
             nunmap n
             nunmap N
             if !exists('s:searchmode') || s:searchmode == 0
                 echo 'SearchMode: Maybe'
-                nmap <silent> n <Plug>(is-n):call <SID>MaybeMiddle()<CR>
-                nmap <silent> N <Plug>(is-N):call <SID>MaybeMiddle()<CR>
+                nmap <silent> n  <Plug>(is-n):call <SID>MaybeMiddle()<CR>
+                nmap <silent> N  <Plug>(is-N):call <SID>MaybeMiddle()<CR>
+                nmap <silent> *  <Plug>(is-*):call <SID>MaybeMiddle()<CR>
+                nmap <silent> #  <Plug>(is-#):call <SID>MaybeMiddle()<CR>
+                nmap <silent> g* <Plug>(is-g*):call <SID>MaybeMiddle()<CR>
+                nmap <silent> g# <Plug>(is-g#):call <SID>MaybeMiddle()<CR>
                 let s:searchmode = 1
             elseif s:searchmode == 1
                 echo 'SearchMode: Middle'
-                nmap <silent> n <Plug>(is-n)zz
-                nmap <silent> N <Plug>(is-N)zz
+                nmap <silent> n  <Plug>(is-n)zz
+                nmap <silent> N  <Plug>(is-N)zz
+                nmap <silent> *  <Plug>(is-*)zz
+                nmap <silent> #  <Plug>(is-#)zz
+                nmap <silent> g* <Plug>(is-g*)zz
+                nmap <silent> g# <Plug>(is-g#)zz
                 let s:searchmode = 2
             else
                 echo 'SearchMode: Normal'
-                nmap <silent> n <Plug>(is-n)
-                nmap <silent> N <Plug>(is-N)
+                nmap <silent> n  <Plug>(is-n)
+                nmap <silent> N  <Plug>(is-N)
+                nmap <silent> *  <Plug>(is-*)
+                nmap <silent> #  <Plug>(is-#)
+                nmap <silent> g* <Plug>(is-g*)
+                nmap <silent> g# <Plug>(is-g#)
                 let s:searchmode = 0
             endif
         endfunction
@@ -323,7 +344,7 @@
         nnoremap <silent> <Leader>H        :Helptags<CR>
         nnoremap <silent> <Leader>M        :Maps<CR>
         nnoremap <silent> <Leader>R        :History<CR>
-        nnoremap <silent> <Leader>J        :JumpTo<CR>
+        nnoremap <silent> <Leader>J        :JumpToTab<CR>
         nnoremap <silent> <Leader>`        :Marks<CR>
         nnoremap <silent> <leader>.        :Ag<CR>
         nnoremap <silent> K                :call SearchWordWithAg()<CR>
@@ -346,7 +367,7 @@
             execute 'normal' cmd
         endfunction
 
-        command! JumpTo call fzf#run(fzf#wrap({
+        command! JumpToTab call fzf#run(fzf#wrap({
                     \   'source':  map(range(1, tabpagenr('$')),
                     \   'v:val." "." ".TabName(v:val)'),
                     \   'sink':    function('<SID>JumpToTab'),
