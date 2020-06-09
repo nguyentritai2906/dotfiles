@@ -50,6 +50,20 @@
                     \ 'ctrl-s': 'split',
                     \ 'ctrl-v': 'vsplit' }
         let g:fzf_layout = {'window': {'width': 0.9, 'height': 0.6}}
+        let g:fzf_colors =
+        \ { 'fg':      ['fg', 'Normal'],
+        \ 'bg':      ['bg', 'Normal'],
+        \ 'hl':      ['fg', 'Comment'],
+        \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+        \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+        \ 'hl+':     ['fg', 'Statement'],
+        \ 'info':    ['fg', 'PreProc'],
+        \ 'border':  ['fg', 'Ignore'],
+        \ 'prompt':  ['fg', 'Conditional'],
+        \ 'pointer': ['fg', 'Exception'],
+        \ 'marker':  ['fg', 'Keyword'],
+        \ 'spinner': ['fg', 'Label'],
+        \ 'header':  ['fg', 'Comment'] }
     Plug 'preservim/nerdtree' " A tree explorer plugin for vim
     Plug 'simnalamburt/vim-mundo' " Graph vim undo tree
         let g:mundo_auto_preview_delay=0
@@ -270,6 +284,12 @@
         highlight link VimwikiHeader4 DraculaPurple
         highlight link VimwikiHeader5 DraculaCyan
         highlight link VimwikiHeader6 DraculaYellow
+        "highlight link VimwikiHeader1 GruvBoxRed
+        "highlight link VimwikiHeader2 GruvBoxGreen
+        "highlight link VimwikiHeader3 GruvBoxBlue
+        "highlight link VimwikiHeader4 GruvBoxPurple
+        "highlight link VimwikiHeader5 GruvBoxCyan
+        "highlight link VimwikiHeader6 GruvBoxYellow
         match Todo /DONE/ " Add DONE to TODO highlighting group https://stackoverflow.com/questions/4162664/vim-highlight-a-list-of-words
         " Center search hit and automatically clear highlight with is.vim
         nnoremap <silent> <F4> :call <SID>SearchMode()<CR>
@@ -448,29 +468,16 @@
                 \&& exists("b:NERDTree")
                 \&& b:NERDTree.isTabTree()) | q | endif
 
-    "" Change cursor shape for different vi modes.
-    "if has("autocmd")
-        "au VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
-        "au InsertEnter,InsertChange * if v:insertmode == 'i' |
-                    "\silent execute '!echo -ne "\e[5 q"' | redraw! |
-                    "\elseif v:insertmode == 'r' |
-                    "\silent execute '!echo -ne "\e[3 q"' | redraw! |
-                    "\endif
-        "au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
-    "endif
-
-    " Change cursor shape for different VI modes.
-    " Vim cursor escape codes for the terminal emulator
-    " INSERT (&t_SI)  - vertical bar
-    " REPLACE (&t_SR) - underscore
-    " VISUAL (&t_EI)  - block
-    let &t_SI = "\<Esc>[5 q"
-    let &t_SR = "\<Esc>[3 q"
-    let &t_EI = "\<Esc>[1 q"
-    " Set cursor to vertical bar when entering cmd line and
-    autocmd CmdlineEnter * execute 'silent !echo -ne "' . &t_SI . '"'
-    " Revert cursor back to block when leaving cmd line
-    autocmd CmdlineLeave * execute 'silent !echo -ne "' . &t_EI . '"'
+    " Change cursor shape for different vi modes.
+    if has("autocmd")
+        au VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
+        au InsertEnter,InsertChange * if v:insertmode == 'i' |
+                    \silent execute '!echo -ne "\e[5 q"' | redraw! |
+                    \elseif v:insertmode == 'r' |
+                    \silent execute '!echo -ne "\e[3 q"' | redraw! |
+                    \endif
+        au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+    endif
 
     " Remove trailing whilespace
     autocmd BufWritePre * %s/\s\+$//e
