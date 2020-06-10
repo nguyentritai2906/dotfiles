@@ -111,7 +111,7 @@ stty -ixon &>/dev/null
 # For a full list of active aliases, run `alias`.
 #
 # Load aliases and shortcuts if existent.
-[ -f "$HOME/.config/zsh_shortcuts" ] && source "$HOME/.config/zsh_shortcuts"
+[ -f "$HOME/.config/zsh_shortcuts" ] && source "$HOME/.config/zsh_keybinds"
 [ -f "$HOME/.config/zsh_aliases" ] && source "$HOME/.config/zsh_aliases"
 [ -f "$HOME/.config/zsh_functions" ] && source "$HOME/.config/zsh_functions"
 
