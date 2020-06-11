@@ -111,7 +111,7 @@ stty -ixon &>/dev/null
 # For a full list of active aliases, run `alias`.
 #
 # Load aliases and shortcuts if existent.
-[ -f "$HOME/.config/zsh_shortcuts" ] && source "$HOME/.config/zsh_keybinds"
+[ -f "$HOME/.config/zsh_keybinds" ] && source "$HOME/.config/zsh_keybinds"
 [ -f "$HOME/.config/zsh_aliases" ] && source "$HOME/.config/zsh_aliases"
 [ -f "$HOME/.config/zsh_functions" ] && source "$HOME/.config/zsh_functions"
 
@@ -124,6 +124,9 @@ setopt hist_ignore_dups
 
 # Add Rust to $PATH
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# Add Black and Blackd to $PATH
+export PATH="$HOME/.local/bin:$PATH"
 
 # Add brew to $PATH
 #export PATH="$HOME/linuxbrew/.linuxbrew/bin:$PATH"
