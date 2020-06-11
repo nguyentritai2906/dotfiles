@@ -37,12 +37,21 @@
         " Trigger completion for C
         let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
         let g:ycm_show_diagnostics_ui = 1
-        "Populate vims location list with new diagnostic data
-        "Use :lnext and :lprev - Jump to next or previous error in list
+        " Populate vims location list with new diagnostic data
+        " Use :lnext and :lprev - Jump to next or previous error in list
         let g:ycm_always_populate_location_list = 1
-    Plug 'davidhalter/jedi-vim' " Awesome Python autocompletion
-    "Plug 'rking/ag.vim' " Vim plugin for The-Silver-Searcher
-    "Plug 'junegunn/fzf'
+        let g:ycm_autoclose_preview_window_after_completion=1
+    Plug 'dense-analysis/ale'
+        let g:ale_completion_enabled = 0
+        " Check Python files with flake8 and pylint.
+        let g:ale_linters = {'python': ['flake8', 'pylint']}
+        " Fix Python files with black and isort.
+        let g:ale_fixers = {
+                    \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+                    \ 'python': ['black', 'isort'],
+                    \ }
+        let g:ale_fix_on_save = 1
+    Plug 'davidhalter/jedi-vim' " Python autocompletion
     Plug '~/.fzf'
     Plug 'junegunn/fzf.vim' " General-purpose command-line fuzzy finder vim integration
         let g:fzf_action = {
@@ -148,9 +157,9 @@
         let g:vim_markdown_no_default_key_mappings = 1
         let g:vim_markdown_folding_disabled = 1
     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-        let g:UltiSnipsExpandTrigger = "<tab>"
-        let g:UltiSnipsJumpForwardTrigger = "<tab>"
-        let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+        "let g:UltiSnipsExpandTrigger = "<C-j>"
+        "let g:UltiSnipsJumpForwardTrigger = "<C-j>"
+        "let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 
     call plug#end()
 
@@ -175,6 +184,7 @@
     set conceallevel=2
     set wildmode=longest,list,full " Tab completion
     set wildmenu " enhanced command line completion
+    set pastetoggle=<F2>
 
     " Searching
     set incsearch " lookahead as search pattern is specified
@@ -279,19 +289,19 @@
         highlight  Searchlight    ctermfg=Black  ctermbg=196    cterm=bold
         highlight    IncSearch    ctermfg=Black  ctermbg=196    cterm=bold
 
-        "highlight link VimwikiHeader1 DraculaRed
-        "highlight link VimwikiHeader2 DraculaGreen
-        "highlight link VimwikiHeader3 DraculaComment
-        "highlight link VimwikiHeader4 DraculaPurple
-        "highlight link VimwikiHeader5 DraculaCyan
-        "highlight link VimwikiHeader6 DraculaYellow
-
         highlight link VimwikiHeader1 GruvBoxRed
         highlight link VimwikiHeader2 GruvBoxGreen
         highlight link VimwikiHeader3 GruvBoxBlue
         highlight link VimwikiHeader4 GruvBoxPurple
         highlight link VimwikiHeader5 GruvBoxAqua
         highlight link VimwikiHeader6 GruvBoxYellow
+
+        "highlight link VimwikiHeader1 DraculaRed
+        "highlight link VimwikiHeader2 DraculaGreen
+        "highlight link VimwikiHeader3 DraculaComment
+        "highlight link VimwikiHeader4 DraculaPurple
+        "highlight link VimwikiHeader5 DraculaCyan
+        "highlight link VimwikiHeader6 DraculaYellow
 
         match Todo /DONE/ " Add DONE to TODO highlighting group https://stackoverflow.com/questions/4162664/vim-highlight-a-list-of-words
         " Center search hit and automatically clear highlight with is.vim
@@ -438,7 +448,7 @@
     " NERDtree and Tagbar
     nmap <F8> :TagbarToggle<CR>
     nmap <F7> :NERDTreeToggle<CR>
-    nnoremap <F9> :TagbarToggle<CR> :NERDTreeToggle<CR>
+    "nnoremap <F9> :TagbarToggle<CR> :NERDTreeToggle<CR>
 
     " GitGutter
     nmap <Leader>gn <Plug>(GitGutterNextHunk)
@@ -449,6 +459,49 @@
     vmap <F21> <Plug>MoveBlockUp
     nmap <F20> <Plug>MoveLineDown
     nmap <F21> <Plug>MoveLineUp
+
+    " Ultisnips and YCM <TAB> fix
+    " https://stackoverflow.com/a/34087675/12434677
+    " {{{
+        function! g:UltiSnips_Complete()
+            call UltiSnips#ExpandSnippet()
+            if g:ulti_expand_res == 0
+                if pumvisible()
+                    return "\<C-n>"
+                else
+                    call UltiSnips#JumpForwards()
+                    if g:ulti_jump_forwards_res == 0
+                        return "\<TAB>"
+                    endif
+                endif
+            endif
+            return ""
+        endfunction
+
+        function! g:UltiSnips_Reverse()
+            call UltiSnips#JumpBackwards()
+            if g:ulti_jump_backwards_res == 0
+                return "\<C-P>"
+            endif
+
+            return ""
+        endfunction
+
+        if !exists("g:UltiSnipsJumpForwardTrigger")
+            let g:UltiSnipsJumpForwardTrigger = "<tab>"
+        endif
+
+        if !exists("g:UltiSnipsJumpBackwardTrigger")
+            let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+        endif
+
+        au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger       . " <C-R>=g:UltiSnips_Complete()<cr>"
+        au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsJumpBackwardTrigger . " <C-R>=g:UltiSnips_Reverse()<cr>"
+    " }}}
+
+    " ALE
+    nmap <silent> <leader>aj :ALENext<cr>
+    nmap <silent> <leader>ak :ALEPrevious<cr>
 
 " }}}
 
