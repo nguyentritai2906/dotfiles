@@ -405,7 +405,7 @@
                     \   'source':  map(range(1, tabpagenr('$')),
                     \   'v:val." "." ".TabName(v:val)'),
                     \   'sink':    function('<SID>JumpToTab'),
-                    \}))
+                    \   }))
 
         function! SearchWordWithAg()
             execute 'Ag' expand('<cword>')
