@@ -82,11 +82,11 @@ done
 magic-enter () {
     if [[ -z $BUFFER ]]
     then
-            print ${halfpage_down}${halfpage_up}$terminfo[cuu1]
-            zle reset-prompt
+        print ${halfpage_down}${halfpage_up}$terminfo[cuu1]
+        zle reset-prompt
     else
-            zle accept-line
+        zle accept-line
     fi
 }
 zle -N magic-enter
-bindkey "^M" magic-enter
+bindkey "^K" magic-enter
