@@ -23,3 +23,6 @@ bindkey -M viins 'ii' vi-cmd-mode
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
+
+# Zsh accept and execute suggestion
+bindkey '^[M' autosuggest-execute

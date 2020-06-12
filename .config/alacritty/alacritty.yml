@@ -539,10 +539,11 @@ mouse:
 # a no-op if you do not wish to receive input characters for that binding.
 key_bindings:
   # (Windows, Linux, and BSD only)
-  - { key: V,        mods: Control|Shift, action: Paste            }
-  #- { key: V,        mods: Control, action: Paste            }
-  - { key: C,        mods: Control|Shift, action: Copy             }
-  #- { key: C,        mods: Control, action: Copy             }
+  - { key: V,         mods: Control|Shift, action: Paste            }
+  - { key: C,         mods: Control|Shift, action: Copy             }
+  - { key: Return,    mods: Control,       chars: "\x1bM"           }
+  #- { key: V,        mods: Control,       action: Paste            }
+  #- { key: C,        mods: Control,       action: Copy             }
   #- { key: Insert,   mods: Shift,         action: PasteSelection   }
   #- { key: Key0,     mods: Control,       action: ResetFontSize    }
   #- { key: Equals,   mods: Control,       action: IncreaseFontSize }
