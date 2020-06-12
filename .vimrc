@@ -197,8 +197,8 @@
     set tags=tags;/ " Check current folder for tags file and keep going one directory up all the way to the root folder
 
     " Apprearance
-    colorscheme gruvbox
-    "colorscheme dracula
+    "colorscheme gruvbox
+    colorscheme dracula
     set t_Co=256 " explicitly tell vim that the terminal supports 256 colors
     set number relativenumber
     set background=dark
@@ -289,21 +289,21 @@
         highlight  Searchlight    ctermfg=Black  ctermbg=196    cterm=bold
         highlight    IncSearch    ctermfg=Black  ctermbg=196    cterm=bold
 
-        highlight link VimwikiHeader1 GruvBoxRed
-        highlight link VimwikiHeader2 GruvBoxGreen
-        highlight link VimwikiHeader3 GruvBoxBlue
-        highlight link VimwikiHeader4 GruvBoxPurple
-        highlight link VimwikiHeader5 GruvBoxAqua
-        highlight link VimwikiHeader6 GruvBoxYellow
+        "highlight link VimwikiHeader1 GruvBoxRed
+        "highlight link VimwikiHeader2 GruvBoxGreen
+        "highlight link VimwikiHeader3 GruvBoxBlue
+        "highlight link VimwikiHeader4 GruvBoxPurple
+        "highlight link VimwikiHeader5 GruvBoxAqua
+        "highlight link VimwikiHeader6 GruvBoxYellow
 
-        "highlight link VimwikiHeader1 DraculaRed
-        "highlight link VimwikiHeader2 DraculaGreen
-        "highlight link VimwikiHeader3 DraculaComment
-        "highlight link VimwikiHeader4 DraculaPurple
-        "highlight link VimwikiHeader5 DraculaCyan
-        "highlight link VimwikiHeader6 DraculaYellow
+        highlight link VimwikiHeader1 DraculaRed
+        highlight link VimwikiHeader2 DraculaGreen
+        highlight link VimwikiHeader3 DraculaComment
+        highlight link VimwikiHeader4 DraculaPurple
+        highlight link VimwikiHeader5 DraculaCyan
+        highlight link VimwikiHeader6 DraculaYellow
 
-        match Todo /DONE/ " Add DONE to TODO highlighting group https://stackoverflow.com/questions/4162664/vim-highlight-a-list-of-words
+        match Todo /DONE\|NOTE/ " Add DONE to TODO highlighting group https://stackoverflow.com/questions/4162664/vim-highlight-a-list-of-words
         " Center search hit and automatically clear highlight with is.vim
         nnoremap <silent> <F4> :call <SID>SearchMode()<CR>
         " Default to 'Middle'
