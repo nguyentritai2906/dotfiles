@@ -33,7 +33,6 @@
         " Make YCM compatible with UltiSnips (using <Tab> through Supertab)
         let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
         let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-        let g:SuperTabDefaultCompletionType = '<C-n>'
         " Trigger completion for C
         let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
         let g:ycm_show_diagnostics_ui = 1
@@ -102,6 +101,7 @@
         let g:gitgutter_override_sign_column_highlight = 1
     "Plug 'tpope/vim-fugitive' " Git wrapper
     Plug 'ervandew/supertab'
+        let g:SuperTabDefaultCompletionType = '<C-n>'
 
     " Tags
     Plug 'majutsushi/tagbar' " Vim plugin that displays tags in a window
@@ -157,9 +157,9 @@
         let g:vim_markdown_no_default_key_mappings = 1
         let g:vim_markdown_folding_disabled = 1
     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-        "let g:UltiSnipsExpandTrigger = "<C-j>"
-        "let g:UltiSnipsJumpForwardTrigger = "<C-j>"
-        "let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
+        let g:UltiSnipsExpandTrigger = "<C-j>"
+        let g:UltiSnipsJumpForwardTrigger = "<C-j>"
+        let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
 
     call plug#end()
 
@@ -460,45 +460,6 @@
     nmap <F20> <Plug>MoveLineDown
     nmap <F21> <Plug>MoveLineUp
 
-    " Ultisnips and YCM <TAB> fix
-    " https://stackoverflow.com/a/34087675/12434677
-    " {{{
-        function! g:UltiSnips_Complete()
-            call UltiSnips#ExpandSnippet()
-            if g:ulti_expand_res == 0
-                if pumvisible()
-                    return "\<C-n>"
-                else
-                    call UltiSnips#JumpForwards()
-                    if g:ulti_jump_forwards_res == 0
-                        return "\<TAB>"
-                    endif
-                endif
-            endif
-            return ""
-        endfunction
-
-        function! g:UltiSnips_Reverse()
-            call UltiSnips#JumpBackwards()
-            if g:ulti_jump_backwards_res == 0
-                return "\<C-P>"
-            endif
-
-            return ""
-        endfunction
-
-        if !exists("g:UltiSnipsJumpForwardTrigger")
-            let g:UltiSnipsJumpForwardTrigger = "<tab>"
-        endif
-
-        if !exists("g:UltiSnipsJumpBackwardTrigger")
-            let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-        endif
-
-        au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger       . " <C-R>=g:UltiSnips_Complete()<cr>"
-        au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsJumpBackwardTrigger . " <C-R>=g:UltiSnips_Reverse()<cr>"
-    " }}}
-
     " ALE
     nmap <silent> <leader>aj :ALENext<cr>
     nmap <silent> <leader>ak :ALEPrevious<cr>
@@ -540,3 +501,4 @@
     autocmd BufWritePre * %s/\s\+$//e
 
 " }}}
+
