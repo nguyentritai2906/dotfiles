@@ -303,7 +303,9 @@
         highlight link VimwikiHeader5 DraculaCyan
         highlight link VimwikiHeader6 DraculaYellow
 
-        match Todo /DONE\|NOTE/ " Add DONE to TODO highlighting group https://stackoverflow.com/questions/4162664/vim-highlight-a-list-of-words
+        " Add DONE to TODO highlighting group
+        " https://stackoverflow.com/questions/4162664/vim-highlight-a-list-of-words
+        match Todo /DONE\|NOTE/
         " Center search hit and automatically clear highlight with is.vim
         nnoremap <silent> <F4> :call <SID>SearchMode()<CR>
         " Default to 'Middle'
@@ -501,4 +503,3 @@
     autocmd BufWritePre * %s/\s\+$//e
 
 " }}}
-
