@@ -171,7 +171,6 @@
     filetype plugin indent on " https://vi.stackexchange.com/questions/10124/what-is-the-difference-between-filetype-plugin-indent-on-and-filetype-indent
     syntax on " For C syntax check, change C++11 to C99 in .vim/.ycm_extra_conf.py
     set encoding=utf-8
-
     set autoread " detect when a file is changed
     set backupdir=~/.vim/tmp/backup//,. " set directory for backup files
     set directory=~/.vim/tmp/swap//,. " ... swap files
