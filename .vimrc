@@ -99,7 +99,7 @@
         let g:gitgutter_sign_modified_removed = '<'
         " Turn off sign column highlight
         let g:gitgutter_override_sign_column_highlight = 1
-    "Plug 'tpope/vim-fugitive' " Git wrapper
+    Plug 'tpope/vim-fugitive' " Git wrapper
     Plug 'ervandew/supertab'
         let g:SuperTabDefaultCompletionType = '<C-n>'
 
