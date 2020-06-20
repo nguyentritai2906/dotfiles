@@ -99,19 +99,19 @@ bindkey -s '\et' "fzf-home-vim\n"
 
 #Search for installed packages
 pli() {
-    local inst=$(eopkg li | sed -e '1,3d' | fzf --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat")
+    local inst=$(eopkg li | fzf --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat")
     print -z -- "$(echo $inst | awk '{print $1;}')"
 }
 
 #Search for packages in the repositories and install
 pit() {
-    local inst=$(cat $HOME/.config/repo-la.txt | sed -e '1,3d' | fzf -m --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat")
+    local inst=$(cat $HOME/.config/repo-la.txt | fzf -m --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat")
     test -n "$inst" && print -z -- "sudo eopkg it $(echo $inst | cut -d' ' -f1 | tr '\n' ' ')"
 }
 
 #Search for installed packages and remove
 prm() {
-    local inst=$(eopkg li | sed -e '1,3d' | fzf -m --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat")
+    local inst=$(eopkg li | fzf -m --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat")
     test -n "$inst" && print -z -- "sudo eopkg rm $(echo $inst | cut -d' ' -f1 | tr '\n' ' ')"
 }
 
