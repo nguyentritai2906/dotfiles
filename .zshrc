@@ -112,8 +112,8 @@ stty -ixon &>/dev/null
 #
 # Load aliases and shortcuts if existent.
 [ -f "$HOME/.config/zsh_keybinds" ] && source "$HOME/.config/zsh_keybinds"
-[ -f "$HOME/.config/zsh_aliases" ] && source "$HOME/.config/zsh_aliases"
 [ -f "$HOME/.config/zsh_functions" ] && source "$HOME/.config/zsh_functions"
+[ -f "$HOME/.config/zsh_aliases" ] && source "$HOME/.config/zsh_aliases"
 
 # History in cache directory:
 HISTSIZE=10000
