@@ -1,9 +1,12 @@
 alias ..='cd ..'
 alias hg='history | grep'
-alias la='ls -A'
-alias lg='ll | grep'
-alias ll='ls -ahlF'
-alias ls='ls -CF --color=auto'
+alias la='ls -a'
+#alias ll='ls -ahlF'
+#alias ls='ls -CF --color=auto'
+#alias lg='ll | grep'
+alias ll='exa -lamgh -s=name --icons --color-scale'
+alias ls='exa -s=name --icons --color-scale'
+alias tree='exa -lamghT --icons --color-scale'
 alias mv='mv -i'
 alias note='cd ~/Documents/note/ && ll'
 alias open='xdg-open'
@@ -27,3 +30,15 @@ alias confp="config push"
 alias usb="cs /run/media/solus/"
 alias buds="bluetoothctl connect F4:7D:EF:EF:0B:79"
 alias sony="bluetoothctl connect 70:26:05:9D:51:81"
+
+# Grep with exa
+lg() {
+    exa *$1*(D) -aghl --sort=name --color-scale
+}
+
+# Create an alias for cd and ls:
+function cs () {
+    cd $1;
+    ll
+}
+
