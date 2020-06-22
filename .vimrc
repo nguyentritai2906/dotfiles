@@ -153,6 +153,7 @@
                     \ 'syntax': 'markdown', 'ext': '.md',
                     \ 'links_space_char': '-'}]
         let g:vimwiki_auto_header = 1
+        let g:vimwiki_folding='list'
     Plug 'plasticboy/vim-markdown'	" Syntax highlighting, matching rules and mappings Markdown
         let g:vim_markdown_no_default_key_mappings = 1
         let g:vim_markdown_folding_disabled = 1
