@@ -47,7 +47,7 @@
         " Fix Python files with black and isort.
         let g:ale_fixers = {
                     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-                    \ 'python': ['black', 'isort'],
+                    \ 'python': ['black', 'isort', 'yapf'],
                     \ }
         let g:ale_fix_on_save = 1
     Plug 'davidhalter/jedi-vim' " Python autocompletion
