@@ -45,7 +45,7 @@ MENU="$(rofi -no-lazy-grab -sep "|" -dmenu -i -p 'Style ' \
 -line-padding 10 \
 -padding 20 \
 -width 30 \
--xoffset 1 -yoffset -458 \
+-xoffset 1 -yoffset -594 \
 -location 7 \
 -columns 2 \
 -show-icons -icon-theme "Papirus" \
