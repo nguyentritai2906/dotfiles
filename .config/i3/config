@@ -8,14 +8,10 @@
 
 set $mod Mod4
 
-new_window pixel 1
-new_float normal
+default_border pixel 2
+default_floating_border pixel 2
 
 hide_edge_borders none
-
-#bindsym $mod+u border none
-#bindsym $mod+y border pixel 1
-#bindsym $mod+n border normal
 
 #font xft:URWGothic-Book 11
 font pango:monospace 8
@@ -30,7 +26,7 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+w kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+d exec --no-startup-id rofi -show drun
 
 # start window switcher
 bindsym $mod+Shift+d exec --no-startup-id rofi -show window
@@ -169,7 +165,7 @@ assign [class="^Google-chrome"] $ws2
 assign [class="^qBittorrent"] $ws9
 
 # Open specific applications in floating mode
-for_window [class=".*"] floating enable border pixel 1
+for_window [class=".*"] floating enable
 for_window [class="Alacritty"] floating disable
 for_window [class="^Google-chrome"] floating disable
 for_window [class="Nautilus"] floating disable
