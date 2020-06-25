@@ -98,3 +98,5 @@ case "$MENU" in
     *teal-dark) $SDIR/colors-dark.sh -teal ;;
     *yellow-dark) $SDIR/colors-dark.sh -yellow
 esac
+
+$HOME/.config/polybar/scripts/change-i3accent.sh
