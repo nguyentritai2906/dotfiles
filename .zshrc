@@ -80,7 +80,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions)
+plugins=(git zsh-autosuggestions fasd)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -128,12 +128,6 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # Add Black and Blackd to $PATH
 export PATH="$HOME/.local/bin:$PATH"
 
-# Add brew to $PATH
-#export PATH="$HOME/linuxbrew/.linuxbrew/bin:$PATH"
-
-# CS50 library https://github.com/cs50/libcs50
-export LIBRARY_PATH=/usr/local/lib
-
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/solus/google-cloud-sdk/path.zsh.inc' ]; then . '/home/solus/google-cloud-sdk/path.zsh.inc'; fi
 
@@ -148,6 +142,9 @@ export FZF_DEFAULT_OPTS="--no-mouse --height 50% -1 --reverse --multi --inline-i
 export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard || fd --type f --type l $FD_OPTIONS"
 export FZF_CTRL_T_COMMAND="fd --type f $FD_OPTIONS"
 export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
+
+# To get fasd working in a shell, some initialization code must be run
+eval "$(fasd --init auto)"
 
 # Load zsh-syntax-highlighting; should be last.
 source $HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
