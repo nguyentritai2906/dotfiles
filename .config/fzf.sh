@@ -1,13 +1,14 @@
 #!/bin/bash
 
-# Use fd and fzf to get the args to a command.
-f() {
-	sels=( "${(@f)$(fd --hidden "${fd_default[@]}" "${@:2}"| fzf)}"  )
-	test -n "$sels" && print -z -- "$1 ${sels[@]:q:q}"
-}
-
-# Like f, but not recursive
-fm() f "$@" --max-depth 1
+## Use fd and fzf to get the args to a command.
+##IMPORTANT: Duplicate name with fasd
+#f() {
+	#sels=( "${(@f)$(fd --hidden "${fd_default[@]}" "${@:2}"| fzf)}"  )
+	#test -n "$sels" && print -z -- "$1 ${sels[@]:q:q}"
+#}
+#
+## Like f, but not recursive
+#fm() f "$@" --max-depth 1
 
 # Open the selected filewith default editor
 #   - CTRL-O to open with `open` command,
