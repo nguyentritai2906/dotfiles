@@ -38,6 +38,10 @@ bindsym $mod+Shift+d exec --no-startup-id rofi -show window
 # start rofi combi mode
 bindsym $mod+r exec --no-startup-id $HOME/.config/polybar/scripts/color-switch.sh
 
+# Use Rofi to select icons from Font Awesome Icon List
+bindsym $mod+i exec --no-startup-id $HOME/rofi-fontawesome/fontawesome-menu/fontawesome-menu -f /home/solus/rofi-fontawesome/fa5-icon-list.txt -o '-i -columns 4' >/dev/null
+
+
 # file manager
 bindsym $mod+e exec --no-startup-id nautilus
 # browser
@@ -268,7 +272,7 @@ exec_always --no-startup-id "killall -q compton; sleep 0.1; compton -b"
 #exec_always --no-startup-id feh --bg-scale /home/solus/Pictures/Wallpapers/fern-green-black.jpg
 
 # Theme colors
-set $acolor #00FFF0
+set $acolor #43a047
 client.focused $acolor #1c1c22 #d9d6ca $acolor $acolor
 client.focused_inactive #d9d6ca #1c1c22 #d9d6ca #3e646f #3e646f
 client.unfocused #d9d6ca #1c1c22 #d9d6ca #3e646f #3e646f
