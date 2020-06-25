@@ -1,35 +1,98 @@
+# Blank aliases
+typeset -a baliases
+baliases=()
+balias() {
+    alias $@
+    args="$@"
+    args=${args%%\=*}
+    baliases+=(${args##* })
+}
+
+# Ignored aliases
+typeset -a ialiases
+ialiases=()
+ialias() {
+    alias $@
+    args="$@"
+    args=${args%%\=*}
+    ialiases+=(${args##* })
+}
+
+# Functionality
+expand-alias-space() {
+    [[ $LBUFFER =~ "\<(${(j:|:)baliases})\$"  ]]; insertBlank=$?
+    if [[ ! $LBUFFER =~ "\<(${(j:|:)ialiases})\$"  ]]; then
+        zle _expand_alias
+    fi
+    zle self-insert
+    if [[ "$insertBlank" = "0"  ]]; then
+        zle backward-delete-char
+    fi
+}
+zle -N expand-alias-space
+bindkey " " expand-alias-space
+bindkey -M isearch " " magic-space
+
+# Command aliases
 alias ..='cd ..'
-alias hg='history | grep'
-#alias ll='ls -ahlF'
-#alias ls='ls -CF --color=auto'
-#alias lg='ll | grep'
-alias ls='exa -s=name --icons --color=always --group-directories-first'
-alias la='ls -a'
-alias ll='exa -lamgh -s=name --icons --color-scale --group-directories-first'
-alias tree='exa -lamghT --icons --color-scale --group-directories-first'
-alias mv='mv -i'
-alias note='cd ~/Documents/note/ && ll'
-alias open='xdg-open'
-alias rm='rm -I'
-alias suvim='sudo -E vim'
-alias alaconf="vim ~/.config/alacritty/alacritty.yml"
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-alias i3conf="vim ~/.config/i3/config"
-alias polyconf="vim ~/.config/polybar/config.ini"
-alias tmuxconf="vim ~/.tmux/.tmux.conf"
-alias tmuxconflc="vim ~/.tmux.conf.local"
-alias vimconf="vim ~/.vimrc"
-alias zshconf="vim ~/.zshrc"
-alias bat="bat --style=numbers --color=always "
-alias confs="config status"
-alias confd="config diff"
-alias confa="config add"
-alias confc="config commit -m"
-alias confca="config commit -am"
-alias confp="config push"
-alias usb="cs /run/media/solus/"
+alias cd..='cd ..'
 alias buds="bluetoothctl connect F4:7D:EF:EF:0B:79"
 alias sony="bluetoothctl connect 70:26:05:9D:51:81"
+alias icf="vim ~/.config/i3/config"
+alias pcf="vim ~/.config/polybar/config.ini"
+alias tcf="vim ~/.tmux/.tmux.conf"
+alias tcflc="vim ~/.tmux.conf.local"
+alias vcf="vim ~/.vimrc"
+alias zcf="vim ~/.zshrc"
+alias acf="vim ~/.config/alacritty/alacritty.yml"
+alias open='xdg-open'
+alias sv='sudo -E vim'
+
+
+# Blank aliases, without trailing whitespace
+#balias clh='curl localhost:'
+
+# "Ignored" aliases, not expanded
+ialias l='exa -al'
+ialias curl='curl --silent --show-error'
+ialias hg='history | grep'
+ialias ls='exa -s=name --icons --color=always --group-directories-first'
+ialias la='ls -a'
+ialias ll='exa -lamgh -s=name --icons --color-scale --group-directories-first'
+ialias tree='exa -lamghT --icons --color-scale --group-directories-first'
+ialias mv='mv -i'
+ialias rm='rm -I'
+
+ialias cf='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+ialias cfs="cf status"
+ialias cfd="cf diff"
+ialias cfa="cf add"
+ialias cfc="cf commit"
+ialias cfca="cf commit -a"
+ialias cfp="cf push"
+
+ialias bat="bat --style=numbers --color=always "
+#ialias ll='ls -ahlF'
+#ialias ls='ls -CF --color=auto'
+#ialias lg='ll | grep'
+
+# Global aliases
+alias -g L='| less'
+alias -g G='| grep'
+ialias -g grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
+
+# starts one or multiple args as programs in background
+background() {
+  for ((i=2;i<=$#;i++)); do
+    ${@[1]} ${@[$i]} &> /dev/null &
+  done
+}
+
+alias -s html='background google-chrome-stable'
+alias -s {pdf,PDF}='background xdg-open'
+alias -s {mp4,MP4,mov,MOV}='background vlc'
+alias -s {zip,ZIP}="unzip -l"
+alias -s {epub}="epr"
 
 # Grep with exa
 lg() {
