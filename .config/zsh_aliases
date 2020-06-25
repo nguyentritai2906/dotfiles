@@ -101,5 +101,5 @@ lg() {
 # Create an alias for cd and ls:
 function cs () {
     cd $1;
-    ll
+    ls
 }
