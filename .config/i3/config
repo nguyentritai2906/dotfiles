@@ -165,7 +165,7 @@ assign [class="^Google-chrome"] $ws2
 assign [class="^qBittorrent"] $ws9
 
 # Open specific applications in floating mode
-for_window [class=".*"] floating enable
+for_window [class=".*"] floating enable border pixel 2
 for_window [class="Alacritty"] floating disable
 for_window [class="^Google-chrome"] floating disable
 for_window [class="Nautilus"] floating disable
