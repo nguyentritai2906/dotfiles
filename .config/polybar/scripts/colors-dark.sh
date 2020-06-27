@@ -5,7 +5,7 @@
 
 PDIR="$HOME/.config/polybar"
 LAUNCH="polybar-msg cmd restart"
- 
+
 if  [[ $1 = "-amber" ]]; then
 # Replacing colors
 sed -i -e 's/bg = .*/bg = #1F1F1F/g' $PDIR/config.ini
@@ -24,11 +24,11 @@ elif  [[ $1 = "-blue" ]]; then
 sed -i -e 's/bg = .*/bg = #1F1F1F/g' $PDIR/config.ini
 sed -i -e 's/fg = .*/fg = #FFFFFF/g' $PDIR/config.ini
 sed -i -e 's/fg-alt = .*/fg-alt = #A9ABB0/g' $PDIR/config.ini
-sed -i -e 's/acolor = .*/acolor = #1e88e5/g' $PDIR/config.ini
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#1e88e5"/g' $PDIR/scripts/menu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#1e88e5"/g' $PDIR/scripts/menu_full
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#1e88e5"/g' $PDIR/scripts/sysmenu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#1e88e5"/g' $PDIR/scripts/color-switch.sh
+sed -i -e 's/acolor = .*/acolor = #6272a4/g' $PDIR/config.ini
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#6272a4"/g' $PDIR/scripts/menu
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#6272a4"/g' $PDIR/scripts/menu_full
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#6272a4"/g' $PDIR/scripts/sysmenu
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#6272a4"/g' $PDIR/scripts/color-switch.sh
 # Restarting polybar
 $LAUNCH &
 
@@ -63,11 +63,11 @@ elif  [[ $1 = "-cyan" ]]; then
 sed -i -e 's/bg = .*/bg = #1F1F1F/g' $PDIR/config.ini
 sed -i -e 's/fg = .*/fg = #FFFFFF/g' $PDIR/config.ini
 sed -i -e 's/fg-alt = .*/fg-alt = #A9ABB0/g' $PDIR/config.ini
-sed -i -e 's/acolor = .*/acolor = #00acc1/g' $PDIR/config.ini
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#00acc1"/g' $PDIR/scripts/menu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#00acc1"/g' $PDIR/scripts/menu_full
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#00acc1"/g' $PDIR/scripts/sysmenu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#00acc1"/g' $PDIR/scripts/color-switch.sh
+sed -i -e 's/acolor = .*/acolor = #8be9fd/g' $PDIR/config.ini
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#8be9fd"/g' $PDIR/scripts/menu
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#8be9fd"/g' $PDIR/scripts/menu_full
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#8be9fd"/g' $PDIR/scripts/sysmenu
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#8be9fd"/g' $PDIR/scripts/color-switch.sh
 # Restarting polybar
 $LAUNCH &
 
@@ -154,11 +154,11 @@ elif  [[ $1 = "-light-green" ]]; then
 sed -i -e 's/bg = .*/bg = #1F1F1F/g' $PDIR/config.ini
 sed -i -e 's/fg = .*/fg = #FFFFFF/g' $PDIR/config.ini
 sed -i -e 's/fg-alt = .*/fg-alt = #A9ABB0/g' $PDIR/config.ini
-sed -i -e 's/acolor = .*/acolor = #7cb342/g' $PDIR/config.ini
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#7cb342"/g' $PDIR/scripts/menu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#7cb342"/g' $PDIR/scripts/menu_full
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#7cb342"/g' $PDIR/scripts/sysmenu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#7cb342"/g' $PDIR/scripts/color-switch.sh
+sed -i -e 's/acolor = .*/acolor = #50fa7b/g' $PDIR/config.ini
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#50fa7b"/g' $PDIR/scripts/menu
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#50fa7b"/g' $PDIR/scripts/menu_full
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#50fa7b"/g' $PDIR/scripts/sysmenu
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#50fa7b"/g' $PDIR/scripts/color-switch.sh
 # Restarting polybar
 $LAUNCH &
 
@@ -180,11 +180,11 @@ elif  [[ $1 = "-orange" ]]; then
 sed -i -e 's/bg = .*/bg = #1F1F1F/g' $PDIR/config.ini
 sed -i -e 's/fg = .*/fg = #FFFFFF/g' $PDIR/config.ini
 sed -i -e 's/fg-alt = .*/fg-alt = #A9ABB0/g' $PDIR/config.ini
-sed -i -e 's/acolor = .*/acolor = #fb8c00/g' $PDIR/config.ini
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#fb8c00"/g' $PDIR/scripts/menu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#fb8c00"/g' $PDIR/scripts/menu_full
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#fb8c00"/g' $PDIR/scripts/sysmenu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#fb8c00"/g' $PDIR/scripts/color-switch.sh
+sed -i -e 's/acolor = .*/acolor = #ffb86c/g' $PDIR/config.ini
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#ffb86c"/g' $PDIR/scripts/menu
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#ffb86c"/g' $PDIR/scripts/menu_full
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#ffb86c"/g' $PDIR/scripts/sysmenu
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#ffb86c"/g' $PDIR/scripts/color-switch.sh
 # Restarting polybar
 $LAUNCH &
 
@@ -193,11 +193,11 @@ elif  [[ $1 = "-pink" ]]; then
 sed -i -e 's/bg = .*/bg = #1F1F1F/g' $PDIR/config.ini
 sed -i -e 's/fg = .*/fg = #FFFFFF/g' $PDIR/config.ini
 sed -i -e 's/fg-alt = .*/fg-alt = #A9ABB0/g' $PDIR/config.ini
-sed -i -e 's/acolor = .*/acolor = #d81b60/g' $PDIR/config.ini
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#d81b60"/g' $PDIR/scripts/menu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#d81b60"/g' $PDIR/scripts/menu_full
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#d81b60"/g' $PDIR/scripts/sysmenu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#d81b60"/g' $PDIR/scripts/color-switch.sh
+sed -i -e 's/acolor = .*/acolor = #ff79c6/g' $PDIR/config.ini
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#ff79c6"/g' $PDIR/scripts/menu
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#ff79c6"/g' $PDIR/scripts/menu_full
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#ff79c6"/g' $PDIR/scripts/sysmenu
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#ff79c6"/g' $PDIR/scripts/color-switch.sh
 # Restarting polybar
 $LAUNCH &
 
@@ -206,11 +206,11 @@ elif  [[ $1 = "-purple" ]]; then
 sed -i -e 's/bg = .*/bg = #1F1F1F/g' $PDIR/config.ini
 sed -i -e 's/fg = .*/fg = #FFFFFF/g' $PDIR/config.ini
 sed -i -e 's/fg-alt = .*/fg-alt = #A9ABB0/g' $PDIR/config.ini
-sed -i -e 's/acolor = .*/acolor = #8e24aa/g' $PDIR/config.ini
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#8e24aa"/g' $PDIR/scripts/menu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#8e24aa"/g' $PDIR/scripts/menu_full
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#8e24aa"/g' $PDIR/scripts/sysmenu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#8e24aa"/g' $PDIR/scripts/color-switch.sh
+sed -i -e 's/acolor = .*/acolor = #bd93f9/g' $PDIR/config.ini
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#bd93f9"/g' $PDIR/scripts/menu
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#bd93f9"/g' $PDIR/scripts/menu_full
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#bd93f9"/g' $PDIR/scripts/sysmenu
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#bd93f9"/g' $PDIR/scripts/color-switch.sh
 # Restarting polybar
 $LAUNCH &
 
@@ -219,11 +219,11 @@ elif  [[ $1 = "-red" ]]; then
 sed -i -e 's/bg = .*/bg = #1F1F1F/g' $PDIR/config.ini
 sed -i -e 's/fg = .*/fg = #FFFFFF/g' $PDIR/config.ini
 sed -i -e 's/fg-alt = .*/fg-alt = #A9ABB0/g' $PDIR/config.ini
-sed -i -e 's/acolor = .*/acolor = #e53935/g' $PDIR/config.ini
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#e53935"/g' $PDIR/scripts/menu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#e53935"/g' $PDIR/scripts/menu_full
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#e53935"/g' $PDIR/scripts/sysmenu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#e53935"/g' $PDIR/scripts/color-switch.sh
+sed -i -e 's/acolor = .*/acolor = #ff5555/g' $PDIR/config.ini
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#ff5555"/g' $PDIR/scripts/menu
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#ff5555"/g' $PDIR/scripts/menu_full
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#ff5555"/g' $PDIR/scripts/sysmenu
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#ff5555"/g' $PDIR/scripts/color-switch.sh
 # Restarting polybar
 $LAUNCH &
 
@@ -245,11 +245,11 @@ elif  [[ $1 = "-yellow" ]]; then
 sed -i -e 's/bg = .*/bg = #1F1F1F/g' $PDIR/config.ini
 sed -i -e 's/fg = .*/fg = #FFFFFF/g' $PDIR/config.ini
 sed -i -e 's/fg-alt = .*/fg-alt = #A9ABB0/g' $PDIR/config.ini
-sed -i -e 's/acolor = .*/acolor = #fdd835/g' $PDIR/config.ini
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#fdd835"/g' $PDIR/scripts/menu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#fdd835"/g' $PDIR/scripts/menu_full
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#fdd835"/g' $PDIR/scripts/sysmenu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#fdd835"/g' $PDIR/scripts/color-switch.sh
+sed -i -e 's/acolor = .*/acolor = #f1fa8c/g' $PDIR/config.ini
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#f1fa8c"/g' $PDIR/scripts/menu
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#f1fa8c"/g' $PDIR/scripts/menu_full
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#f1fa8c"/g' $PDIR/scripts/sysmenu
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#f1fa8c"/g' $PDIR/scripts/color-switch.sh
 # Restarting polybar
 $LAUNCH &
 
