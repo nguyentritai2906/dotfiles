@@ -19,7 +19,7 @@
 # new window retains current path, possible values are:
 #   - true
 #   - false (default)
-tmux_conf_new_window_retain_current_path=false
+tmux_conf_new_window_retain_current_path=true
 
 # new pane retains current path, possible values are:
 #   - true (default)
@@ -38,6 +38,7 @@ tmux_conf_new_session_prompt=false
 
 
 # -- display -------------------------------------------------------------------
+acolor='#43a047'
 
 # RGB 24-bit colour support (tmux >= 2.2), possible values are:
 #  - true
@@ -55,7 +56,7 @@ tmux_conf_theme_highlight_focused_pane=false
 
 # focused pane colours:
 tmux_conf_theme_focused_pane_fg='default'
-tmux_conf_theme_focused_pane_bg='#00ff00'               # green
+tmux_conf_theme_focused_pane_bg=$acolor               # green
 
 # pane border style, possible values are:
 #   - thin (default)
@@ -64,25 +65,25 @@ tmux_conf_theme_pane_border_style=thin
 
 # pane borders colours:
 tmux_conf_theme_pane_border='#444444'                   # gray
-tmux_conf_theme_pane_active_border='#00ff00'            # green
+tmux_conf_theme_pane_active_border=$acolor            # green
 
 # pane indicator colours
-tmux_conf_theme_pane_indicator='#00ff00'                # green
-tmux_conf_theme_pane_active_indicator='#00ff00'         # green
+tmux_conf_theme_pane_indicator=$acolor                # green
+tmux_conf_theme_pane_active_indicator=$acolor         # green
 
 # status line style
 tmux_conf_theme_message_fg='#000000'                    # black
-tmux_conf_theme_message_bg='#00ff00'                    # green
+tmux_conf_theme_message_bg=$acolor                    # green
 tmux_conf_theme_message_attr='bold'
 
 # status line command style (<prefix> : Escape)
-tmux_conf_theme_message_command_fg='#00ff00'            # green
+tmux_conf_theme_message_command_fg=$acolor            # green
 tmux_conf_theme_message_command_bg='#000000'            # black
 tmux_conf_theme_message_command_attr='bold'
 
 # window modes style
 tmux_conf_theme_mode_fg='#000000'                       # black
-tmux_conf_theme_mode_bg='#00ff00'                       # green
+tmux_conf_theme_mode_bg=$acolor                       # green
 tmux_conf_theme_mode_attr='bold'
 
 # status line style
@@ -260,7 +261,7 @@ tmux_conf_battery_status_discharging='↓'    # U+2193
 
 # clock style (when you hit <prefix> + t)
 # you may want to use %I:%M %p in place of %R in tmux_conf_theme_status_right
-tmux_conf_theme_clock_colour='#00ff00'  # light green
+tmux_conf_theme_clock_colour=$acolor  # light green
 tmux_conf_theme_clock_style='24'
 
 
