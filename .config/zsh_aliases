@@ -44,6 +44,7 @@ alias tcflc="vim ~/.tmux.conf.local"
 alias vcf="vim ~/.vimrc"
 alias zcf="vim ~/.zshrc"
 alias acf="vim ~/.config/alacritty/alacritty.yml"
+alias rcf="vim ~/.config/ranger/rc.conf"
 alias open='xdg-open'
 alias sv='sudo -E vim'
 
@@ -70,6 +71,7 @@ ialias cfc="cf commit"
 ialias cfca="cf commit -a"
 ialias cfp="cf push"
 
+ialias ranger='ranger --choosedir=$HOME/.config/ranger/rangerdir; LASTDIR=`cat $HOME/.config/ranger/rangerdir`; cd "$LASTDIR"'
 ialias bat="bat --style=numbers --color=always "
 #ialias ll='ls -ahlF'
 #ialias ls='ls -CF --color=auto'
