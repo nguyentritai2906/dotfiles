@@ -269,13 +269,17 @@ exec_always --no-startup-id "killall -q compton; sleep 0.1; compton -b"
 #exec_always --no-startup-id feh --bg-scale /home/solus/Pictures/Wallpapers/fern-green-black.jpg
 
 # Theme colors
-set $acolor #43a047
-client.focused $acolor #1c1c22 #d9d6ca $acolor $acolor
-client.focused_inactive #d9d6ca #1c1c22 #d9d6ca #3e646f #3e646f
-client.unfocused #d9d6ca #1c1c22 #d9d6ca #3e646f #3e646f
-client.urgent #d9d6ca #1c1c22 #d9d6ca #3e646f #3e646f
-client.placeholder #d9d6ca #1c1c22 #d9d6ca #3e646f #3e646f
-client.background #1c1c22
+set_from_resource $acolor acolor
+set_from_resource $bg background
+set_from_resource $fg foreground
+set_from_resource $fbg color10
+
+client.focused $acolor $bg $fg $acolor $acolor
+client.focused_inactive $fg $bg $fg $fbg $fbg
+client.unfocused $fg $bg $fg $fbg $fbg
+client.urgent $fg $bg $fg $fbg $fbg
+client.placeholder $fg $bg $fg $fbg $fbg
+client.background $bg
 
 # Gaps
 gaps inner 0
