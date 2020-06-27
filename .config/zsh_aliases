@@ -91,7 +91,7 @@ alias -s html='background google-chrome-stable'
 alias -s {pdf,PDF}='background xdg-open'
 alias -s {mp4,MP4,mov,MOV}='background vlc'
 alias -s {zip,ZIP}="unzip -l"
-alias -s {epub}="epr"
+alias -s {epub,EPUB}="epr"
 
 # Grep with exa
 lg() {
