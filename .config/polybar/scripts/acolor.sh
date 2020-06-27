@@ -10,3 +10,4 @@ sed -i --follow-symlinks "/accent:/c\accent: $accent\;" "$rasifile"
 sed -i --follow-symlinks "/acolor/c\\*acolor: $accent" "$xres"
 sed -i --follow-symlinks "/^acolor/c\\acolor='$accent'" "$tmux"
 i3 reload
+tmux source ~/.tmux.conf

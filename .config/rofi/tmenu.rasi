@@ -3,6 +3,9 @@
  * User: Qball
  * Copyright: Dave Davenport
  */
+
+@import "global.rasi"
+
 * {
     background-color:      Black;
     border-color:          White;
@@ -38,7 +41,7 @@
     padding: 0px 2px;
 }
 #element selected {
-    background-color: Green;
+    background-color: @accent;
 }
 
 #textbox-prompt-colon {

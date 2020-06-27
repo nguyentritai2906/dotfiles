@@ -11,13 +11,13 @@ read -r rxprev txprev < "$logfile"
 rxcurrent="$(($(paste -d '+' /sys/class/net/[ew]*/statistics/rx_bytes)))"
 txcurrent="$(($(paste -d '+' /sys/class/net/[ew]*/statistics/tx_bytes)))"
 
-up=$(((txcurrent-txprev)/1024))
-down=$(((rxcurrent-rxprev)/1024))
+up=$(((txcurrent-txprev)/1000))
+down=$(((rxcurrent-rxprev)/1000))
 
-if (( $up > 1024 || $down > 1024 )); then
-    printf " %dMiB   %dMiB" "$(($up/1024))" "$(($down/1024))"
+if (( $up > 1000 || $down > 1000 )); then
+    printf " %dMB   %dMB" "$(($up/1000))" "$(($down/1000))"
 else
-    printf " %dKiB   %dKiB" "$up" "$down"
+    printf " %dKB   %dKB" "$up" "$down"
 fi
 
 echo "$rxcurrent $txcurrent" > "$logfile"
