@@ -444,10 +444,12 @@
     nnoremap <F5> :MundoToggle<CR>
 
     " NERDCommenter
-    vmap <Leader>cc <Plug>NERDCommenterCommentgv
-    vmap <Leader>cu <Plug>NERDCommenterUncommentgv
-    nmap <Leader>cc <Plug>NERDCommenterComment
-    nmap <Leader>cu <Plug>NERDCommenterUncomment
+    "vmap <Leader>cc <Plug>NERDCommenterCommentgv
+    "nmap <Leader>cc <Plug>NERDCommenterComment
+    "vmap <Leader>cu <Plug>NERDCommenterUncommentgv
+    "nmap <Leader>cu <Plug>NERDCommenterUncomment
+    vmap <Leader>cc <Plug>NERDCommenterTogglegv
+    nmap <Leader>cc <Plug>NERDCommenterToggle
     vmap <Leader>ci <Plug>NERDCommenterInvert
 
     " NERDtree and Tagbar
