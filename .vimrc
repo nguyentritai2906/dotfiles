@@ -448,6 +448,7 @@
     vmap <Leader>cu <Plug>NERDCommenterUncommentgv
     nmap <Leader>cc <Plug>NERDCommenterComment
     nmap <Leader>cu <Plug>NERDCommenterUncomment
+    vmap <Leader>ci <Plug>NERDCommenterInvert
 
     " NERDtree and Tagbar
     nmap <F8> :TagbarToggle<CR>
