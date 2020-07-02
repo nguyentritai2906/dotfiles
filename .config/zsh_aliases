@@ -12,7 +12,7 @@ alias acf="vim ~/.config/alacritty/alacritty.yml"
 alias rcf="vim ~/.config/ranger/rc.conf"
 alias open='xdg-open'
 alias sv='sudo -E vim'
-alias l='exa -al'
+alias l='cd - >/dev/null'
 alias curl='curl --silent --show-error'
 alias hg='history | grep'
 alias ls='exa -s=name --icons --color=always --group-directories-first'
