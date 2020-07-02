@@ -17,10 +17,8 @@ export ZSH="/home/solus/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="jnrowe"
-#ZSH_THEME="muse"
-#ZSH_THEME="minimal"
-ZSH_THEME="robbyrussell"
+ZSH_THEME="spaceship"
+#ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -80,7 +78,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions fasd)
+plugins=(git zsh-autosuggestions fasd last-working-dir)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -101,6 +99,38 @@ export EDITOR=$(which vim)
 
 # Disable flow control Ctrl+S, since it realy just annoys me
 stty -ixon &>/dev/null
+
+SPACESHIP_PROMPT_ADD_NEWLINE=false
+SPACESHIP_PROMPT_SEPARATE_LINE=false
+#SPACESHIP_CHAR_SYMBOL=🞂🞂
+SPACESHIP_CHAR_SYMBOL=❯
+SPACESHIP_CHAR_SUFFIX=" "
+SPACESHIP_HG_SHOW=false
+SPACESHIP_PACKAGE_SHOW=false
+SPACESHIP_NODE_SHOW=false
+SPACESHIP_RUBY_SHOW=false
+SPACESHIP_ELM_SHOW=false
+SPACESHIP_ELIXIR_SHOW=false
+SPACESHIP_XCODE_SHOW_LOCAL=false
+SPACESHIP_SWIFT_SHOW_LOCAL=false
+SPACESHIP_GOLANG_SHOW=false
+SPACESHIP_PHP_SHOW=false
+SPACESHIP_RUST_SHOW=false
+SPACESHIP_JULIA_SHOW=false
+SPACESHIP_DOCKER_SHOW=false
+SPACESHIP_DOCKER_CONTEXT_SHOW=false
+SPACESHIP_AWS_SHOW=false
+SPACESHIP_GCLOUD_SHOW=false
+SPACESHIP_CONDA_SHOW=false
+SPACESHIP_VENV_SHOW=false
+SPACESHIP_PYENV_SHOW=false
+SPACESHIP_DOTNET_SHOW=false
+SPACESHIP_EMBER_SHOW=false
+SPACESHIP_KUBECONTEXT_SHOW=false
+SPACESHIP_TERRAFORM_SHOW=false
+SPACESHIP_TERRAFORM_SHOW=false
+SPACESHIP_VI_MODE_SHOW=false
+SPACESHIP_JOBS_SHOW=false
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -145,6 +175,9 @@ export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 
 # To get fasd working in a shell, some initialization code must be run
 eval "$(fasd --init auto)"
+
+# Use colors for less, man, etc.
+[[ -f ~/.config/less-termcap ]] && . ~/.config/less-termcap
 
 # Load zsh-syntax-highlighting; should be last.
 source $HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
