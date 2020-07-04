@@ -287,9 +287,10 @@
     " Search {{{
         " Highlight
         highlight		Normal		guibg=NONE	 ctermbg=NONE
-        highlight       Search    ctermfg=Black  ctermbg=208    cterm=bold
-        highlight  Searchlight    ctermfg=Black  ctermbg=196    cterm=bold
-        highlight    IncSearch    ctermfg=Black  ctermbg=196    cterm=bold
+        highlight         link      Searchlight  IncSearch
+        "highlight       Search    ctermfg=Black  ctermbg=208    cterm=bold
+        "highlight  Searchlight    ctermfg=Black  ctermbg=196    cterm=bold
+        "highlight    IncSearch    ctermfg=Black  ctermbg=196    cterm=bold
 
         "highlight link VimwikiHeader1 GruvBoxRed
         "highlight link VimwikiHeader2 GruvBoxGreen
@@ -466,8 +467,8 @@
     nmap <F21> <Plug>MoveLineUp
 
     " ALE
-    nmap <silent> <leader>aj :ALENext<cr>
-    nmap <silent> <leader>ak :ALEPrevious<cr>
+    nmap <silent> <leader>aj :ALENext<CR>
+    nmap <silent> <leader>ak :ALEPrevious<CR>
 
 " }}}
 
