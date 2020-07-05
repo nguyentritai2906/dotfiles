@@ -79,6 +79,9 @@
     Plug 'tpope/vim-surround' " Change parentheses and stuff with ease
     Plug 'jiangmiao/auto-pairs' " Autopair parentheses and stuff
         let g:AutoPairsFlyMode = 1
+        " For why using F22 hack see http://vim.wikia.com/wiki/Mapping_fast_keycodes_in_terminal_Vim
+        let g:AutoPairsShortcutBackInsert = '<F22>'
+        set <F22>=m
     Plug 'luochen1990/rainbow' " Rainbow parentheses
         let g:rainbow_active = 1    " Enable vim-rainbow globally
         let g:rainbow_conf = {
@@ -507,5 +510,12 @@
 
     " Set foldmethod in Vimwiki
     autocmd BufEnter *.md set foldmethod=indent
+
+    " Goyo issue with transparency
+    " https://github.com/junegunn/goyo.vim/issues/224
+    function! s:goyo_leave()
+            hi Normal guibg=NONE ctermbg=NONE
+    endfunction
+    autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 " }}}
