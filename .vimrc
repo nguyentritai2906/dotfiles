@@ -180,8 +180,8 @@
     set title titlestring= " Get title - dealing with swap files - Autoswap
     set backspace=indent,eol,start " make backspace behave in a sane manner
     set clipboard=unnamedplus
-    set updatetime=100 " Update sign column every 1/10 second
-    set ttimeoutlen=0
+    set updatetime=100 " Update sign column every 1/10 of a second
+    set ttimeoutlen=0 " No key code timeout
     set conceallevel=2
     set wildmode=longest,list,full " Tab completion
     set wildmenu " enhanced command line completion
@@ -208,7 +208,6 @@
     set signcolumn=auto " only show signcolumn when there's sign
     set cursorline
     set ttyfast " faster redrawing
-    set foldmethod=indent
 
     " Tab control
     set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
@@ -488,7 +487,7 @@
     "autocmd StdinReadPre * let s:std_in=1
     "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
     " Close vim if the only window left open is a NERDTree
-    autocmd bufenter * if (winnr("$") == 1
+    autocmd BufEnter * if (winnr("$") == 1
                 \&& exists("b:NERDTree")
                 \&& b:NERDTree.isTabTree()) | q | endif
 
@@ -505,5 +504,8 @@
 
     " Remove trailing whilespace
     autocmd BufWritePre * %s/\s\+$//e
+
+    " Set foldmethod in Vimwiki
+    autocmd BufEnter *.md set foldmethod=indent
 
 " }}}
