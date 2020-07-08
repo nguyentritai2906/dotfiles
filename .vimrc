@@ -509,7 +509,7 @@
     autocmd BufWritePre * %s/\s\+$//e
 
     " Set foldmethod in Vimwiki
-    autocmd BufEnter *.md set foldmethod=indent
+    autocmd BufEnter *.md setlocal foldmethod=indent
 
     " Goyo issue with transparency
     " https://github.com/junegunn/goyo.vim/issues/224
