@@ -51,6 +51,29 @@
                     \ }
         let g:ale_fix_on_save = 1
     Plug 'davidhalter/jedi-vim' " Python autocompletion
+    Plug 'airblade/vim-gitgutter' " Git diff, stages/undoes hunks and partial hunks
+        " Use fontawesome icons as signs
+        let g:gitgutter_sign_added = '+'
+        let g:gitgutter_sign_modified = '>'
+        let g:gitgutter_sign_removed = '-'
+        let g:gitgutter_sign_removed_first_line = '^'
+        let g:gitgutter_sign_modified_removed = '<'
+        " Turn off sign column highlight
+        let g:gitgutter_override_sign_column_highlight = 1
+    Plug 'tpope/vim-fugitive' " Git wrapper
+    Plug 'ervandew/supertab'
+        let g:SuperTabDefaultCompletionType = '<C-n>'
+
+    " Tags
+    Plug 'majutsushi/tagbar' " Vim plugin that displays tags in a window
+    Plug 'universal-ctags/ctags' " Universal tags for codes
+        "Install Exuberant Ctags 'sudo eopkg it ctags' which is a dependency
+        "To build with Autotools, see docs/autotools.rst for more information
+    Plug 'xolox/vim-easytags' " Automated tag file generation and syntax highlighting of tags in Vim
+    Plug 'xolox/vim-misc' " Miscellaneous auto-load Vim scripts, required for xolox's pluggin
+
+    " Make life easier
+    Plug 'gioele/vim-autoswap' " No more swap files!
     Plug '~/.fzf'
     Plug 'junegunn/fzf.vim' " General-purpose command-line fuzzy finder vim integration
         let g:fzf_action = {
@@ -76,7 +99,6 @@
     Plug 'simnalamburt/vim-mundo' " Graph vim undo tree
         let g:mundo_auto_preview_delay=0
         let g:mundo_inline_undo=1
-    Plug 'tpope/vim-surround' " Change parentheses and stuff with ease
     Plug 'jiangmiao/auto-pairs' " Autopair parentheses and stuff
         let g:AutoPairsFlyMode = 1
         " For why using F22 hack see http://vim.wikia.com/wiki/Mapping_fast_keycodes_in_terminal_Vim
@@ -91,31 +113,17 @@
                     \ 'vimwiki': {'parentheses_options': 'containedin=vimwikiCode contained',},
                     \ 'vim': {'parentheses_options': 'containedin=vimFuncBody',},
                     \ }}
-    Plug 'preservim/nerdcommenter' " Easy comment out lines of codes
+    Plug 'preservim/nerdcommenter' | Plug 'tpope/vim-commentary' " Easy comment out lines of codes
         let g:NERDCreateDefaultMappings = 0
-    Plug 'airblade/vim-gitgutter' " Git diff, stages/undoes hunks and partial hunks
-        " Use fontawesome icons as signs
-        let g:gitgutter_sign_added = '+'
-        let g:gitgutter_sign_modified = '>'
-        let g:gitgutter_sign_removed = '-'
-        let g:gitgutter_sign_removed_first_line = '^'
-        let g:gitgutter_sign_modified_removed = '<'
-        " Turn off sign column highlight
-        let g:gitgutter_override_sign_column_highlight = 1
-    Plug 'tpope/vim-fugitive' " Git wrapper
-    Plug 'ervandew/supertab'
-        let g:SuperTabDefaultCompletionType = '<C-n>'
-
-    " Tags
-    Plug 'majutsushi/tagbar' " Vim plugin that displays tags in a window
-    Plug 'universal-ctags/ctags' " Universal tags for codes
-        "Install Exuberant Ctags 'sudo eopkg it ctags' which is a dependency
-        "To build with Autotools, see docs/autotools.rst for more information
-    Plug 'xolox/vim-easytags' " Automated tag file generation and syntax highlighting of tags in Vim
-    Plug 'xolox/vim-misc' " Miscellaneous auto-load Vim scripts, required for xolox's pluggin
-
-    " Make life easier
-    Plug 'gioele/vim-autoswap' " No more swap files!
+        let g:NERDSpaceDelims = 1
+        let g:NERDRemoveExtraSpaces = 1
+    Plug 'tpope/vim-surround' " Change parentheses and stuff with ease
+    Plug 'christoomey/vim-titlecase'
+    Plug 'michaeljsmith/vim-indent-object'
+    Plug 'kana/vim-textobj-user' | Plug 'kana/vim-textobj-line' | Plug 'kana/vim-textobj-entire'
+    Plug 'danro/rename.vim'
+    Plug 'tpope/vim-repeat'
+    Plug 'terryma/vim-multiple-cursors'
 
     " UI
     Plug 'vim-airline/vim-airline' " Lean & mean tabline for vim
@@ -189,6 +197,7 @@
     set wildmode=longest,list,full " Tab completion
     set wildmenu " enhanced command line completion
     set pastetoggle=<F2>
+    set autochdir
 
     " Searching
     set incsearch " lookahead as search pattern is specified
@@ -447,11 +456,12 @@
     nnoremap <F5> :MundoToggle<CR>
 
     " NERDCommenter
-    vmap <Leader>cc <Plug>NERDCommenterCommentgv
+    vmap <Leader>cc <Plug>NERDCommenterComment
     nmap <Leader>cc <Plug>NERDCommenterComment
-    vmap <Leader>cu <Plug>NERDCommenterUncommentgv
+    vmap <Leader>cu <Plug>NERDCommenterUncomment
     nmap <Leader>cu <Plug>NERDCommenterUncomment
     vmap <Leader>ci <Plug>NERDCommenterInvert
+    nmap <Leader>ci <Plug>NERDCommenterInvert
 
     " NERDtree and Tagbar
     nmap <F8> :TagbarToggle<CR>
