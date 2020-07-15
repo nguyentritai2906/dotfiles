@@ -93,9 +93,9 @@ source $ZSH/oh-my-zsh.sh
  #if [[ -n $SSH_CONNECTION ]]; then
    #export EDITOR='vim'
  #else
-   #export EDITOR='mvim'
+   #export EDITOR='nvim'
  #fi
-export EDITOR=$(which vim)
+export EDITOR=$(which nvim)
 
 # Disable flow control Ctrl+S, since it realy just annoys me
 stty -ixon &>/dev/null
@@ -144,6 +144,8 @@ SPACESHIP_JOBS_SHOW=false
 [ -f "$HOME/.config/zsh_keybinds" ] && source "$HOME/.config/zsh_keybinds"
 [ -f "$HOME/.config/zsh_functions" ] && source "$HOME/.config/zsh_functions"
 [ -f "$HOME/.config/zsh_aliases" ] && source "$HOME/.config/zsh_aliases"
+# Use colors for less, man, etc.
+[[ -f ~/.config/less-termcap ]] && . ~/.config/less-termcap
 
 # History in cache directory:
 HISTSIZE=10000
@@ -176,8 +178,9 @@ export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 # To get fasd working in a shell, some initialization code must be run
 eval "$(fasd --init auto)"
 
-# Use colors for less, man, etc.
-[[ -f ~/.config/less-termcap ]] && . ~/.config/less-termcap
+# You should have $GOPATH env variable set and your $PATH should include $GOPATH/bin to run app from anywhere
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
 
 # Load zsh-syntax-highlighting; should be last.
 source $HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
