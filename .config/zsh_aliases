@@ -1,5 +1,9 @@
 # Command aliases
+alias vim='nvim'
 alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias cd..='cd ..'
 alias buds="bluetoothctl connect F4:7D:EF:EF:0B:79"
 alias sony="bluetoothctl connect 70:26:05:9D:51:81"
 alias icf="vim ~/.config/i3/config"
@@ -28,12 +32,8 @@ alias cfa="cf add"
 alias cfc="cf commit"
 alias cfca="cf commit -a"
 alias cfp="cf push"
-alias tldr="tldr -t base16"
 alias ranger='ranger --choosedir=$HOME/.config/ranger/rangerdir; LASTDIR=`cat $HOME/.config/ranger/rangerdir`; cd "$LASTDIR"'
 alias bat="bat --style=numbers --color=always "
-#alias ll='ls -ahlF'
-#alias ls='ls -CF --color=auto'
-#alias lg='ll | grep'
 
 # Global aliases
 alias -g L='| less'
