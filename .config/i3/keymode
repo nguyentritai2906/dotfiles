@@ -1,0 +1,10 @@
+#!/bin/bash
+#
+# Prints current keyboard layout
+
+MODE=$(ibus engine)
+if [[ $MODE == "Bamboo" ]] ; then
+	echo "VI "
+else
+	echo "US "
+fi

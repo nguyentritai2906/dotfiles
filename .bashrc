@@ -156,3 +156,5 @@ function dcd {
 	    br -h --only-folders --cmd "$1 :cd"
 
 }
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

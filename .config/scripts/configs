@@ -1,0 +1,5 @@
+zcf	~/.zshrc
+vcf	~/.vimrc
+rcf	~/.config/ranger/rc.conf
+icf	~/.config/i3/config
+pcf	~/.config/polybar/config

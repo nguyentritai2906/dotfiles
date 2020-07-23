@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+##Icons
+##Pack1
+#icon1=""
+#icon2=""
+#icon3=""
+#icon4=""
+#disconnected=""
+#ethernet_connected=""
+
+#Pack2
+icon1=""
+icon2=""
+icon3=""
+icon4=""
+disconnected=""
+ethernet_connected=""
+
+while true; do
+    ID="$(ip link | awk '/state UP/ {print $2}')"
+    network_name="$(nmcli -t -f active,ssid dev wifi | egrep '^yes' | cut -d\: -f2)"
+    network_strength="$(iwconfig wlp3s0 | awk -F'[ = ]+' '/Signal level/ {print $7}')"
+    if (ping -c 1 google.com) &>/dev/null; then
+        if [[ $ID == e* ]]; then
+            echo "$ethernet_connected" ; sleep 3
+        else
+            if [[ $network_strength -gt -30  ]] ; then
+                echo "$icon4 $network_name"; sleep 3
+            elif [[ $network_strength -lt -30 && $network_strength -gt -67  ]] ; then
+                echo "$icon3 $network_name" ; sleep 3
+            elif [[ $network_strength -lt -67 && $network_strength -gt -80  ]] ; then
+                echo "$icon2 $network_name" ; sleep 3
+            else
+                echo "$icon1 $network_name" ; sleep 3
+            fi
+        fi
+    else
+        echo "$disconnected" ; sleep 1
+    fi
+done

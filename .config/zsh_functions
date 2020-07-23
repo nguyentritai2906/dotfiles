@@ -1,0 +1,86 @@
+# Function to allow Ctrl-z to toggle between suspend and resume
+function Resume {
+  zle push-input
+  BUFFER="fg"
+  zle accept-line
+}
+zle -N Resume
+bindkey "^Z" Resume
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    #alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+## Use lf to switch directories
+#lfcd () {
+    #tmp="$(mktemp)"
+    #lf -last-dir-path="$tmp" "$@"
+    #if [ -f "$tmp" ]; then
+        #dir="$(cat "$tmp")"
+        #rm -f "$tmp"
+        #[ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+    #fi
+#}
+#bindkey -s '\eo' "lfcd\n"
+
+# Search and replace with ag
+agr() { ag -0 -l "$1" | AGR_FROM="$1" AGR_TO="$2" xargs -r0 perl -pi -e 's/$ENV{AGR_FROM}/$ENV{AGR_TO}/g';  }
+
+# Change cursor shape for different vi modes.
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] ||
+     [[ $1 = 'block' ]]; then
+    echo -ne '\e[1 q'
+  elif [[ ${KEYMAP} == main ]] ||
+       [[ ${KEYMAP} == viins ]] ||
+       [[ ${KEYMAP} = '' ]] ||
+       [[ $1 = 'beam' ]]; then
+    echo -ne '\e[5 q'
+  fi
+}
+zle -N zle-keymap-select
+zle-line-init() {
+    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+    echo -ne "\e[5 q"
+}
+zle -N zle-line-init
+echo -ne '\e[5 q' # Use beam shape cursor on startup.
+preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
+# Prompt in middle
+# Author: mpy
+# https://superuser.com/questions/1389834/can-i-have-the-terminal-prompt-at-the-vertical-middle-of-a-window
+zmodload zsh/terminfo # load terminfo modules to make the associative array $terminfo available
+PS1o="$PS1" # save current prompt to parameter PS1o
+halfpage=$((LINES/2)) # calculate how many lines one half of the terminal's height has
+# construct parameter to go down/up $halfpage lines via termcap
+halfpage_down=""
+for i in {1..$halfpage}; do
+  halfpage_down="$halfpage_down$terminfo[cud1]"
+done
+halfpage_up=""
+for i in {1..$halfpage}; do
+  halfpage_up="$halfpage_up$terminfo[cuu1]"
+done
+# This checks if the current command line is empty
+# and if so move the prompt up to the middle of the terminal.
+# Now you can fast-forward your prompt with an additional press of the ENTER key
+magic-enter () {
+    if [[ -z $BUFFER ]]
+    then
+        print ${halfpage_down}${halfpage_up}$terminfo[cuu1]
+        zle reset-prompt
+    else
+        zle accept-line
+    fi
+}
+zle -N magic-enter
+bindkey "^K" magic-enter
