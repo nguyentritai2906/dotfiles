@@ -26,16 +26,16 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+w kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+d exec --no-startup-id rofi -show run -matching fuzzy
 
 # start window switcher
-bindsym $mod+Shift+d exec --no-startup-id rofi -show drun
+bindsym $mod+Shift+d exec --no-startup-id rofi -show drun -matching fuzzy
 
 # start rofi combi mode
 bindsym $mod+r exec --no-startup-id $HOME/.config/polybar/scripts/color-switch.sh
 
 # Use Rofi to select icons from Font Awesome Icon List
-bindsym $mod+i exec --no-startup-id $HOME/rofi-fontawesome/fontawesome-menu/fontawesome-menu -f /home/solus/rofi-fontawesome/fa5-icon-list.txt -o '-i -columns 4' >/dev/null
+bindsym $mod+i exec --no-startup-id $HOME/rofi-fontawesome/fontawesome-menu/fontawesome-menu -f /home/solus/rofi-fontawesome/fa5-icon-list.txt -o '-matching fuzzy -i -columns 4' >/dev/null
 
 
 # file manager
