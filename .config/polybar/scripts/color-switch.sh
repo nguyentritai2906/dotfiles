@@ -9,7 +9,7 @@ SEPARATOR="#1F1F1F"
 FOREGROUND="#FFFFFF"
 BACKGROUND="#1F1F1F"
 BACKGROUND_ALT="#252525"
-HIGHLIGHT_BACKGROUND="#43a047"
+HIGHLIGHT_BACKGROUND="#039be5"
 HIGHLIGHT_FOREGROUND="#1F1F1F"
 
 BLACK="#000000"
@@ -38,7 +38,7 @@ LIGHT_GREEN="#7cb342"
 SDIR="$HOME/.config/polybar/scripts"
 
 # Launch Rofi
-MENU="$(rofi -no-lazy-grab -sep "|" -dmenu -i -p 'Style ' \
+MENU="$(rofi -matching fuzzy -no-lazy-grab -sep "|" -dmenu -i -p 'Style ' \
 -hide-scrollbar true \
 -color-enabled true \
 -color-window "$BACKGROUND,$BORDER,$SEPARATOR" \

@@ -129,6 +129,10 @@ if [ -f "$HOME/.config/repo-la.txt" ]; then
             echo "As you wish!";
         fi
     fi
+else
+    echo "Caching available packages in Solus repository";
+    eopkg la | sed -e '1,3d' > $HOME/.config/repo-la.txt;
+    echo "Done!";
 fi
 
 # Fuzzy grep via Ag then open it in the default editor if it's defined,
