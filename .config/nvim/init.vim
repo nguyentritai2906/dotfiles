@@ -216,6 +216,7 @@
     set signcolumn=auto " only show signcolumn when there's sign
     set cursorline
     set ttyfast " faster redrawing
+    set scrolloff=5
 
     " Tab control
     set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
@@ -541,4 +542,8 @@
 
     " Preserve last editing position
     autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
+    " Load the version of matchit.vim that ships with Vim
+    runtime! macros/matchit.vim
+
 " }}}
