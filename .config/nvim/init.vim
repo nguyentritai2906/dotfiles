@@ -142,6 +142,8 @@
     Plug 'markonm/traces.vim' " Range, pattern and substitute preview
     Plug 'osyo-manga/vim-anzu' " Search status
         let g:anzu_status_format = "[%i/%l]"
+    " Plug 'severin-lemaignan/vim-minimap'
+    Plug 'kshenoy/vim-signature' " Place, toggle and display marks
 
     " Navigation
     Plug 'easymotion/vim-easymotion' " Vim motions on speed
