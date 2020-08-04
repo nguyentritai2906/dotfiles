@@ -504,16 +504,16 @@
                 \&& exists("b:NERDTree")
                 \&& b:NERDTree.isTabTree()) | q | endif
 
-    " " Vim: Change cursor shape for different vi modes.
-    " if has("autocmd")
-    "     au VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
-    "     au InsertEnter,InsertChange * if v:insertmode == 'i' |
-    "                 \silent execute '!echo -ne "\e[5 q"' | redraw! |
-    "                 \elseif v:insertmode == 'r' |
-    "                 \silent execute '!echo -ne "\e[3 q"' | redraw! |
-    "                 \endif
-    "     au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
-    " endif
+    " Vim: Change cursor shape for different vi modes.
+    if has("autocmd")
+        au VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
+        au InsertEnter,InsertChange * if v:insertmode == 'i' |
+                    \silent execute '!echo -ne "\e[5 q"' | redraw! |
+                    \elseif v:insertmode == 'r' |
+                    \silent execute '!echo -ne "\e[3 q"' | redraw! |
+                    \endif
+        au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+    endif
 
     " Remove trailing whilespace
     autocmd BufWritePre * %s/\s\+$//e
@@ -528,20 +528,15 @@
     endfunction
     autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
-    " Make neovim automatically enter terminal mode or close terminal buffer when shell is exited
-    " https://www.reddit.com/r/neovim/comments/cger8p/how_quickly_close_a_terminal_buffer/
-    autocmd BufWinEnter,WinEnter,TermOpen term://* startinsert
-    " augroup terminal_settings
-        " autocmd!
+    " Experimentally integrate YouCompleteMe with vim-multiple-cursors, otherwise
+    " the numerous Cursor events cause great slowness
+    " (https://github.com/kristijanhusak/vim-multiple-cursors/issues/4)
+    function Multiple_cursors_before()
+        let s:old_ycm_whitelist = g:ycm_filetype_whitelist
+        let g:ycm_filetype_whitelist = {}
+    endfunction
+    function Multiple_cursors_after()
+        let g:ycm_filetype_whitelist = s:old_ycm_whitelist
+    endfunction
 
-        " autocmd BufWinEnter,WinEnter,TermOpen term://* startinsert
-        " autocmd BufLeave term://* stopinsert
-
-        " " Ignore various filetypes as those will close terminal automatically
-        " " Ignore fzf, ranger, coc
-        " autocmd TermClose term://*
-                    " \ if (expand('<afile>') !~ "fzf") && (expand('<afile>') !~ "ranger") && (expand('<afile>') !~ "coc") |
-                    " \   call nvim_input('<CR>')  |
-                    " \ endif
-    " augroup END
 " }}}

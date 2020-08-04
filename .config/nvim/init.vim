@@ -102,8 +102,7 @@
     Plug 'jiangmiao/auto-pairs' " Autopair parentheses and stuff
         let g:AutoPairsFlyMode = 1
         " For why using F22 hack see http://vim.wikia.com/wiki/Mapping_fast_keycodes_in_terminal_Vim
-        let g:AutoPairsShortcutBackInsert = '<F22>'
-        set <F22>=m
+        let g:AutoPairsShortcutBackInsert = '<A-m>'
     Plug 'luochen1990/rainbow' " Rainbow parentheses
         let g:rainbow_active = 1    " Enable vim-rainbow globally
         let g:rainbow_conf = {
@@ -124,6 +123,7 @@
     Plug 'danro/rename.vim'
     Plug 'tpope/vim-repeat'
     Plug 'terryma/vim-multiple-cursors'
+    Plug 'wellle/targets.vim'
 
     " UI
     Plug 'vim-airline/vim-airline' " Lean & mean tabline for vim
@@ -142,18 +142,14 @@
     Plug 'markonm/traces.vim' " Range, pattern and substitute preview
     Plug 'osyo-manga/vim-anzu' " Search status
         let g:anzu_status_format = "[%i/%l]"
+    " Plug 'severin-lemaignan/vim-minimap'
+    Plug 'kshenoy/vim-signature' " Place, toggle and display marks
 
     " Navigation
     Plug 'easymotion/vim-easymotion' " Vim motions on speed
         let g:EasyMotion_do_mapping = 0 " Disable default mappings
         let g:EasyMotion_smartcase = 1 " Turn on case-insensitive feature
     Plug 'matze/vim-move' " Move lines and selections up and down
-        " For terms that send Alt as Escape sequence
-        " see http://vim.wikia.com/wiki/Mapping_fast_keycodes_in_terminal_Vim
-        " for why the <F20> hack. Keeps Esc from waiting for other keys to exit visual
-        " https://github.com/matze/vim-move/issues/15#issuecomment-168177827
-        set <F20>=j
-        set <F21>=k
     Plug 'unblevable/quick-scope' " Quick find <char> movement
         let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
@@ -220,6 +216,7 @@
     set signcolumn=auto " only show signcolumn when there's sign
     set cursorline
     set ttyfast " faster redrawing
+    set scrolloff=5
 
     " Tab control
     set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
@@ -473,10 +470,10 @@
     nmap <Leader>gN <Plug>(GitGutterPrevHunk)
 
     " Vim-Move
-    vmap <F20> <Plug>MoveBlockDown
-    vmap <F21> <Plug>MoveBlockUp
-    nmap <F20> <Plug>MoveLineDown
-    nmap <F21> <Plug>MoveLineUp
+    vmap <A-j> <Plug>MoveBlockDown
+    vmap <A-k> <Plug>MoveBlockUp
+    nmap <A-j> <Plug>MoveLineDown
+    nmap <A-k> <Plug>MoveLineUp
 
     " ALE
     nmap <silent> <leader>aj :ALENext<CR>
@@ -504,16 +501,17 @@
                 \&& exists("b:NERDTree")
                 \&& b:NERDTree.isTabTree()) | q | endif
 
-    " " Vim: Change cursor shape for different vi modes.
-    " if has("autocmd")
-    "     au VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
-    "     au InsertEnter,InsertChange * if v:insertmode == 'i' |
-    "                 \silent execute '!echo -ne "\e[5 q"' | redraw! |
-    "                 \elseif v:insertmode == 'r' |
-    "                 \silent execute '!echo -ne "\e[3 q"' | redraw! |
-    "                 \endif
-    "     au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
-    " endif
+    " Multiple Cursors
+    " Experimentally integrate YouCompleteMe with vim-multiple-cursors, otherwise
+    " the numerous Cursor events cause great slowness
+    " (https://github.com/kristijanhusak/vim-multiple-cursors/issues/4)
+    function Multiple_cursors_before()
+        let s:old_ycm_whitelist = g:ycm_filetype_whitelist
+        let g:ycm_filetype_whitelist = {}
+    endfunction
+    function Multiple_cursors_after()
+        let g:ycm_filetype_whitelist = s:old_ycm_whitelist
+    endfunction
 
     " Remove trailing whilespace
     autocmd BufWritePre * %s/\s\+$//e
@@ -530,13 +528,10 @@
 
     " Make neovim automatically enter terminal mode or close terminal buffer when shell is exited
     " https://www.reddit.com/r/neovim/comments/cger8p/how_quickly_close_a_terminal_buffer/
-    autocmd BufWinEnter,WinEnter,TermOpen term://* startinsert
     " augroup terminal_settings
         " autocmd!
-
-        " autocmd BufWinEnter,WinEnter,TermOpen term://* startinsert
+        autocmd BufWinEnter,WinEnter,TermOpen term://* startinsert
         " autocmd BufLeave term://* stopinsert
-
         " " Ignore various filetypes as those will close terminal automatically
         " " Ignore fzf, ranger, coc
         " autocmd TermClose term://*
@@ -544,4 +539,11 @@
                     " \   call nvim_input('<CR>')  |
                     " \ endif
     " augroup END
+
+    " Preserve last editing position
+    autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
+    " Load the version of matchit.vim that ships with Vim
+    runtime! macros/matchit.vim
+
 " }}}
