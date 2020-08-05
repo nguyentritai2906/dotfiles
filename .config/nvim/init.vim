@@ -190,8 +190,9 @@
     set updatetime=100 " Update sign column every 1/10 of a second
     set ttimeoutlen=0 " No key code timeout
     set conceallevel=2
-    set wildmode=longest,list,full " Tab completion
+    set wildmode=longest,full " Tab completion
     set wildmenu " enhanced command line completion
+    set wildcharm=<Tab>
     set pastetoggle=<F2>
     set autochdir
 
@@ -225,6 +226,7 @@
     set shiftwidth=4 " number of spaces to use for indent and unindent
     set shiftround " round indent to a multiple of 'shiftwidth'
     set expandtab
+    set guicursor=n-v-sm:block,i-c-ci-ve:ver25,r-cr-o:hor20
 
 " }}}
 
@@ -526,11 +528,41 @@
     endfunction
     autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
+    " Terminal settings
+    " Mappings
+    if has('nvim')
+        " Escape
+        tnoremap <Esc> <C-\><C-n>
+        tnoremap <A-[> <Esc>
+        " Movements
+        " Terminal mode:
+        tnoremap <M-h> <c-\><c-n><c-w>h
+        tnoremap <M-j> <c-\><c-n><c-w>j
+        tnoremap <M-k> <c-\><c-n><c-w>k
+        tnoremap <M-l> <c-\><c-n><c-w>l
+        " Insert mode:
+        inoremap <M-h> <Esc><c-w>h
+        inoremap <M-j> <Esc><c-w>j
+        inoremap <M-k> <Esc><c-w>k
+        inoremap <M-l> <Esc><c-w>l
+        " Visual mode:
+        vnoremap <M-h> <Esc><c-w>h
+        vnoremap <M-j> <Esc><c-w>j
+        vnoremap <M-k> <Esc><c-w>k
+        vnoremap <M-l> <Esc><c-w>l
+        " Normal mode:
+        nnoremap <M-h> <c-w>h
+        nnoremap <M-j> <c-w>j
+        nnoremap <M-k> <c-w>k
+        nnoremap <M-l> <c-w>l
+    endif
+    " Enter insert mode automatically
+    autocmd TermOpen * startinsert
     " Make neovim automatically enter terminal mode or close terminal buffer when shell is exited
     " https://www.reddit.com/r/neovim/comments/cger8p/how_quickly_close_a_terminal_buffer/
     " augroup terminal_settings
         " autocmd!
-        autocmd BufWinEnter,WinEnter,TermOpen term://* startinsert
+        " autocmd BufWinEnter,WinEnter,TermOpen term://* startinsert
         " autocmd BufLeave term://* stopinsert
         " " Ignore various filetypes as those will close terminal automatically
         " " Ignore fzf, ranger, coc
