@@ -44,10 +44,10 @@
         let g:ale_completion_enabled = 0
         " Check Python files with flake8 and pylint.
         let g:ale_linters = {'python': ['flake8', 'pylint']}
-        " Fix Python files with black and isort.
+        " Fix Python files with black, isort, yapf.
         let g:ale_fixers = {
                     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-                    \ 'python': ['black', 'isort', 'yapf'],
+                    \ 'python': ['black', 'isort', 'yapf', 'autopep8'],
                     \ }
         let g:ale_fix_on_save = 1
     Plug 'davidhalter/jedi-vim' " Python autocompletion
@@ -133,7 +133,6 @@
     Plug 'lilydjwg/colorizer' " Colorize all text in form of #rrggbb and #rgb
     Plug 'Yggdroot/indentLine' " Display indentation level
         let g:indentLine_fileTypeExclude = ['markdown', 'vimwiki']
-    Plug 'junegunn/goyo.vim' " <Leader>gy toggle reading mode
     Plug 'haya14busa/is.vim' " Incremental search improved
         let g:incsearch#auto_nohlsearch = 1
     Plug 'PeterRincker/vim-searchlight' " Highlight current search match
@@ -495,9 +494,9 @@
     augroup END
 
     "NERDTree
-    "" Open NERDTree automatically when vim starts up if no files were specified
-    "autocmd StdinReadPre * let s:std_in=1
-    "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+    " Open NERDTree automatically when vim starts up if no files were specified
+    " autocmd StdinReadPre * let s:std_in=1
+    " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
     " Close vim if the only window left open is a NERDTree
     autocmd BufEnter * if (winnr("$") == 1
                 \&& exists("b:NERDTree")
@@ -520,13 +519,6 @@
 
     " Set foldmethod in Vimwiki
     autocmd BufEnter *.md setlocal foldmethod=indent
-
-    " Goyo issue with transparency
-    " https://github.com/junegunn/goyo.vim/issues/224
-    function! s:goyo_leave()
-            hi Normal guibg=NONE ctermbg=NONE
-    endfunction
-    autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
     " Terminal settings
     " Enter insert mode automatically
