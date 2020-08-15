@@ -48,8 +48,11 @@
         let g:ale_fixers = {
                     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
                     \ 'python': ['black', 'isort', 'yapf', 'autopep8'],
+                    \ 'html': ['tidy', 'prettier'],
                     \ }
         let g:ale_fix_on_save = 1
+    Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+        let g:prettier#quickfix_enabled = 0
     Plug 'davidhalter/jedi-vim' " Python autocompletion
     Plug 'airblade/vim-gitgutter' " Git diff, stages/undoes hunks and partial hunks
         " Use fontawesome icons as signs
