@@ -196,7 +196,7 @@
     set wildmenu " enhanced command line completion
     set wildcharm=<Tab>
     set pastetoggle=<F2>
-    set autochdir
+    " set autochdir
 
     " Searching
     set incsearch " lookahead as search pattern is specified
