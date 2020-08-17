@@ -40,6 +40,12 @@
         " Use :lnext and :lprev - Jump to next or previous error in list
         let g:ycm_always_populate_location_list = 1
         let g:ycm_autoclose_preview_window_after_completion=1
+        let g:ycm_min_num_of_chars_for_completion = 1
+        let g:ycm_filetype_blacklist = {
+                    \ 'gitcommit': 1,
+                    \ 'vim': 1,
+                    \}
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'dense-analysis/ale'
         let g:ale_completion_enabled = 0
         " Check Python files with flake8 and pylint.
@@ -216,7 +222,7 @@
     set background=dark
     set shell=$SHELL
     set autoindent " automatically set indent of new line
-    set signcolumn=auto " only show signcolumn when there's sign
+    set signcolumn=yes " always show signcolumn
     set cursorline
     set ttyfast " faster redrawing
     set scrolloff=5
@@ -493,8 +499,47 @@
     " Make Vim open help in a vertical split
     augroup vimrc_help
         autocmd!
-        autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
+        autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | set number relativenumber | endif
     augroup END
+
+    function! GoYCM()
+        nnoremap <buffer> <silent> <leader>gd :YcmCompleter GoTo<CR>
+        nnoremap <buffer> <silent> <leader>gr :YcmCompleter GoToReferences<CR>
+        nnoremap <buffer> <silent> <leader>rr :YcmCompleter RefactorRename<space>
+    endfunction
+
+    function! s:check_back_space() abort
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~# '\s'
+    endfunction
+
+    function! GoCoc()
+        " Use tab for trigger completion with characters ahead and navigate.
+        " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+        " other plugin before putting this into your config.
+        inoremap <buffer> <silent><expr> <TAB>
+                    \ pumvisible() ? "\<C-n>" :
+                    \ <SID>check_back_space() ? "\<TAB>" :
+                    \ coc#refresh()
+        inoremap <buffer> <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+        " Use <c-space> to trigger completion.
+        if has('nvim')
+            inoremap <buffer> <silent><expr> <c-space> coc#refresh()
+        else
+            inoremap <buffer> <silent><expr> <c-@> coc#refresh()
+        endif
+
+        " GoTo code navigation.
+        nmap <buffer> <silent> <leader>gd <Plug>(coc-definition)
+        nmap <buffer> <silent> <leader>gy <Plug>(coc-type-definition)
+        nmap <buffer> <silent> <leader>gi <Plug>(coc-implementation)
+        nmap <buffer> <silent> <leader>gr <Plug>(coc-references)
+        nnoremap <buffer> <leader>cr :CocRestart
+    endfunction
+
+    autocmd Filetype java,ts,rs,go,py :call GoYCM()
+    autocmd Filetype c,cpp,cxx,h,hpp,html,css :call GoCoc()
 
     "NERDTree
     " Open NERDTree automatically when vim starts up if no files were specified
