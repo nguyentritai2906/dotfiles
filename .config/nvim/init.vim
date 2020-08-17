@@ -203,6 +203,7 @@
     set wildcharm=<Tab>
     set pastetoggle=<F2>
     " set autochdir
+    autocmd BufEnter * silent! lcd %:p:h " Alternative for autochdir
 
     " Searching
     set incsearch " lookahead as search pattern is specified
@@ -226,6 +227,7 @@
     set cursorline
     set ttyfast " faster redrawing
     set scrolloff=5
+    set splitright
 
     " Tab control
     set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
