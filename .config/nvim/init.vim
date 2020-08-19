@@ -212,8 +212,7 @@
     set wildmenu " enhanced command line completion
     set wildcharm=<Tab>
     set pastetoggle=<F2>
-    " set autochdir
-    autocmd BufEnter * silent! lcd %:p:h " Alternative for autochdir
+    set dictionary+=/usr/share/dict/words
 
     " Searching
     set incsearch " lookahead as search pattern is specified
@@ -254,15 +253,11 @@
 
     " Map leader to space
     let mapleader=" "
-    "nmap <C-U> <C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y>
-                "\<C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y>
-    "nmap <C-D> <C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E>
-                "\<C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E>
 
-    " Remap ESC
-    inoremap ii <ESC>
-    vnoremap ii <ESC>
-    cnoremap ii <ESC>
+    " " Remap ESC
+    " inoremap ii <ESC>
+    " vnoremap ii <ESC>
+    " cnoremap ii <ESC>
 
     " Clear all highlight
     nnoremap <Leader>hl :noh<CR>
@@ -606,5 +601,8 @@
 
     " Load the version of matchit.vim that ships with Vim
     runtime! macros/matchit.vim
+
+    " Alternative for autochdir
+    autocmd BufEnter * silent! lcd %:p:h
 
 " }}}
