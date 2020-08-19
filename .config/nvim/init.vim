@@ -539,6 +539,10 @@
         nmap <buffer> <silent> <leader>gy <Plug>(coc-type-definition)
         nmap <buffer> <silent> <leader>gi <Plug>(coc-implementation)
         nmap <buffer> <silent> <leader>gr <Plug>(coc-references)
+        nmap <buffer> <silent> <leader>gn <Plug>(coc-diagnostic-next)
+        nmap <buffer> <silent> <leader>gp <Plug>(coc-diagnostic-prev)
+        nmap <buffer> <silent> <leader>gen <Plug>(coc-diagnostic-next-error)
+        nmap <buffer> <silent> <leader>gep <Plug>(coc-diagnostic-prev-error)
         nnoremap <buffer> <leader>cr :CocRestart
     endfunction
 
