@@ -80,6 +80,8 @@
         "To build with Autotools, see docs/autotools.rst for more information
     Plug 'xolox/vim-easytags' " Automated tag file generation and syntax highlighting of tags in Vim
     Plug 'xolox/vim-misc' " Miscellaneous auto-load Vim scripts, required for xolox's pluggin
+    Plug 'turbio/bracey.vim'
+        let g:bracey_refresh_on_save = 1
 
     " Make life easier
     Plug 'gioele/vim-autoswap' " No more swap files!
