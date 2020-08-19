@@ -44,6 +44,14 @@
         let g:ycm_filetype_blacklist = {
                     \ 'gitcommit': 1,
                     \ 'vim': 1,
+                    \ 'c' : 1,
+                    \ 'cpp' : 1,
+                    \ 'cxx' : 1,
+                    \ 'h' : 1,
+                    \ 'hpp' : 1,
+                    \ 'html' : 1,
+                    \ 'css' : 1,
+                    \ 'text' : 1,
                     \}
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'dense-analysis/ale'
