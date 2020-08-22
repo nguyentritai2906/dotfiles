@@ -602,7 +602,7 @@
     " Load the version of matchit.vim that ships with Vim
     runtime! macros/matchit.vim
 
-    " Alternative for autochdir
+    " Better alternative for autochdir
     autocmd BufEnter * silent! lcd %:p:h
 
 " }}}
