@@ -52,6 +52,9 @@
                     \ 'html' : 1,
                     \ 'css' : 1,
                     \ 'text' : 1,
+                    \ 'yml' : 1,
+                    \ 'python' : 1,
+                    \ 'json' : 1,
                     \}
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'dense-analysis/ale'
@@ -509,6 +512,7 @@
         autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | set number relativenumber | endif
     augroup END
 
+    " Completion engines configuration to use COC in conjunction with YCM
     function! GoYCM()
         nnoremap <buffer> <silent> <leader>gd :YcmCompleter GoTo<CR>
         nnoremap <buffer> <silent> <leader>gr :YcmCompleter GoToReferences<CR>
@@ -549,8 +553,10 @@
         nnoremap <buffer> <leader>cr :CocRestart
     endfunction
 
-    autocmd Filetype java,ts,rs,go,py :call GoYCM()
-    autocmd Filetype c,cpp,cxx,h,hpp,html,css :call GoCoc()
+    autocmd Filetype java,typescript,rust,go :call GoYCM()
+    autocmd BufNew,BufEnter *.java,*.ts,*.rs,*.go execute "silent! CocDisable"
+    autocmd BufLeave *.java,*.ts,*.rs,*.go execute "silent! CocEnable"
+    autocmd Filetype c,cpp,cxx,h,hpp,html,css,python :call GoCoc()
 
     "NERDTree
     " Open NERDTree automatically when vim starts up if no files were specified
