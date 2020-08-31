@@ -122,18 +122,20 @@ if [ -f "$HOME/.config/repo-la.txt" ]; then
     echo "[Cache available packages] Would you like to update? [Y/n]: \c"
     read line
         if [[ "$line" == Y* ]] || [[ "$line" == y* ]] || [ -z "$line" ]; then
-            echo "Caching available packages in Solus repository";
-            eopkg la | sed -e '1,3d' > $HOME/.config/repo-la.txt;
-            echo "Done!";
+            pca;
         else
             echo "As you wish!";
         fi
     fi
 else
+    pca;
+fi
+
+pca() {
     echo "Caching available packages in Solus repository";
     eopkg la | sed -e '1,3d' > $HOME/.config/repo-la.txt;
     echo "Done!";
-fi
+}
 
 # Fuzzy grep via Ag then open it in the default editor if it's defined,
 # otherwise Vim (with line number)
