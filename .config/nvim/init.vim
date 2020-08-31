@@ -270,9 +270,10 @@
     vmap > >gv
 
     " Write, compile and execute
-    map <F6> :te java %<<CR>
-    map <Leader><F6> :!javac %<CR>
-    "map <F6> :w<CR> :!gcc % -o %< && ./%<<CR>
+    autocmd filetype java nnoremap <F6> :te java %<<CR>
+    autocmd filetype c,cpp nnoremap <F6> :te ./%<<CR>
+    autocmd filetype java nnoremap <Leader><F6> :w<CR> :!javac %<CR>
+    autocmd filetype c,cpp nnoremap <Leader><F6> :w<CR> :!gcc % -o %<<CR>
 
     " Visual selection of indent level
     function SelectIndent()
