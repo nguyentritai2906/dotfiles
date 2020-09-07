@@ -41,21 +41,7 @@
         let g:ycm_always_populate_location_list = 1
         let g:ycm_autoclose_preview_window_after_completion=1
         let g:ycm_min_num_of_chars_for_completion = 1
-        let g:ycm_filetype_blacklist = {
-                    \ 'gitcommit': 1,
-                    \ 'vim': 1,
-                    \ 'c' : 1,
-                    \ 'cpp' : 1,
-                    \ 'cxx' : 1,
-                    \ 'h' : 1,
-                    \ 'hpp' : 1,
-                    \ 'html' : 1,
-                    \ 'css' : 1,
-                    \ 'text' : 1,
-                    \ 'yml' : 1,
-                    \ 'python' : 1,
-                    \ 'json' : 1,
-                    \}
+        let g:loaded_youcompleteme = 1 " Disable on start up
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'dense-analysis/ale'
         let g:ale_completion_enabled = 0
@@ -270,6 +256,7 @@
     vmap > >gv
 
     " Write, compile and execute
+    autocmd filetype python nnoremap <buffer> <F6> :w<CR> :te  python3 ./%<CR>
     autocmd filetype java nnoremap <buffer> <F6> :te java %<<CR>
     autocmd filetype c,cpp nnoremap <buffer> <F6> :te ./%<<CR>
     autocmd filetype java nnoremap <buffer> <Leader><F6> :w<CR> :!javac %<CR>
@@ -511,6 +498,7 @@
 
     " Completion engines configuration to use COC in conjunction with YCM
     function! GoYCM()
+        let g:loaded_youcompleteme = 0
         nnoremap <buffer> <silent> <leader>gd :YcmCompleter GoTo<CR>
         nnoremap <buffer> <silent> <leader>gr :YcmCompleter GoToReferences<CR>
         nnoremap <buffer> <silent> <leader>rr :YcmCompleter RefactorRename<space>
