@@ -116,6 +116,12 @@ prm() {
     test -n "$inst" && print -z -- "sudo eopkg rm $(echo $inst | cut -d' ' -f1 | tr '\n' ' ')"
 }
 
+pca() {
+    echo "Caching available packages in Solus repository";
+    eopkg la | sed -e '1,3d' > $HOME/.config/repo-la.txt;
+    echo "Done!";
+}
+
 #Cache all available packages in the repositories for faster 'pit' search
 if [ -f "$HOME/.config/repo-la.txt" ]; then
     if [ $(expr $(date +%s) - $(date +%s -r $HOME/.config/repo-la.txt)) -gt 1296000 ]; then
@@ -130,12 +136,6 @@ if [ -f "$HOME/.config/repo-la.txt" ]; then
 else
     pca;
 fi
-
-pca() {
-    echo "Caching available packages in Solus repository";
-    eopkg la | sed -e '1,3d' > $HOME/.config/repo-la.txt;
-    echo "Done!";
-}
 
 # Fuzzy grep via Ag then open it in the default editor if it's defined,
 # otherwise Vim (with line number)
