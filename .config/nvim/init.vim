@@ -165,6 +165,34 @@
         let g:anzu_status_format = "[%i/%l]"
     " Plug 'severin-lemaignan/vim-minimap'
     Plug 'kshenoy/vim-signature' " Place, toggle and display marks
+    Plug 'junegunn/limelight.vim'
+        " Color name (:help cterm-colors) or ANSI code
+        let g:limelight_conceal_ctermfg = 'gray'
+        let g:limelight_conceal_ctermfg = 240
+        " Color name (:help gui-colors) or RGB color
+        let g:limelight_conceal_guifg = 'DarkGray'
+        let g:limelight_conceal_guifg = '#777777'
+        " Highlighting priority (default: 10)
+        "   Set it to -1 not to overrule hlsearch
+        let g:limelight_priority = -1
+
+        " Per paragraph {{{
+            " Number of preceding/following paragraphs to include (default: 0)
+            " let g:limelight_paragraph_span = 1
+            " Beginning/end of paragraph
+            "   When there's no empty line between the paragraphs
+            "   and each paragraph starts with indentation
+            " let g:limelight_bop = '^\s'
+            " let g:limelight_eop = '\ze\n^\s'
+        " }}}
+
+        " Per line {{{
+            let g:limelight_bop = '^.*$'
+            let g:limelight_eop = '\n'
+        " }}}
+    Plug 'junegunn/goyo.vim'
+        let g:goyo_linenr = 1
+        let g:goyo_width = 81
 
     " Navigation
     Plug 'easymotion/vim-easymotion' " Vim motions on speed
@@ -298,6 +326,8 @@
     " Insert blank line
     nnoremap <Leader>j mao<Esc>`a
     nnoremap <Leader>k maO<Esc>`a
+
+    nnoremap gm :call cursor(0, virtcol('$')/2)<CR>
 
     " Navigate between tab
     nnoremap th gT
@@ -588,19 +618,6 @@
     " Terminal settings
     " Enter insert mode automatically
     autocmd TermOpen * startinsert
-    " Make neovim automatically enter terminal mode or close terminal buffer when shell is exited
-    " https://www.reddit.com/r/neovim/comments/cger8p/how_quickly_close_a_terminal_buffer/
-    " augroup terminal_settings
-        " autocmd!
-        " autocmd BufWinEnter,WinEnter,TermOpen term://* startinsert
-        " autocmd BufLeave term://* stopinsert
-        " " Ignore various filetypes as those will close terminal automatically
-        " " Ignore fzf, ranger, coc
-        " autocmd TermClose term://*
-                    " \ if (expand('<afile>') !~ "fzf") && (expand('<afile>') !~ "ranger") && (expand('<afile>') !~ "coc") |
-                    " \   call nvim_input('<CR>')  |
-                    " \ endif
-    " augroup END
 
     " Preserve last editing position
     autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
@@ -610,5 +627,12 @@
 
     " Better alternative for autochdir
     autocmd BufEnter * silent! lcd %:p:h
+
+    " Goyo issue with transparency
+    " https://github.com/junegunn/goyo.vim/issues/224
+    function! s:goyo_leave()
+            hi Normal guibg=NONE ctermbg=NONE
+    endfunction
+    autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 " }}}
