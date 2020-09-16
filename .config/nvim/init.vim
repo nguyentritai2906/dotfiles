@@ -39,8 +39,10 @@
         " Populate vims location list with new diagnostic data
         " Use :lnext and :lprev - Jump to next or previous error in list
         let g:ycm_always_populate_location_list = 1
-        let g:ycm_autoclose_preview_window_after_completion=1
+        " let g:ycm_autoclose_preview_window_after_completion=1
+        " let g:ycm_autoclose_preview_window_after_insertion=1
         let g:ycm_min_num_of_chars_for_completion = 1
+        let g:lsp_ultisnips_integration=1
         " let g:loaded_youcompleteme = 1 " Disable on start up
          let g:ycm_filetype_blacklist = {
                     \ 'gitcommit': 1,
