@@ -160,6 +160,9 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # Add Black and Blackd to $PATH
 export PATH="$HOME/.local/bin:$PATH"
 
+# Add Java JDK
+export JAVA_HOME=/usr/lib64/openjdk-11/
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/solus/google-cloud-sdk/path.zsh.inc' ]; then . '/home/solus/google-cloud-sdk/path.zsh.inc'; fi
 
