@@ -12,7 +12,7 @@
     call plug#begin('~/.vim/plugged')
 
     " Dev
-    Plug 'Valloric/YouCompleteMe' " Ycm code-suggestion engine
+    " Plug 'Valloric/YouCompleteMe' " Ycm code-suggestion engine
         " Installed YouCompleteMe with both 'libclang' and 'clangd' enabled. In that case 'clangd' will
         " be preferred unless you have the following
         " let g:ycm_use_clangd = 0
@@ -542,13 +542,13 @@
     augroup END
 
     " Completion engines configuration to use COC in conjunction with YCM
-    function! GoYCM()
-        " let g:loaded_youcompleteme = 0
-        nnoremap <buffer> <silent> <leader>gd :YcmCompleter GoTo<CR>
-        nnoremap <buffer> <silent> <leader>gr :YcmCompleter GoToReferences<CR>
-        nnoremap <buffer> <silent> <leader>rr :YcmCompleter RefactorRename<space>
-        set completeopt-=preview
-    endfunction
+    " function! GoYCM()
+    "     " let g:loaded_youcompleteme = 0
+    "     nnoremap <buffer> <silent> <leader>gd :YcmCompleter GoTo<CR>
+    "     nnoremap <buffer> <silent> <leader>gr :YcmCompleter GoToReferences<CR>
+    "     nnoremap <buffer> <silent> <leader>rr :YcmCompleter RefactorRename<space>
+    "     set completeopt-=preview
+    " endfunction
 
     function! s:check_back_space() abort
         let col = col('.') - 1
@@ -584,10 +584,12 @@
         nnoremap <buffer> <leader>cr :CocRestart
     endfunction
 
-    autocmd Filetype java,typescript,rust,go :call GoYCM()
-    autocmd BufNew,BufEnter *.java,*.ts,*.rs,*.go execute "silent! CocDisable"
-    autocmd BufLeave *.java,*.ts,*.rs,*.go execute "silent! CocEnable"
-    autocmd Filetype c,cpp,cxx,h,hpp,html,css,python :call GoCoc()
+    " autocmd Filetype java,typescript,rust,go :call GoYCM()
+    " autocmd BufNew,BufEnter *.java,*.ts,*.rs,*.go execute "silent! CocDisable"
+    " autocmd BufLeave *.java,*.ts,*.rs,*.go execute "silent! CocEnable"
+    " autocmd Filetype c,cpp,cxx,h,hpp,html,css,python :call GoCoc()
+
+    autocmd Filetype java,c,cpp,cxx,h,hpp,html,css,python :call GoCoc()
 
     "NERDTree
     " Open NERDTree automatically when vim starts up if no files were specified
