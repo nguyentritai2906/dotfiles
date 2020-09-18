@@ -42,7 +42,7 @@
         " let g:ycm_autoclose_preview_window_after_completion=1
         " let g:ycm_autoclose_preview_window_after_insertion=1
         let g:ycm_min_num_of_chars_for_completion = 1
-        let g:lsp_ultisnips_integration=1
+        let g:lsp_ultisnips_integration = 1
         " let g:loaded_youcompleteme = 1 " Disable on start up
          let g:ycm_filetype_blacklist = {
                     \ 'gitcommit': 1,
@@ -547,6 +547,7 @@
         nnoremap <buffer> <silent> <leader>gd :YcmCompleter GoTo<CR>
         nnoremap <buffer> <silent> <leader>gr :YcmCompleter GoToReferences<CR>
         nnoremap <buffer> <silent> <leader>rr :YcmCompleter RefactorRename<space>
+        set completeopt-=preview
     endfunction
 
     function! s:check_back_space() abort
