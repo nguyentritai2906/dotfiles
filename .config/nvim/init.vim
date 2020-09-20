@@ -146,6 +146,7 @@
     Plug 'tpope/vim-repeat'
     Plug 'terryma/vim-multiple-cursors'
     Plug 'wellle/targets.vim'
+    Plug 'tpope/vim-abolish'
 
     " UI
     Plug 'vim-airline/vim-airline' " Lean & mean tabline for vim
