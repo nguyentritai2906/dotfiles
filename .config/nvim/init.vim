@@ -68,6 +68,7 @@
                     \ 'html': ['tidy', 'prettier'],
                     \ }
         let g:ale_fix_on_save = 1
+        let g:ale_pattern_options = {'\.java$': {'ale_enabled': 0}}
     Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
         let g:prettier#quickfix_enabled = 0
         autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml PrettierAsync
