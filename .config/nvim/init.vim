@@ -567,12 +567,15 @@
                     \ coc#refresh()
         inoremap <buffer> <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-        " Use <c-space> to trigger completion.
-        if has('nvim')
-            inoremap <buffer> <silent><expr> <c-space> coc#refresh()
-        else
-            inoremap <buffer> <silent><expr> <c-@> coc#refresh()
-        endif
+        " Add `:Format` command to format current buffer.
+        command! -nargs=0 Format :call CocAction('format')
+        " Add `:Fold` command to fold current buffer.
+        command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+        " Add `:OR` command for organize imports of the current buffer.
+        command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+        " Highlight the symbol and its references when holding the cursor.
+        autocmd CursorHold * silent call CocActionAsync('highlight')
 
         " GoTo code navigation.
         nmap <buffer> <silent> <leader>gd <Plug>(coc-definition)
@@ -587,14 +590,6 @@
 
         " Use <C-l> for trigger snippet expand.
         imap <C-l> <Plug>(coc-snippets-expand)
-        " " Use <C-j> for select text for visual placeholder of snippet.
-        " vmap <C-j> <Plug>(coc-snippets-select)
-        " Use <C-j> for jump to next placeholder, it's default of coc.nvim
-        let g:coc_snippet_next = '<c-j>'
-        " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-        let g:coc_snippet_prev = '<c-k>'
-        " " Use <C-j> for both expand and jump (make expand higher priority.)
-        " imap <C-j> <Plug>(coc-snippets-expand-jump)
     endfunction
 
     " autocmd Filetype java,typescript,rust,go :call GoYCM()
