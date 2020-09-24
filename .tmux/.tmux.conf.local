@@ -301,5 +301,9 @@ bind C-a send-prefix
 bind-key x kill-pane
 bind-key & kill-window
 
+# move windown left/right
+bind-key < swap-window -t -
+bind-key > swap-window -t +
+
 # move status line to top
 #skt -g status-position top
