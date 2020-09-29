@@ -567,6 +567,29 @@
                     \ coc#refresh()
         inoremap <buffer> <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
+        " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+        " position. Coc only does snippet and additional edit on confirm.
+        " <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+        if exists('*complete_info')
+            inoremap <expr> <CR> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+        else
+            inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+        endif
+
+        " Coc scroll popup
+        nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
+        nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
+
+        " Use <Leader-D> to show documentation in preview window.
+        nnoremap <silent> <Leader>D :call <SID>show_documentation()<CR>
+        function! s:show_documentation()
+            if (index(['vim','help'], &filetype) >= 0)
+                execute 'h '.expand('<cword>')
+            else
+                call CocActionAsync('doHover')
+            endif
+        endfunction
+
         " Add `:Format` command to format current buffer.
         command! -nargs=0 Format :call CocAction('format')
         " Add `:Fold` command to fold current buffer.
@@ -587,9 +610,6 @@
         nmap <buffer> <silent> <leader>gej <Plug>(coc-diagnostic-next-error)
         nmap <buffer> <silent> <leader>gek <Plug>(coc-diagnostic-prev-error)
         nnoremap <buffer> <leader>cr :CocRestart
-
-        " Use <C-l> for trigger snippet expand.
-        imap <C-l> <Plug>(coc-snippets-expand)
     endfunction
 
     " autocmd Filetype java,typescript,rust,go :call GoYCM()
@@ -608,17 +628,17 @@
                 \&& exists("b:NERDTree")
                 \&& b:NERDTree.isTabTree()) | q | endif
 
-    " Multiple Cursors
-    " Experimentally integrate YouCompleteMe with vim-multiple-cursors, otherwise
-    " the numerous Cursor events cause great slowness
-    " (https://github.com/kristijanhusak/vim-multiple-cursors/issues/4)
-    function Multiple_cursors_before()
-        let s:old_ycm_whitelist = g:ycm_filetype_whitelist
-        let g:ycm_filetype_whitelist = {}
-    endfunction
-    function Multiple_cursors_after()
-        let g:ycm_filetype_whitelist = s:old_ycm_whitelist
-    endfunction
+    " " Multiple Cursors
+    " " Experimentally integrate YouCompleteMe with vim-multiple-cursors, otherwise
+    " " the numerous Cursor events cause great slowness
+    " " (https://github.com/kristijanhusak/vim-multiple-cursors/issues/4)
+    " function Multiple_cursors_before()
+    "     let s:old_ycm_whitelist = g:ycm_filetype_whitelist
+    "     let g:ycm_filetype_whitelist = {}
+    " endfunction
+    " function Multiple_cursors_after()
+    "     let g:ycm_filetype_whitelist = s:old_ycm_whitelist
+    " endfunction
 
     " Remove trailing whilespace
     autocmd BufWritePre * %s/\s\+$//e
