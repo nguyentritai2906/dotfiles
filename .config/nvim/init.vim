@@ -148,6 +148,7 @@
     Plug 'terryma/vim-multiple-cursors'
     Plug 'wellle/targets.vim'
     Plug 'tpope/vim-abolish'
+    Plug 'simeji/winresizer'
 
     " UI
     Plug 'vim-airline/vim-airline' " Lean & mean tabline for vim
@@ -247,6 +248,7 @@
     set wildcharm=<Tab>
     set pastetoggle=<F2>
     set dictionary+=/usr/share/dict/words
+    set mouse=nv
 
     " Searching
     set incsearch " lookahead as search pattern is specified
@@ -529,6 +531,11 @@
     " ALE
     nmap <silent> <leader>aj :ALENext<CR>
     nmap <silent> <leader>ak :ALEPrevious<CR>
+
+    " WinResize
+    " If you want to start window resize mode by `Leader+E`
+    let g:winresizer_start_key="<Leader>E"
+
 
 " }}}
 
