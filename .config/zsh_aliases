@@ -32,6 +32,7 @@ alias cfa="cf add"
 alias cfc="cf commit"
 alias cfca="cf commit -a"
 alias cfp="cf push"
+alias cfl="cf pull"
 alias ranger='ranger --choosedir=$HOME/.config/ranger/rangerdir; LASTDIR=`cat $HOME/.config/ranger/rangerdir`; cd "$LASTDIR"'
 alias bat="bat --style=numbers --color=always "
 
