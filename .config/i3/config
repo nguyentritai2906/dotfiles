@@ -258,7 +258,7 @@ exec --no-startup-id xss-lock -l -- i3exit lock &
 exec --no-startup-id syndaemon -d -t -K -R
 exec --no-startup-id spotify
 exec --no-startup-id qbittorrent
-exec --no-startup-id picom -b
+exec --no-startup-id picom --experimental-backends --blur-background --blur-method dual_kawase
 exec_always --no-startup-id xset r rate 200 70
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
