@@ -217,7 +217,7 @@
     Plug 'plasticboy/vim-markdown'	" Syntax highlighting, matching rules and mappings Markdown
         let g:vim_markdown_no_default_key_mappings = 1
         let g:vim_markdown_folding_disabled = 1
-    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+    Plug 'SirVer/ultisnips' | Plug 'nguyentritai2906/vim-snippets'
         let g:UltiSnipsExpandTrigger = "<C-j>"
         let g:UltiSnipsJumpForwardTrigger = "<C-j>"
         let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
