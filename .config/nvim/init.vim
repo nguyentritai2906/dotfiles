@@ -290,11 +290,6 @@
     " Map leader to space
     let mapleader=" "
 
-    " " Remap ESC
-    " inoremap ii <ESC>
-    " vnoremap ii <ESC>
-    " cnoremap ii <ESC>
-
     " Clear all highlight
     nnoremap <Leader>hl :noh<CR>
 
