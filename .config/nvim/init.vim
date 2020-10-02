@@ -118,6 +118,7 @@
         \ 'marker':  ['fg', 'Keyword'],
         \ 'spinner': ['fg', 'Label'],
         \ 'header':  ['fg', 'Comment'] }
+        let g:fzf_buffers_jump = 1
     Plug 'preservim/nerdtree' " A tree explorer plugin for vim
     Plug 'simnalamburt/vim-mundo' " Graph vim undo tree
         let g:mundo_auto_preview_delay=0
@@ -141,6 +142,10 @@
         let g:NERDRemoveExtraSpaces = 1
     Plug 'tpope/vim-surround' " Change parentheses and stuff with ease
     Plug 'christoomey/vim-titlecase'
+        let g:titlecase_map_keys = 0
+        nmap <leader>gt <Plug>Titlecase
+        vmap <leader>gt <Plug>Titlecase
+        nmap <leader>gT <Plug>TitlecaseLine
     Plug 'michaeljsmith/vim-indent-object'
     Plug 'kana/vim-textobj-user' | Plug 'kana/vim-textobj-line' | Plug 'kana/vim-textobj-entire'
     Plug 'danro/rename.vim'

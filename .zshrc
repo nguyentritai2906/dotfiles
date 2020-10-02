@@ -187,3 +187,16 @@ export PATH=$PATH:$GOPATH/bin
 
 # Load zsh-syntax-highlighting; should be last.
 source $HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Random wikipedia on this day fact
+#
+# for day in {1..365}; do
+    # mkdir ~/.config/wikidates 2>/dev/null
+    # date=$(date -d "now +$day days" +%B_%d)
+    # w3m -cols 99999 -dump http://en.wikipedia.org/wiki/$date | sed -n '/^Events/,/^Births/p' | sed '1d;$d' | sed -n 's/^.*•//p' > ~/.config/wikidates/$date
+    # echo $date
+# done
+
+# w3m -cols 99999 -dump http://en.wikipedia.org/wiki/February_29 | sed -n '/^Events/,/^Births/p' | sed '1d;$d' | sed -n 's/^.*•//p' > ~/.config/wikidates/February_29
+#
+cat ~/.config/wikidates/$(date +%B_%d) | shuf -n 1
