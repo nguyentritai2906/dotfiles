@@ -87,9 +87,6 @@
 
     " Tags
     Plug 'majutsushi/tagbar' " Vim plugin that displays tags in a window
-    Plug 'universal-ctags/ctags' " Universal tags for codes
-        "Install Exuberant Ctags 'sudo eopkg it ctags' which is a dependency
-        "To build with Autotools, see docs/autotools.rst for more information
     Plug 'xolox/vim-easytags' " Automated tag file generation and syntax highlighting of tags in Vim
     Plug 'xolox/vim-misc' " Miscellaneous auto-load Vim scripts, required for xolox's pluggin
     Plug 'turbio/bracey.vim'
@@ -535,7 +532,6 @@
     " WinResize
     " If you want to start window resize mode by `Leader+E`
     let g:winresizer_start_key="<Leader>E"
-
 
 " }}}
 
