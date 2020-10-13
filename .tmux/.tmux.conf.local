@@ -38,7 +38,7 @@ tmux_conf_new_session_prompt=false
 
 
 # -- display -------------------------------------------------------------------
-acolor='#bd93f9'
+acolor='#8be9fd'
 
 # RGB 24-bit colour support (tmux >= 2.2), possible values are:
 #  - true
