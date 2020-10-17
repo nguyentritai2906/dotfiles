@@ -255,7 +255,7 @@ exec --no-startup-id google-chrome-stable
 exec --no-startup-id nohup unclutter -idle 2 &
 exec --no-startup-id redshift &
 exec --no-startup-id xss-lock -l -- i3exit lock &
-exec --no-startup-id syndaemon -d -t -K -R
+exec --no-startup-id syndaemon -d -K -R
 exec --no-startup-id spotify
 exec --no-startup-id qbittorrent
 exec --no-startup-id picom --experimental-backends --blur-background --blur-method dual_kawase
