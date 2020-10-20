@@ -5,6 +5,9 @@
 MODE=$(ibus engine)
 if [[ $MODE == "Bamboo" ]] ; then
 	echo "VI "
+elif [[ $MODE == "anthy" ]]; then
+    echo "JP "
 else
 	echo "US "
 fi
+
