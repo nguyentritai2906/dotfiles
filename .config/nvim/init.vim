@@ -335,7 +335,11 @@
     nnoremap <Leader>j mao<Esc>`a
     nnoremap <Leader>k maO<Esc>`a
 
+    " Go to middle of line
     nnoremap gm :call cursor(0, virtcol('$')/2)<CR>
+
+    " Delete next word after cursor (similar to CTRL-W) in insert mode
+    inoremap <C-e> <C-o>de
 
     " Navigate between tab
     nnoremap th gT
