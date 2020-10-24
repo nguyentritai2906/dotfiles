@@ -681,7 +681,7 @@
     autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
     call glaive#Install()
-    " Glaive codefmt plugin[mappings]
+    Glaive codefmt plugin[mappings]
     Glaive codefmt google_java_executable="java -jar /home/solus/soft/google-java-format/google-java-format-1.9-all-deps.jar -a"
     augroup autoformat_settings
         autocmd FileType bzl AutoFormatBuffer buildifier
