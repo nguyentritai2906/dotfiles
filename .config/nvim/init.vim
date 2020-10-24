@@ -679,9 +679,11 @@
     endfunction
     autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
+    " CodeFmt
     call glaive#Install()
     Glaive codefmt plugin[mappings]
     Glaive codefmt google_java_executable="java -jar /home/solus/soft/google-java-format/google-java-format-1.9-all-deps.jar -a"
+
     augroup autoformat_settings
         autocmd FileType bzl AutoFormatBuffer buildifier
         autocmd FileType c,cpp,proto,javascript,arduino AutoFormatBuffer clang-format
@@ -695,4 +697,5 @@
         autocmd FileType rust AutoFormatBuffer rustfmt
         autocmd FileType vue AutoFormatBuffer prettier
     augroup END
+
 " }}}
