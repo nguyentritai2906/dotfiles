@@ -204,6 +204,7 @@
     Plug 'junegunn/goyo.vim'
         let g:goyo_linenr = 1
         let g:goyo_width = 81
+    Plug 'mhinz/vim-startify'
 
     " Navigation
     Plug 'easymotion/vim-easymotion' " Vim motions on speed
