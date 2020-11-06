@@ -161,6 +161,8 @@
 
     " UI
     Plug 'vim-airline/vim-airline' " Lean & mean tabline for vim
+        let g:airline_powerline_fonts = 1
+        let g:airline#extensions#tabline#enabled = 1
     Plug 'morhetz/gruvbox' " GruvBox colorscheme
     Plug 'joshdick/onedark.vim' " OneDark colorscheme
     Plug 'dracula/vim', { 'as': 'dracula'  } " GruvBox colorscheme
