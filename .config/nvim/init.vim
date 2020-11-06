@@ -139,6 +139,7 @@
                     \ 'markdown': {'parentheses_options': 'containedin=markdownCode contained',},
                     \ 'vimwiki': {'parentheses_options': 'containedin=vimwikiCode contained',},
                     \ 'vim': {'parentheses_options': 'containedin=vimFuncBody',},
+                    \ 'nerdtree': 0
                     \ }}
     Plug 'preservim/nerdcommenter' | Plug 'tpope/vim-commentary' " Easy comment out lines of codes
         let g:NERDCreateDefaultMappings = 0
@@ -158,6 +159,8 @@
     Plug 'wellle/targets.vim'
     Plug 'tpope/vim-abolish'
     Plug 'simeji/winresizer'
+    Plug 'szw/vim-maximizer'
+    " Plug 'romgrk/barbar.nvim' " Required Neovim 0.5
 
     " UI
     Plug 'vim-airline/vim-airline' " Lean & mean tabline for vim
@@ -207,6 +210,8 @@
         let g:goyo_linenr = 1
         let g:goyo_width = 81
     Plug 'mhinz/vim-startify'
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'kyazdani42/nvim-web-devicons'
 
     " Navigation
     Plug 'easymotion/vim-easymotion' " Vim motions on speed

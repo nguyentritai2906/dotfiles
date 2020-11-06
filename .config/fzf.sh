@@ -100,25 +100,25 @@ bindkey -s '\et' "fzf-home-vim\n"
 
 #Search for installed packages
 pli() {
-    local inst=$(eopkg li | fzf --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat")
+    local inst=$(eopkg li | awk '{print $1}' | fzf --ansi --tiebreak=length,begin,end,index --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat" --preview-window=nohidden)
     print -z -- "$(echo $inst | awk '{print $1;}')"
 }
 
 #Search for packages in the repositories and install
 pit() {
-    local inst=$(cat $HOME/.config/repo-la.txt | fzf -m --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat")
+    local inst=$(cat $HOME/.config/repo-la.txt | fzf -m --tiebreak=length,begin,end,index --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat" --preview-window=nohidden)
     test -n "$inst" && print -z -- "sudo eopkg it $(echo $inst | cut -d' ' -f1 | tr '\n' ' ')"
 }
 
 #Search for installed packages and remove
 prm() {
-    local inst=$(eopkg li | fzf -m --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat")
+    local inst=$(eopkg li | awk '{print $1}' | fzf -m --tiebreak=length,begin,end,index --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat" --preview-window=nohidden)
     test -n "$inst" && print -z -- "sudo eopkg rm $(echo $inst | cut -d' ' -f1 | tr '\n' ' ')"
 }
 
 pca() {
     echo "Caching available packages in Solus repository";
-    eopkg la | sed -e '1,3d' > $HOME/.config/repo-la.txt;
+    eopkg la | sed -e '1,3d' | awk '{print $1}'> $HOME/.config/repo-la.txt;
     echo "Done!";
 }
 
