@@ -2,7 +2,7 @@
 
 BAR_ICON=""
 
-get_total_updates() { UPDATES=$(eopkg lu 2>/dev/null | wc -l) ; }
+get_total_updates() { UPDATES=$(eopkg ur > /dev/null && eopkg lu 2>/dev/null | wc -l) ; }
 
 while true; do
     get_total_updates
