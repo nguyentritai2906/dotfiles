@@ -125,7 +125,7 @@ tmux_conf_theme_window_status_format='#I #W'
 #     - #{username}
 #     - #{username_ssh}
 tmux_conf_theme_window_status_current_fg='#000000'      # black
-tmux_conf_theme_window_status_current_bg='#689d6a'      # kind of green
+tmux_conf_theme_window_status_current_bg='#50fa7b'      # kind of green
 tmux_conf_theme_window_status_current_attr='bold'
 tmux_conf_theme_window_status_current_format='#I #W'
 #tmux_conf_theme_window_status_current_format='#{circled_window_index} #W'
@@ -137,25 +137,25 @@ tmux_conf_theme_window_status_activity_bg='default'
 tmux_conf_theme_window_status_activity_attr='underscore'
 
 # window bell status style
-tmux_conf_theme_window_status_bell_fg='#689d6a'         # kind of green
+tmux_conf_theme_window_status_bell_fg='#50fa7b'         # kind of green
 tmux_conf_theme_window_status_bell_bg='default'
 tmux_conf_theme_window_status_bell_attr='blink,bold'
 
 # window last status style
-tmux_conf_theme_window_status_last_fg='#689d6a'         # kind of green
+tmux_conf_theme_window_status_last_fg='#50fa7b'         # kind of green
 
 tmux_conf_theme_window_status_last_bg='default'
 tmux_conf_theme_window_status_last_attr='none'
 
 # status left/right sections separators
-tmux_conf_theme_left_separator_main=''
-tmux_conf_theme_left_separator_sub='|'
-tmux_conf_theme_right_separator_main=''
-tmux_conf_theme_right_separator_sub='|'
-#tmux_conf_theme_left_separator_main='\uE0B0'  # /!\ you don't need to install Powerline
-#tmux_conf_theme_left_separator_sub='\uE0B1'   #   you only need fonts patched with
-#tmux_conf_theme_right_separator_main='\uE0B2' #   Powerline symbols or the standalone
-#tmux_conf_theme_right_separator_sub='\uE0B3'  #   PowerlineSymbols.otf font, see README.md
+# tmux_conf_theme_left_separator_main=''
+# tmux_conf_theme_left_separator_sub='|'
+# tmux_conf_theme_right_separator_main=''
+# tmux_conf_theme_right_separator_sub='|'
+tmux_conf_theme_left_separator_main='\uE0B0'  # /!\ you don't need to install Powerline
+tmux_conf_theme_left_separator_sub='\uE0B1'   #   you only need fonts patched with
+tmux_conf_theme_right_separator_main='\uE0B2' #   Powerline symbols or the standalone
+tmux_conf_theme_right_separator_sub='\uE0B3'  #   PowerlineSymbols.otf font, see README.md
 
 # status left/right content:
 #   - separate main sections with '|'
@@ -186,13 +186,15 @@ tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} | #{username}#{
 #tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} #{?battery_status, #{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} , %R , %d %b | #{username}#{root} | #{hostname} '
 
 # status left style
-tmux_conf_theme_status_left_fg='#000000,#000000,#e4e4e4'  # black, black , white
-tmux_conf_theme_status_left_bg='#fe8019,#a89984,#689d6a'  # orange, yellow, green
+tmux_conf_theme_status_left_fg='#000000,#e4e4e4,#e4e4e4'  # black, black , white
+# tmux_conf_theme_status_left_bg='#fe8019,#a89984,#689d6a'  # orange, yellow, green
+tmux_conf_theme_status_left_bg='#BD93F9,#5f5faf,#e4e4e4'
 tmux_conf_theme_status_left_attr='bold,none,none'
 
 # status right style
-tmux_conf_theme_status_right_fg='#8a8a8a,#000000,#000000' # light gray, black, black
-tmux_conf_theme_status_right_bg='#080808,#689d6a,#e4e4e4' # black, kind of green, white
+tmux_conf_theme_status_right_fg='#8a8a8a,#e4e4e4,#000000' # light gray, black, black
+# tmux_conf_theme_status_right_bg='#080808,#689d6a,#e4e4e4' # black, kind of green, white
+tmux_conf_theme_status_right_bg='#000000,#5f5faf,#BD93F9'
 tmux_conf_theme_status_right_attr='none,none,bold'
 
 # pairing indicator
