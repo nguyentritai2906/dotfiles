@@ -85,7 +85,6 @@
         let g:mundo_inline_undo=1
     Plug 'jiangmiao/auto-pairs' " Autopair parentheses and stuff
         let g:AutoPairsFlyMode = 1
-        " For why using F22 hack see http://vim.wikia.com/wiki/Mapping_fast_keycodes_in_terminal_Vim
         let g:AutoPairsShortcutBackInsert = '<A-m>'
     Plug 'luochen1990/rainbow' " Rainbow parentheses
         let g:rainbow_active = 1    " Enable vim-rainbow globally
@@ -116,7 +115,6 @@
     Plug 'tpope/vim-abolish'
     Plug 'simeji/winresizer'
     Plug 'szw/vim-maximizer'
-    " Plug 'romgrk/barbar.nvim' " Required Neovim 0.5
 
     " UI
     Plug 'vim-airline/vim-airline' " Lean & mean tabline for vim
@@ -229,7 +227,7 @@
     set wildignorecase " Command line completion ignore case
     set hlsearch " highlight all matches
     let @/ = "" " highlight search but not when source .vimrc
-    set nolazyredraw " don't redraw while executing macros
+    set lazyredraw " don't redraw while executing macros
     set tags=tags;/ " Check current folder for tags file and keep going one directory up all the way to the root folder
 
     " Apprearance
@@ -335,6 +333,7 @@
         " Add DONE to TODO highlighting group
         " https://stackoverflow.com/questions/4162664/vim-highlight-a-list-of-words
         match Todo /DONE\|NOTE/
+
         " Center search hit and automatically clear highlight with is.vim
         nnoremap <silent> <F4> :call <SID>SearchMode()<CR>
         " Default to 'Middle'
