@@ -12,50 +12,6 @@
     call plug#begin('~/.vim/plugged')
 
     " Dev
-    " Plug 'Valloric/YouCompleteMe' " Ycm code-suggestion engine
-        " Installed YouCompleteMe with both 'libclang' and 'clangd' enabled. In that case 'clangd' will
-        " be preferred unless you have the following
-        " let g:ycm_use_clangd = 0
-        " YCM semantic completion to automatically trigger after typing two characters
-        let g:ycm_semantic_triggers =  {
-                    \   'c': ['->', '.'],
-                    \   'objc': ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
-                    \            're!\[.*\]\s'],
-                    \   'ocaml': ['.', '#'],
-                    \   'cpp,cuda,objcpp': ['->', '.', '::'],
-                    \   'perl': ['->'],
-                    \   'php': ['->', '::'],
-                    \   'cs,d,elixir,go,groovy,java,javascript,julia,perl6,python,scala,typescript,vb': ['.', 're!\w{2}'],
-                    \   'ruby,rust': ['.', '::'],
-                    \   'lua': ['.', ':'],
-                    \   'erlang': [':'],
-                    \ }
-        " Make YCM compatible with UltiSnips (using <Tab> through Supertab)
-        let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-        let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-        " Trigger completion for C
-        let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
-        let g:ycm_show_diagnostics_ui = 1
-        " Populate vims location list with new diagnostic data
-        " Use :lnext and :lprev - Jump to next or previous error in list
-        let g:ycm_always_populate_location_list = 1
-        " let g:ycm_autoclose_preview_window_after_completion=1
-        " let g:ycm_autoclose_preview_window_after_insertion=1
-        let g:ycm_min_num_of_chars_for_completion = 1
-        let g:lsp_ultisnips_integration = 1
-        " let g:loaded_youcompleteme = 1 " Disable on start up
-         let g:ycm_filetype_blacklist = {
-                    \ 'gitcommit': 1,
-                    \ 'vim': 1,
-                    \ 'c' : 1,
-                    \ 'cpp' : 1,
-                    \ 'cxx' : 1,
-                    \ 'h' : 1,
-                    \ 'hpp' : 1,
-                    \ 'html' : 1,
-                    \ 'css' : 1,
-                    \ 'text' : 1,
-                    \}
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " Add maktaba and codefmt to the runtimepath.
     " (The latter must be installed before it can be used.)
@@ -129,7 +85,6 @@
         let g:mundo_inline_undo=1
     Plug 'jiangmiao/auto-pairs' " Autopair parentheses and stuff
         let g:AutoPairsFlyMode = 1
-        " For why using F22 hack see http://vim.wikia.com/wiki/Mapping_fast_keycodes_in_terminal_Vim
         let g:AutoPairsShortcutBackInsert = '<A-m>'
     Plug 'luochen1990/rainbow' " Rainbow parentheses
         let g:rainbow_active = 1    " Enable vim-rainbow globally
@@ -160,7 +115,6 @@
     Plug 'tpope/vim-abolish'
     Plug 'simeji/winresizer'
     Plug 'szw/vim-maximizer'
-    " Plug 'romgrk/barbar.nvim' " Required Neovim 0.5
 
     " UI
     Plug 'vim-airline/vim-airline' " Lean & mean tabline for vim
@@ -247,7 +201,7 @@
 
     set nocompatible " Be iMproved, required
     filetype plugin indent on " https://vi.stackexchange.com/questions/10124/what-is-the-difference-between-filetype-plugin-indent-on-and-filetype-indent
-    syntax on " For C syntax check, change C++11 to C99 in .vim/.ycm_extra_conf.py
+    syntax on
     set encoding=utf-8
     set autoread " detect when a file is changed
     set backupdir=~/.vim/tmp/backup//,. " set directory for backup files
@@ -274,7 +228,7 @@
     set wildignorecase " Command line completion ignore case
     set hlsearch " highlight all matches
     let @/ = "" " highlight search but not when source .vimrc
-    set nolazyredraw " don't redraw while executing macros
+    set lazyredraw " don't redraw while executing macros
     set tags=tags;/ " Check current folder for tags file and keep going one directory up all the way to the root folder
 
     " Apprearance
@@ -369,16 +323,6 @@
         " Highlight
         highlight		Normal		guibg=NONE	 ctermbg=NONE
         highlight         link      Searchlight  IncSearch
-        "highlight       Search    ctermfg=Black  ctermbg=208    cterm=bold
-        "highlight  Searchlight    ctermfg=Black  ctermbg=196    cterm=bold
-        "highlight    IncSearch    ctermfg=Black  ctermbg=196    cterm=bold
-
-        "highlight link VimwikiHeader1 GruvBoxRed
-        "highlight link VimwikiHeader2 GruvBoxGreen
-        "highlight link VimwikiHeader3 GruvBoxBlue
-        "highlight link VimwikiHeader4 GruvBoxPurple
-        "highlight link VimwikiHeader5 GruvBoxAqua
-        "highlight link VimwikiHeader6 GruvBoxYellow
 
         highlight link VimwikiHeader1 DraculaRed
         highlight link VimwikiHeader2 DraculaGreen
@@ -390,6 +334,7 @@
         " Add DONE to TODO highlighting group
         " https://stackoverflow.com/questions/4162664/vim-highlight-a-list-of-words
         match Todo /DONE\|NOTE/
+
         " Center search hit and automatically clear highlight with is.vim
         nnoremap <silent> <F4> :call <SID>SearchMode()<CR>
         " Default to 'Middle'
@@ -565,15 +510,6 @@
         autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | set number relativenumber | endif
     augroup END
 
-    " Completion engines configuration to use COC in conjunction with YCM
-    " function! GoYCM()
-    "     " let g:loaded_youcompleteme = 0
-    "     nnoremap <buffer> <silent> <leader>gd :YcmCompleter GoTo<CR>
-    "     nnoremap <buffer> <silent> <leader>gr :YcmCompleter GoToReferences<CR>
-    "     nnoremap <buffer> <silent> <leader>rr :YcmCompleter RefactorRename<space>
-    "     set completeopt-=preview
-    " endfunction
-
     function! s:check_back_space() abort
         let col = col('.') - 1
         return !col || getline('.')[col - 1]  =~# '\s'
@@ -634,11 +570,6 @@
         nnoremap <buffer> <leader>cr :CocRestart
     endfunction
 
-    " autocmd Filetype java,typescript,rust,go :call GoYCM()
-    " autocmd BufNew,BufEnter *.java,*.ts,*.rs,*.go execute "silent! CocDisable"
-    " autocmd BufLeave *.java,*.ts,*.rs,*.go execute "silent! CocEnable"
-    " autocmd Filetype c,cpp,cxx,h,hpp,html,css,python :call GoCoc()
-
     autocmd Filetype java,c,cpp,cxx,h,hpp,html,css,python :call GoCoc()
 
     "NERDTree
@@ -649,18 +580,6 @@
     autocmd BufEnter * if (winnr("$") == 1
                 \&& exists("b:NERDTree")
                 \&& b:NERDTree.isTabTree()) | q | endif
-
-    " " Multiple Cursors
-    " " Experimentally integrate YouCompleteMe with vim-multiple-cursors, otherwise
-    " " the numerous Cursor events cause great slowness
-    " " (https://github.com/kristijanhusak/vim-multiple-cursors/issues/4)
-    " function Multiple_cursors_before()
-    "     let s:old_ycm_whitelist = g:ycm_filetype_whitelist
-    "     let g:ycm_filetype_whitelist = {}
-    " endfunction
-    " function Multiple_cursors_after()
-    "     let g:ycm_filetype_whitelist = s:old_ycm_whitelist
-    " endfunction
 
     " Remove trailing whilespace
     autocmd BufWritePre * %s/\s\+$//e
