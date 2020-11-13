@@ -18,7 +18,7 @@ disconnected=""
 ethernet_connected=""
 
 while true; do
-    ID="$(ip link | awk '/state UP/ {print $2}')"
+    ID="$(ip link | awk '/state UP/ {print substr($2, 1, length($2)-1)}')"
     network_name="$(nmcli -t -f active,ssid dev wifi | egrep '^yes' | cut -d\: -f2)"
     network_strength="$(iwconfig wlp3s0 | awk -F'[ = ]+' '/Signal level/ {print $7}')"
     if (ping -c 1 google.com) &>/dev/null; then
