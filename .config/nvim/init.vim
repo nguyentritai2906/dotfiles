@@ -567,6 +567,7 @@
         nmap <buffer> <silent> <leader>gk <Plug>(coc-diagnostic-prev)
         nmap <buffer> <silent> <leader>gej <Plug>(coc-diagnostic-next-error)
         nmap <buffer> <silent> <leader>gek <Plug>(coc-diagnostic-prev-error)
+        nmap <buffer> <silent> <leader>rn <Plug>(coc-rename)
         nnoremap <buffer> <leader>cr :CocRestart
     endfunction
 
