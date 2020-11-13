@@ -7,7 +7,7 @@
 
 
 set $super Mod4
-set $alt Mod2
+set $alt Mod1
 
 default_border pixel 2
 default_floating_border pixel 2
@@ -74,6 +74,7 @@ bindsym $super+Shift+Right move right
 # workspace back and forth (with/without active container)
 workspace_auto_back_and_forth yes
 bindsym $super+b workspace back_and_forth
+bindsym $alt+Tab workspace back_and_forth
 bindsym $super+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 ## split orientation
