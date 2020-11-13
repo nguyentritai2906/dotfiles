@@ -20,11 +20,11 @@ ethernet_connected=""
 while true; do
     ID="$(ip link | awk '/state UP/ {print substr($2, 1, length($2)-1)}')"
     network_name="$(nmcli -t -f active,ssid dev wifi | egrep '^yes' | cut -d\: -f2)"
-    network_strength="$(iwconfig wlp3s0 | awk -F'[ = ]+' '/Signal level/ {print $7}')"
     if (ping -c 1 google.com) &>/dev/null; then
         if [[ $ID == e* ]]; then
             echo "$ethernet_connected" ; sleep 3
         else
+            network_strength="$(iwconfig $ID | awk -F'[ = ]+' '/Signal level/ {print $7}')"
             if [[ $network_strength -gt -30  ]] ; then
                 echo "$icon4 $network_name"; sleep 3
             elif [[ $network_strength -lt -30 && $network_strength -gt -67  ]] ; then
