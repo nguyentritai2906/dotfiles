@@ -196,8 +196,8 @@ bindsym $super+Shift+x exec --no-startup-id betterlockscreen -l
 #bindsym $super+Shift+x exec --no-startup-id ~/.config/i3/lock.sh
 
 # Set shut down, restart and locking features
-set $supere_system [l] lock,  [e] exit, [u] switch_user, [s] suspend, [h] hibernate, [r] reboot, [S] shutdown
-mode "$supere_system" {
+set $mode_system [l] lock,  [e] exit, [u] switch_user, [s] suspend, [h] hibernate, [r] reboot, [S] shutdown
+mode "$mode_system" {
     bindsym l exec --no-startup-id i3exit lock, mode "default"
     bindsym u exec --no-startup-id i3exit switch_user, mode "default"
     bindsym h exec --no-startup-id i3exit hibernate, mode "default"
@@ -210,7 +210,7 @@ mode "$supere_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $super+Pause mode "$supere_system"
+bindsym $super+Pause mode "$mode_system"
 
 # Resize window (you can also use the mouse for that)
 bindsym $super+s mode "resize"
@@ -293,18 +293,18 @@ smart_gaps on
 # outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or
 # 0 (remove gaps for current workspace). If you also press Shift with these
 # keys, the change will be global for all workspaces.
-set $supere_gaps Gaps: (o) outer, (i) inner
-set $supere_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $supere_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
-bindsym $super+Shift+g mode "$supere_gaps"
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $super+Shift+g mode "$mode_gaps"
 
-mode "$supere_gaps" {
-        bindsym o      mode "$supere_gaps_outer"
-        bindsym i      mode "$supere_gaps_inner"
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-mode "$supere_gaps_inner" {
+mode "$mode_gaps_inner" {
         bindsym plus  gaps inner current plus 5
         bindsym minus gaps inner current minus 5
         bindsym 0     gaps inner current set 0
@@ -316,7 +316,7 @@ mode "$supere_gaps_inner" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-mode "$supere_gaps_outer" {
+mode "$mode_gaps_outer" {
         bindsym plus  gaps outer current plus 5
         bindsym minus gaps outer current minus 5
         bindsym 0     gaps outer current set 0
