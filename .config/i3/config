@@ -6,7 +6,8 @@
 #╚═╝╚═════╝  ╚══╝╚══╝ ╚═╝     ╚═╝     ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝ ╚═════╝
 
 
-set $mod Mod4
+set $super Mod4
+set $alt Mod1
 
 default_border pixel 2
 default_floating_border pixel 2
@@ -17,29 +18,29 @@ hide_edge_borders none
 font pango:monospace 8
 #font pango:DejaVu Sans Mono 8
 
-floating_modifier $mod
+floating_modifier $super
 
-#bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec alacritty
+#bindsym $super+Return exec i3-sensible-terminal
+bindsym $super+Return exec alacritty
 
 # window kill command
-bindsym $mod+w kill
+bindsym $super+w kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id rofi -show run -matching fuzzy
+bindsym $super+d exec --no-startup-id rofi -show run -matching fuzzy
 
 # start window switcher
-bindsym $mod+Shift+d exec --no-startup-id rofi -show drun -matching fuzzy
+bindsym $super+Shift+d exec --no-startup-id rofi -show drun -matching fuzzy
 
 # start rofi combi mode
-bindsym $mod+r exec --no-startup-id $HOME/.config/polybar/scripts/color-switch.sh
+bindsym $super+r exec --no-startup-id $HOME/.config/polybar/scripts/color-switch.sh
 
 # Use Rofi to select icons from Font Awesome Icon List
-bindsym $mod+i exec --no-startup-id $HOME/rofi-fontawesome/fontawesome-menu/fontawesome-menu -f /home/solus/rofi-fontawesome/fa5-icon-list.txt -o '-matching fuzzy -i -columns 4' >/dev/null
+bindsym $super+i exec --no-startup-id $HOME/rofi-fontawesome/fontawesome-menu/fontawesome-menu -f /home/solus/rofi-fontawesome/fa5-icon-list.txt -o '-matching fuzzy -i -columns 4' >/dev/null
 
 
 # file manager
-bindsym $mod+e exec --no-startup-id nautilus
+bindsym $super+e exec --no-startup-id nautilus
 # browser
 bindsym Ctrl+Shift+f exec --no-startup-id google-chrome-stable
 
@@ -49,67 +50,68 @@ bindsym Shift+Print exec --no-startup-id flameshot gui
 bindsym Ctrl+Print exec --no-startup-id flameshot full -c -p ~/Pictures/screenshot
 
 # change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym $super+h focus left
+bindsym $super+j focus down
+bindsym $super+k focus up
+bindsym $super+l focus right
 
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+bindsym $super+Left focus left
+bindsym $super+Down focus down
+bindsym $super+Up focus up
+bindsym $super+Right focus right
 
 # move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $super+Shift+h move left
+bindsym $super+Shift+j move down
+bindsym $super+Shift+k move up
+bindsym $super+Shift+l move right
 
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $super+Shift+Left move left
+bindsym $super+Shift+Down move down
+bindsym $super+Shift+Up move up
+bindsym $super+Shift+Right move right
 
 # workspace back and forth (with/without active container)
 workspace_auto_back_and_forth yes
-bindsym $mod+b workspace back_and_forth
-bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
+bindsym $super+b workspace back_and_forth
+bindsym $alt+Tab workspace back_and_forth
+bindsym $super+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 ## split orientation
-#bindsym $mod+Shift+v split h;exec notify-send 'tile horizontally'
-#bindsym $mod+v split v;exec notify-send 'tile vertically'
-#bindsym $mod+q split toggle
+#bindsym $super+Shift+v split h;exec notify-send 'tile horizontally'
+#bindsym $super+v split v;exec notify-send 'tile vertically'
+#bindsym $super+q split toggle
 
 # toggle fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $super+f fullscreen toggle
 
 ## toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $super+Shift+space floating toggle
 
 # change container layout (stacked, tabbed, toggle split)
-#bindsym $mod+s layout stacking
-#bindsym $mod+t layout tabbed
-#bindsym $mod+e layout toggle split
+#bindsym $super+s layout stacking
+#bindsym $super+t layout tabbed
+#bindsym $super+e layout toggle split
 
 # change focus between tiling / floating windows
-#bindsym $mod+space focus mode_toggle
+#bindsym $super+space focus mode_toggle
 
 # toggle sticky
-#bindsym $mod+Shift+s sticky toggle
+#bindsym $super+Shift+s sticky toggle
 
 # focus the parent container
-#bindsym $mod+a focus parent
+#bindsym $super+a focus parent
 
 ## move the currently focused window to the scratchpad
-#bindsym $mod+Shift+minus move scratchpad
+#bindsym $super+Shift+minus move scratchpad
 
 ## Show the next scratchpad window or hide the focused scratchpad window.
 ## If there are multiple scratchpad windows, this command cycles through them.
-#bindsym $mod+minus scratchpad show
+#bindsym $super+minus scratchpad show
 
 ## navigate workspaces next / previous
-bindsym $mod+Ctrl+l workspace next
-bindsym $mod+Ctrl+h workspace prev
+bindsym $super+Ctrl+l workspace next
+bindsym $super+Ctrl+h workspace prev
 
 # workspaces
 set $ws1 1
@@ -124,40 +126,40 @@ set $ws9 9
 set $ws10 10
 
 # switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
+bindsym $super+1 workspace $ws1
+bindsym $super+2 workspace $ws2
+bindsym $super+3 workspace $ws3
+bindsym $super+4 workspace $ws4
+bindsym $super+5 workspace $ws5
+bindsym $super+6 workspace $ws6
+bindsym $super+7 workspace $ws7
+bindsym $super+8 workspace $ws8
+bindsym $super+9 workspace $ws9
+bindsym $super+0 workspace $ws10
 
 # Move focused container to workspace
-bindsym $mod+Ctrl+1 move container to workspace $ws1
-bindsym $mod+Ctrl+2 move container to workspace $ws2
-bindsym $mod+Ctrl+3 move container to workspace $ws3
-bindsym $mod+Ctrl+4 move container to workspace $ws4
-bindsym $mod+Ctrl+5 move container to workspace $ws5
-bindsym $mod+Ctrl+6 move container to workspace $ws6
-bindsym $mod+Ctrl+7 move container to workspace $ws7
-bindsym $mod+Ctrl+8 move container to workspace $ws8
-bindsym $mod+Ctrl+9 move container to workspace $ws9
-bindsym $mod+Ctrl+0 move container to workspace $ws10
+bindsym $super+Ctrl+1 move container to workspace $ws1
+bindsym $super+Ctrl+2 move container to workspace $ws2
+bindsym $super+Ctrl+3 move container to workspace $ws3
+bindsym $super+Ctrl+4 move container to workspace $ws4
+bindsym $super+Ctrl+5 move container to workspace $ws5
+bindsym $super+Ctrl+6 move container to workspace $ws6
+bindsym $super+Ctrl+7 move container to workspace $ws7
+bindsym $super+Ctrl+8 move container to workspace $ws8
+bindsym $super+Ctrl+9 move container to workspace $ws9
+bindsym $super+Ctrl+0 move container to workspace $ws10
 
 # Move to workspace with focused container
-bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
+bindsym $super+Shift+1 move container to workspace $ws1; workspace $ws1
+bindsym $super+Shift+2 move container to workspace $ws2; workspace $ws2
+bindsym $super+Shift+3 move container to workspace $ws3; workspace $ws3
+bindsym $super+Shift+4 move container to workspace $ws4; workspace $ws4
+bindsym $super+Shift+5 move container to workspace $ws5; workspace $ws5
+bindsym $super+Shift+6 move container to workspace $ws6; workspace $ws6
+bindsym $super+Shift+7 move container to workspace $ws7; workspace $ws7
+bindsym $super+Shift+8 move container to workspace $ws8; workspace $ws8
+bindsym $super+Shift+9 move container to workspace $ws9; workspace $ws9
+bindsym $super+Shift+0 move container to workspace $ws10; workspace $ws10
 
 # Open app in specific workspace
 for_window [class="Spotify"] move to workspace $ws10
@@ -177,25 +179,25 @@ for_window [class="Spotify"] floating disable
 for_window [urgent=latest] focus
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $super+Shift+c reload
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym $super+Shift+r restart
 
 # Restart polybar
-bindsym $mod+Shift+p exec --no-startup-id $HOME/.config/polybar/launch.sh
+bindsym $super+Shift+p exec --no-startup-id $HOME/.config/polybar/launch.sh
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec --no-startup-id i3exit logout, mode "default"
+bindsym $super+Shift+e exec --no-startup-id i3exit logout, mode "default"
 
 # Lock i3
-bindsym $mod+Shift+x exec --no-startup-id betterlockscreen -l
-#bindsym $mod+Shift+x exec --no-startup-id dm-tool lock
-#bindsym $mod+Shift+x exec --no-startup-id ~/.config/i3/lock.sh
+bindsym $super+Shift+x exec --no-startup-id betterlockscreen -l
+#bindsym $super+Shift+x exec --no-startup-id dm-tool lock
+#bindsym $super+Shift+x exec --no-startup-id ~/.config/i3/lock.sh
 
 # Set shut down, restart and locking features
-set $mode_system [l] lock,  [e] exit, [u] switch_user, [s] suspend, [h] hibernate, [r] reboot, [S] shutdown
-mode "$mode_system" {
+set $supere_system [l] lock,  [e] exit, [u] switch_user, [s] suspend, [h] hibernate, [r] reboot, [S] shutdown
+mode "$supere_system" {
     bindsym l exec --no-startup-id i3exit lock, mode "default"
     bindsym u exec --no-startup-id i3exit switch_user, mode "default"
     bindsym h exec --no-startup-id i3exit hibernate, mode "default"
@@ -208,10 +210,10 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+Pause mode "$mode_system"
+bindsym $super+Pause mode "$supere_system"
 
 # Resize window (you can also use the mouse for that)
-bindsym $mod+s mode "resize"
+bindsym $super+s mode "resize"
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
         # Pressing left will shrink the window’s width.
@@ -242,7 +244,7 @@ mode "movewindow" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+Shift+m focus floating; mode "movewindow"
+bindsym $super+Shift+m focus floating; mode "movewindow"
 
 # Autostart applications
 exec --no-startup-id nitrogen --restore
@@ -287,22 +289,22 @@ gaps inner 0
 gaps outer 0
 smart_gaps on
 
-# Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying
+# Press $super+Shift+g to enter the gap mode. Choose o or i for modifying
 # outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or
 # 0 (remove gaps for current workspace). If you also press Shift with these
 # keys, the change will be global for all workspaces.
-set $mode_gaps Gaps: (o) outer, (i) inner
-set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
-bindsym $mod+Shift+g mode "$mode_gaps"
+set $supere_gaps Gaps: (o) outer, (i) inner
+set $supere_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $supere_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $super+Shift+g mode "$supere_gaps"
 
-mode "$mode_gaps" {
-        bindsym o      mode "$mode_gaps_outer"
-        bindsym i      mode "$mode_gaps_inner"
+mode "$supere_gaps" {
+        bindsym o      mode "$supere_gaps_outer"
+        bindsym i      mode "$supere_gaps_inner"
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-mode "$mode_gaps_inner" {
+mode "$supere_gaps_inner" {
         bindsym plus  gaps inner current plus 5
         bindsym minus gaps inner current minus 5
         bindsym 0     gaps inner current set 0
@@ -314,7 +316,7 @@ mode "$mode_gaps_inner" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-mode "$mode_gaps_outer" {
+mode "$supere_gaps_outer" {
         bindsym plus  gaps outer current plus 5
         bindsym minus gaps outer current minus 5
         bindsym 0     gaps outer current set 0
@@ -328,13 +330,13 @@ mode "$mode_gaps_outer" {
 }
 
 # Volume control
-bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/volume.sh +1%
-bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/volume.sh -1%
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/volume.sh +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/volume.sh -5%
 bindsym XF86AudioMute exec --no-startup-id ~/.config/i3/volume.sh M
 
 # touchpad on and off controller on laptop with Fn+<touchpad control functional key>
-bindsym $mod+x exec --no-startup-id /usr/local/bin/touchpad_toggle.sh
-bindsym $mod+m exec --no-startup-id /usr/local/bin/touchpad_toggle.sh
+bindsym $super+x exec --no-startup-id /usr/local/bin/touchpad_toggle.sh
+bindsym $super+m exec --no-startup-id /usr/local/bin/touchpad_toggle.sh
 bindsym XF86TouchpadOn exec --no-startup-id synclient Touchpadoff=0
 bindsym XF86TouchpadOff exec --no-startup-id synclient Touchpadoff=1
 

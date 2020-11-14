@@ -47,6 +47,20 @@
     Plug 'tpope/vim-fugitive' " Git wrapper
     Plug 'ervandew/supertab'
         let g:SuperTabDefaultCompletionType = '<C-n>'
+    Plug 'terryma/vim-expand-region'
+        " Default settings. (NOTE: Remove comments in dictionary before sourcing)
+        let g:expand_region_text_objects = {
+                    \ 'iw'  :0,
+                    \ 'iW'  :0,
+                    \ 'i"'  :0,
+                    \ 'i''' :0,
+                    \ 'i]'  :1,
+                    \ 'ib'  :1,
+                    \ 'iB'  :1,
+                    \ 'il'  :0,
+                    \ 'ip'  :0,
+                    \ 'ie'  :0,
+                    \ }
 
     " Tags
     Plug 'majutsushi/tagbar' " Vim plugin that displays tags in a window
@@ -567,6 +581,7 @@
         nmap <buffer> <silent> <leader>gk <Plug>(coc-diagnostic-prev)
         nmap <buffer> <silent> <leader>gej <Plug>(coc-diagnostic-next-error)
         nmap <buffer> <silent> <leader>gek <Plug>(coc-diagnostic-prev-error)
+        nmap <buffer> <silent> <leader>rn <Plug>(coc-rename)
         nnoremap <buffer> <leader>cr :CocRestart
     endfunction
 
@@ -626,4 +641,13 @@
         autocmd FileType vue AutoFormatBuffer prettier
     augroup END
 
+        " Extend the global default (NOTE: Remove comments in dictionary before sourcing)
+        call expand_region#custom_text_objects({
+            \ "\/\\n\\n\<CR>": 1,
+            \ 'a]' :1,
+            \ 'ab' :1,
+            \ 'aB' :1,
+            \ 'ii' :0,
+            \ 'ai' :0,
+            \ })
 " }}}
