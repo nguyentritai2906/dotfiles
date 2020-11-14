@@ -1,16 +1,17 @@
 #!/bin/sh
-lock() {
-    i3lock
-}
 
 case "$1" in
     lock)
-        $HOME/.config/i3/lock.sh
+        #$HOME/.config/i3/lock.sh
+        betterlockscreen -l blur
+        #dm-tool lock
         ;;
     logout)
         i3-msg exit
         ;;
     suspend)
+        #dm-tool lock
+        #betterlockscreen -s
         systemctl suspend
         ;;
     hibernate)
@@ -28,6 +29,6 @@ case "$1" in
 esac
 
 exit 0
-
 #Put this in /usr/local/bin/
 #sudo cp ./i3exit /usr/local/bin/i3exit
+
