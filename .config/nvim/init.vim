@@ -24,6 +24,7 @@
         let g:ale_completion_enabled = 0
         " Check Python files with flake8 and pylint.
         let g:ale_linters = {'python': ['flake8', 'pylint']}
+        " let g:ale_linters = {'python': []}
         " Fix Python files with black, isort, yapf.
         let g:ale_fixers = {
                     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
@@ -61,6 +62,39 @@
                     \ 'ip'  :0,
                     \ 'ie'  :0,
                     \ }
+    Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+        au BufEnter guvpccig.labs.coursera.org_*.txt set filetype=python
+        function! s:IsFirenvimActive(event) abort
+            if !exists('*nvim_get_chan_info')
+                return 0
+            endif
+            let l:ui = nvim_get_chan_info(a:event.chan)
+            return has_key(l:ui, 'client') && has_key(l:ui.client, 'name') &&
+                        \ l:ui.client.name =~? 'Firenvim'
+        endfunction
+
+        function! OnUIEnter(event) abort
+            if s:IsFirenvimActive(a:event)
+                set laststatus=0
+                set guifont=hack:h10
+            endif
+        endfunction
+        autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
+        let g:firenvim_config = {
+            \ 'globalSettings': {
+                \ 'alt': 'all',
+            \  },
+            \ 'localSettings': {
+                \ '.*': {
+                    \ 'cmdline': 'neovim',
+                    \ 'priority': 0,
+                    \ 'selector': 'textarea',
+                    \ 'takeover': 'never',
+                \ },
+            \ }
+        \ }
+        let fc = g:firenvim_config['localSettings']
+        let fc['https?://guvpccig.labs.coursera.org/'] = { 'takeover': 'always', 'priority': 1 }
 
     " Tags
     Plug 'majutsushi/tagbar' " Vim plugin that displays tags in a window
