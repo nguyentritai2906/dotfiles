@@ -95,6 +95,7 @@
         \ }
         let fc = g:firenvim_config['localSettings']
         let fc['https?://guvpccig.labs.coursera.org/'] = { 'takeover': 'always', 'priority': 1 }
+    Plug 'sheerun/vim-polyglot'
 
     " Tags
     Plug 'majutsushi/tagbar' " Vim plugin that displays tags in a window
