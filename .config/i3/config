@@ -42,7 +42,7 @@ bindsym $super+i exec --no-startup-id $HOME/rofi-fontawesome/fontawesome-menu/fo
 # file manager
 bindsym $super+e exec --no-startup-id nautilus
 # browser
-bindsym Ctrl+Shift+f exec --no-startup-id google-chrome-stable
+bindsym Ctrl+Shift+f exec --no-startup-id google-chrome-stable --password-store=gnome
 
 # screenshot
 bindsym Print exec --no-startup-id flameshot full -c
