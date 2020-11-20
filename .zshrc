@@ -82,6 +82,12 @@ plugins=(git zsh-autosuggestions fasd last-working-dir)
 
 source $ZSH/oh-my-zsh.sh
 
+# Load Git completion
+zstyle ':completion:*:*:git:*' script ~/.config/zsh/git-completion.bash
+fpath=(~/.config/zsh $fpath)
+
+autoload -Uz compinit && compinit
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"

@@ -26,13 +26,13 @@ alias tree='exa -lamghT --icons --color-scale --group-directories-first'
 alias mv='mv -i'
 alias rm='rm -I'
 alias cf='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-alias cfs="cf status"
-alias cfd="cf diff"
-alias cfa="cf add"
-alias cfc="cf commit"
-alias cfca="cf commit -a"
-alias cfp="cf push"
-alias cfl="cf pull"
+alias cfs="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME status"
+alias cfd="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME diff"
+alias cfa="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME add"
+alias cfc="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME commit"
+alias cfca="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME commit -a"
+alias cfp="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME push"
+alias cfl="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME pull"
 alias ranger='ranger --choosedir=$HOME/.config/ranger/rangerdir; LASTDIR=`cat $HOME/.config/ranger/rangerdir`; cd "$LASTDIR"'
 alias bat="bat --style=numbers --color=always "
 
