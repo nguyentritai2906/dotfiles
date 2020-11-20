@@ -75,8 +75,8 @@
 
         function! OnUIEnter(event) abort
             if s:IsFirenvimActive(a:event)
-                set laststatus=0
-                set guifont=hack:h10
+                set laststatus=2
+                set guifont=hack
             endif
         endfunction
         autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
@@ -93,8 +93,8 @@
                 \ },
             \ }
         \ }
-        let fc = g:firenvim_config['localSettings']
-        let fc['https?://guvpccig.labs.coursera.org/'] = { 'takeover': 'always', 'priority': 1 }
+        " let fc = g:firenvim_config['localSettings']
+        " let fc['https?://guvpccig.labs.coursera.org/'] = { 'takeover': 'always', 'priority': 1 }
     Plug 'sheerun/vim-polyglot'
 
     " Tags
