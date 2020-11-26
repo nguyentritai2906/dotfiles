@@ -9,6 +9,7 @@
 set $super Mod4
 set $alt Mod1
 
+title_align center
 default_border pixel 2
 default_floating_border pixel 2
 
@@ -94,7 +95,7 @@ bindsym $super+F2 layout tabbed
 bindsym $super+F3 layout toggle split
 
 # change focus between tiling / floating windows
-#bindsym $super+space focus mode_toggle
+bindsym $super+semicolon focus mode_toggle
 
 # toggle sticky
 #bindsym $super+Shift+s sticky toggle
@@ -102,12 +103,12 @@ bindsym $super+F3 layout toggle split
 # focus the parent container
 #bindsym $super+a focus parent
 
-## move the currently focused window to the scratchpad
-#bindsym $super+Shift+minus move scratchpad
+# move the currently focused window to the scratchpad
+bindsym $super+Shift+minus move scratchpad
 
-## Show the next scratchpad window or hide the focused scratchpad window.
-## If there are multiple scratchpad windows, this command cycles through them.
-#bindsym $super+minus scratchpad show
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $super+minus scratchpad show
 
 ## navigate workspaces next / previous
 bindsym $super+Ctrl+l workspace next
@@ -266,7 +267,7 @@ exec_always --no-startup-id xset r rate 200 70
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id setxkbmap -layout us -option ctrl:nocaps
-exec_always --no-startup-id python3 $HOME/.config/i3/autotiling.py
+exec_always --no-startup-id python3 $HOME/.config/i3/autotiling.py # Dependencies: python-i3ipc>=2.0.1 (i3ipc-python)
 #
 #Change background/wallpaper setting in .config/nitrogen/bg-saved.cfg
 #exec_always --no-startup-id feh --bg-scale /home/solus/Pictures/Wallpapers/fern-green-black.jpg
