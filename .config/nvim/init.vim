@@ -33,6 +33,8 @@
                     \ }
         let g:ale_fix_on_save = 1
         let g:ale_pattern_options = {'\.java$': {'ale_enabled': 0}}
+        let g:ale_python_flake8_options = '--ignore="E501"'
+        let g:ale_python_pylint_options = '--rcfile ~/.config/pylintrc'
     Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
         let g:prettier#quickfix_enabled = 0
         autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml PrettierAsync
