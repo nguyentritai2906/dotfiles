@@ -255,7 +255,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 exec --no-startup-id ibus-daemon -drx
 exec --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id alacritty
-exec --no-startup-id google-chrome-stable
+exec --no-startup-id google-chrome-stable --password-store=gnome
 exec --no-startup-id nohup unclutter -idle 2 &
 exec --no-startup-id redshift &
 exec --no-startup-id xss-lock -l -- i3exit lock &
