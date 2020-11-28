@@ -1,31 +1,42 @@
 #!/usr/bin/env bash
 
 BAR_ICON=""
+# Append the following line to visudo in order to update-repo without password
+# myusername ALL=(ALL) NOPASSWD: /usr/bin/apt-get upgrade
+sudo eopkg ur >/dev/null
+UPDATES=$(eopkg lu 2>/dev/null)
+NUMUPDATES=$(echo "$UPDATES" | wc -l)
 
-get_total_updates() { UPDATES=$(eopkg lu 2>/dev/null | wc -l) ; }
+if [ "$UPDATES" == "No packages to upgrade." ]; then
+    echo "$BAR_ICON 0"
+else
+    echo "$BAR_ICON $NUMUPDATES"
+fi
 
-while true; do
-    get_total_updates
+# get_total_updates() { UPDATES=$(eopkg lu 2>/dev/null | wc -l) ; }
 
-    # when there are updates available
-    # every 30 mins another check for updates is done
-    while (( UPDATES > 1 )); do
-		echo "$BAR_ICON $UPDATES"
-        sleep 1800
-        get_total_updates
-    done
+# while true; do
+    # get_total_updates
 
-    # when no updates are available, use a longer loop, this saves on CPU
-    # and network uptime, only checking once every hour for new updates
-    while (( UPDATES == 1 )); do
-		if [ "$(eopkg lu 2>/dev/null)" == "No packages to upgrade." ]; then
-			echo "$BAR_ICON 0"
-			sleep 3600
-			get_total_updates
-		else
-			echo "$BAR_ICON $UPDATES"
-			sleep 1800
-			get_total_updates
-		fi
-    done
-done
+    # # when there are updates available
+    # # every 30 mins another check for updates is done
+    # while (( UPDATES > 1 )); do
+		# echo "$BAR_ICON $UPDATES"
+        # sleep 1800
+        # get_total_updates
+    # done
+
+    # # when no updates are available, use a longer loop, this saves on CPU
+    # # and network uptime, only checking once every hour for new updates
+    # while (( UPDATES == 1 )); do
+		# if [ "$(eopkg lu 2>/dev/null)" == "No packages to upgrade." ]; then
+			# echo "$BAR_ICON 0"
+			# sleep 3600
+			# get_total_updates
+		# else
+			# echo "$BAR_ICON $UPDATES"
+			# sleep 1800
+			# get_total_updates
+		# fi
+    # done
+# done
