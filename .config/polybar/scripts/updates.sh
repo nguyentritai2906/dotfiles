@@ -2,7 +2,8 @@
 
 BAR_ICON=""
 # Append the following line to visudo in order to update-repo without password
-# myusername ALL=(ALL) NOPASSWD: /usr/bin/apt-get upgrade
+# solus ALL=(ALL) NOPASSWD: /usr/bin/eopkg ur
+# Replace `solus` with your USERNAME and `eopkg` with your package manager
 sudo eopkg ur >/dev/null
 UPDATES=$(eopkg lu 2>/dev/null)
 NUMUPDATES=$(echo "$UPDATES" | wc -l)
