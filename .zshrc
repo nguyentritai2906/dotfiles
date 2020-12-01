@@ -146,9 +146,9 @@ SPACESHIP_JOBS_SHOW=false
 # For a full list of active aliases, run `alias`.
 #
 # Load aliases and shortcuts if existent.
-[ -f "$HOME/.config/zsh_keybinds" ] && source "$HOME/.config/zsh_keybinds"
-[ -f "$HOME/.config/zsh_functions" ] && source "$HOME/.config/zsh_functions"
-[ -f "$HOME/.config/zsh_aliases" ] && source "$HOME/.config/zsh_aliases"
+[ -f "$HOME/.config/zsh/zsh_keybinds" ] && source "$HOME/.config/zsh/zsh_keybinds"
+[ -f "$HOME/.config/zsh/zsh_functions" ] && source "$HOME/.config/zsh/zsh_functions"
+[ -f "$HOME/.config/zsh/zsh_aliases" ] && source "$HOME/.config/zsh/zsh_aliases"
 # Use colors for less, man, etc.
 [[ -f ~/.config/less-termcap ]] && . ~/.config/less-termcap
 
