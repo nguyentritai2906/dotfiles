@@ -224,7 +224,6 @@
     Plug 'mhinz/vim-startify'
     Plug 'ryanoasis/vim-devicons'
     Plug 'kyazdani42/nvim-web-devicons'
-    Plug 'wfxr/minimap.vim'
 
     " Navigation
     Plug 'easymotion/vim-easymotion' " Vim motions on speed
