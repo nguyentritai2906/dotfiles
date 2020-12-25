@@ -1,5 +1,5 @@
 # Command aliases
-alias vim='nvim'
+alias vim='nv'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'

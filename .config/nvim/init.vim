@@ -50,22 +50,23 @@
     Plug 'tpope/vim-fugitive' " Git wrapper
     Plug 'ervandew/supertab'
         let g:SuperTabDefaultCompletionType = '<C-n>'
-    Plug 'terryma/vim-expand-region'
-        " Default settings. (NOTE: Remove comments in dictionary before sourcing)
-        let g:expand_region_text_objects = {
-                    \ 'iw'  :0,
-                    \ 'iW'  :0,
-                    \ 'i"'  :0,
-                    \ 'i''' :0,
-                    \ 'i]'  :1,
-                    \ 'ib'  :1,
-                    \ 'iB'  :1,
-                    \ 'il'  :0,
-                    \ 'ip'  :0,
-                    \ 'ie'  :0,
-                    \ }
+    " Plug 'terryma/vim-expand-region'
+        " " Default settings. (NOTE: Remove comments in dictionary before sourcing)
+        " let g:expand_region_text_objects = {
+                    " \ 'iw'  :0,
+                    " \ 'iW'  :0,
+                    " \ 'i"'  :0,
+                    " \ 'i''' :0,
+                    " \ 'i]'  :1,
+                    " \ 'ib'  :1,
+                    " \ 'iB'  :1,
+                    " \ 'il'  :0,
+                    " \ 'ip'  :0,
+                    " \ 'ie'  :0,
+                    " \ }
     Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
         au BufEnter guvpccig.labs.coursera.org_*.txt set filetype=python
+        au BufEnter colab.research.google.com_*.txt set filetype=python
         function! s:IsFirenvimActive(event) abort
             if !exists('*nvim_get_chan_info')
                 return 0
@@ -98,6 +99,11 @@
         " let fc = g:firenvim_config['localSettings']
         " let fc['https?://guvpccig.labs.coursera.org/'] = { 'takeover': 'always', 'priority': 1 }
     Plug 'sheerun/vim-polyglot'
+    if has("nvim-0.5")
+        " https://www.reddit.com/r/neovim/comments/gkpywv/use_the_stable_and_the_nightly/
+        Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Require Nvim 0.5
+        Plug 'p00f/nvim-ts-rainbow'
+    endif
 
     " Tags
     Plug 'majutsushi/tagbar' " Vim plugin that displays tags in a window
@@ -218,6 +224,7 @@
     Plug 'mhinz/vim-startify'
     Plug 'ryanoasis/vim-devicons'
     Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'wfxr/minimap.vim'
 
     " Navigation
     Plug 'easymotion/vim-easymotion' " Vim motions on speed
@@ -271,6 +278,9 @@
     set pastetoggle=<F2>
     set dictionary+=/usr/share/dict/words
     set mouse=nv
+    " set foldmethod=expr
+    " set foldnestmax=3
+    set foldexpr=nvim_treesitter#foldexpr()
 
     " Searching
     set incsearch " lookahead as search pattern is specified
@@ -678,13 +688,17 @@
         autocmd FileType vue AutoFormatBuffer prettier
     augroup END
 
-        " Extend the global default (NOTE: Remove comments in dictionary before sourcing)
-        call expand_region#custom_text_objects({
-            \ "\/\\n\\n\<CR>": 1,
-            \ 'a]' :1,
-            \ 'ab' :1,
-            \ 'aB' :1,
-            \ 'ii' :0,
-            \ 'ai' :0,
-            \ })
+        " " Extend the global default (NOTE: Remove comments in dictionary before sourcing)
+        " call expand_region#custom_text_objects({
+            " \ "\/\\n\\n\<CR>": 1,
+            " \ 'a]' :1,
+            " \ 'ab' :1,
+            " \ 'aB' :1,
+            " \ 'ii' :0,
+            " \ 'ai' :0,
+            " \ })
+
+    " Treesitter
+    source ~/.config/nvim/nvim-treesitter.lua
+
 " }}}

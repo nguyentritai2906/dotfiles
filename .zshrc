@@ -99,7 +99,7 @@ autoload -Uz compinit && compinit
  if [[ -n $SSH_CONNECTION ]]; then
    export EDITOR='vim'
  else
-   export EDITOR='nvim'
+   export EDITOR='nv'
  fi
 
 # Disable flow control Ctrl+S, since it realy just annoys me
