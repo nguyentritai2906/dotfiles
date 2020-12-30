@@ -22,10 +22,7 @@
     Plug 'google/vim-glaive'
     Plug 'dense-analysis/ale'
         let g:ale_completion_enabled = 0
-        " Check Python files with flake8 and pylint.
-        let g:ale_linters = {'python': ['flake8', 'pylint']}
-        " let g:ale_linters = {'python': []}
-        " Fix Python files with black, isort, yapf.
+        let g:ale_linters = {'python': ['pylint']}
         let g:ale_fixers = {
                     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
                     \ 'python': ['black', 'isort', 'yapf', 'autopep8'],
