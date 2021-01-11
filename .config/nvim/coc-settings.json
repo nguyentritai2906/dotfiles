@@ -1,5 +1,5 @@
 {
-    "jedi.enable": true,
+    "jedi.enable": false,
     "jedi.startupMessage": true,
     "jedi.markupKindPreferred": "plaintext",
     "jedi.jediSettings.autoImportModules": [],

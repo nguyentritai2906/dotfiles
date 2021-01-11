@@ -20,21 +20,6 @@
     " Also add Glaive, which is used to configure codefmt's maktaba flags. See
     " `:help :Glaive` for usage.
     Plug 'google/vim-glaive'
-    Plug 'dense-analysis/ale'
-        let g:ale_completion_enabled = 0
-        " Check Python files with flake8 and pylint.
-        let g:ale_linters = {'python': ['flake8', 'pylint']}
-        " let g:ale_linters = {'python': []}
-        " Fix Python files with black, isort, yapf.
-        let g:ale_fixers = {
-                    \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-                    \ 'python': ['black', 'isort', 'yapf', 'autopep8'],
-                    \ 'html': ['tidy', 'prettier'],
-                    \ }
-        let g:ale_fix_on_save = 1
-        let g:ale_pattern_options = {'\.java$': {'ale_enabled': 0}}
-        let g:ale_python_flake8_options = '--ignore="E501"'
-        let g:ale_python_pylint_options = '--rcfile ~/.config/pylintrc'
     Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
         let g:prettier#quickfix_enabled = 0
         autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml PrettierAsync
@@ -50,20 +35,20 @@
     Plug 'tpope/vim-fugitive' " Git wrapper
     Plug 'ervandew/supertab'
         let g:SuperTabDefaultCompletionType = '<C-n>'
-    " Plug 'terryma/vim-expand-region'
-        " " Default settings. (NOTE: Remove comments in dictionary before sourcing)
-        " let g:expand_region_text_objects = {
-                    " \ 'iw'  :0,
-                    " \ 'iW'  :0,
-                    " \ 'i"'  :0,
-                    " \ 'i''' :0,
-                    " \ 'i]'  :1,
-                    " \ 'ib'  :1,
-                    " \ 'iB'  :1,
-                    " \ 'il'  :0,
-                    " \ 'ip'  :0,
-                    " \ 'ie'  :0,
-                    " \ }
+    Plug 'terryma/vim-expand-region'
+        " Default settings. (NOTE: Remove comments in dictionary before sourcing)
+        let g:expand_region_text_objects = {
+                    \ 'iw'  :0,
+                    \ 'iW'  :0,
+                    \ 'i"'  :0,
+                    \ 'i''' :0,
+                    \ 'i]'  :1,
+                    \ 'ib'  :1,
+                    \ 'iB'  :1,
+                    \ 'il'  :0,
+                    \ 'ip'  :0,
+                    \ 'ie'  :0,
+                    \ }
     Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
         au BufEnter guvpccig.labs.coursera.org_*.txt set filetype=python
         au BufEnter colab.research.google.com_*.txt set filetype=python
@@ -99,11 +84,6 @@
         " let fc = g:firenvim_config['localSettings']
         " let fc['https?://guvpccig.labs.coursera.org/'] = { 'takeover': 'always', 'priority': 1 }
     Plug 'sheerun/vim-polyglot'
-    if has("nvim-0.5")
-        " https://www.reddit.com/r/neovim/comments/gkpywv/use_the_stable_and_the_nightly/
-        Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Require Nvim 0.5
-        Plug 'p00f/nvim-ts-rainbow'
-    endif
 
     " Tags
     Plug 'majutsushi/tagbar' " Vim plugin that displays tags in a window
@@ -158,11 +138,6 @@
         let g:NERDSpaceDelims = 1
         let g:NERDRemoveExtraSpaces = 1
     Plug 'tpope/vim-surround' " Change parentheses and stuff with ease
-    Plug 'christoomey/vim-titlecase'
-        let g:titlecase_map_keys = 0
-        nmap <leader>gt <Plug>Titlecase
-        vmap <leader>gt <Plug>Titlecase
-        nmap <leader>gT <Plug>TitlecaseLine
     Plug 'michaeljsmith/vim-indent-object'
     Plug 'kana/vim-textobj-user' | Plug 'kana/vim-textobj-line' | Plug 'kana/vim-textobj-entire'
     Plug 'danro/rename.vim'
@@ -178,9 +153,7 @@
         let g:airline_powerline_fonts = 1
         let g:airline#extensions#tabline#enabled = 1
         let g:airline#extensions#tabline#tabs_label = ''
-    Plug 'morhetz/gruvbox' " GruvBox colorscheme
-    Plug 'joshdick/onedark.vim' " OneDark colorscheme
-    Plug 'dracula/vim', { 'as': 'dracula'  } " GruvBox colorscheme
+    Plug 'dracula/vim', { 'as': 'dracula'  }
     Plug 'lilydjwg/colorizer' " Colorize all text in form of #rrggbb and #rgb
     Plug 'Yggdroot/indentLine' " Display indentation level
         let g:indentLine_fileTypeExclude = ['markdown', 'vimwiki']
@@ -193,34 +166,6 @@
     Plug 'osyo-manga/vim-anzu' " Search status
         let g:anzu_status_format = "[%i/%l]"
     Plug 'kshenoy/vim-signature' " Place, toggle and display marks
-    Plug 'junegunn/limelight.vim'
-        " Color name (:help cterm-colors) or ANSI code
-        let g:limelight_conceal_ctermfg = 'gray'
-        let g:limelight_conceal_ctermfg = 240
-        " Color name (:help gui-colors) or RGB color
-        let g:limelight_conceal_guifg = 'DarkGray'
-        let g:limelight_conceal_guifg = '#777777'
-        " Highlighting priority (default: 10)
-        "   Set it to -1 not to overrule hlsearch
-        let g:limelight_priority = -1
-
-        " Per paragraph {{{
-            " Number of preceding/following paragraphs to include (default: 0)
-            " let g:limelight_paragraph_span = 1
-            " Beginning/end of paragraph
-            "   When there's no empty line between the paragraphs
-            "   and each paragraph starts with indentation
-            " let g:limelight_bop = '^\s'
-            " let g:limelight_eop = '\ze\n^\s'
-        " }}}
-
-        " Per line {{{
-            let g:limelight_bop = '^.*$'
-            let g:limelight_eop = '\n'
-        " }}}
-    Plug 'junegunn/goyo.vim'
-        let g:goyo_linenr = 1
-        let g:goyo_width = 81
     Plug 'mhinz/vim-startify'
     Plug 'ryanoasis/vim-devicons'
     Plug 'kyazdani42/nvim-web-devicons'
@@ -277,9 +222,8 @@
     set pastetoggle=<F2>
     set dictionary+=/usr/share/dict/words
     set mouse=nv
-    " set foldmethod=expr
-    " set foldnestmax=3
-    set foldexpr=nvim_treesitter#foldexpr()
+    set foldmethod=expr
+    set foldnestmax=3
 
     " Searching
     set incsearch " lookahead as search pattern is specified
@@ -292,7 +236,6 @@
     set tags=tags;/ " Check current folder for tags file and keep going one directory up all the way to the root folder
 
     " Apprearance
-    "colorscheme gruvbox
     colorscheme dracula
     set t_Co=256 " explicitly tell vim that the terminal supports 256 colors
     set number relativenumber
@@ -549,10 +492,6 @@
     nmap <A-j> <Plug>MoveLineDown
     nmap <A-k> <Plug>MoveLineUp
 
-    " ALE
-    nmap <silent> <leader>aj :ALENext<CR>
-    nmap <silent> <leader>ak :ALEPrevious<CR>
-
     " WinResize
     " If you want to start window resize mode by `Leader+E`
     let g:winresizer_start_key="<Leader>E"
@@ -634,9 +573,6 @@
     autocmd Filetype java,c,cpp,cxx,h,hpp,html,css,python :call GoCoc()
 
     "NERDTree
-    " Open NERDTree automatically when vim starts up if no files were specified
-    " autocmd StdinReadPre * let s:std_in=1
-    " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
     " Close vim if the only window left open is a NERDTree
     autocmd BufEnter * if (winnr("$") == 1
                 \&& exists("b:NERDTree")
@@ -661,13 +597,6 @@
     " Better alternative for autochdir
     autocmd BufEnter * silent! lcd %:p:h
 
-    " Goyo issue with transparency
-    " https://github.com/junegunn/goyo.vim/issues/224
-    function! s:goyo_leave()
-            hi Normal guibg=NONE ctermbg=NONE
-    endfunction
-    autocmd! User GoyoLeave nested call <SID>goyo_leave()
-
     " CodeFmt
     call glaive#Install()
     Glaive codefmt plugin[mappings]
@@ -680,24 +609,24 @@
         autocmd FileType go AutoFormatBuffer gofmt
         autocmd FileType gn AutoFormatBuffer gn
         autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
+        " Alternative: autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer tidy
+        " Alternative: autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer prettier
         autocmd FileType java AutoFormatBuffer google-java-format
-        " autocmd FileType python AutoFormatBuffer yapf
+        autocmd FileType python AutoFormatBuffer yapf
         " Alternative: autocmd FileType python AutoFormatBuffer autopep8
         autocmd FileType rust AutoFormatBuffer rustfmt
         autocmd FileType vue AutoFormatBuffer prettier
     augroup END
 
-        " " Extend the global default (NOTE: Remove comments in dictionary before sourcing)
-        " call expand_region#custom_text_objects({
-            " \ "\/\\n\\n\<CR>": 1,
-            " \ 'a]' :1,
-            " \ 'ab' :1,
-            " \ 'aB' :1,
-            " \ 'ii' :0,
-            " \ 'ai' :0,
-            " \ })
-
-    " Treesitter
-    source ~/.config/nvim/nvim-treesitter.lua
+    " Expand region
+    " Extend the global default (NOTE: Remove comments in dictionary before sourcing)
+    call expand_region#custom_text_objects({
+        \ "\/\\n\\n\<CR>": 1,
+        \ 'a]' :1,
+        \ 'ab' :1,
+        \ 'aB' :1,
+        \ 'ii' :0,
+        \ 'ai' :0,
+        \ })
 
 " }}}
