@@ -48,7 +48,7 @@ bindsym Ctrl+Shift+f exec --no-startup-id google-chrome-stable --password-store=
 # screenshot
 bindsym Print exec --no-startup-id flameshot full -c
 bindsym Shift+Print exec --no-startup-id flameshot gui
-bindsym Ctrl+Print exec --no-startup-id flameshot full -c -p ~/Pictures/screenshot
+bindsym Ctrl+Print exec --no-startup-id flameshot full -c -p ~/Pictures/Screenshots
 
 # change focus
 bindsym $super+h focus left
