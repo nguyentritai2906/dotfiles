@@ -84,6 +84,19 @@
         " let fc = g:firenvim_config['localSettings']
         " let fc['https?://guvpccig.labs.coursera.org/'] = { 'takeover': 'always', 'priority': 1 }
     Plug 'sheerun/vim-polyglot'
+    Plug 'goerz/jupytext.vim'
+        let g:jupytext_fmt = 'py'
+    Plug 'jpalardy/vim-slime', { 'for': 'python' }
+        let g:slime_target = "tmux"
+        let g:slime_paste_file = "/tmp/slime_paste"
+        " let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
+        let g:slime_default_config = {
+                    \ 'socket_name': get(split($TMUX, ','), 0),
+                    \ 'target_pane': '{top-right}' }
+        let g:slime_dont_ask_default = 1
+        let g:slime_python_ipython = 1
+    Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
+        let g:ipython_cell_tag = ['# %%', '#%%', '# <codecell>', '##', '# +']
 
     " Tags
     Plug 'majutsushi/tagbar' " Vim plugin that displays tags in a window
@@ -190,6 +203,7 @@
     Plug 'plasticboy/vim-markdown'	" Syntax highlighting, matching rules and mappings Markdown
         let g:vim_markdown_no_default_key_mappings = 1
         let g:vim_markdown_folding_disabled = 1
+        let g:markdown_fenced_languages = ['html', 'vim', 'ruby', 'python', 'bash=sh', 'rust', 'haskell', 'c', 'cpp']
     Plug 'SirVer/ultisnips' | Plug 'nguyentritai2906/vim-snippets'
         let g:UltiSnipsExpandTrigger = "<C-j>"
         let g:UltiSnipsJumpForwardTrigger = "<C-j>"
@@ -221,7 +235,7 @@
     set wildcharm=<Tab>
     set pastetoggle=<F2>
     set dictionary+=/usr/share/dict/words
-    set mouse=nv
+    set mouse=a
     set foldmethod=expr
     set foldnestmax=3
 
@@ -495,6 +509,27 @@
     " WinResize
     " If you want to start window resize mode by `Leader+E`
     let g:winresizer_start_key="<Leader>E"
+
+    " Ipython-Cell
+        " map <Leader>s to start IPython
+        nnoremap <Leader>s :SlimeSend1 ipython --matplotlib<CR>
+        " map <Leader>r to run script
+        nnoremap <Leader>r :IPythonCellRun<CR>
+        " map <Leader>R to run script and time the execution
+        nnoremap <Leader>R :IPythonCellRunTime<CR>
+        " map <Leader>c to execute the current cell
+        nnoremap <Leader>c :IPythonCellExecuteCell<CR>
+        " map <Leader>C to execute the current cell and jump to the next cell
+        nnoremap <Leader>C :IPythonCellExecuteCellJump<CR>
+        " map <Leader>l to clear IPython screen
+        nnoremap <Leader>l :IPythonCellClear<CR>
+        " map <Leader>x to close all Matplotlib figure windows
+        nnoremap <Leader>x :IPythonCellClose<CR>
+        " map <Leader>h to send the current line or current selection to IPython
+        nmap <Leader>h <Plug>SlimeLineSend
+        xmap <Leader>h <Plug>SlimeRegionSend
+        " map <Leader>Q to restart ipython
+        nnoremap <Leader>Q :IPythonCellRestart<CR>
 
 " }}}
 
