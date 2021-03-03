@@ -84,6 +84,7 @@
         " let fc = g:firenvim_config['localSettings']
         " let fc['https?://guvpccig.labs.coursera.org/'] = { 'takeover': 'always', 'priority': 1 }
     Plug 'sheerun/vim-polyglot'
+    Plug 'stevearc/vim-arduino'
 
     " Tags
     Plug 'majutsushi/tagbar' " Vim plugin that displays tags in a window
@@ -496,6 +497,12 @@
     " If you want to start window resize mode by `Leader+E`
     let g:winresizer_start_key="<Leader>E"
 
+    " Arduino
+    nnoremap <buffer> <leader>am :ArduinoVerify<CR>
+    nnoremap <buffer> <leader>au :ArduinoUpload<CR>
+    nnoremap <buffer> <leader>ad :ArduinoUploadAndSerial<CR>
+    nnoremap <buffer> <leader>ab :ArduinoChooseBoard<CR>
+    nnoremap <buffer> <leader>ap :ArduinoChooseProgrammer<CR>
 " }}}
 
 " AutoGroups {{{
