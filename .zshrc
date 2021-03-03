@@ -200,6 +200,8 @@ export PATH=$PATH:$GOPATH/bin
 # Load zsh-syntax-highlighting; should be last.
 source $HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+export KAGGLE_CONFIG_DIR="/home/solus/.config/kaggle"
+
 # Random wikipedia on this day fact
 #
 # for day in {1..365}; do
