@@ -85,9 +85,10 @@
         " let fc['https?://guvpccig.labs.coursera.org/'] = { 'takeover': 'always', 'priority': 1 }
     Plug 'sheerun/vim-polyglot'
     Plug 'stevearc/vim-arduino'
+        let g:arduino_use_slime = 1
     Plug 'goerz/jupytext.vim'
         let g:jupytext_fmt = 'py'
-    Plug 'jpalardy/vim-slime', { 'for': 'python' }
+    Plug 'jpalardy/vim-slime'
         let g:slime_target = "tmux"
         let g:slime_paste_file = "/tmp/slime_paste"
         " let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
