@@ -56,10 +56,10 @@ bindsym $super+j focus down
 bindsym $super+k focus up
 bindsym $super+l focus right
 
-bindsym $super+Left focus left
-bindsym $super+Down focus down
-bindsym $super+Up focus up
-bindsym $super+Right focus right
+# bindsym $super+Left focus left
+# bindsym $super+Down focus down
+# bindsym $super+Up focus up
+# bindsym $super+Right focus right
 
 # move focused window
 bindsym $super+Shift+h move left
@@ -67,10 +67,10 @@ bindsym $super+Shift+j move down
 bindsym $super+Shift+k move up
 bindsym $super+Shift+l move right
 
-bindsym $super+Shift+Left move left
-bindsym $super+Shift+Down move down
-bindsym $super+Shift+Up move up
-bindsym $super+Shift+Right move right
+# bindsym $super+Shift+Left move left
+# bindsym $super+Shift+Down move down
+# bindsym $super+Shift+Up move up
+# bindsym $super+Shift+Right move right
 
 # workspace back and forth (with/without active container)
 workspace_auto_back_and_forth yes
@@ -79,9 +79,9 @@ bindsym $alt+Tab workspace back_and_forth
 bindsym $super+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 ## split orientation
-#bindsym $super+Shift+v split h;exec notify-send 'tile horizontally'
-#bindsym $super+v split v;exec notify-send 'tile vertically'
-#bindsym $super+q split toggle
+bindsym $super+Shift+v split h;exec notify-send 'tile horizontally'
+bindsym $super+v split v;exec notify-send 'tile vertically'
+bindsym $super+q split toggle
 
 # toggle fullscreen mode for the focused container
 bindsym $super+f fullscreen toggle
@@ -89,19 +89,19 @@ bindsym $super+f fullscreen toggle
 ## toggle tiling / floating
 bindsym $super+Shift+space floating toggle
 
+# focus the parent container
+bindsym $super+a focus parent
+
 # change container layout (stacked, tabbed, toggle split)
-bindsym $super+F1 layout stacking
+bindsym $super+F1 layout toggle split
 bindsym $super+F2 layout tabbed
-bindsym $super+F3 layout toggle split
+bindsym $super+F3 layout stacking
 
 # change focus between tiling / floating windows
 bindsym $super+semicolon focus mode_toggle
 
 # toggle sticky
 #bindsym $super+Shift+s sticky toggle
-
-# focus the parent container
-#bindsym $super+a focus parent
 
 # move the currently focused window to the scratchpad
 bindsym $super+Shift+minus move scratchpad
@@ -226,11 +226,11 @@ mode "resize" {
         bindsym k resize grow height 5 px or 5 ppt
         bindsym l resize grow width 5 px or 5 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        # # same bindings, but for the arrow keys
+        # bindsym Left resize shrink width 10 px or 10 ppt
+        # bindsym Down resize grow height 10 px or 10 ppt
+        # bindsym Up resize shrink height 10 px or 10 ppt
+        # bindsym Right resize grow width 10 px or 10 ppt
 
         # exit resize mode: Enter or Escape
         bindsym Return mode "default"
@@ -346,3 +346,7 @@ bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioStop exec --no-startup-id playerctl stop
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+
+# Brightness
+bindsym $super+Up exec --no-startup-id ~/.config/brightness/brightnessup.sh
+bindsym $super+Down exec --no-startup-id ~/.config/brightness/brightnessdown.sh
