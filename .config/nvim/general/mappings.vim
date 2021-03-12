@@ -30,4 +30,4 @@ nnoremap tk :+tabmove<CR>
 nnoremap tc :tabclose<CR>
 nnoremap tn :tabnew<SPACE>
 
-nmap <leader>so :so ~/.config/nvim/init.vim<CR>
+nmap <leader>so :so $MYVIMRC<CR>

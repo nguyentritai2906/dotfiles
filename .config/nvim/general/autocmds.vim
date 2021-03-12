@@ -29,3 +29,19 @@ runtime! macros/matchit.vim
 
 " Better alternative for autochdir
 autocmd BufEnter * silent! lcd %:p:h
+
+" Reloads vimrc after saving but keep cursor position
+if !exists('*ReloadVimrc')
+   fun! ReloadVimrc()
+       let save_cursor = getcurpos()
+       source $MYVIMRC
+       call setpos('.', save_cursor)
+   endfun
+endif
+autocmd! BufWritePost $MYVIMRC call ReloadVimrc()
+
+" if has ('autocmd') " Remain compatible with earlier versions
+ " augroup vimrc     " Source vim configuration upon save
+    " autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
+  " augroup END
+" endif " has autocmd
