@@ -99,6 +99,7 @@
         let g:slime_python_ipython = 1
     Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
         let g:ipython_cell_tag = ['# %%', '#%%', '# <codecell>', '##', '# +']
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
     " Tags
     Plug 'majutsushi/tagbar' " Vim plugin that displays tags in a window
@@ -662,15 +663,17 @@
         autocmd FileType vue AutoFormatBuffer prettier
     augroup END
 
-    " Expand region
-    " Extend the global default (NOTE: Remove comments in dictionary before sourcing)
-    call expand_region#custom_text_objects({
-        \ "\/\\n\\n\<CR>": 1,
-        \ 'a]' :1,
-        \ 'ab' :1,
-        \ 'aB' :1,
-        \ 'ii' :0,
-        \ 'ai' :0,
-        \ })
+    " " Expand region
+    " " Extend the global default (NOTE: Remove comments in dictionary before sourcing)
+    " call expand_region#custom_text_objects({
+    "     \ "\/\\n\\n\<CR>": 1,
+    "     \ 'a]' :1,
+    "     \ 'ab' :1,
+    "     \ 'aB' :1,
+    "     \ 'ii' :0,
+    "     \ 'ai' :0,
+    "     \ })
+
+    source ~/.config/nvim/nvim-treesitter.lua
 
 " }}}

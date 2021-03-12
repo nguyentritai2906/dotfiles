@@ -174,7 +174,12 @@ for_window [class="Alacritty"] floating disable
 for_window [class="^Google-chrome"] floating disable
 for_window [class="Nautilus"] floating disable
 for_window [class="qBittorrent"] floating disable
+<<<<<<< HEAD
 for_window [class="Spotify"] floating disable
+=======
+for_window [class="Zathura"] floating disable
+# for_window [class="Spotify"] floating disable
+>>>>>>> 66d3917332f93d23f004a4e5f4588d2c23c23a2e
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
