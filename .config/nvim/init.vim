@@ -47,3 +47,4 @@
     source ~/.config/nvim/config/vim-move.vim
     source ~/.config/nvim/config/vimwiki.vim
     source ~/.config/nvim/config/winresize.vim
+    source ~/.config/nvim/config/startify.vim
