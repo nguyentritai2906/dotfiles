@@ -1,4 +1,4 @@
-let g:coc_config_home = '~/.config/nvim/plug-config/'
+let g:coc_config_home = '~/.config/nvim/config/'
 
 function! s:check_back_space() abort
     let col = col('.') - 1
