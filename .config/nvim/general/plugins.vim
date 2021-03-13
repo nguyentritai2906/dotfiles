@@ -29,6 +29,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'jpalardy/vim-slime'
     Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'godlygeek/tabular'
 
     " Tags
     Plug 'majutsushi/tagbar' " Vim plugin that displays tags in a window

@@ -30,4 +30,8 @@ nnoremap tk :+tabmove<CR>
 nnoremap tc :tabclose<CR>
 nnoremap tn :tabnew<SPACE>
 
-nmap <leader>so :so $MYVIMRC<CR>
+nmap confr :so $MYVIMRC<CR>
+nmap confe :e $MYVIMRC<CR>
+
+nmap <silent> <TAB> :bnext<CR>
+nmap <silent> <S-TAB> :bprev<CR>
