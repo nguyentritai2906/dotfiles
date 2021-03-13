@@ -23,7 +23,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'ervandew/supertab'
     Plug 'terryma/vim-expand-region'
     Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-    " Plug 'sheerun/vim-polyglot'
+    Plug 'sheerun/vim-polyglot'
     Plug 'stevearc/vim-arduino'
     Plug 'goerz/jupytext.vim'
     Plug 'jpalardy/vim-slime'
