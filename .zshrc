@@ -214,3 +214,19 @@ export KAGGLE_CONFIG_DIR="/home/solus/.config/kaggle"
 # w3m -cols 99999 -dump http://en.wikipedia.org/wiki/February_29 | sed -n '/^Events/,/^Births/p' | sed '1d;$d' | sed -n 's/^.*•//p' > ~/.config/wikidates/February_29
 #
 cat ~/.config/wikidates/$(date +%B_%d) | shuf -n 1
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/solus/soft/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/solus/soft/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/solus/soft/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/solus/soft/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
