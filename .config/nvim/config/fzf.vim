@@ -22,21 +22,21 @@ let g:fzf_buffers_jump = 1
 if has('nvim') || has('gui_running')
     let $FZF_DEFAULT_OPTS .= ' --inline-info'
 endif
-nnoremap <silent> <Leader>/        :BLines<CR>
-nnoremap <silent> <Leader><CR>     :Files<CR>
-nnoremap <silent> <Leader>?        :Lines<CR>
-nnoremap <silent> <Leader>B        :Buffers<CR>
-nnoremap <silent> <Leader>C        :Colors<CR>
-nnoremap <silent> <Leader>H        :Helptags<CR>
-nnoremap <silent> <Leader>J        :JumpToTab<CR>
-nnoremap <silent> <Leader>M        :Maps<CR>
-nnoremap <silent> <Leader>R        :History<CR>
-nnoremap <silent> <Leader>S        :Snippets<CR>
-nnoremap <silent> <Leader>T        :FZF ~<CR>
-nnoremap <silent> <Leader>`        :Marks<CR>
-nnoremap <silent> <leader>.        :Ag<CR>
-nnoremap <silent> K                :call SearchWordWithAg()<CR>
-vnoremap <silent> K                :call SearchVisualSelectionWithAg()<CR>
+nnoremap <silent> <Leader>/  : BLines<CR>
+nnoremap <silent> <Leader>ff : Files<CR>
+nnoremap <silent> <Leader>?  : Lines<CR>
+nnoremap <silent> <Leader>fb : Buffers<CR>
+nnoremap <silent> <Leader>fc : Colors<CR>
+nnoremap <silent> <Leader>fh : Helptags<CR>
+nnoremap <silent> <Leader>fj : JumpToTab<CR>
+nnoremap <silent> <Leader>fm : Maps<CR>
+nnoremap <silent> <Leader>fr : History<CR>
+nnoremap <silent> <Leader>fs : Snippets<CR>
+nnoremap <silent> <Leader>ft : FZF ~<CR>
+nnoremap <silent> <Leader>f` : Marks<CR>
+nnoremap <silent> <leader>.  : Ag<CR>
+nnoremap <silent> K          : call SearchWordWithAg()<CR>
+vnoremap <silent> K          : call SearchVisualSelectionWithAg()<CR>
 
 " Jump to tab
 " Source get a list of strings whose format is ['tabNumber tabName']
