@@ -76,6 +76,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'easymotion/vim-easymotion' " Vim motions on speed
     Plug 'matze/vim-move' " Move lines and selections up and down
     Plug 'unblevable/quick-scope' " Quick find <char> movement
+    Plug 'christoomey/vim-tmux-navigator'
 
     " Writing
     Plug 'vimwiki/vimwiki'
