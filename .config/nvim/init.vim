@@ -49,3 +49,5 @@ source ~/.config/nvim/config/vimwiki.vim
 source ~/.config/nvim/config/winresize.vim
 source ~/.config/nvim/config/startify.vim
 source ~/.config/nvim/config/vimmultiplecursors.vim
+
+" git --git-dir=$HOME/.cfg --work-tree=$HOME config --local core.worktree $HOME
