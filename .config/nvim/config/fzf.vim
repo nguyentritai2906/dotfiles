@@ -28,6 +28,7 @@ nnoremap <silent> <Leader>?  : Lines<CR>
 nnoremap <silent> <Leader>fb : Buffers<CR>
 nnoremap <silent> <Leader>fc : Commands<CR>
 nnoremap <silent> <Leader>fh : Helptags<CR>
+nnoremap <silent> <Leader>fg : GFiles<CR>
 nnoremap <silent> <Leader>fj : JumpToTab<CR>
 nnoremap <silent> <Leader>fm : Maps<CR>
 nnoremap <silent> <Leader>fr : History<CR>
