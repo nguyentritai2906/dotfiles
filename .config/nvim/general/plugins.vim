@@ -19,6 +19,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
     Plug 'airblade/vim-gitgutter' " Git diff, stages/undoes hunks and partial hunks
     Plug 'tpope/vim-fugitive' " Git wrapper
+    Plug 'tpope/vim-rhubarb'
+    Plug 'tpope/vim-dispatch'
     Plug 'ervandew/supertab'
     Plug 'terryma/vim-expand-region'
     Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
