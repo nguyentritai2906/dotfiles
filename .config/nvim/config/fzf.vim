@@ -26,7 +26,7 @@ nnoremap <silent> <Leader>/  : BLines<CR>
 nnoremap <silent> <Leader>ff : Files<CR>
 nnoremap <silent> <Leader>?  : Lines<CR>
 nnoremap <silent> <Leader>fb : Buffers<CR>
-nnoremap <silent> <Leader>fc : Colors<CR>
+nnoremap <silent> <Leader>fc : Commands<CR>
 nnoremap <silent> <Leader>fh : Helptags<CR>
 nnoremap <silent> <Leader>fj : JumpToTab<CR>
 nnoremap <silent> <Leader>fm : Maps<CR>

@@ -35,7 +35,6 @@ alias cfp="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME push"
 alias cfl="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME pull"
 alias cfm="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME mv"
 alias ranger='ranger --choosedir=$HOME/.config/ranger/rangerdir; LASTDIR=`cat $HOME/.config/ranger/rangerdir`; cd "$LASTDIR"'
-alias bat="bat --style=numbers --color=always "
 
 # Global aliases
 alias -g L='| less'
