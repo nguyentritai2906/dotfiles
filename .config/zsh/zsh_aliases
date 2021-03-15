@@ -26,6 +26,7 @@ alias tree='exa -lamghT --icons --color-scale --group-directories-first'
 alias mv='mv -i'
 alias rm='rm -I'
 alias cf='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias cfv='GIT_DIR=$HOME/.cfg GIT_WORK_TREE=$HOME vim ~/.config/nvim/init.vim'
 alias cfs="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME status"
 alias cfd="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME diff"
 alias cfa="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME add"
