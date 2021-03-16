@@ -2,6 +2,7 @@
 call glaive#Install()
 Glaive codefmt plugin[mappings]
 Glaive codefmt google_java_executable="java -jar /home/solus/soft/google-java-format/google-java-format-1.9-all-deps.jar -a"
+Glaive codefmt clang_format_style="{IndentWidth: 4}"
 
 augroup autoformat_settings
     autocmd FileType bzl AutoFormatBuffer buildifier
