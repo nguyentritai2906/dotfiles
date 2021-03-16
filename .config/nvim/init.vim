@@ -51,5 +51,3 @@ source ~/.config/nvim/config/startify.vim
 source ~/.config/nvim/config/vimmultiplecursors.vim
 source ~/.config/nvim/config/fugitive.vim
 source ~/.config/nvim/config/nvimtree.vim
-
-" git --git-dir=$HOME/.cfg --work-tree=$HOME config --local core.worktree $HOME
