@@ -42,7 +42,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'gioele/vim-autoswap' " No more swap files!
     Plug '~/.fzf'
     Plug 'junegunn/fzf.vim' " General-purpose command-line fuzzy finder vim integration
-    Plug 'preservim/nerdtree' " A tree explorer plugin for vim
+    Plug 'kyazdani42/nvim-tree.lua' " A tree explorer plugin for vim
     Plug 'simnalamburt/vim-mundo' " Graph vim undo tree
     Plug 'jiangmiao/auto-pairs' " Autopair parentheses and stuff
     Plug 'luochen1990/rainbow' " Rainbow parentheses

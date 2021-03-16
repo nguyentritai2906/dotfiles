@@ -44,6 +44,7 @@ set cursorline
 set ttyfast " faster redrawing
 set scrolloff=5
 set splitright
+set termguicolors " Nvim-tree: this variable must be enabled for colors to be applied properly
 
 " Tab control
 set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
@@ -57,7 +58,7 @@ set guicursor=n-v-sm:block,i-c-ci-ve:ver25,r-cr-o:hor20
 " Make the 81st column stand out
 " IMPORTANT: load the colorscheme before ctermbg settings in .vimrc
 " because they need to override the same ones set by the colorscheme.
-highlight ColorColumn ctermbg=darkcyan
+highlight ColorColumn ctermbg=darkcyan guibg=darkcyan
 call matchadd('ColorColumn', '\%81v', 100)
 
 " Search
