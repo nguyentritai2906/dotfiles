@@ -61,7 +61,8 @@ call plug#begin('~/.vim/plugged')
     " UI
     Plug 'vim-airline/vim-airline' " Lean & mean tabline for vim
     Plug 'dracula/vim', { 'as': 'dracula'  }
-    Plug 'lilydjwg/colorizer' " Colorize all text in form of #rrggbb and #rgb
+    Plug 'sainnhe/edge'
+    Plug 'norcalli/nvim-colorizer.lua'
     Plug 'Yggdroot/indentLine' " Display indentation level
     Plug 'haya14busa/is.vim' " Incremental search improved
     Plug 'PeterRincker/vim-searchlight' " Highlight current search match

@@ -51,3 +51,5 @@ source ~/.config/nvim/config/startify.vim
 source ~/.config/nvim/config/vimmultiplecursors.vim
 source ~/.config/nvim/config/fugitive.vim
 source ~/.config/nvim/config/nvimtree.vim
+source ~/.config/nvim/config/nvimcolorizer.vim
+source ~/.config/nvim/config/edge.vim

@@ -33,7 +33,6 @@ set lazyredraw " don't redraw while executing macros
 set tags=tags;/ " Check current folder for tags file and keep going one directory up all the way to the root folder
 
 " Apprearance
-colorscheme dracula
 set t_Co=256 " explicitly tell vim that the terminal supports 256 colors
 set number relativenumber
 set background=dark
@@ -44,7 +43,9 @@ set cursorline
 set ttyfast " faster redrawing
 set scrolloff=5
 set splitright
-set termguicolors " Nvim-tree: this variable must be enabled for colors to be applied properly
+if has('termguicolors')
+    set termguicolors " Nvim-tree: this variable must be enabled for colors to be applied properly
+endif
 
 " Tab control
 set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
@@ -66,12 +67,12 @@ call matchadd('ColorColumn', '\%81v', 100)
     highlight		Normal		guibg=NONE	 ctermbg=NONE
     highlight         link      Searchlight  IncSearch
 
-    highlight link VimwikiHeader1 DraculaRed
-    highlight link VimwikiHeader2 DraculaGreen
-    highlight link VimwikiHeader3 DraculaComment
-    highlight link VimwikiHeader4 DraculaPurple
-    highlight link VimwikiHeader5 DraculaCyan
-    highlight link VimwikiHeader6 DraculaYellow
+    highlight link VimwikiHeader1 EdgeRed
+    highlight link VimwikiHeader2 EdgeGreen
+    highlight link VimwikiHeader3 EdgeComment
+    highlight link VimwikiHeader4 EdgePurple
+    highlight link VimwikiHeader5 EdgeCyan
+    highlight link VimwikiHeader6 EdgeYellow
 
     " Add DONE to TODO highlighting group
     " https://stackoverflow.com/questions/4162664/vim-highlight-a-list-of-words
