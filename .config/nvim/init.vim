@@ -35,7 +35,7 @@ source ~/.config/nvim/config/markdown.vim
 source ~/.config/nvim/config/mundo.vim
 source ~/.config/nvim/config/nerdcommenter.vim
 source ~/.config/nvim/config/nerdtree.vim
-source ~/.config/nvim/config/nvimtreesitter.lua
+source ~/.config/nvim/config/nvimtreesitter.vim
 source ~/.config/nvim/config/prettier.vim
 source ~/.config/nvim/config/quickscope.vim
 source ~/.config/nvim/config/rainbow.vim
@@ -53,3 +53,5 @@ source ~/.config/nvim/config/nvimtree.vim
 source ~/.config/nvim/config/nvimcolorizer.vim
 source ~/.config/nvim/config/edge.vim
 source ~/.config/nvim/config/highlightedyank.vim " After colorscheme
+" source ~/.config/nvim/config/lsp.vim
+" source ~/.config/nvim/config/compe.vim

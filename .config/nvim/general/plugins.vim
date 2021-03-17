@@ -9,6 +9,9 @@ call plug#begin('~/.vim/plugged')
 
     " Dev
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    " Plug 'neovim/nvim-lspconfig'
+    " Plug 'hrsh7th/nvim-compe'
+    " Plug 'anott03/nvim-lspinstall'
     " Add maktaba and codefmt to the runtimepath.
     " (The latter must be installed before it can be used.)
     Plug 'google/vim-maktaba'
@@ -84,6 +87,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'vimwiki/vimwiki'
     Plug 'plasticboy/vim-markdown'	" Syntax highlighting, matching rules and mappings Markdown
     Plug 'SirVer/ultisnips' | Plug 'nguyentritai2906/vim-snippets'
+    " Plug 'hrsh7th/vim-vsnip'
 
 call plug#end()
 
