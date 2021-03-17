@@ -1,24 +1,59 @@
-*background: #1c1c22
-*foreground: #d9d6ca
-*cursorColor: #d9d6ca
-*acolor: #bd93f9
+! Edge
+#define white #c5cdd9
+#define black #2c2e34
+#define grey #88909f
+#define red #ec7279
+#define green #a0c980
+#define cyan #5dbbc1
+#define yellow #deb974
+#define blue #6cb6eb
+#define magenta #d38aea
 
-*color0: #1c1c22
-*color8: #59596c
-*color1: #7e6565
-*color9: #807171
-*color2: #85aab6
-*color10: #3e646f
-*color3: #90a996
-*color11: #badbc2
-*color4: #3e646f
-*color12: #5c828d
-*color5: #817f98
-*color13: #9b98b7
-*color6: #9aa7c0
-*color14: #b2b7c0
-*color7: #d9d6ca
-*color15: #d9d6ca
+! Nightfly Normal
+! black:   '#1d3b53'
+! grey:    '#88909f'
+! red:     '#fc514e'
+! green:   '#a1cd5e'
+! yellow:  '#e3d18a'
+! blue:    '#82aaff'
+! magenta: '#c792ea'
+! cyan:    '#7fdbca'
+! white:   '#a1aab8'
+
+! Nightfly Bright
+! black:   '#7c8f8f'
+! grey:    '#88909f'
+! red:     '#ff5874'
+! green:   '#21c7a8'
+! yellow:  '#ecc48d'
+! blue:    '#82aaff'
+! magenta: '#ae81ff'
+! cyan:    '#7fdbca'
+! white:   '#d6deeb'
+
+*.foreground:   white
+*.background:   black
+*.cursorColor:  white
+*fading: 35
+*fadeColor: grey
+*acolor: magenta
+
+*.color0: black
+*.color1: red
+*.color2: green
+*.color3: yellow
+*.color4: blue
+*.color5: magenta
+*.color6: cyan
+*.color7: white
+*.color8: black
+*.color9: red
+*.color10: green
+*.color11: yellow
+*.color12: blue
+*.color13: magenta
+*.color14: cyan
+*.color15: white
 
 rofi.color-enabled: true
 rofi.color-window: #1c1c22, #3e646f, #3e646f
