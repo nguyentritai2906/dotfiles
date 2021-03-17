@@ -9,5 +9,10 @@
     "jedi.diagnostics.enable": true,
     "jedi.diagnostics.didOpen": true,
     "jedi.diagnostics.didChange": true,
-    "jedi.diagnostics.didSave": true
+    "jedi.diagnostics.didSave": true,
+    "list.insertMappings": {
+        "<C-d>": "do:previewdown",
+        "<C-u>": "do:previewup"
+    },
+    "list.previewSplitRight": true
 }
