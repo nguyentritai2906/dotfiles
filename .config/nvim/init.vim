@@ -27,7 +27,6 @@ source ~/.config/nvim/config/expandregion.vim
 source ~/.config/nvim/config/firenvim.vim
 source ~/.config/nvim/config/fzf.vim
 source ~/.config/nvim/config/gitgutter.vim
-source ~/.config/nvim/config/highlightedyank.vim
 source ~/.config/nvim/config/indentline.vim
 source ~/.config/nvim/config/ipythoncell.vim
 source ~/.config/nvim/config/incsearch.vim
@@ -53,3 +52,4 @@ source ~/.config/nvim/config/fugitive.vim
 source ~/.config/nvim/config/nvimtree.vim
 source ~/.config/nvim/config/nvimcolorizer.vim
 source ~/.config/nvim/config/edge.vim
+source ~/.config/nvim/config/highlightedyank.vim " After colorscheme

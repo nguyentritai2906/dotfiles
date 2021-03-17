@@ -39,9 +39,3 @@ if !exists('*ReloadVimrc')
    endfun
 endif
 autocmd! BufWritePost $MYVIMRC call ReloadVimrc()
-
-" if has ('autocmd') " Remain compatible with earlier versions
- " augroup vimrc     " Source vim configuration upon save
-    " autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
-  " augroup END
-" endif " has autocmd
