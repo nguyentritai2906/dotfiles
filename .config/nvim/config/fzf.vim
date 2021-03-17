@@ -20,7 +20,8 @@ let g:fzf_colors =
 let g:fzf_buffers_jump = 1
 
 if has('nvim') || has('gui_running')
-    let $FZF_DEFAULT_OPTS .= ' --inline-info --preview-window=:nohidden'
+    let $FZF_DEFAULT_OPTS .= ' --inline-info'
+    " let $FZF_DEFAULT_OPTS .= ' --inline-info --preview-window=:nohidden'
 endif
 nnoremap <silent> <Leader>/  : BLines<CR>
 nnoremap <silent> <Leader>ff : Files<CR>
