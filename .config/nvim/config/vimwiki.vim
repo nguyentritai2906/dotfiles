@@ -8,3 +8,4 @@ let g:vimwiki_table_mappings=0
 
 " Set foldmethod in Vimwiki
 autocmd BufEnter *.md setlocal foldmethod=indent
+autocmd BufEnter *.md setlocal syntax=markdown
