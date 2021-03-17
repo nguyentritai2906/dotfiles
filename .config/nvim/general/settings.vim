@@ -21,6 +21,7 @@ set dictionary+=/usr/share/dict/words
 set mouse=a
 set foldmethod=expr
 set foldnestmax=3
+let g:vimsyn_embed = 'l'
 
 " Searching
 set incsearch " lookahead as search pattern is specified
