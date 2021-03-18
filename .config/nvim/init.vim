@@ -20,7 +20,6 @@ source ~/.config/nvim/config/anzu.vim
 source ~/.config/nvim/config/arduino.vim
 source ~/.config/nvim/config/autopairs.vim
 source ~/.config/nvim/config/bracey.vim
-source ~/.config/nvim/config/cocnvim.vim
 source ~/.config/nvim/config/codefmt.vim
 source ~/.config/nvim/config/easymotion.vim
 source ~/.config/nvim/config/expandregion.vim
@@ -40,7 +39,6 @@ source ~/.config/nvim/config/prettier.vim
 source ~/.config/nvim/config/quickscope.vim
 source ~/.config/nvim/config/rainbow.vim
 source ~/.config/nvim/config/slime.vim
-source ~/.config/nvim/config/supertab.vim
 source ~/.config/nvim/config/tagbar.vim
 source ~/.config/nvim/config/ultisnips.vim
 source ~/.config/nvim/config/vimmove.vim
@@ -53,5 +51,8 @@ source ~/.config/nvim/config/nvimtree.vim
 source ~/.config/nvim/config/nvimcolorizer.vim
 source ~/.config/nvim/config/edge.vim
 source ~/.config/nvim/config/highlightedyank.vim " After colorscheme
-" source ~/.config/nvim/config/lsp.vim
-" source ~/.config/nvim/config/compe.vim
+source ~/.config/nvim/config/cocnvim.vim
+source ~/.config/nvim/config/supertab.vim
+
+" lua require('nvlsp')
+" lua require('nvcompe')

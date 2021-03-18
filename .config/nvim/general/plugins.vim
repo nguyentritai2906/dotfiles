@@ -87,7 +87,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'vimwiki/vimwiki'
     Plug 'plasticboy/vim-markdown'	" Syntax highlighting, matching rules and mappings Markdown
     Plug 'SirVer/ultisnips' | Plug 'nguyentritai2906/vim-snippets'
-    " Plug 'hrsh7th/vim-vsnip'
 
 call plug#end()
 

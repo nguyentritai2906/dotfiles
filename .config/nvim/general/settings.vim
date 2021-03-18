@@ -33,7 +33,7 @@ let @/ = "" " highlight search but not when source .vimrc
 set lazyredraw " don't redraw while executing macros
 set tags=tags;/ " Check current folder for tags file and keep going one directory up all the way to the root folder
 
-" Apprearance
+" Appearance
 set t_Co=256 " explicitly tell vim that the terminal supports 256 colors
 set number relativenumber
 " set background=dark
@@ -44,6 +44,8 @@ set cursorline
 set ttyfast " faster redrawing
 set scrolloff=5
 set splitright
+set spell
+set spelllang=en
 if has('termguicolors')
     set termguicolors " Nvim-tree: this variable must be enabled for colors to be applied properly
 endif
@@ -64,16 +66,8 @@ highlight ColorColumn ctermbg=darkcyan guibg=darkcyan
 call matchadd('ColorColumn', '\%81v', 100)
 
 " Search
-    " Highlight
-    highlight		Normal		guibg=NONE	 ctermbg=NONE
-    highlight         link      Searchlight  IncSearch
-
-    " Add DONE to TODO highlighting group
-    " https://stackoverflow.com/questions/4162664/vim-highlight-a-list-of-words
-    match Todo /DONE\|NOTE/
-
-    " Center search hit and automatically clear highlight with is.vim
-    nnoremap <silent> <F4> :call <SID>SearchMode()<CR>
-    " Default to 'Middle'
-    nmap <silent> n <Plug>(is-n)zz
-    nmap <silent> N <Plug>(is-N)zz
+" Center search hit and automatically clear highlight with is.vim
+nnoremap <silent> <F4> :call <SID>SearchMode()<CR>
+" Default to 'Middle'
+nmap <silent> n <Plug>(is-n)zz
+nmap <silent> N <Plug>(is-N)zz
