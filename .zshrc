@@ -230,3 +230,4 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+export PATH=~/.npm-global/bin:~/node_modules/.bin:$PATH
