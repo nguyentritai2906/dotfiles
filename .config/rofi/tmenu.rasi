@@ -42,6 +42,7 @@
 }
 #element selected {
     background-color: @accent;
+    text-color: Black;
 }
 
 #textbox-prompt-colon {
