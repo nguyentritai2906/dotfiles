@@ -48,11 +48,14 @@ local on_attach = function(client, bufnr)
       augroup END
     ]], false)
   end
+
+  vim.api.nvim_command[[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)]]
+
 end
 
 -- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches
-local servers = { "pyright" }
+local servers = {"pyright", "vimls", "jdtls", "efm"}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
