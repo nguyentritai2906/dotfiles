@@ -7,6 +7,7 @@ local flake8 = {
 }
 local isort = {formatCommand = "isort --quiet -", formatStdin = true}
 local yapf = {formatCommand = "yapf --quiet", formatStdin = true}
+local autopep8 = {formatCommand = "autopep8 -", formatStdin = true}
 
 -- lua
 local luaFormat = {
@@ -48,7 +49,7 @@ require"lspconfig".efm.setup {
         rootMarkers = {".git/"},
         languages = {
             lua = {luaFormat},
-            python = {yapf, isort, flake8},
+            python = {autopep8, yapf, isort, flake8},
             javascriptreact = {prettier, eslint},
             javascript = {prettier, eslint},
             sh = {shellcheck, shfmt},
