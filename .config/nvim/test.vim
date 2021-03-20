@@ -1,1 +1,1 @@
-" Some new file
+" New file
