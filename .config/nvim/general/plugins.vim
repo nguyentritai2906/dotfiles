@@ -9,9 +9,6 @@ call plug#begin('~/.vim/plugged')
 
     " Dev
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    " Plug 'neovim/nvim-lspconfig'
-    " Plug 'hrsh7th/nvim-compe'
-    " Plug 'anott03/nvim-lspinstall'
     " Add maktaba and codefmt to the runtimepath.
     " (The latter must be installed before it can be used.)
     Plug 'google/vim-maktaba'

@@ -52,8 +52,5 @@ source ~/.config/nvim/config/vimmultiplecursors.vim
 source ~/.config/nvim/config/vimwiki.vim
 source ~/.config/nvim/config/virtualenv.vim
 source ~/.config/nvim/config/winresize.vim
-
 source ~/.config/nvim/config/cocnvim.vim
 source ~/.config/nvim/config/supertab.vim
-" lua require('nvlsp')
-" lua require('nvcompe')
