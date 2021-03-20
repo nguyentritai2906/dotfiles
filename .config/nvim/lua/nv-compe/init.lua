@@ -72,15 +72,8 @@ require'lspconfig'.rust_analyzer.setup {
     capabilities = capabilities,
 }
 
--- vim.api.nvim_set_keymap("i", "<C-Space>", "v:api.compe.complete()", {expr = true})
--- vim.api.nvim_set_keymap("i", "<CR>", "v:lua.confirm('<CR>')", {expr = true})
--- vim.api.nvim_set_keymap("i", "<C-e>", "v:lua.close('<C-e>')", {expr = true})
--- vim.api.nvim_set_keymap("i", "<C-f>", "v:lua.scroll('delta' : +4)", {expr = true})
--- vim.api.nvim_set_keymap("i", "<C-b>", "v:lua.scroll('delta' : -4)", {expr = true})
-
--- inoremap <silent><expr> <C-Space> compe#complete()
--- inoremap <silent><expr> <CR>      compe#confirm('<CR>')
--- inoremap <silent><expr> <C-e>     compe#close('<C-e>')
--- inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
--- inoremap <silent><expr> <C-b>     compe#scroll({ 'delta': -4 })
-
+vim.cmd([[inoremap <silent><expr> <C-Space> compe#complete()]])
+vim.cmd([[inoremap <silent><expr> <CR>      compe#confirm('<CR>')]])
+vim.cmd([[inoremap <silent><expr> <C-e>     compe#close('<C-e>')]])
+-- vim.cmd([[inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })]])
+-- vim.cmd([[inoremap <silent><expr> <C-b>     compe#scroll({ 'delta': -4 })]])
