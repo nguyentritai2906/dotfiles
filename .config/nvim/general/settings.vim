@@ -11,6 +11,7 @@ set title titlestring= " Get title - dealing with swap files - Autoswap
 set backspace=indent,eol,start " make backspace behave in a sane manner
 set clipboard=unnamedplus
 set updatetime=100 " Update sign column every 1/10 of a second
+set timeoutlen=300
 set ttimeoutlen=0 " No key code timeout
 set conceallevel=2
 set wildmode=longest,full " Tab completion

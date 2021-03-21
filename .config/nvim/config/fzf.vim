@@ -23,9 +23,9 @@ if has('nvim') || has('gui_running')
     let $FZF_DEFAULT_OPTS .= ' --inline-info'
     " let $FZF_DEFAULT_OPTS .= ' --inline-info --preview-window=:nohidden'
 endif
-nnoremap <silent> <Leader>/  : BLines<CR>
+nnoremap <silent> <Leader>f/ : BLines<CR>
+nnoremap <silent> <Leader>f? : Lines<CR>
 nnoremap <silent> <Leader>ff : Files<CR>
-nnoremap <silent> <Leader>?  : Lines<CR>
 nnoremap <silent> <Leader>fb : Buffers<CR>
 nnoremap <silent> <Leader>fc : Commands<CR>
 nnoremap <silent> <Leader>fh : Helptags<CR>
@@ -36,8 +36,8 @@ nnoremap <silent> <Leader>fr : History<CR>
 nnoremap <silent> <Leader>fs : Snippets<CR>
 nnoremap <silent> <Leader>ft : FZF ~<CR>
 nnoremap <silent> <Leader>f` : Marks<CR>
-nnoremap <silent> <leader>.  : Ag<CR>
-nnoremap <silent> K          : call SearchWordWithAg()<CR>
+nnoremap <silent> <leader>f. : Ag<CR>
+" nnoremap <silent> K          : call SearchWordWithAg()<CR>
 vnoremap <silent> K          : call SearchVisualSelectionWithAg()<CR>
 
 " Jump to tab

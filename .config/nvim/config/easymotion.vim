@@ -4,7 +4,4 @@ let g:EasyMotion_smartcase = 1 " Turn on case-insensitive feature
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
 "nmap <Leader>s <Plug>(easymotion-overwin-f)
 " Need one more keystroke, but on average, it may be more comfortable.
-nmap <Leader><Leader> <Plug>(easymotion-overwin-f2)
-" Line motions
-nmap <Leader>J <Plug>(easymotion-j)
-nmap <Leader>K <Plug>(easymotion-k)
+nmap <Leader>m <Plug>(easymotion-overwin-f2)

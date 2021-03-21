@@ -7,39 +7,32 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-    " Dev
-    " Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    " LSP
+    0
     Plug 'neovim/nvim-lspconfig'
     Plug 'hrsh7th/nvim-compe'
-    " Add maktaba and codefmt to the runtimepath.
-    " (The latter must be installed before it can be used.)
-    " Plug 'google/vim-maktaba'
-    " Plug 'google/vim-codefmt'
-    " Also add Glaive, which is used to configure codefmt's maktaba flags. See
-    " `:help :Glaive` for usage.
-    " Plug 'google/vim-glaive'
-    Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-    Plug 'airblade/vim-gitgutter' " Git diff, stages/undoes hunks and partial hunks
-    Plug 'tpope/vim-fugitive' " Git wrapper
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+    " Git
+    Plug 'airblade/vim-gitgutter'
+    Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-rhubarb'
     Plug 'tpope/vim-dispatch'
-    " Plug 'ervandew/supertab'
-    Plug 'terryma/vim-expand-region'
+
     Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+    Plug 'godlygeek/tabular'
+    Plug 'goerz/jupytext.vim'
+    Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
+    Plug 'jmcantrell/vim-virtualenv'
+    Plug 'jpalardy/vim-slime'
     Plug 'sheerun/vim-polyglot'
     Plug 'stevearc/vim-arduino'
-    Plug 'goerz/jupytext.vim'
-    Plug 'jpalardy/vim-slime'
-    Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    Plug 'godlygeek/tabular'
-    Plug 'jmcantrell/vim-virtualenv'
+    Plug 'turbio/bracey.vim'
 
     " Tags
     Plug 'majutsushi/tagbar' " Vim plugin that displays tags in a window
     Plug 'xolox/vim-easytags' " Automated tag file generation and syntax highlighting of tags in Vim
     Plug 'xolox/vim-misc' " Miscellaneous auto-load Vim scripts, required for xolox's pluggin
-    Plug 'turbio/bracey.vim'
 
     " Make life easier
     Plug 'gioele/vim-autoswap' " No more swap files!
@@ -60,6 +53,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-abolish'
     Plug 'simeji/winresizer'
     Plug 'szw/vim-maximizer'
+    Plug 'liuchengxu/vim-which-key'
 
     " UI
     Plug 'vim-airline/vim-airline' " Lean & mean tabline for vim
@@ -79,7 +73,7 @@ call plug#begin('~/.vim/plugged')
     " Navigation
     Plug 'easymotion/vim-easymotion' " Vim motions on speed
     Plug 'matze/vim-move' " Move lines and selections up and down
-    Plug 'unblevable/quick-scope' " Quick find <char> movement
+    Plug 'unblevable/quick-scope' " Quick find <char><char> movement
     Plug 'christoomey/vim-tmux-navigator'
 
     " Writing
