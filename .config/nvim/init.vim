@@ -51,6 +51,7 @@ source ~/.config/nvim/config/whichkey.vim
 
 lua require('nv-lsp')
 lua require('nv-lsp.efm-ls')
+lua require('nv-lsp.bash-ls')
 lua require('nv-compe')
 lua require('nv-utils')
 lua require('nv-treesitter')

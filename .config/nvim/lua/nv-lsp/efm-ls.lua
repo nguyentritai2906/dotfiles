@@ -34,6 +34,7 @@ local shellcheck = {
     lintFormats = {'%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m', '%f:%l:%c: %tote: %m'}
 }
 
+-- go get -u github.com/mvdan/sh/cmd/shfmt
 local shfmt = {
   formatCommand = 'shfmt -ci -s -bn',
   formatStdin = true
@@ -53,7 +54,7 @@ require"lspconfig".efm.setup {
             python = {autopep8, yapf, isort, flake8},
             javascriptreact = {prettier, eslint},
             javascript = {prettier, eslint},
-            sh = {shellcheck, shfmt},
+            sh = {shfmt, shellcheck},
             html = {prettier},
             css = {prettier},
             json = {prettier},

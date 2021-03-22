@@ -5,8 +5,6 @@
 # ███████╗███████║██║  ██║    ╚██████╗╚██████╔╝██║ ╚████║██║     ██║╚██████╔╝
 # ╚══════╝╚══════╝╚═╝  ╚═╝     ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝ ╚═════╝
 
-
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -43,7 +41,7 @@ ZSH_THEME="spaceship"
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
- DISABLE_MAGIC_FUNCTIONS=true
+DISABLE_MAGIC_FUNCTIONS=true
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -52,7 +50,7 @@ ZSH_THEME="spaceship"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
- ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -96,11 +94,11 @@ autoload -Uz compinit && compinit
 export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
- if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vim'
- else
-   export EDITOR='nv'
- fi
+if [[ -n $SSH_CONNECTION ]]; then
+	export EDITOR='vim'
+else
+	export EDITOR='nv'
+fi
 
 # Disable flow control Ctrl+S, since it realy just annoys me
 stty -ixon &>/dev/null
@@ -205,10 +203,10 @@ export KAGGLE_CONFIG_DIR="/home/solus/.config/kaggle"
 # Random wikipedia on this day fact
 #
 # for day in {1..365}; do
-    # mkdir ~/.config/wikidates 2>/dev/null
-    # date=$(date -d "now +$day days" +%B_%d)
-    # w3m -cols 99999 -dump http://en.wikipedia.org/wiki/$date | sed -n '/^Events/,/^Births/p' | sed '1d;$d' | sed -n 's/^.*•//p' > ~/.config/wikidates/$date
-    # echo $date
+# mkdir ~/.config/wikidates 2>/dev/null
+# date=$(date -d "now +$day days" +%B_%d)
+# w3m -cols 99999 -dump http://en.wikipedia.org/wiki/$date | sed -n '/^Events/,/^Births/p' | sed '1d;$d' | sed -n 's/^.*•//p' > ~/.config/wikidates/$date
+# echo $date
 # done
 
 # w3m -cols 99999 -dump http://en.wikipedia.org/wiki/February_29 | sed -n '/^Events/,/^Births/p' | sed '1d;$d' | sed -n 's/^.*•//p' > ~/.config/wikidates/February_29
@@ -217,15 +215,15 @@ cat ~/.config/wikidates/$(date +%B_%d) | shuf -n 1
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/solus/soft/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/solus/soft/anaconda3/bin/conda' 'shell.zsh' 'hook' 2>/dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+	eval "$__conda_setup"
 else
-    if [ -f "/home/solus/soft/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/solus/soft/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/solus/soft/anaconda3/bin:$PATH"
-    fi
+	if [ -f "/home/solus/soft/anaconda3/etc/profile.d/conda.sh" ]; then
+		. "/home/solus/soft/anaconda3/etc/profile.d/conda.sh"
+	else
+		export PATH="/home/solus/soft/anaconda3/bin:$PATH"
+	fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
