@@ -62,7 +62,7 @@ let g:which_key_visual_map['c'] = {
             \ }
 
 " a is for Arduino
-let g:which_key_normal_map['a'] = {
+let g:which_key_normal_map['A'] = {
             \   'name' :   '+Arduino'                   ,
             \   'v'    : [ '<Plug>ArduinoVerify'          , 'Compile'              ] ,
             \   'u'    : [ '<Plug>ArduinoUpload'          , 'CompileUpload'        ] ,
@@ -96,11 +96,10 @@ let g:which_key_normal_map['w'] = {
             \     } ,
             \ }
 
-" h is for Highlight
-let g:which_key_normal_map['h'] = {
-            \   'name' :   '+Highlight' ,
-            \   'l'    : [ ':nohl'      , 'NoHighlight' ] ,
-            \ }
+" " h is for Highlight
+" let g:which_key_normal_map['h'] = {
+"             \   'name' :   '+Highlight' ,
+"             \ }
 
 " f is for FZF
 let g:which_key_normal_map['f'] = {
@@ -130,6 +129,7 @@ let g:which_key_normal_map['l'] = {
             \   'q'    : [ 'LSPSetLocList'                , 'ListDiagnosticsLocation' ] ,
             \   'r'    : [ 'LSPRename'                    , 'Rename'                  ] ,
             \   'f'    : [ 'LSPFormatting'                , 'Formatting'              ] ,
+            \   'v'    : [ 'LSPVirtualTextToggle'         , 'VirtualText'             ] ,
             \   'w'    : {
                 \   'name' :   '+Workspace'               ,
                 \   'a'    : [ 'LSPAddWorkspaceFolder'    , 'AddWorkspaceFolder'      ] ,
@@ -161,14 +161,13 @@ call which_key#register('<VisualBindings>', "g:which_key_visual_map")
 
 " a is for Actions
 let g:which_key_normal_map.a = {
-      \ 'name' : '+Actions' ,
-      \ 'c' : [':ColorizerToggle'        , 'Colorizer'],
-      \ 'h' : [':let @/ = ""'            , 'RemoveSearchHighlight'],
-      \ 'l' : [':Bracey'                 , 'StartLiveServer'],
-      \ 'L' : [':BraceyStop'             , 'StopLiveServer'],
-      \ 's' : [':s/\%V\(.*\)\%V/"\1"/'   , 'Surround'],
-      \ 'v' : [':Codi'                   , 'VirtualReplOn'],
-      \ 'V' : [':Codi!'                  , 'VirtualReplOff'],
+      \ 'name' : '+Actions'       ,
+      \ 'c' : [ ':ColorizerToggle' , 'Colorizer'       ] ,
+      \ 'h' : [ ':nohl'            , 'NoHighlight'     ] ,
+      \ 'l' : [ ':Bracey'          , 'StartLiveServer' ] ,
+      \ 'L' : [ ':BraceyStop'      , 'StopLiveServer'  ] ,
+      \ 'v' : [ ':Codi'            , 'VirtualReplOn'   ] ,
+      \ 'V' : [ ':Codi!'           , 'VirtualReplOff'  ] ,
       \ }
 
 " " b is for buffer

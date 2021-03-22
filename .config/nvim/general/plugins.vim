@@ -8,7 +8,6 @@ endif
 call plug#begin('~/.vim/plugged')
 
     " LSP
-    0
     Plug 'neovim/nvim-lspconfig'
     Plug 'hrsh7th/nvim-compe'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -19,6 +18,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-rhubarb'
     Plug 'tpope/vim-dispatch'
 
+    " Dev
     Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
     Plug 'godlygeek/tabular'
     Plug 'goerz/jupytext.vim'
@@ -28,6 +28,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'sheerun/vim-polyglot'
     Plug 'stevearc/vim-arduino'
     Plug 'turbio/bracey.vim'
+    Plug 'metakirby5/codi.vim'
 
     " Tags
     Plug 'majutsushi/tagbar' " Vim plugin that displays tags in a window

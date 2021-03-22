@@ -21,6 +21,7 @@ buf_set_keymap('n'          , '<space>le'    , '<cmd>lua vim.lsp.diagnostic.show
 buf_set_keymap('n'          , '<space>lgk'  , '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>'                           , opts)
 buf_set_keymap('n'          , '<space>lgj'  , '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>'                           , opts)
 buf_set_keymap('n'          , '<space>lq'    , '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>'                         , opts)
+vim.cmd('command! -nargs=0 LSPVirtualTextToggle lua require("nv-lsp/virtual-text").toggle()')
 
 local function on_attach(client, bufnr)
     -- Set autocommands conditional on server_capabilities
