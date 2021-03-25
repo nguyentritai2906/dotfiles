@@ -2,7 +2,7 @@
 let mapleader=" "
 
 " Clear all highlight
-nnoremap <Leader>hl :noh<CR>
+nnoremap <Leader>ah :noh<CR>
 
 " Keep visual selection when indenting/outdenting/commemt/uncomment
 vmap < <gv

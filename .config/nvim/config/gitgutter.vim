@@ -8,8 +8,8 @@ let g:gitgutter_sign_modified_removed = '<'
 let g:gitgutter_override_sign_column_highlight = 1
 
 let g:gitgutter_map_keys = 0
-nmap <space>gp <Plug>(GitGutterPrevHunk)
-nmap <space>gn <Plug>(GitGutterNextHunk)
-nmap <space>gv <Plug>(GitGutterPreviewHunk)
+nmap <space>gk <Plug>(GitGutterPrevHunk)
+nmap <space>gj <Plug>(GitGutterNextHunk)
+nmap <space>gp <Plug>(GitGutterPreviewHunk)
 nmap <space>gs <Plug>(GitGutterStageHunk)
 nmap <space>gu <Plug>(GitGutterUndoHunk)

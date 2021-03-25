@@ -69,12 +69,12 @@ let g:which_key_normal_map['A'] = {
             \   's'    : [ '<Plug>ArduinoUploadAndSerial' , 'CompileUploadConnect' ] ,
             \ }
 
-" g is for GitGutter
+" g is for Git
 let g:which_key_normal_map['g'] = {
             \   'name' :   '+GitGutter'                   ,
-            \   'p'    : [ '<Plug>(GitGutterPrevHunk)'    , 'PrevHunk'    ] ,
-            \   'n'    : [ '<Plug>(GitGutterNextHunk)'    , 'NextHunk'    ] ,
-            \   'v'    : [ '<Plug>(GitGutterPreviewHunk)' , 'PreviewHunk' ] ,
+            \   'k'    : [ '<Plug>(GitGutterPrevHunk)'    , 'PrevHunk'    ] ,
+            \   'j'    : [ '<Plug>(GitGutterNextHunk)'    , 'NextHunk'    ] ,
+            \   'p'    : [ '<Plug>(GitGutterPreviewHunk)' , 'PreviewHunk' ] ,
             \   's'    : [ '<Plug>(GitGutterStageHunk)'   , 'StageHunk'   ] ,
             \   'u'    : [ '<Plug>(GitGutterUndoHunk)'    , 'UndoHunk'    ] ,
             \ }
@@ -162,12 +162,11 @@ call which_key#register('<VisualBindings>', "g:which_key_visual_map")
 " a is for Actions
 let g:which_key_normal_map.a = {
       \ 'name' : '+Actions'       ,
-      \ 'c' : [ ':ColorizerToggle' , 'Colorizer'       ] ,
-      \ 'h' : [ ':nohl'            , 'NoHighlight'     ] ,
-      \ 'l' : [ ':Bracey'          , 'StartLiveServer' ] ,
-      \ 'L' : [ ':BraceyStop'      , 'StopLiveServer'  ] ,
-      \ 'v' : [ ':Codi'            , 'VirtualReplOn'   ] ,
-      \ 'V' : [ ':Codi!'           , 'VirtualReplOff'  ] ,
+      \ 'c' : [ ':ColorizerToggle' , 'Colorizer'         ] ,
+      \ 'h' : [ ':nohl'            , 'NoHighlight'       ] ,
+      \ 'l' : [ ':Bracey'          , 'StartLiveServer'   ] ,
+      \ 'L' : [ ':BraceyStop'      , 'StopLiveServer'    ] ,
+      \ 'v' : [ ':Codi!!'          , 'VirtualReplToggle' ] ,
       \ }
 
 " " b is for buffer
@@ -197,24 +196,6 @@ let g:which_key_normal_map.F = {
     \ '5' : [':set foldlevel=5'  , 'Level5'   ] ,
     \ '6' : [':set foldlevel=6'  , 'Level6'   ]
     \ }
-
-" " g is for git
-" let g:which_key_normal_map.g = {
-      " \ 'name' : '+git' ,
-      " \ 'b' : [':GitBlameToggle'                   , 'blame'],
-      " \ 'B' : [':GBrowse'                          , 'browse'],
-      " \ 'd' : [':Git diff'                         , 'diff'],
-      " \ 'j' : [':NextHunk'                         , 'next hunk'],
-      " \ 'k' : [':PrevHunk'                         , 'prev hunk'],
-      " \ 'l' : [':Git log'                          , 'log'],
-      " \ 'n' : [':Neogit'                           , 'neogit'],
-      " \ 'p' : [':PreviewHunk'                      , 'preview hunk'],
-      " \ 'r' : [':ResetHunk'                        , 'reset hunk'],
-      " \ 'R' : [':ResetBuffer'                      , 'reset buffer'],
-      " \ 's' : [':StageHunk'                        , 'stage hunk'],
-      " \ 'S' : [':Gstatus'                          , 'status'],
-      " \ 'u' : [':UndoStageHunk'                    , 'undo stage hunk'],
-      " \ }
 
 " " G is for gist
 " let g:which_key_normal_map.G = {
