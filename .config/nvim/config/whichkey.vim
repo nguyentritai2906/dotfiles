@@ -162,12 +162,12 @@ call which_key#register('<VisualBindings>', "g:which_key_visual_map")
 " a is for Actions
 let g:which_key_normal_map.a = {
       \ 'name' : '+Actions'       ,
-      \ 'c' : [ ':ColorizerToggle' , 'Colorizer'          ] ,
-      \ 'h' : [ ':nohl'            , 'NoHighlight'        ] ,
-      \ 'l' : [ ':Bracey'          , 'StartLiveServer'    ] ,
-      \ 'L' : [ ':BraceyStop'      , 'StopLiveServer'     ] ,
-      \ 'v' : [ ':Codi'            , 'CodiVirtualREPL'    ] ,
-      \ 'V' : [ ':Codi!'           , 'CodiVirtualREPLOff' ] ,
+      \ 'c' : [ ':ColorizerToggle' , 'Colorizer'             ] ,
+      \ 'h' : [ ':nohl'            , 'NoHighlight'           ] ,
+      \ 'l' : [ ':Bracey'          , 'BraceyStartLiveServer' ] ,
+      \ 'L' : [ ':BraceyStop'      , 'BraceyStopLiveServer'  ] ,
+      \ 'v' : [ ':Codi'            , 'CodiVirtualREPL'       ] ,
+      \ 'V' : [ ':Codi!'           , 'CodiVirtualREPLOff'    ] ,
       \ }
 
 " " b is for buffer
