@@ -166,6 +166,7 @@ bindsym $super+Shift+0 move container to workspace $ws10; workspace $ws10
 for_window [class="Spotify"] move to workspace $ws10
 assign [class="^Google-chrome"] $ws2
 assign [class="^qBittorrent"] $ws9
+assign [class="discord"] $ws8
 
 # Open specific applications in floating mode
 for_window [class=".*"] floating enable border pixel 2
@@ -176,6 +177,7 @@ for_window [class="Nautilus"] floating disable
 for_window [class="qBittorrent"] floating disable
 for_window [class="Spotify"] floating disable
 for_window [class="Zathura"] floating disable
+for_window [class="discord"] floating disable
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
