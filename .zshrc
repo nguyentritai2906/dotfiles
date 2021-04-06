@@ -229,3 +229,4 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 export PATH=~/.npm-global/bin:~/node_modules/.bin:$PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/cuda-11
