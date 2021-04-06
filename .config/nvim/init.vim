@@ -23,7 +23,6 @@ source ~/.config/nvim/config/autopairs.vim
 source ~/.config/nvim/config/bracey.vim
 source ~/.config/nvim/config/easymotion.vim
 source ~/.config/nvim/config/firenvim.vim
-source ~/.config/nvim/config/fugitive.vim
 source ~/.config/nvim/config/fzf.vim
 source ~/.config/nvim/config/gitgutter.vim
 source ~/.config/nvim/config/incsearch.vim
