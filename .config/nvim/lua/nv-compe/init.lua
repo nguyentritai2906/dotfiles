@@ -13,17 +13,17 @@ require'compe'.setup {
     documentation = true;
 
     source = {
-        path = {priority = 3};
-        buffer = {priority = 2};
+        path = {true, priority = 4};
+        buffer = {true, priority = 3};
         calc = true;
         vsnip = false;
-        nvim_lsp = {priority = 4};
+        nvim_lsp = {true, priority = 5};
         nvim_lua = true;
-        spell = true;
-        tags = {priority = 1};
+        spell = {true, priority = 2};
+        tags = {true, priority = 1};
         snippets_nvim = false;
         treesitter = true;
-        ultisnips = {priority = 5};
+        ultisnips = {true, priority = 6};
     };
 }
 
