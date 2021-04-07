@@ -18,7 +18,6 @@ source ~/.config/nvim/general/colorschemes.vim
 " Configs
 source ~/.config/nvim/config/airline.vim
 source ~/.config/nvim/config/anzu.vim
-source ~/.config/nvim/config/arduino.vim
 source ~/.config/nvim/config/autopairs.vim
 source ~/.config/nvim/config/bracey.vim
 source ~/.config/nvim/config/easymotion.vim

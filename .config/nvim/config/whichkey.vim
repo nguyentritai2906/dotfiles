@@ -61,14 +61,6 @@ let g:which_key_visual_map['c'] = {
             \   'u'    : [ '<Plug>NERDCommenterUncomment' , 'UncommentLines' ] ,
             \ }
 
-" a is for Arduino
-let g:which_key_normal_map['A'] = {
-            \   'name' :   '+Arduino'                   ,
-            \   'v'    : [ '<Plug>ArduinoVerify'          , 'Compile'              ] ,
-            \   'u'    : [ '<Plug>ArduinoUpload'          , 'CompileUpload'        ] ,
-            \   's'    : [ '<Plug>ArduinoUploadAndSerial' , 'CompileUploadConnect' ] ,
-            \ }
-
 " g is for Git
 let g:which_key_normal_map['g'] = {
             \   'name' :   '+GitGutter'                   ,

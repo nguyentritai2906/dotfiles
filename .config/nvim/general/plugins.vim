@@ -26,7 +26,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'jmcantrell/vim-virtualenv'
     Plug 'jpalardy/vim-slime'
     Plug 'sheerun/vim-polyglot'
-    Plug 'stevearc/vim-arduino'
     Plug 'turbio/bracey.vim'
     Plug 'metakirby5/codi.vim'
 
