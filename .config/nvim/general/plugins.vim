@@ -10,7 +10,6 @@ call plug#begin('~/.vim/plugged')
     " LSP
     Plug 'neovim/nvim-lspconfig'
     Plug 'hrsh7th/nvim-compe'
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
     " Git
     Plug 'airblade/vim-gitgutter'
@@ -20,48 +19,50 @@ call plug#begin('~/.vim/plugged')
 
     " Dev
     Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-    Plug 'godlygeek/tabular'
     Plug 'goerz/jupytext.vim'
     Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
     Plug 'jmcantrell/vim-virtualenv'
     Plug 'jpalardy/vim-slime'
-    Plug 'sheerun/vim-polyglot'
     Plug 'turbio/bracey.vim'
     Plug 'metakirby5/codi.vim'
+    Plug 'SirVer/ultisnips' | Plug 'nguyentritai2906/vim-snippets'
+
+    " Syntax
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'sheerun/vim-polyglot'
 
     " Tags
-    Plug 'majutsushi/tagbar' " Vim plugin that displays tags in a window
-    Plug 'xolox/vim-easytags' " Automated tag file generation and syntax highlighting of tags in Vim
-    Plug 'xolox/vim-misc' " Miscellaneous auto-load Vim scripts, required for xolox's pluggin
+    Plug 'majutsushi/tagbar'
+    Plug 'xolox/vim-easytags'
+    Plug 'xolox/vim-misc'
 
     " Make life easier
     Plug 'gioele/vim-autoswap' " No more swap files!
-    Plug '~/.fzf'
-    Plug 'junegunn/fzf.vim' " General-purpose command-line fuzzy finder vim integration
-    Plug 'ojroques/nvim-lspfuzzy'
-    Plug 'kyazdani42/nvim-tree.lua' " A tree explorer plugin for vim
-    Plug 'simnalamburt/vim-mundo' " Graph vim undo tree
-    Plug 'jiangmiao/auto-pairs' " Autopair parentheses and stuff
-    Plug 'luochen1990/rainbow' " Rainbow parentheses
-    Plug 'preservim/nerdcommenter' | Plug 'tpope/vim-commentary' " Easy comment out lines of codes
-    Plug 'tpope/vim-surround' " Change parentheses and stuff with ease
-    Plug 'michaeljsmith/vim-indent-object'
-    Plug 'kana/vim-textobj-user' | Plug 'kana/vim-textobj-line' | Plug 'kana/vim-textobj-entire'
-    Plug 'danro/rename.vim'
+    Plug '~/.fzf' | Plug 'junegunn/fzf.vim' | Plug 'ojroques/nvim-lspfuzzy'
+    Plug 'kyazdani42/nvim-tree.lua'
+    Plug 'simnalamburt/vim-mundo'
+    Plug 'luochen1990/rainbow' | Plug 'jiangmiao/auto-pairs' | Plug 'tpope/vim-surround'
+    Plug 'preservim/nerdcommenter' | Plug 'tpope/vim-commentary'
+    Plug 'tpope/vim-eunuch'
     Plug 'tpope/vim-repeat'
-    Plug 'terryma/vim-multiple-cursors'
-    Plug 'wellle/targets.vim'
     Plug 'tpope/vim-abolish'
     Plug 'simeji/winresizer'
-    Plug 'szw/vim-maximizer'
     Plug 'liuchengxu/vim-which-key'
+    Plug 'godlygeek/tabular'
+
+    " Text object
+    Plug 'kana/vim-textobj-user'
+	Plug 'kana/vim-textobj-line'
+	Plug 'kana/vim-textobj-entire'
+	Plug 'wellle/targets.vim'
+    Plug 'michaeljsmith/vim-indent-object'
 
     " UI
-    Plug 'vim-airline/vim-airline' " Lean & mean tabline for vim
+    Plug 'vim-airline/vim-airline'
     Plug 'dracula/vim', { 'as': 'dracula'  }
     Plug 'sainnhe/edge'
     Plug 'norcalli/nvim-colorizer.lua'
-    Plug 'Yggdroot/indentLine' " Display indentation level
+    Plug 'Yggdroot/indentLine'
     Plug 'haya14busa/is.vim' " Incremental search improved
     Plug 'PeterRincker/vim-searchlight' " Highlight current search match
     Plug 'markonm/traces.vim' " Range, pattern and substitute preview
@@ -80,7 +81,6 @@ call plug#begin('~/.vim/plugged')
     " Writing
     Plug 'vimwiki/vimwiki'
     Plug 'plasticboy/vim-markdown'	" Syntax highlighting, matching rules and mappings Markdown
-    Plug 'SirVer/ultisnips' | Plug 'nguyentritai2906/vim-snippets'
 
 call plug#end()
 

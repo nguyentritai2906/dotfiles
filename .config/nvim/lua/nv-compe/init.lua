@@ -15,15 +15,15 @@ require'compe'.setup {
     source = {
         path = {true, priority = 4};
         buffer = {true, priority = 3};
-        calc = true;
+        calc = false;
         vsnip = false;
-        nvim_lsp = {true, priority = 5};
+        nvim_lsp = {true, priority = 6};
         nvim_lua = true;
-        spell = {true, priority = 2};
-        tags = {true, priority = 1};
+        spell = false;
+        tags = false;
         snippets_nvim = false;
-        treesitter = true;
-        ultisnips = {true, priority = 6};
+        treesitter = {true, priority = 5};
+        ultisnips = {true, priority = 7};
     };
 }
 

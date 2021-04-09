@@ -31,7 +31,6 @@ source ~/.config/nvim/config/jupytext.vim
 source ~/.config/nvim/config/markdown.vim
 source ~/.config/nvim/config/mundo.vim
 source ~/.config/nvim/config/nerdcommenter.vim
-source ~/.config/nvim/config/nerdtree.vim
 source ~/.config/nvim/config/nvimcolorizer.vim
 source ~/.config/nvim/config/nvimtree.vim
 source ~/.config/nvim/config/quickscope.vim
@@ -41,7 +40,6 @@ source ~/.config/nvim/config/startify.vim
 source ~/.config/nvim/config/tagbar.vim
 source ~/.config/nvim/config/ultisnips.vim
 source ~/.config/nvim/config/vimmove.vim
-source ~/.config/nvim/config/vimmultiplecursors.vim
 source ~/.config/nvim/config/vimwiki.vim
 source ~/.config/nvim/config/virtualenv.vim
 source ~/.config/nvim/config/winresize.vim
