@@ -44,13 +44,8 @@ source ~/.config/nvim/config/vimwiki.vim
 source ~/.config/nvim/config/virtualenv.vim
 source ~/.config/nvim/config/winresize.vim
 source ~/.config/nvim/config/whichkey.vim
+source ~/.config/nvim/config/cocnvim.vim
+source ~/.config/nvim/config/supertab.vim
+source ~/.config/nvim/config/codefmt.vim
 
-lua require('nv-lsp')
-lua require('nv-lsp.efm-ls')
-lua require('nv-lsp.bash-ls')
-lua require('nv-lsp.clang-ls')
-lua require('nv-lsp.json-ls')
-lua require('nv-compe')
-lua require('nv-utils')
 lua require('nv-treesitter')
-lua require('nv-lspfuzzy')
