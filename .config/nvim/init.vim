@@ -45,6 +45,11 @@ source ~/.config/nvim/config/virtualenv.vim
 source ~/.config/nvim/config/winresize.vim
 source ~/.config/nvim/config/whichkey.vim
 
+" source ~/.config/nvim/config/cocnvim.vim
+" source ~/.config/nvim/config/supertab.vim
+" source ~/.config/nvim/config/codefmt.vim
+" source ~/.config/nvim/config/highlightedyank.vim
+
 lua require('nv-lsp')
 lua require('nv-lsp.efm-ls')
 lua require('nv-lsp.bash-ls')

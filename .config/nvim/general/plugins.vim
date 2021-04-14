@@ -8,14 +8,27 @@ endif
 call plug#begin('~/.vim/plugged')
 
     " LSP
-    Plug 'neovim/nvim-lspconfig'
-    Plug 'hrsh7th/nvim-compe'
+    " {{{
+        Plug 'neovim/nvim-lspconfig'
+        Plug 'hrsh7th/nvim-compe'
+    " }}}
+    " {{{
+        " Plug 'neoclide/coc.nvim', {'branch': 'release'}
+        " " Add maktaba and codefmt to the runtimepath.
+        " " (The latter must be installed before it can be used.)
+        " Plug 'google/vim-maktaba'
+        " Plug 'google/vim-codefmt'
+        " " Also add Glaive, which is used to configure codefmt's maktaba flags. See
+        " " `:help :Glaive` for usage.
+        " Plug 'google/vim-glaive'
+        " Plug 'ervandew/supertab'
 
-    " Git
-    Plug 'airblade/vim-gitgutter'
-    Plug 'tpope/vim-fugitive'
-    Plug 'tpope/vim-rhubarb'
-    Plug 'tpope/vim-dispatch'
+        " " Git
+        " Plug 'airblade/vim-gitgutter'
+        " Plug 'tpope/vim-fugitive'
+        " Plug 'tpope/vim-rhubarb'
+        " Plug 'tpope/vim-dispatch'
+    " }}}
 
     " Dev
     Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
@@ -71,6 +84,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'mhinz/vim-startify'
     Plug 'ryanoasis/vim-devicons'
     Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'machakann/vim-highlightedyank'
 
     " Navigation
     Plug 'easymotion/vim-easymotion' " Vim motions on speed
