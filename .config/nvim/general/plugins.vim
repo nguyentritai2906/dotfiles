@@ -22,13 +22,13 @@ call plug#begin('~/.vim/plugged')
         " " `:help :Glaive` for usage.
         " Plug 'google/vim-glaive'
         " Plug 'ervandew/supertab'
-
-        " " Git
-        " Plug 'airblade/vim-gitgutter'
-        " Plug 'tpope/vim-fugitive'
-        " Plug 'tpope/vim-rhubarb'
-        " Plug 'tpope/vim-dispatch'
     " }}}
+
+    " Git
+    Plug 'airblade/vim-gitgutter'
+    Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-rhubarb'
+    Plug 'tpope/vim-dispatch'
 
     " Dev
     Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
