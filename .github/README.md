@@ -1,6 +1,3 @@
-dotfiles
-========
-
 This is how I roll
 
 * Neovim
