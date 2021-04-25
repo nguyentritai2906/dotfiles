@@ -56,6 +56,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'simeji/winresizer'
     Plug 'liuchengxu/vim-which-key'
     Plug 'godlygeek/tabular'
+    Plug 'mjbrownie/swapit' " Swap True-False
+    Plug 'rlue/vim-barbaric' " Switch input method
 
     " Text object
     Plug 'kana/vim-textobj-user'
