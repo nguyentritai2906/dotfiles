@@ -67,9 +67,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'kana/vim-textobj-user'
 	Plug 'kana/vim-textobj-line'
 	Plug 'kana/vim-textobj-entire'
-    Plug 'kana/vim-textobj-function'
+	Plug 'kana/vim-textobj-indent'
+    Plug 'bps/vim-textobj-python'
 	Plug 'wellle/targets.vim'
-    Plug 'michaeljsmith/vim-indent-object'
 
     " UI
     Plug 'vim-airline/vim-airline'
