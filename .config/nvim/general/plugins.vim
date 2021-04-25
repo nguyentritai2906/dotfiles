@@ -67,6 +67,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'kana/vim-textobj-user'
 	Plug 'kana/vim-textobj-line'
 	Plug 'kana/vim-textobj-entire'
+    Plug 'kana/vim-textobj-function'
 	Plug 'wellle/targets.vim'
     Plug 'michaeljsmith/vim-indent-object'
 
