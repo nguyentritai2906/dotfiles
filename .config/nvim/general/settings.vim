@@ -18,6 +18,7 @@ set wildmode=longest,full " Tab completion
 set wildmenu " enhanced command line completion
 set wildcharm=<Tab>
 set pastetoggle=<F2>
+set diffopt=vertical
 set dictionary+=/usr/share/dict/words
 set mouse=a
 set foldmethod=expr
