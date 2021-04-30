@@ -58,6 +58,9 @@ function! GoCoc()
     nmap <buffer> <silent> <leader>gej <Plug>(coc-diagnostic-next-error)
     nmap <buffer> <silent> <leader>gek <Plug>(coc-diagnostic-prev-error)
     nmap <buffer> <silent> <leader>rn <Plug>(coc-rename)
+    nmap <buffer> <silent> <leader>gv :call CocAction('jumpDefinition', 'vsplit')<CR>
+    nmap <buffer> <silent> <leader>gt :call CocAction('jumpDefinition', 'tabe')<CR>
+
     nnoremap <buffer> <leader>cr :CocRestart
 
     " Remap <C-f> and <C-b> for scroll float windows/popups.
