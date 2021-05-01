@@ -30,15 +30,17 @@ let g:which_key_visual_map['>'] = 'which_key_ignore'
 " i is for IPythonCell
 let g:which_key_normal_map['i'] = {
             \   'name' :   '+Ipython'                         ,
-            \   's'    : [ ':SlimeSend1 ipython --matplotlib' , 'Start'                 ] ,
-            \   'r'    : [ ':IPythonCellRun'                  , 'RunScript'             ] ,
-            \   'R'    : [ ':IPythonCellRunTime'              , 'RunAndTimeExec'        ] ,
-            \   'c'    : [ ':IPythonCellExecuteCell'          , 'ExecCell'              ] ,
-            \   'C'    : [ ':IPythonCellExecuteCellJump'      , 'ExecCellGoNext'        ] ,
-            \   'l'    : [ ':IPythonCellClear'                , 'ClearScreen'           ] ,
-            \   'x'    : [ ':IPythonCellClose'                , 'CloseMatplotlibFigure' ] ,
-            \   'h'    : [ '<Plug>SlimeLineSend'              , 'ExecCurrentLine'       ] ,
-            \   'Q'    : [ ':IPythonCellRestart'              , 'Restart'               ] ,
+            \   's'    : [ ':SlimeSend1 ipython --matplotlib' , 'Start'           ] ,
+            \   'r'    : [ ':IPythonCellRun'                  , 'RunAll'          ] ,
+            \   't'    : [ ':IPythonCellRunTime'              , 'RunAndTimeExec'  ] ,
+            \   'c'    : [ ':IPythonCellExecuteCell'          , 'ExecCell'        ] ,
+            \   'C'    : [ ':IPythonCellExecuteCellJump'      , 'ExecCellGoNext'  ] ,
+            \   'l'    : [ ':IPythonCellClear'                , 'ClearScreen'     ] ,
+            \   'x'    : [ ':IPythonCellClose'                , 'CloseFigure'     ] ,
+            \   'h'    : [ '<Plug>SlimeLineSend'              , 'ExecCurrentLine' ] ,
+            \   'R'    : [ ':IPythonCellRestart'              , 'Restart'         ] ,
+            \   'j'    : [ ':IPythonCellNextCell'             , 'NextCell'        ] ,
+            \   'k'    : [ ':IPythonCellPrevCell'             , 'PrevCell'        ] ,
             \ }
 
 let g:which_key_visual_map['i'] = {
