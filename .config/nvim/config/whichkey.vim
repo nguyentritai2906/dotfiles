@@ -20,7 +20,7 @@ let g:which_key_normal_map['m'] = [ '<Plug>(easymotion-overwin-f2)'    , 'EasyMo
 let g:which_key_normal_map['j'] = [ ':mao<Esc>`a'                      , 'NewLineBelow'       ]
 let g:which_key_normal_map['k'] = [ ':mao<Esc>`a'                      , 'NewLineAbove'       ]
 let g:which_key_normal_map['E'] = [ 'WinResizerStartResize'            , 'ResizeSplits'       ]
-let g:which_key_normal_map['K'] = [ '<Cmd>lua vim.lsp.buf.hover()<CR>' , 'ShowDoccumentation' ]
+" let g:which_key_normal_map['K'] = [ '<Cmd>lua vim.lsp.buf.hover()<CR>' , 'ShowDoccumentation' ]
 
 let g:which_key_visual_map['<'] = 'which_key_ignore'
 let g:which_key_visual_map['>'] = 'which_key_ignore'
@@ -30,15 +30,17 @@ let g:which_key_visual_map['>'] = 'which_key_ignore'
 " i is for IPythonCell
 let g:which_key_normal_map['i'] = {
             \   'name' :   '+Ipython'                         ,
-            \   's'    : [ ':SlimeSend1 ipython --matplotlib' , 'Start'                 ] ,
-            \   'r'    : [ ':IPythonCellRun'                  , 'RunScript'             ] ,
-            \   'R'    : [ ':IPythonCellRunTime'              , 'RunAndTimeExec'        ] ,
-            \   'c'    : [ ':IPythonCellExecuteCell'          , 'ExecCell'              ] ,
-            \   'C'    : [ ':IPythonCellExecuteCellJump'      , 'ExecCellGoNext'        ] ,
-            \   'l'    : [ ':IPythonCellClear'                , 'ClearScreen'           ] ,
-            \   'x'    : [ ':IPythonCellClose'                , 'CloseMatplotlibFigure' ] ,
-            \   'h'    : [ '<Plug>SlimeLineSend'              , 'ExecCurrentLine'       ] ,
-            \   'Q'    : [ ':IPythonCellRestart'              , 'Restart'               ] ,
+            \   's'    : [ ':SlimeSend1 ipython --matplotlib' , 'Start'           ] ,
+            \   'r'    : [ ':IPythonCellRun'                  , 'RunAll'          ] ,
+            \   't'    : [ ':IPythonCellRunTime'              , 'RunAndTimeExec'  ] ,
+            \   'c'    : [ ':IPythonCellExecuteCell'          , 'ExecCell'        ] ,
+            \   'C'    : [ ':IPythonCellExecuteCellJump'      , 'ExecCellGoNext'  ] ,
+            \   'l'    : [ ':IPythonCellClear'                , 'ClearScreen'     ] ,
+            \   'x'    : [ ':IPythonCellClose'                , 'CloseFigure'     ] ,
+            \   'h'    : [ '<Plug>SlimeLineSend'              , 'ExecCurrentLine' ] ,
+            \   'R'    : [ ':IPythonCellRestart'              , 'Restart'         ] ,
+            \   'j'    : [ ':IPythonCellNextCell'             , 'NextCell'        ] ,
+            \   'k'    : [ ':IPythonCellPrevCell'             , 'PrevCell'        ] ,
             \ }
 
 let g:which_key_visual_map['i'] = {
@@ -112,32 +114,32 @@ let g:which_key_normal_map['f'] = {
             \   '.'    : [ ':Ag       ' , 'Ag       ' ] ,
             \ }
 
-" l is for LSP
-let g:which_key_normal_map['l'] = {
-            \   'name' :   '+LSP'                         ,
-            \   'k'    : [ 'LSPSignatureHelp'             , 'SignatureHelp'           ] ,
-            \   'd'    : [ 'LSPTypeDefinition'            , 'TypeDefinition'          ] ,
-            \   'e'    : [ 'LSPShowLineDiagnostics'       , 'ShowLineDiagnostics'     ] ,
-            \   'q'    : [ 'LSPSetLocList'                , 'ListDiagnosticsLocation' ] ,
-            \   'r'    : [ 'LSPRename'                    , 'Rename'                  ] ,
-            \   'f'    : [ 'LSPFormatting'                , 'Formatting'              ] ,
-            \   'v'    : [ 'LSPVirtualTextToggle'         , 'VirtualText'             ] ,
-            \   'w'    : {
-                \   'name' :   '+Workspace'               ,
-                \   'a'    : [ 'LSPAddWorkspaceFolder'    , 'AddWorkspaceFolder'      ] ,
-                \   'r'    : [ 'LSPRemoveWorkspaceFolder' , 'RemoveWorkspaceFolder'   ] ,
-                \   'l'    : [ 'LSPListWorkspaceFolders'  , 'ListWorkspaceFolders'    ] ,
-            \     }                                       ,
-            \   'g'    : {
-                \   'name' :   '+GoTo'                    ,
-                \   'D'    : [ 'LSPDeclaration'           , 'Declaration'             ] ,
-                \   'd'    : [ 'LSPDefinition'            , 'Definition'              ] ,
-                \   'r'    : [ 'LSPReferences'            , 'References'              ] ,
-                \   'i'    : [ 'LSPImplementation'        , 'Implementation'          ] ,
-                \   'k'    : [ 'LSPGotoPrev'              , 'PrevDiagnostic'          ] ,
-                \   'j'    : [ 'LSPGotoNext'              , 'NextDiagnostic'          ] ,
-            \     }                                       ,
-            \ }
+" " l is for LSP
+" let g:which_key_normal_map['l'] = {
+"             \   'name' :   '+LSP'                         ,
+"             \   'k'    : [ 'LSPSignatureHelp'             , 'SignatureHelp'           ] ,
+"             \   'd'    : [ 'LSPTypeDefinition'            , 'TypeDefinition'          ] ,
+"             \   'e'    : [ 'LSPShowLineDiagnostics'       , 'ShowLineDiagnostics'     ] ,
+"             \   'q'    : [ 'LSPSetLocList'                , 'ListDiagnosticsLocation' ] ,
+"             \   'r'    : [ 'LSPRename'                    , 'Rename'                  ] ,
+"             \   'f'    : [ 'LSPFormatting'                , 'Formatting'              ] ,
+"             \   'v'    : [ 'LSPVirtualTextToggle'         , 'VirtualText'             ] ,
+"             \   'w'    : {
+"                 \   'name' :   '+Workspace'               ,
+"                 \   'a'    : [ 'LSPAddWorkspaceFolder'    , 'AddWorkspaceFolder'      ] ,
+"                 \   'r'    : [ 'LSPRemoveWorkspaceFolder' , 'RemoveWorkspaceFolder'   ] ,
+"                 \   'l'    : [ 'LSPListWorkspaceFolders'  , 'ListWorkspaceFolders'    ] ,
+"             \     }                                       ,
+"             \   'g'    : {
+"                 \   'name' :   '+GoTo'                    ,
+"                 \   'D'    : [ 'LSPDeclaration'           , 'Declaration'             ] ,
+"                 \   'd'    : [ 'LSPDefinition'            , 'Definition'              ] ,
+"                 \   'r'    : [ 'LSPReferences'            , 'References'              ] ,
+"                 \   'i'    : [ 'LSPImplementation'        , 'Implementation'          ] ,
+"                 \   'k'    : [ 'LSPGotoPrev'              , 'PrevDiagnostic'          ] ,
+"                 \   'j'    : [ 'LSPGotoNext'              , 'NextDiagnostic'          ] ,
+"             \     }                                       ,
+"             \ }
 
 let g:which_key_normal_map['s'] = {
       \ 'name' : '+Session'  ,
