@@ -40,6 +40,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'metakirby5/codi.vim'
     Plug 'SirVer/ultisnips' | Plug 'nguyentritai2906/vim-snippets'
     Plug 'mjbrownie/swapit' " Swap True-False
+    Plug 'rlue/vim-barbaric' " Switch input method
 
     " Syntax
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
