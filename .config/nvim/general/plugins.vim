@@ -9,6 +9,7 @@ call plug#begin('~/.vim/plugged')
 
     " LSP
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'antoinemadec/coc-fzf'
     " Add maktaba and codefmt to the runtimepath.
     " (The latter must be installed before it can be used.)
     Plug 'google/vim-maktaba'
@@ -23,6 +24,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-rhubarb'
     Plug 'tpope/vim-dispatch'
+    Plug 'kevinhwang91/nvim-bqf'
 
     " Dev
     Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }

@@ -46,6 +46,7 @@ source ~/.config/nvim/config/virtualenv.vim
 source ~/.config/nvim/config/winresize.vim
 source ~/.config/nvim/config/whichkey.vim
 source ~/.config/nvim/config/cocnvim.vim
+source ~/.config/nvim/config/nvimbqf.vim
 source ~/.config/nvim/config/supertab.vim
 source ~/.config/nvim/config/codefmt.vim
 source ~/.config/nvim/config/highlightedyank.vim
