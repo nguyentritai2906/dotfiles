@@ -39,6 +39,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'turbio/bracey.vim'
     Plug 'metakirby5/codi.vim'
     Plug 'SirVer/ultisnips' | Plug 'nguyentritai2906/vim-snippets'
+    Plug 'mjbrownie/swapit' " Swap True-False
 
     " Syntax
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
