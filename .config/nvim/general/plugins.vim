@@ -62,6 +62,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'simeji/winresizer'
     Plug 'liuchengxu/vim-which-key'
     Plug 'godlygeek/tabular'
+    Plug 'kevinhwang91/nvim-bqf'
 
     " Text object
     Plug 'kana/vim-textobj-user'
