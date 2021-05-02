@@ -106,7 +106,7 @@ function! AgGrepWrap(grep_command, bang) abort
     " TODO grep_command maybe grep regex, please refer vim-grepper's handler
     call setreg('/', a:grep_command)
     exe printf('au FileType fzf ++once exe "%s"',
-                \ "au BufWipeout <buffer> call timer_start(0, 'FAddHLPattern')")
+                \ "au BufWipeout <buffer> call timer_start(0, 'AgAddHLPattern')")
 
     call fzf#vim#ag(
                 \ a:grep_command,
