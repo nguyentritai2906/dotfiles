@@ -164,7 +164,7 @@ bindsym $super+Shift+0 move container to workspace $ws10; workspace $ws10
 
 # Open app in specific workspace
 for_window [class="Spotify"] move to workspace $ws10
-assign [class="^Google-chrome"] $ws1
+assign [class="^Google-chrome"] $ws2
 assign [class="^qBittorrent"] $ws9
 assign [class="discord"] $ws8
 
