@@ -23,6 +23,7 @@ source ~/.config/nvim/config/bracey.vim
 source ~/.config/nvim/config/easymotion.vim
 source ~/.config/nvim/config/firenvim.vim
 source ~/.config/nvim/config/fzf.vim
+source ~/.config/nvim/config/fugitive.vim
 source ~/.config/nvim/config/gitgutter.vim
 source ~/.config/nvim/config/incsearch.vim
 source ~/.config/nvim/config/indentline.vim
@@ -44,9 +45,20 @@ source ~/.config/nvim/config/vimwiki.vim
 source ~/.config/nvim/config/virtualenv.vim
 source ~/.config/nvim/config/winresize.vim
 source ~/.config/nvim/config/whichkey.vim
-source ~/.config/nvim/config/cocnvim.vim
-source ~/.config/nvim/config/supertab.vim
-source ~/.config/nvim/config/codefmt.vim
-source ~/.config/nvim/config/highlightedyank.vim
 
+" source ~/.config/nvim/config/cocnvim.vim
+" source ~/.config/nvim/config/supertab.vim
+" source ~/.config/nvim/config/codefmt.vim
+" source ~/.config/nvim/config/highlightedyank.vim
+
+lua require('nv-lsp')
+lua require('nv-lsp.efm-ls')
+lua require('nv-lsp.bash-ls')
+lua require('nv-lsp.clang-ls')
+lua require('nv-lsp.json-ls')
+lua require('nv-lsp.pyright-ls')
+" lua require('nv-lsp.py-ls')
+" lua require('nv-lsp.jedi-ls')
+lua require('nv-compe')
+lua require('nv-utils')
 lua require('nv-treesitter')

@@ -8,15 +8,21 @@ endif
 call plug#begin('~/.vim/plugged')
 
     " LSP
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    " Add maktaba and codefmt to the runtimepath.
-    " (The latter must be installed before it can be used.)
-    Plug 'google/vim-maktaba'
-    Plug 'google/vim-codefmt'
-    " Also add Glaive, which is used to configure codefmt's maktaba flags. See
-    " `:help :Glaive` for usage.
-    Plug 'google/vim-glaive'
-    Plug 'ervandew/supertab'
+    " {{{
+        Plug 'neovim/nvim-lspconfig'
+        Plug 'hrsh7th/nvim-compe'
+    " }}}
+    " {{{
+        " Plug 'neoclide/coc.nvim', {'branch': 'release'}
+        " " Add maktaba and codefmt to the runtimepath.
+        " " (The latter must be installed before it can be used.)
+        " Plug 'google/vim-maktaba'
+        " Plug 'google/vim-codefmt'
+        " " Also add Glaive, which is used to configure codefmt's maktaba flags. See
+        " " `:help :Glaive` for usage.
+        " Plug 'google/vim-glaive'
+        " Plug 'ervandew/supertab'
+    " }}}
 
     " Git
     Plug 'airblade/vim-gitgutter'
@@ -33,6 +39,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'turbio/bracey.vim'
     Plug 'metakirby5/codi.vim'
     Plug 'SirVer/ultisnips' | Plug 'nguyentritai2906/vim-snippets'
+    Plug 'mjbrownie/swapit' " Swap True-False
+    Plug 'rlue/vim-barbaric' " Switch input method
 
     " Syntax
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -56,13 +64,15 @@ call plug#begin('~/.vim/plugged')
     Plug 'simeji/winresizer'
     Plug 'liuchengxu/vim-which-key'
     Plug 'godlygeek/tabular'
+    Plug 'kevinhwang91/nvim-bqf'
 
     " Text object
     Plug 'kana/vim-textobj-user'
 	Plug 'kana/vim-textobj-line'
 	Plug 'kana/vim-textobj-entire'
+	Plug 'kana/vim-textobj-indent'
+    Plug 'bps/vim-textobj-python'
 	Plug 'wellle/targets.vim'
-    Plug 'michaeljsmith/vim-indent-object'
 
     " UI
     Plug 'vim-airline/vim-airline'

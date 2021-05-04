@@ -82,11 +82,38 @@ endfunction
 " Default options are --nogroup --column --color
 let s:ag_options = ' --one-device --skip-vcs-ignores --smart-case '
 
+" command! -bang -nargs=* Ag
+"             \ call fzf#vim#ag(
+"             \   <q-args>,
+"             \   s:ag_options,
+"             \  <bang>0 ? fzf#vim#with_preview('up:60%')
+"             \        : fzf#vim#with_preview('right:50%:hidden', '?'),
+"             \   <bang>0
+"             \ )
+
 command! -bang -nargs=* Ag
-            \ call fzf#vim#ag(
-            \   <q-args>,
-            \   s:ag_options,
-            \  <bang>0 ? fzf#vim#with_preview('up:60%')
-            \        : fzf#vim#with_preview('right:50%:hidden', '?'),
-            \   <bang>0
-            \ )
+            \ call AgGrepWrap(<q-args>, <bang>0)
+
+function! AgAddHLPattern(timer) abort
+    " At most cases, we only select signle item
+    " check whether the quick window is opened
+    if getqflist({'winid' : 0}).winid != 0
+        call setqflist([], 'r', {'context': {'bqf': {'pattern_hl': getreg('/')}}})
+    endif
+endfunction
+
+function! AgGrepWrap(grep_command, bang) abort
+    " TODO grep_command maybe grep regex, please refer vim-grepper's handler
+    call setreg('/', a:grep_command)
+    exe printf('au FileType fzf ++once exe "%s"',
+                \ "au BufWipeout <buffer> call timer_start(0, 'AgAddHLPattern')")
+
+    call fzf#vim#ag(
+                \ a:grep_command,
+                \ s:ag_options,
+                \ a:bang ? fzf#vim#with_preview('up:60%')
+                \        : fzf#vim#with_preview('right:50%:hidden', '?'),
+                \ a:bang
+                \ )
+endfunction
+

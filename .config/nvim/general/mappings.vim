@@ -8,9 +8,6 @@ nnoremap <Leader>ah :noh<CR>
 vmap < <gv
 vmap > >gv
 
-" Visual select block of indented lines
-nnoremap vil :call SelectIndent()<CR>
-
 " Insert blank line
 nnoremap <Leader>j mao<Esc>`a
 nnoremap <Leader>k maO<Esc>`a
