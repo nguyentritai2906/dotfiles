@@ -111,7 +111,7 @@ function! AgGrepWrap(grep_command, bang) abort
     call fzf#vim#ag(
                 \ a:grep_command,
                 \ s:ag_options,
-                \ a:bang ? fzf#vim#with_preview('up:60%')
+                \ a:bang ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
                 \        : fzf#vim#with_preview('right:50%:hidden', '?'),
                 \ a:bang
                 \ )
