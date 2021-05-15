@@ -353,3 +353,5 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 # Brightness
 bindsym $super+Up exec --no-startup-id ~/.config/brightness/brightnessup.sh
 bindsym $super+Down exec --no-startup-id ~/.config/brightness/brightnessdown.sh
+bindsym XF86MonBrightnessUp exec light -A 10
+bindsym XF86MonBrightnessDown exec light -U 10
