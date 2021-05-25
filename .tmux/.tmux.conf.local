@@ -38,15 +38,29 @@ tmux_conf_new_session_prompt=false
 
 
 # -- display -------------------------------------------------------------------
-white='#c5cdd9'
-black='#2c2e34'
+
+# # Edge
+# white='#c5cdd9'
+# black='#2c2e34'
+# grey='#88909f'
+# red='#ec7279'
+# green='#a0c980'
+# cyan='#5dbbc1'
+# yellow='#deb974'
+# blue='#6cb6eb'
+# magenta='#d38aea'
+# acolor='#bd93f9'
+
+# Dracula
+white='#f8f8f2'
+black='#282a36'
 grey='#88909f'
-red='#ec7279'
-green='#a0c980'
-cyan='#5dbbc1'
-yellow='#deb974'
-blue='#6cb6eb'
-magenta='#d38aea'
+red='#ff5555'
+green='#50fa7b'
+cyan='#8be9fd'
+yellow='#f1fa8c'
+blue='#8be9fd'
+magenta='#bd93f9'
 acolor='#bd93f9'
 
 # RGB 24-bit colour support (tmux >= 2.2), possible values are:

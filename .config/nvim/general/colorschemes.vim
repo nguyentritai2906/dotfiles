@@ -1,5 +1,5 @@
-source ~/.config/nvim/config/edge.vim
-colorscheme edge
+" source ~/.config/nvim/config/edge.vim
+colorscheme dracula
 
 " Spell underline
 hi clear SpellBad
