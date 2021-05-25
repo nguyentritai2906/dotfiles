@@ -91,7 +91,6 @@ call plug#begin('~/.vim/plugged')
     " Colorschemes
     Plug 'dracula/vim', { 'as': 'dracula'  }
     Plug 'sainnhe/edge'
-    Plug 'rafamadriz/neon'
 
     " Navigation
     Plug 'easymotion/vim-easymotion' " Vim motions on speed
