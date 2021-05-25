@@ -76,8 +76,6 @@ call plug#begin('~/.vim/plugged')
 
     " UI
     Plug 'vim-airline/vim-airline'
-    Plug 'dracula/vim', { 'as': 'dracula'  }
-    Plug 'sainnhe/edge'
     Plug 'norcalli/nvim-colorizer.lua'
     Plug 'Yggdroot/indentLine'
     Plug 'haya14busa/is.vim' " Incremental search improved
@@ -89,6 +87,11 @@ call plug#begin('~/.vim/plugged')
     Plug 'ryanoasis/vim-devicons'
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'machakann/vim-highlightedyank'
+
+    " Colorschemes
+    Plug 'dracula/vim', { 'as': 'dracula'  }
+    Plug 'sainnhe/edge'
+    Plug 'rafamadriz/neon'
 
     " Navigation
     Plug 'easymotion/vim-easymotion' " Vim motions on speed
