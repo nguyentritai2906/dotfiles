@@ -269,11 +269,16 @@ exec --no-startup-id picom --experimental-backends --blur-method dual_kawase
 exec_always --no-startup-id xset r rate 200 70
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-exec_always --no-startup-id setxkbmap -layout us -option ctrl:nocaps
 exec_always --no-startup-id python3 $HOME/.config/i3/autotiling.py # Dependencies: python-i3ipc>=2.0.1 (i3ipc-python)
-#
+
 #Change background/wallpaper setting in .config/nitrogen/bg-saved.cfg
 #exec_always --no-startup-id feh --bg-scale /home/solus/Pictures/Wallpapers/fern-green-black.jpg
+
+# To change Capslock to Ctrl using Systemd's localectl tool to write an Xorg config file
+# https://www.reddit.com/r/archlinux/comments/72jbgq/something_surreptitiously_resetting_my_setxkbmap/
+# With `localectl set-x11-keymap us "" "" caps:ctrl_modifier`
+# Or using setxkbmap
+# exec_always --no-startup-id setxkbmap -layout us -option ctrl:nocaps
 
 # Theme colors
 set_from_resource $acolor acolor
