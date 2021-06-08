@@ -276,7 +276,7 @@ exec_always --no-startup-id python3 $HOME/.config/i3/autotiling.py # Dependencie
 
 # To change Capslock to Ctrl using Systemd's localectl tool to write an Xorg config file
 # https://www.reddit.com/r/archlinux/comments/72jbgq/something_surreptitiously_resetting_my_setxkbmap/
-# With `localectl set-x11-keymap us "" "" caps:ctrl_modifier`
+# With `localectl set-x11-keymap us "" "" ctrl:nocaps`
 # Or using setxkbmap
 # exec_always --no-startup-id setxkbmap -layout us -option ctrl:nocaps
 
