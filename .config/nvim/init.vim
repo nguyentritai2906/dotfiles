@@ -53,6 +53,7 @@ source ~/.config/nvim/config/highlightedyank.vim
 
 lua require('nv-lsp')
 lua require('nv-lsp.efm-ls')
+lua require('nv-lsp.java-ls')
 lua require('nv-lsp.bash-ls')
 lua require('nv-lsp.clang-ls')
 lua require('nv-lsp.json-ls')
