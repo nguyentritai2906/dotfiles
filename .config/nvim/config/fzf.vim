@@ -37,7 +37,6 @@ nnoremap <silent> <Leader>fs : Snippets<CR>
 nnoremap <silent> <Leader>ft : FZF ~<CR>
 nnoremap <silent> <Leader>f` : Marks<CR>
 nnoremap <silent> <leader>f. : Ag<CR>
-nnoremap <silent> <leader>fT : Tags<CR>
 " nnoremap <silent> K          : call SearchWordWithAg()<CR>
 vnoremap <silent> K          : call SearchVisualSelectionWithAg()<CR>
 

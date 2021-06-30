@@ -105,7 +105,6 @@ let g:which_key_normal_map['f'] = {
             \   'g'    : [ ':GFiles   ' , 'GFiles   ' ] ,
             \   'j'    : [ ':JumpToTab' , 'JumpToTab' ] ,
             \   'm'    : [ ':Maps     ' , 'Maps     ' ] ,
-            \   'T'    : [ ':Tags     ' , 'Tags     ' ] ,
             \   'r'    : [ ':History  ' , 'History  ' ] ,
             \   's'    : [ ':Snippets ' , 'Snippets ' ] ,
             \   't'    : [ ':FZF ~    ' , 'Home     ' ] ,
