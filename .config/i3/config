@@ -266,7 +266,13 @@ exec --no-startup-id syndaemon -t -d -K -R
 # exec --no-startup-id spotify
 exec --no-startup-id qbittorrent
 # exec --no-startup-id picom --experimental-backends --blur-method dual_kawase
-exec_always --no-startup-id xset r rate 200 70
+
+# https://wiki.archlinux.org/title/Xorg/Keyboard_configuration#Adjusting_typematic_delay_and_rate
+# https://superuser.com/questions/935801/whenever-i-plug-in-another-keyboard-key-repeating-rate-is-reset-to-some-value
+# https://github.com/JohnnyVim/arch-rice/blob/master/etc/lightdm/lightdm.conf
+# exec_always --no-startup-id xset r rate 200 70
+
+
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id python3 $HOME/.config/i3/autotiling.py # Dependencies: python-i3ipc>=2.0.1 (i3ipc-python)
