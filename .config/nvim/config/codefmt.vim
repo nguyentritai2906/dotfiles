@@ -14,7 +14,8 @@ augroup autoformat_settings
     " Alternative: autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer tidy
     " Alternative: autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer prettier
     autocmd FileType java AutoFormatBuffer google-java-format
-    autocmd FileType python AutoFormatBuffer  autopep8
+    " autocmd FileType python AutoFormatBuffer  autopep8
+    autocmd FileType python AutoFormatBuffer  yapf
     " Alternative: autocmd FileType python AutoFormatBuffer yapf
     autocmd FileType rust AutoFormatBuffer rustfmt
     autocmd FileType vue AutoFormatBuffer prettier
