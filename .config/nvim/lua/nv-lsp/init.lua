@@ -42,9 +42,7 @@ local function on_attach(client, bufnr)
     if client.resolved_capabilities.document_formatting then
         buf_set_keymap("n", "<space>lf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 
-        vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting()]] -- Not work!!
-        -- vim.api.nvim_command[[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)]]
-        -- vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]] -- Not work!!
+        vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync({}, 2500)]]
     elseif client.resolved_capabilities.document_range_formatting then
         buf_set_keymap("n", "<space>lf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
     end
