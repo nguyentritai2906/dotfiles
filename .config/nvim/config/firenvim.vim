@@ -12,7 +12,7 @@ endfunction
 function! OnUIEnter(event) abort
     if s:IsFirenvimActive(a:event)
         set laststatus=2
-        set guifont=hack
+        set guifont=hack:h8
     endif
 endfunction
 autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
