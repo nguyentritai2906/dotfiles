@@ -6,6 +6,7 @@ alias ....='cd ../../..'
 alias cd..='cd ..'
 alias buds="bluetoothctl connect F4:7D:EF:EF:0B:79"
 alias sony="bluetoothctl connect 70:26:05:9D:51:81"
+alias speaker="bluetoothctl connect 98:52:3D:1C:51:73"
 alias icf="vim ~/.config/i3/config"
 alias pcf="vim ~/.config/polybar/config.ini"
 alias tcf="vim ~/.tmux/.tmux.conf"
