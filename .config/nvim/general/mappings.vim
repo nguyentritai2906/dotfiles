@@ -37,9 +37,14 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-" Quick config related actions
-nmap confr :so $MYVIMRC<CR>
-nmap confe :e $MYVIMRC<CR>
+" Reload config
+nmap <Leader><CR> :so $MYVIMRC<CR>
 
-" Yank to end of line
-nnoremap Y y$
+" Yank to end of line (not include carriage-return)
+nnoremap Y yg_
+
+" Keeping it inplace
+nnoremap J mzJ`z
+
+" Undo break points
+inoremap <Space> <Space><C-G>u
