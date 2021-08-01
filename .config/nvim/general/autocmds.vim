@@ -28,7 +28,7 @@ autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 
 runtime! macros/matchit.vim
 
 " Better alternative for autochdir
-" autocmd BufEnter * silent! lcd %:p:h
+autocmd BufEnter * silent! lcd %:p:h
 
 " Reloads vimrc after saving but keep cursor position
 if !exists('*ReloadVimrc')
