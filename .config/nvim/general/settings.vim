@@ -16,6 +16,7 @@ set ttimeoutlen=0 " No key code timeout
 set conceallevel=2
 set wildmode=longest,full " Tab completion
 set wildmenu " enhanced command line completion
+set completeopt=menuone,noinsert,noselect
 set wildcharm=<Tab>
 set pastetoggle=<F2>
 set dictionary+=/usr/share/dict/words
