@@ -41,3 +41,5 @@ nnoremap <C-l> <C-w>l
 nmap confr :so $MYVIMRC<CR>
 nmap confe :e $MYVIMRC<CR>
 
+" Yank to end of line
+nnoremap Y y$
