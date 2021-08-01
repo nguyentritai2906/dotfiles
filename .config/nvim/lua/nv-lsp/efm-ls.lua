@@ -46,12 +46,13 @@ require"lspconfig".efm.setup {
     on_attach = require('nv-lsp').on_attach,
     root_dir = require"lspconfig".util.root_pattern(unpack(root_markers)),
     init_options = {documentFormatting = true, codeAction = true},
-    filetypes = {"lua", "python", "javascriptreact", "javascript", "sh", "html", "css", "json", "yaml"},
+    filetypes = {"lua", "javascriptreact", "javascript", "sh", "html", "css", "json", "yaml"},
+    -- filetypes = {"lua", "python", "javascriptreact", "javascript", "sh", "html", "css", "json", "yaml"},
     settings = {
         rootMarkers = {".git/"},
         languages = {
             lua = {luaFormat},
-            python = {yapf},
+            -- python = {yapf},
             javascriptreact = {prettier, eslint},
             javascript = {prettier, eslint},
             sh = {shfmt, shellcheck},
