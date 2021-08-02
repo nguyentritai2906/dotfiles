@@ -48,3 +48,7 @@ nnoremap J mzJ`z
 
 " Undo break points
 inoremap <Space> <Space><C-G>u
+
+" Jumplist mutations
+nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
+nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
