@@ -75,11 +75,16 @@ let g:which_key_normal_map['g'] = {
 
 " w is for VimWiki
 let g:which_key_normal_map['w'] = {
-            \   'name' :   '+Vimwiki'                                 ,
-            \   'i'    : [ '<Plug>VimwikiDiaryIndex' , 'DiaryIndex' ] ,
-            \   's'    : [ '<Plug>VimwikiUISelect'   , 'UISelect'   ] ,
-            \   't'    : [ '<Plug>VimwikiTabIndex'   , 'TabIndex'   ] ,
-            \   'w'    : [ '<Plug>VimwikiIndex'      , 'Index'      ] ,
+            \   'name' :   '+Vimwiki'                  ,
+            \   'i'    : [ '<Plug>VimwikiDiaryIndex'   , 'DiaryIndex' ] ,
+            \   's'    : [ '<Plug>VimwikiUISelect'     , 'UISelect'   ] ,
+            \   't'    : [ '<Plug>VimwikiTabIndex'     , 'TabIndex'   ] ,
+            \   'w'    : [ '<Plug>VimwikiIndex'        , 'Index'      ] ,
+            \   'd'    : [ '<Plug>VimwikiDeleteFile'   , 'DeleteFile' ] ,
+            \   'h'    : [ '<Plug>Vimwiki2HTML'        , 'ToHTML'     ] ,
+            \   'hh'   : [ '<Plug>Vimwiki2HTMLBrowse'  , 'HTMLBrowse' ] ,
+            \   'n'    : [ '<Plug>VimwikiGoto'         , 'Goto'       ] ,
+            \   'r'    : [ '<Plug>VimwikiRenameFile'   , 'RenameFile' ] ,
             \   ' '    : {
                 \   'name' :   '+Diary'                              ,
                 \   'i'    : [ '<Plug>VimwikiDiaryGenerateLinks'     , 'GenerateLinks'          ] ,
