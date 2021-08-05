@@ -30,6 +30,9 @@ runtime! macros/matchit.vim
 " Better alternative for autochdir
 autocmd BufEnter * silent! lcd %:p:h
 
+" Set textwidth in Markdown files
+autocmd BufEnter *.md set textwidth=80
+
 " Reloads vimrc after saving but keep cursor position
 if !exists('*ReloadVimrc')
    fun! ReloadVimrc()
