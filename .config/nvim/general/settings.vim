@@ -14,6 +14,7 @@ set updatetime=100 " Update sign column every 1/10 of a second
 set timeoutlen=300
 set ttimeoutlen=0 " No key code timeout
 set conceallevel=2
+set concealcursor=""
 set wildmode=longest,full " Tab completion
 set wildmenu " enhanced command line completion
 set completeopt=menuone,noinsert,noselect
