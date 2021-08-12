@@ -20,19 +20,34 @@ require'compe'.setup {
         min_height = 1,
     };
 
+    -- source = {
+    --     path = {true, priority = 4};
+    --     buffer = {true, priority = 3};
+    --     calc = true;
+    --     vsnip = false;
+    --     nvim_lsp = {true, priority = 6};
+    --     nvim_lua = true;
+    --     spell = true;
+    --     tags = false;
+    --     snippets_nvim = false;
+    --     treesitter = {true, priority = 5};
+    --     ultisnips = {true, priority = 7};
+    -- };
+
     source = {
-        path = {true, priority = 4};
-        buffer = {true, priority = 3};
-        calc = false;
-        vsnip = false;
-        nvim_lsp = {true, priority = 6};
+        path = true;
+        buffer = true;
+        calc = true;
+        nvim_lsp = true;
         nvim_lua = true;
-        spell = false;
-        tags = false;
-        snippets_nvim = false;
-        treesitter = {true, priority = 5};
-        ultisnips = {true, priority = 7};
+        vsnip = false;
+        ultisnips = true;
+        luasnip = false;
+        treesitter = true;
+        spell = true;
+        tag = true;
     };
+
 }
 
 local t = function(str)
@@ -83,5 +98,5 @@ require'lspconfig'.rust_analyzer.setup {
 vim.cmd([[inoremap <silent><expr> <C-Space> compe#complete()]])
 vim.cmd([[inoremap <silent><expr> <CR>      compe#confirm('<CR>')]])
 vim.cmd([[inoremap <silent><expr> <C-e>     compe#close('<C-e>')]])
--- vim.cmd([[inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })]])
--- vim.cmd([[inoremap <silent><expr> <C-b>     compe#scroll({ 'delta': -4 })]])
+vim.cmd([[inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': +4 })]])
+vim.cmd([[inoremap <silent><expr> <C-u>     compe#scroll({ 'delta': -4 })]])

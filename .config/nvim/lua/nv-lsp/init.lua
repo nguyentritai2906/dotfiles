@@ -47,6 +47,8 @@ local function on_attach(client, bufnr)
         buf_set_keymap("n", "<space>lf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
     end
 
+    require "lsp_signature".on_attach()
+
 end
 
 -- Use a loop to conveniently both setup defined servers

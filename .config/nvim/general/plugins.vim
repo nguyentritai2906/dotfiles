@@ -11,6 +11,7 @@ call plug#begin('~/.vim/plugged')
     " {{{
         Plug 'neovim/nvim-lspconfig'
         Plug 'hrsh7th/nvim-compe'
+        Plug 'ray-x/lsp_signature.nvim'
     " }}}
     " {{{
         " Plug 'neoclide/coc.nvim', {'branch': 'release'}
