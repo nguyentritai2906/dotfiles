@@ -196,7 +196,7 @@ function M.nvim_config()
 end
 
 vim.api.nvim_set_keymap( "n", "<Leader>ff", [[<Cmd>lua require'telescope.builtin'.find_files()<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap( "n", "<Leader>f`", [[<Cmd>lua require'telescope.builtin'.find_files({cwd = '~'})<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap( "n", "<Leader>fF", [[<Cmd>lua require'telescope.builtin'.find_files({cwd = '~'})<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap( "n", "<Leader>f;", [[<Cmd>lua require'telescope.command'.load_command()<CR>]], { noremap = true, silent = true })
 
 -- open available commands & run it
@@ -240,7 +240,8 @@ vim.api.nvim_set_keymap( "n", "<leader>fn", [[<Cmd>lua require'modules.telescope
 -- vim.api.nvim_set_keymap( "n", "<leader>gn", [[<Cmd>lua require'modules.telescope'.grep_notes()<CR>]], { noremap = true, silent = true })
 
 -- Explore files starting at $HOME
-vim.api.nvim_set_keymap( "n", "<leader>fe", [[<Cmd>lua require'modules.telescope'.file_explorer()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap( "n", "<leader>fe", [[<Cmd>lua require'telescope.builtin'.file_browser()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap( "n", "<leader>fE", [[<Cmd>lua require'modules.telescope'.file_explorer()<CR>]], { noremap = true, silent = true })
 
 -- Ripgrep
 vim.api.nvim_set_keymap( "n", "<leader>f.", [[<Cmd>lua require'modules.telescope'.rg()<CR>]], { noremap = true, silent = true })
