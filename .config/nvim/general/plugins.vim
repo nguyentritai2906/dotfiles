@@ -9,6 +9,7 @@ call plug#begin('~/.vim/plugged')
 
     " LSP
     " {{{
+        Plug 'nvim-lua/plenary.nvim'
         Plug 'neovim/nvim-lspconfig'
         Plug 'hrsh7th/nvim-compe'
         Plug 'ray-x/lsp_signature.nvim'
@@ -90,7 +91,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'haya14busa/is.vim' " Incremental search improved
     Plug 'PeterRincker/vim-searchlight' " Highlight current search match
     Plug 'markonm/traces.vim' " Range, pattern and substitute preview
-    Plug 'osyo-manga/vim-anzu' " Search status
     Plug 'kshenoy/vim-signature' " Place, toggle and display marks
     Plug 'mhinz/vim-startify'
     Plug 'ryanoasis/vim-devicons'
