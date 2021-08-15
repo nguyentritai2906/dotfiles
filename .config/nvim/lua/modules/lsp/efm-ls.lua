@@ -16,16 +16,16 @@ local luaFormat = {
 }
 
 -- JavaScript/React/TypeScript
-local prettier = {formatCommand = "./node_modules/.bin/prettier --stdin-filepath ${INPUT}", formatStdin = true}
+local prettier = {formatCommand = "./node_modules..bin/prettier --stdin-filepath ${INPUT}", formatStdin = true}
 
 local prettier_yaml = {formatCommand = "prettier --stdin-filepath ${INPUT}", formatStdin = true}
 
 local eslint = {
-    lintCommand = "./node_modules/.bin/eslint -f unix --stdin --stdin-filename ${INPUT}",
+    lintCommand = "./node_modules..bin/eslint -f unix --stdin --stdin-filename ${INPUT}",
     lintIgnoreExitCode = true,
     lintStdin = true,
     lintFormats = {"%f:%l:%c: %m"},
-    formatCommand = "./node_modules/.bin/eslint --fix-to-stdout --stdin --stdin-filename=${INPUT}",
+    formatCommand = "./node_modules..bin/eslint --fix-to-stdout --stdin --stdin-filename=${INPUT}",
     formatStdin = true
 }
 
@@ -43,7 +43,7 @@ local shfmt = {
 local root_markers = {".zshrc", ".git/"}
 
 require"lspconfig".efm.setup {
-    on_attach = require('nv-lsp').on_attach,
+    on_attach = require('modules.lsp').on_attach,
     root_dir = require"lspconfig".util.root_pattern(unpack(root_markers)),
     init_options = {documentFormatting = true, codeAction = true},
     filetypes = {"lua", "python", "javascriptreact", "javascript", "sh", "html", "css", "json", "yaml"},

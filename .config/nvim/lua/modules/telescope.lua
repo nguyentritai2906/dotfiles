@@ -59,6 +59,8 @@ require("telescope").load_extension("gh")
 
 require("telescope").load_extension("fzf")
 
+require("telescope").load_extension("projects")
+
 local M = {}
 
 -- requires github extension
@@ -97,7 +99,7 @@ M.project_files = function()
   local gopts = {}
   local fopts = {}
 
-  gopts.prompt_title = " Git Files"
+  gopts.prompt_title = "Git Files"
   gopts.prompt_prefix = " ❯ "
   gopts.show_untracked = false
 
@@ -126,7 +128,7 @@ end
 -- find files in popular dirs
 -- function M.find_files()
 --     require('telescope.builtin').find_files {
---         prompt_title = ' Find Files',
+--         prompt_title = 'Find Files',
 --         shorten_path = false,
 --         -- file_ignore_patterns = { "Dropbox/.*", "Library/.*", "code_smell/.*", ".rustup/.*", "Movies/" },
 --         search_dirs = {
@@ -148,14 +150,14 @@ function M.grep_notes()
     "~/Documents/notes/",
   }
   opts.prompt_prefix = " ❯  "
-  opts.prompt_title = " Grep Notes"
+  opts.prompt_title = "Grep Notes"
   opts.path_display = { "shorten" }
   require("telescope.builtin").live_grep(opts)
 end
 
 function M.find_notes()
   require("telescope.builtin").find_files {
-    prompt_title = " Find Notes",
+    prompt_title = "Find Notes",
     path_display = { "shorten" },
     cwd = "~/Documents/notes/",
     layout_strategy = "horizontal",
@@ -165,7 +167,7 @@ end
 
 function M.browse_notes()
   require("telescope.builtin").file_browser {
-    prompt_title = " Browse Notes",
+    prompt_title = "Notes Browser",
     prompt_prefix = " ﮷❯ ",
     cwd = "~/Documents/notes/",
     layout_strategy = "horizontal",
@@ -175,25 +177,26 @@ end
 
 function M.file_explorer()
   require("telescope.builtin").file_browser {
-    prompt_title = " File Browser",
+    prompt_title = "File Browser",
     path_display = { "shorten" },
     cwd = "~",
     layout_strategy = "horizontal",
     layout_config = { preview_width = 0.65, width = 0.75 },
+    hidden = true,
   }
 end
 
 function M.nvim_config()
   require("telescope.builtin").find_files {
-    prompt_title = " NVim Config Browse",
-    cwd = "~/.config/nvim/",
+    prompt_title = "Find Config",
+    cwd = "~/.config/",
     layout_strategy = "horizontal",
     layout_config = { preview_width = 0.65, width = 0.75 },
   }
 end
 
 vim.api.nvim_set_keymap( "n", "<Leader>ff", [[<Cmd>lua require'telescope.builtin'.find_files()<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap( "n", "<Leader>f~", [[<Cmd>lua require'telescope.builtin'.find_files({cwd = '~'})<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap( "n", "<Leader>f`", [[<Cmd>lua require'telescope.builtin'.find_files({cwd = '~'})<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap( "n", "<Leader>f;", [[<Cmd>lua require'telescope.command'.load_command()<CR>]], { noremap = true, silent = true })
 
 -- open available commands & run it
@@ -224,25 +227,27 @@ vim.api.nvim_set_keymap( "n", "<Leader>fh", [[<Cmd>lua require'telescope.builtin
 -- vim.api.nvim_set_keymap( "n", "<leader>gs", [[<Cmd>lua require'telescope.builtin'.grep_string()<CR>]], { noremap = true, silent = true })
 
 -- find files with gitfiles & fallback on find_files
-vim.api.nvim_set_keymap( "n", "<leader>fg", [[<Cmd>lua require'nv-telescope'.project_files()<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap( "n", "<leader>f/", [[<Cmd>lua require'nv-telescope'.nvim_config()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap( "n", "<leader>fg", [[<Cmd>lua require'modules.telescope'.project_files()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap( "n", "<leader>f/", [[<Cmd>lua require'modules.telescope'.nvim_config()<CR>]], { noremap = true, silent = true })
 
 -- -- browse, explore and create notes
--- vim.api.nvim_set_keymap( "n", "<leader>bn", [[<Cmd>lua require'nv-telescope'.browse_notes()<CR>]], { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap( "n", "<leader>bn", [[<Cmd>lua require'modules.telescope'.browse_notes()<CR>]], { noremap = true, silent = true })
 
 -- find notes
-vim.api.nvim_set_keymap( "n", "<leader>fn", [[<Cmd>lua require'nv-telescope'.find_notes()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap( "n", "<leader>fn", [[<Cmd>lua require'modules.telescope'.find_notes()<CR>]], { noremap = true, silent = true })
 
 -- -- search notes
--- vim.api.nvim_set_keymap( "n", "<leader>gn", [[<Cmd>lua require'nv-telescope'.grep_notes()<CR>]], { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap( "n", "<leader>gn", [[<Cmd>lua require'modules.telescope'.grep_notes()<CR>]], { noremap = true, silent = true })
 
 -- Explore files starting at $HOME
-vim.api.nvim_set_keymap( "n", "<leader>fe", [[<Cmd>lua require'nv-telescope'.file_explorer()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap( "n", "<leader>fe", [[<Cmd>lua require'modules.telescope'.file_explorer()<CR>]], { noremap = true, silent = true })
 
 -- Ripgrep
-vim.api.nvim_set_keymap( "n", "<leader>f.", [[<Cmd>lua require'nv-telescope'.rg()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap( "n", "<leader>f.", [[<Cmd>lua require'modules.telescope'.rg()<CR>]], { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap( "n", "<leader>fp", [[<Cmd>lua require'telescope'.extensions.projects.projects()<CR>]], { noremap = true, silent = true })
 
 -- -- github issues
--- vim.api.nvim_set_keymap( "n", "<leader>gis", [[<Cmd>lua require'nv-telescope'.gh_issues()<CR>]], { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap( "n", "<leader>gis", [[<Cmd>lua require'modules.telescope'.gh_issues()<CR>]], { noremap = true, silent = true })
 
 return M

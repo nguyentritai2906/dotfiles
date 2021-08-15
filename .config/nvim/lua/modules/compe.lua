@@ -20,33 +20,33 @@ require'compe'.setup {
         min_height = 1,
     };
 
-    -- source = {
-    --     path = {true, priority = 4};
-    --     buffer = {true, priority = 3};
-    --     calc = true;
-    --     vsnip = false;
-    --     nvim_lsp = {true, priority = 6};
-    --     nvim_lua = true;
-    --     spell = true;
-    --     tags = false;
-    --     snippets_nvim = false;
-    --     treesitter = {true, priority = 5};
-    --     ultisnips = {true, priority = 7};
-    -- };
-
     source = {
-        path = true;
-        buffer = true;
+        path = {true, priority = 4};
+        buffer = {true, priority = 3};
         calc = true;
-        nvim_lsp = true;
-        nvim_lua = true;
         vsnip = false;
-        ultisnips = true;
-        luasnip = false;
-        treesitter = true;
-        spell = true;
-        tag = true;
+        nvim_lsp = {true, priority = 6};
+        nvim_lua = true;
+        spell = {true, priority = 2};
+        tags = false;
+        snippets_nvim = false;
+        treesitter = {true, priority = 5};
+        ultisnips = {true, priority = 7};
     };
+
+    -- source = {
+    --     path = true;
+    --     buffer = true;
+    --     calc = true;
+    --     nvim_lsp = true;
+    --     nvim_lua = true;
+    --     vsnip = false;
+    --     ultisnips = true;
+    --     luasnip = false;
+    --     treesitter = true;
+    --     spell = true;
+    --     tag = true;
+    -- };
 
 }
 

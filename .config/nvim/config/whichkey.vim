@@ -129,12 +129,12 @@ let g:which_key_normal_map['f'] = {
             \   'm'    : [ "<Cmd>lua require'telescope.builtin'.keymaps()<CR>"                                 , 'Keymaps'   ] ,
             \   'b'    : [ "<Cmd>lua require'telescope.builtin'.buffers()<CR>"                                 , 'Buffers'   ] ,
             \   'h'    : [ "<Cmd>lua require'telescope.builtin'.help_tags()<CR>"                               , 'HelpTags'  ] ,
-            \   'g'    : [ "<Cmd>lua require'nv-telescope'.project_files()<CR>"                                , 'GitFiles'  ] ,
-            \   'n'    : [ "<Cmd>lua require'nv-telescope'.find_notes()<CR>"                                   , 'Notes'     ] ,
-            \   'e'    : [ "<Cmd>lua require'nv-telescope'.file_explorer()<CR>"                                , 'Explorer'  ] ,
+            \   'g'    : [ "<Cmd>lua require'modules.telescope'.project_files()<CR>"                                , 'GitFiles'  ] ,
+            \   'n'    : [ "<Cmd>lua require'modules.telescope'.find_notes()<CR>"                                   , 'Notes'     ] ,
+            \   'e'    : [ "<Cmd>lua require'modules.telescope'.file_explorer()<CR>"                                , 'Explorer'  ] ,
             \   ';'    : [ "<Cmd>lua require'telescope.command'.load_command()<CR>"                            , 'Telescope' ] ,
             \   '~'    : [ "<Cmd>lua require'telescope.builtin'.find_files({cwd = '~'})<CR>"                   , 'Files ~' ] ,
-            \   '.'    : [ "<Cmd>lua require'nv-telescope'.rg()<CR>"                                           , 'RipGrep'   ] ,
+            \   '.'    : [ "<Cmd>lua require'modules.telescope'.rg()<CR>"                                           , 'RipGrep'   ] ,
             \ }
 <Cmd>lua require'telescope.builtin'.find_files({cwd = '~'})<CR>
 " l is for LSP

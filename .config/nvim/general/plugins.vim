@@ -44,6 +44,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'SirVer/ultisnips' | Plug 'nguyentritai2906/vim-snippets'
     Plug 'mjbrownie/swapit' " Swap True-False
     Plug 'rlue/vim-barbaric' " Switch input method
+    Plug 'ahmedkhalf/project.nvim'
 
     " Syntax
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
