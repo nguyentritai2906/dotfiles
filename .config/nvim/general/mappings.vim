@@ -26,11 +26,12 @@ nnoremap tL :tablast<CR>
 nnoremap tj :-tabmove<CR>
 nnoremap tk :+tabmove<CR>
 nnoremap tc :tabclose<CR>
-nnoremap tn :tabnew<SPACE>
+nnoremap tn :TablineTabNew<Space>
+nnoremap tr :TablineTabRename<Space>
 
 " Buffers navigation
-nmap <silent> <TAB> :bnext<CR>
-nmap <silent> <S-TAB> :bprev<CR>
+nmap <silent> <TAB> :TablineBufferNext<CR>
+nmap <silent> <S-TAB> :TablineBufferPrevious<CR>
 
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j

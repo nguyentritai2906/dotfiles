@@ -100,25 +100,43 @@ let g:which_key_normal_map['w'] = {
 "             \   'name' :   '+Highlight' ,
 "             \ }
 
-" f is for FZF
-let g:which_key_normal_map['f'] = {
-            \   'name' :   '+FZF'                   ,
-            \   'f'    : [ ':Files    ' , 'Files    ' ] ,
-            \   'b'    : [ ':Buffers  ' , 'Buffers  ' ] ,
-            \   'c'    : [ ':Commands ' , 'Commands ' ] ,
-            \   'h'    : [ ':Helptags ' , 'Helptags ' ] ,
-            \   'g'    : [ ':GFiles   ' , 'GFiles   ' ] ,
-            \   'j'    : [ ':JumpToTab' , 'JumpToTab' ] ,
-            \   'm'    : [ ':Maps     ' , 'Maps     ' ] ,
-            \   'r'    : [ ':History  ' , 'History  ' ] ,
-            \   's'    : [ ':Snippets ' , 'Snippets ' ] ,
-            \   't'    : [ ':FZF ~    ' , 'Home     ' ] ,
-            \   '`'    : [ ':Marks    ' , 'Marks    ' ] ,
-            \   '/'    : [ ':BLines   ' , 'BLines   ' ] ,
-            \   '?'    : [ ':Lines    ' , 'Lines    ' ] ,
-            \   '.'    : [ ':Ag       ' , 'Ag       ' ] ,
-            \ }
+" " f is for FZF
+" let g:which_key_normal_map['f'] = {
+"             \   'name' :   '+FZF'                   ,
+"             \   'f'    : [ ':Files    ' , 'Files    ' ] ,
+"             \   'b'    : [ ':Buffers  ' , 'Buffers  ' ] ,
+"             \   'c'    : [ ':Commands ' , 'Commands ' ] ,
+"             \   'h'    : [ ':Helptags ' , 'Helptags ' ] ,
+"             \   'g'    : [ ':GFiles   ' , 'GFiles   ' ] ,
+"             \   'j'    : [ ':JumpToTab' , 'JumpToTab' ] ,
+"             \   'm'    : [ ':Maps     ' , 'Maps     ' ] ,
+"             \   'r'    : [ ':History  ' , 'History  ' ] ,
+"             \   's'    : [ ':Snippets ' , 'Snippets ' ] ,
+"             \   't'    : [ ':FZF ~    ' , 'Home     ' ] ,
+"             \   '`'    : [ ':Marks    ' , 'Marks    ' ] ,
+"             \   '/'    : [ ':BLines   ' , 'BLines   ' ] ,
+"             \   '?'    : [ ':Lines    ' , 'Lines    ' ] ,
+"             \   '.'    : [ ':Ag       ' , 'Ag       ' ] ,
+"             \ }
 
+" f is for Find
+let g:which_key_normal_map['f'] = {
+            \   'name' :   '+Find'                   ,
+            \   'f'    : [ "<Cmd>lua require'telescope.builtin'.find_files()<CR>"                              , 'Files'     ] ,
+            \   'c'    : [ "<Cmd>lua require'telescope.builtin'.commands()<CR>"                                , 'Commands'  ] ,
+            \   'r'    : [ "<Cmd>lua require'telescope.builtin'.oldfiles({ path_display =  {'shorten'} })<CR>" , 'Recent'    ] ,
+            \   'l'    : [ "<Cmd>lua require'telescope.builtin'.live_grep()<CR>"                               , 'Live Grep' ] ,
+            \   'm'    : [ "<Cmd>lua require'telescope.builtin'.keymaps()<CR>"                                 , 'Keymaps'   ] ,
+            \   'b'    : [ "<Cmd>lua require'telescope.builtin'.buffers()<CR>"                                 , 'Buffers'   ] ,
+            \   'h'    : [ "<Cmd>lua require'telescope.builtin'.help_tags()<CR>"                               , 'HelpTags'  ] ,
+            \   'g'    : [ "<Cmd>lua require'nv-telescope'.project_files()<CR>"                                , 'GitFiles'  ] ,
+            \   'n'    : [ "<Cmd>lua require'nv-telescope'.find_notes()<CR>"                                   , 'Notes'     ] ,
+            \   'e'    : [ "<Cmd>lua require'nv-telescope'.file_explorer()<CR>"                                , 'Explorer'  ] ,
+            \   ';'    : [ "<Cmd>lua require'telescope.command'.load_command()<CR>"                            , 'Telescope' ] ,
+            \   '~'    : [ "<Cmd>lua require'telescope.builtin'.find_files({cwd = '~'})<CR>"                   , 'Files ~' ] ,
+            \   '.'    : [ "<Cmd>lua require'nv-telescope'.rg()<CR>"                                           , 'RipGrep'   ] ,
+            \ }
+<Cmd>lua require'telescope.builtin'.find_files({cwd = '~'})<CR>
 " l is for LSP
 let g:which_key_normal_map['l'] = {
             \   'name' :   '+LSP'                         ,

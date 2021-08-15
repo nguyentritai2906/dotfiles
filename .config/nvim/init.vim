@@ -16,13 +16,11 @@ source ~/.config/nvim/general/autocmds.vim
 source ~/.config/nvim/general/colorschemes.vim
 
 " Configs
-source ~/.config/nvim/config/airline.vim
 source ~/.config/nvim/config/anzu.vim
 source ~/.config/nvim/config/autopairs.vim
 source ~/.config/nvim/config/bracey.vim
 source ~/.config/nvim/config/easymotion.vim
 source ~/.config/nvim/config/firenvim.vim
-source ~/.config/nvim/config/fzf.vim
 source ~/.config/nvim/config/fugitive.vim
 source ~/.config/nvim/config/gitgutter.vim
 source ~/.config/nvim/config/incsearch.vim
@@ -44,12 +42,7 @@ source ~/.config/nvim/config/vimmove.vim
 source ~/.config/nvim/config/vimwiki.vim
 source ~/.config/nvim/config/virtualenv.vim
 source ~/.config/nvim/config/winresize.vim
-source ~/.config/nvim/config/whichkey.vim
 source ~/.config/nvim/config/highlightedyank.vim
-
-" source ~/.config/nvim/config/cocnvim.vim
-" source ~/.config/nvim/config/supertab.vim
-" source ~/.config/nvim/config/codefmt.vim
 
 lua require('nv-lsp')
 lua require('nv-lsp.efm-ls')
@@ -58,8 +51,12 @@ lua require('nv-lsp.bash-ls')
 lua require('nv-lsp.clang-ls')
 lua require('nv-lsp.json-ls')
 lua require('nv-lsp.pyright-ls')
-" lua require('nv-lsp.py-lsp')
-" lua require('nv-lsp.jedi-ls')
 lua require('nv-compe')
 lua require('nv-utils')
 lua require('nv-treesitter')
+lua require('nv-telescope')
+lua require('nv-whichkey')
+lua require('nv-whichkey')
+lua require('nv-lualine')
+lua require('nv-tabline')
+lua require('toggle_lsp_diagnostics').init()
