@@ -8,24 +8,11 @@ endif
 call plug#begin('~/.vim/plugged')
 
     " LSP
-    " {{{
-        Plug 'nvim-lua/plenary.nvim'
-        Plug 'neovim/nvim-lspconfig'
-        Plug 'hrsh7th/nvim-compe'
-        Plug 'ray-x/lsp_signature.nvim'
-        Plug 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
-    " }}}
-    " {{{
-        " Plug 'neoclide/coc.nvim', {'branch': 'release'}
-        " " Add maktaba and codefmt to the runtimepath.
-        " " (The latter must be installed before it can be used.)
-        " Plug 'google/vim-maktaba'
-        " Plug 'google/vim-codefmt'
-        " " Also add Glaive, which is used to configure codefmt's maktaba flags. See
-        " " `:help :Glaive` for usage.
-        " Plug 'google/vim-glaive'
-        " Plug 'ervandew/supertab'
-    " }}}
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'hrsh7th/nvim-compe'
+    Plug 'ray-x/lsp_signature.nvim'
+    Plug 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
 
     " Git
     Plug 'airblade/vim-gitgutter'
@@ -44,7 +31,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'SirVer/ultisnips' | Plug 'nguyentritai2906/vim-snippets'
     Plug 'mjbrownie/swapit' " Swap True-False
     Plug 'rlue/vim-barbaric' " Switch input method
-    Plug 'ahmedkhalf/project.nvim'
 
     " Syntax
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -57,10 +43,10 @@ call plug#begin('~/.vim/plugged')
 
     " Make life easier
     Plug 'gioele/vim-autoswap' " No more swap files!
-    " Plug '~/.fzf' | Plug 'junegunn/fzf.vim' | Plug 'ojroques/nvim-lspfuzzy'
     Plug 'nvim-lua/plenary.nvim' | Plug 'nvim-telescope/telescope.nvim' | Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
     Plug 'nvim-telescope/telescope-github.nvim'
+    Plug 'nvim-telescope/telescope-project.nvim'
     Plug 'kyazdani42/nvim-tree.lua'
     Plug 'simnalamburt/vim-mundo'
     Plug 'luochen1990/rainbow' | Plug 'p00f/nvim-ts-rainbow' | Plug 'jiangmiao/auto-pairs'
@@ -70,7 +56,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-abolish'
     Plug 'simeji/winresizer'
-    " Plug 'liuchengxu/vim-which-key'
     Plug 'folke/which-key.nvim'
     Plug 'godlygeek/tabular'
     Plug 'kevinhwang91/nvim-bqf'
@@ -85,7 +70,6 @@ call plug#begin('~/.vim/plugged')
 
     " UI
     Plug 'hoob3rt/lualine.nvim'
-    " Plug 'romgrk/barbar.nvim'
     Plug 'kdheepak/tabline.nvim'
     Plug 'norcalli/nvim-colorizer.lua'
     Plug 'Yggdroot/indentLine'

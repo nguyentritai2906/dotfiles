@@ -1,3 +1,8 @@
+-- github CLI
+require("telescope").load_extension("gh")
+require("telescope").load_extension("fzf")
+require("telescope").load_extension("project")
+
 local actions = require('telescope.actions')
 local utils = require "telescope.utils"
 
@@ -7,6 +12,7 @@ require('telescope').setup{
           i = {
               ["<C-j>"] = actions.move_selection_next,
               ["<C-k>"] = actions.move_selection_previous,
+              ["<C-[>"] = actions.close,
           },
       },
     vimgrep_arguments = {
@@ -50,16 +56,9 @@ require('telescope').setup{
     qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
 
     -- Developer configurations: Not meant for general override
-    buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
+    buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker,
   }
 }
-
--- github CLI
-require("telescope").load_extension("gh")
-
-require("telescope").load_extension("fzf")
-
-require("telescope").load_extension("projects")
 
 local M = {}
 
@@ -141,6 +140,7 @@ end
 --         layout_config = {preview_width = 0.65}
 --     }
 -- end
+
 -- @TODOUA: work HOME dot files into one of these
 function M.grep_notes()
   local opts = {}
@@ -195,60 +195,28 @@ function M.nvim_config()
   }
 end
 
-vim.api.nvim_set_keymap( "n", "<Leader>ff", [[<Cmd>lua require'telescope.builtin'.find_files()<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap( "n", "<Leader>fF", [[<Cmd>lua require'telescope.builtin'.find_files({cwd = '~'})<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap( "n", "<Leader>f;", [[<Cmd>lua require'telescope.command'.load_command()<CR>]], { noremap = true, silent = true })
-
--- open available commands & run it
-vim.api.nvim_set_keymap( "n", "<Leader>fc", [[<Cmd>lua require'telescope.builtin'.commands()<CR>]], { noremap = true, silent = true })
-
--- -- commands - Lua API in the works: https://github.com/neovim/neovim/pull/12378
--- -- git_branches
--- vim.api.nvim_set_keymap( "n", "<leader>fgb", [[<Cmd>lua require'telescope.builtin'.git_branches()<CR>]], { noremap = true, silent = true })
-
--- -- git_status - <tab> to toggle staging
--- vim.api.nvim_set_keymap( "n", "<Leader>fgs", [[<Cmd>lua require'telescope.builtin'.git_status()<CR>]], { noremap = true, silent = true })
-
--- Telescope oldfiles
-vim.api.nvim_set_keymap( "n", "<Leader>fr", [[<Cmd>lua require'telescope.builtin'.oldfiles({ path_display =  {"shorten"} })<CR>]], { noremap = true, silent = true })
-
+vim.api.nvim_set_keymap("n", "<Leader>ff", [[<Cmd>lua require'telescope.builtin'.find_files()<CR>]], { noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<Leader>fF", [[<Cmd>lua require'telescope.builtin'.find_files({cwd = '~'})<CR>]], { noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<Leader>f;", [[<Cmd>lua require'telescope.command'.load_command()<CR>]], { noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<Leader>fc", [[<Cmd>lua require'telescope.builtin'.commands()<CR>]], { noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<Leader>fr", [[<Cmd>lua require'telescope.builtin'.oldfiles({path_display =  {"shorten"}})<CR>]], { noremap = true, silent = true})
 -- live grep slowness: https://github.com/nvim-telescope/telescope.nvim/issues/392
-vim.api.nvim_set_keymap( "n", "<Leader>fl", [[<Cmd>lua require'telescope.builtin'.live_grep()<CR>]], { noremap = true, silent = true })
-
-vim.api.nvim_set_keymap( "n", "<Leader>fm", [[<Cmd>lua require'telescope.builtin'.keymaps()<CR>]], { noremap = true, silent = true })
-
-vim.api.nvim_set_keymap( "n", "<Leader>fb", [[<Cmd>lua require'telescope.builtin'.buffers()<CR>]], { noremap = true, silent = true })
-
-vim.api.nvim_set_keymap( "n", "<Leader>fh", [[<Cmd>lua require'telescope.builtin'.help_tags()<CR>]], { noremap = true, silent = true })
-
--- vim.api.nvim_set_keymap( "n", "<leader>fm", [[<Cmd>lua require'telescope.builtin'.marks()<CR>]], { noremap = true, silent = true })
-
--- -- grep word under cursor
--- vim.api.nvim_set_keymap( "n", "<leader>gs", [[<Cmd>lua require'telescope.builtin'.grep_string()<CR>]], { noremap = true, silent = true })
-
+vim.api.nvim_set_keymap("n", "<Leader>fl", [[<Cmd>lua require'telescope.builtin'.live_grep()<CR>]], { noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<Leader>fk", [[<Cmd>lua require'telescope.builtin'.keymaps()<CR>]], { noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<Leader>fb", [[<Cmd>lua require'telescope.builtin'.buffers()<CR>]], { noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<Leader>fh", [[<Cmd>lua require'telescope.builtin'.help_tags()<CR>]], { noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>fm", [[<Cmd>lua require'telescope.builtin'.marks()<CR>]], { noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>fK", [[<Cmd>lua require'telescope.builtin'.grep_string()<CR>]], { noremap = true, silent = true}) -- CWORD
 -- find files with gitfiles & fallback on find_files
-vim.api.nvim_set_keymap( "n", "<leader>fg", [[<Cmd>lua require'modules.telescope'.project_files()<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap( "n", "<leader>f/", [[<Cmd>lua require'modules.telescope'.nvim_config()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>fg", [[<Cmd>lua require'modules.telescope'.project_files()<CR>]], { noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>f/", [[<Cmd>lua require'modules.telescope'.nvim_config()<CR>]], { noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>fn", [[<Cmd>lua require'modules.telescope'.find_notes()<CR>]], { noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>fe", [[<Cmd>lua require'telescope.builtin'.file_browser()<CR>]], { noremap = true, silent = true}) -- CWD
+vim.api.nvim_set_keymap("n", "<leader>fE", [[<Cmd>lua require'modules.telescope'.file_explorer()<CR>]], { noremap = true, silent = true}) -- $HOME
+vim.api.nvim_set_keymap("n", "<leader>f.", [[<Cmd>lua require'modules.telescope'.rg()<CR>]], { noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>fp", ":lua require'telescope'.extensions.project.project{}<CR>", { noremap = true, silent = true})
 
--- -- browse, explore and create notes
--- vim.api.nvim_set_keymap( "n", "<leader>bn", [[<Cmd>lua require'modules.telescope'.browse_notes()<CR>]], { noremap = true, silent = true })
-
--- find notes
-vim.api.nvim_set_keymap( "n", "<leader>fn", [[<Cmd>lua require'modules.telescope'.find_notes()<CR>]], { noremap = true, silent = true })
-
--- -- search notes
--- vim.api.nvim_set_keymap( "n", "<leader>gn", [[<Cmd>lua require'modules.telescope'.grep_notes()<CR>]], { noremap = true, silent = true })
-
--- Explore files starting at $HOME
-vim.api.nvim_set_keymap( "n", "<leader>fe", [[<Cmd>lua require'telescope.builtin'.file_browser()<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap( "n", "<leader>fE", [[<Cmd>lua require'modules.telescope'.file_explorer()<CR>]], { noremap = true, silent = true })
-
--- Ripgrep
-vim.api.nvim_set_keymap( "n", "<leader>f.", [[<Cmd>lua require'modules.telescope'.rg()<CR>]], { noremap = true, silent = true })
-
-vim.api.nvim_set_keymap( "n", "<leader>fp", [[<Cmd>lua require'telescope'.extensions.projects.projects()<CR>]], { noremap = true, silent = true })
-
--- -- github issues
--- vim.api.nvim_set_keymap( "n", "<leader>gis", [[<Cmd>lua require'modules.telescope'.gh_issues()<CR>]], { noremap = true, silent = true })
+-- github branches
+-- vim.api.nvim_set_keymap("n", "<leader>fgb", [[<Cmd>lua require'telescope.builtin'.git_branches()<CR>]], { noremap = true, silent = true})
 
 return M
