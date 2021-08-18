@@ -47,7 +47,7 @@ require("which-key").setup {
     align = "center", -- align columns left, center or right
   },
   ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
-  hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ "}, -- hide mapping boilerplate
+  hidden = { "<silent>", "<cmd>", "<cmd>", "<CR>", "call", "lua", "^:", "^ "}, -- hide mapping boilerplate
   show_help = true, -- show help message on the command line when the popup is visible
   triggers = "auto", -- automatically setup triggers
   -- triggers = {"<leader>"} -- or specify a list manually
@@ -114,24 +114,25 @@ wk.register({
         },
         f = {
             name =   "+Find"                   ,
-            f    = { "<Cmd>lua require'telescope.builtin'.find_files()<CR>", "Files"     } ,
-            c    = { "<Cmd>lua require'telescope.builtin'.commands()<CR>", "Commands"  } ,
-            r    = { "<Cmd>lua require'telescope.builtin'.oldfiles({ path_display =  {'shorten'} })<CR>", "Recent"    } ,
-            l    = { "<Cmd>lua require'telescope.builtin'.live_grep()<CR>", "Live Grep" } ,
-            k    = { "<Cmd>lua require'telescope.builtin'.keymaps()<CR>", "Keymaps"   } ,
-            b    = { "<Cmd>lua require'telescope.builtin'.buffers()<CR>", "Buffers"   } ,
-            h    = { "<Cmd>lua require'telescope.builtin'.help_tags()<CR>", "Help Tags"  } ,
-            g    = { "<Cmd>lua require'modules.telescope'.project_files()<CR>", "Git Files"  } ,
-            n    = { "<Cmd>lua require'modules.telescope'.find_notes()<CR>", "Notes"     } ,
-            e    = { "<Cmd>lua require'telescope.builtin'.file_browser()<CR>", "Explorer"  } ,
-            E    = { "<Cmd>lua require'modules.telescope'.file_explorer()<CR>", "Explorer ~"  } ,
-            F    = { "<Cmd>lua require'telescope.builtin'.find_files({cwd = '~'})<CR>", "Files ~" } ,
-            p    = { "<Cmd>lua require'telescope'.extensions.project.project{}<CR>", "Projects" } ,
-            K    = { "<Cmd>lua require'telescope.builtin'.grep_string()<CR>", "Grep CWord" } ,
-            m    = { "<Cmd>lua require'telescope.builtin'.marks()<CR>", "Marks" } ,
-            [";"]    = { "<Cmd>lua require'telescope.command'.load_command()<CR>", "Telescope" } ,
-            ["."]    = { "<Cmd>lua require'modules.telescope'.rg()<CR>", "Rip Grep"   } ,
-            ["/"]    = { "<Cmd>lua require'modules.telescope'.nvim_config()<CR>", "Nvim Config"   } ,
+            f    = { "<cmd>lua require'telescope.builtin'.find_files()<CR>", "Files"     } ,
+            c    = { "<cmd>lua require'telescope.builtin'.commands()<CR>", "Commands"  } ,
+            r    = { "<cmd>lua require'telescope.builtin'.oldfiles({ path_display =  {'shorten'} })<CR>", "Recent"    } ,
+            l    = { "<cmd>lua require'telescope.builtin'.live_grep()<CR>", "Live Grep" } ,
+            k    = { "<cmd>lua require'telescope.builtin'.keymaps()<CR>", "Keymaps"   } ,
+            b    = { "<cmd>lua require'telescope.builtin'.buffers()<CR>", "Buffers"   } ,
+            h    = { "<cmd>lua require'telescope.builtin'.help_tags()<CR>", "Help Tags"  } ,
+            g    = { "<cmd>lua require'modules.telescope'.project_files()<CR>", "Git Files"  } ,
+            n    = { "<cmd>lua require'modules.telescope'.find_notes()<CR>", "Notes"     } ,
+            e    = { "<cmd>lua require'telescope.builtin'.file_browser()<CR>", "Explorer"  } ,
+            E    = { "<cmd>lua require'modules.telescope'.file_explorer()<CR>", "Explorer ~"  } ,
+            F    = { "<cmd>lua require'telescope.builtin'.find_files({cwd = '~'})<CR>", "Files ~" } ,
+            p    = { "<cmd>lua require'telescope'.extensions.project.project{}<CR>", "Projects" } ,
+            K    = { "<cmd>lua require'telescope.builtin'.grep_string()<CR>", "Grep CWord" } ,
+            m    = { "<cmd>lua require'telescope.builtin'.marks()<CR>", "Marks" } ,
+            C    = { "<cmd>lua require('telescope').extensions.neoclip.default()<CR>", "Clipboard" } ,
+            [";"]    = { "<cmd>lua require'telescope.command'.load_command()<CR>", "Telescope" } ,
+            ["."]    = { "<cmd>lua require'modules.telescope'.rg()<CR>", "Rip Grep"   } ,
+            ["/"]    = { "<cmd>lua require'modules.telescope'.nvim_config()<CR>", "Nvim Config"   } ,
         },
         l = {
             name =   "+LSP"                         ,

@@ -47,6 +47,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
     Plug 'nvim-telescope/telescope-github.nvim'
     Plug 'nvim-telescope/telescope-project.nvim'
+    Plug 'AckslD/nvim-neoclip.lua'
     Plug 'kyazdani42/nvim-tree.lua'
     Plug 'simnalamburt/vim-mundo'
     Plug 'luochen1990/rainbow' | Plug 'p00f/nvim-ts-rainbow' | Plug 'jiangmiao/auto-pairs'
