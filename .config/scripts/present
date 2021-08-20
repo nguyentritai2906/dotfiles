@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+xrandr --addmode eDP-1-1 "1920x1080"
+xrandr --output eDP-1-1 --mode 1920x1080 --output HDMI-1-1 --mode 1920x1080 --same-as eDP-1-1
+nitrogen --restore
+killall -9 picom
+killall -9 polybar
