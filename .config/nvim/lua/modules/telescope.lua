@@ -1,8 +1,3 @@
--- github CLI
-require("telescope").load_extension("gh")
-require("telescope").load_extension("fzf")
-require("telescope").load_extension("project")
-
 local actions = require('telescope.actions')
 local utils = require "telescope.utils"
 
@@ -12,7 +7,9 @@ require('telescope').setup{
           i = {
               ["<C-j>"] = actions.move_selection_next,
               ["<C-k>"] = actions.move_selection_previous,
-              ["<C-[>"] = actions.close,
+              ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+              ["<M-BS>"] = actions.delete_buffer,
+              -- ["<C-[>"] = actions.close,
           },
       },
     vimgrep_arguments = {
@@ -49,16 +46,30 @@ require('telescope').setup{
     borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
     color_devicons = true,
     use_less = true,
-    path_display = {},
+    path_display = {
+        "shorten",
+        "absolute",
+    },
     set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
     file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
     grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
     qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
+    fzf = {
+        fuzzy = true,                    -- false will only do exact matching
+        override_generic_sorter = false, -- override the generic sorter
+        override_file_sorter = true,     -- override the file sorter
+        case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+    },
 
     -- Developer configurations: Not meant for general override
     buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker,
   }
 }
+
+-- Extensions
+require("telescope").load_extension("gh")
+require("telescope").load_extension("fzf")
+require("telescope").load_extension("project")
 
 local M = {}
 
@@ -201,7 +212,8 @@ vim.api.nvim_set_keymap("n", "<Leader>f;", [[<cmd>lua require'telescope.command'
 vim.api.nvim_set_keymap("n", "<Leader>fc", [[<cmd>lua require'telescope.builtin'.commands()<CR>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<Leader>fr", [[<cmd>lua require'telescope.builtin'.oldfiles({path_display =  {"shorten"}})<CR>]], { noremap = true, silent = true})
 -- live grep slowness: https://github.com/nvim-telescope/telescope.nvim/issues/392
-vim.api.nvim_set_keymap("n", "<Leader>fl", [[<cmd>lua require'telescope.builtin'.live_grep()<CR>]], { noremap = true, silent = true})
+-- vim.api.nvim_set_keymap("n", "<Leader>fl", [[<cmd>lua require'telescope.builtin'.live_grep()<CR>]], { noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<Leader>fl", [[<cmd>lua require'telescope.builtin'.grep_string{only_sort_text = true, search = ''}<CR>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<Leader>fk", [[<cmd>lua require'telescope.builtin'.keymaps()<CR>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<Leader>fb", [[<cmd>lua require'telescope.builtin'.buffers()<CR>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<Leader>fh", [[<cmd>lua require'telescope.builtin'.help_tags()<CR>]], { noremap = true, silent = true})

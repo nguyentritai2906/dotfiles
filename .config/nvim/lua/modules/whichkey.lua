@@ -117,7 +117,7 @@ wk.register({
             f    = { "<cmd>lua require'telescope.builtin'.find_files()<CR>", "Files"     } ,
             c    = { "<cmd>lua require'telescope.builtin'.commands()<CR>", "Commands"  } ,
             r    = { "<cmd>lua require'telescope.builtin'.oldfiles({ path_display =  {'shorten'} })<CR>", "Recent"    } ,
-            l    = { "<cmd>lua require'telescope.builtin'.live_grep()<CR>", "Live Grep" } ,
+            l    = { "<cmd>lua require'telescope.builtin'.grep_string{only_sort_text = true, search = ''}<CR>", "Live Grep" } ,
             k    = { "<cmd>lua require'telescope.builtin'.keymaps()<CR>", "Keymaps"   } ,
             b    = { "<cmd>lua require'telescope.builtin'.buffers()<CR>", "Buffers"   } ,
             h    = { "<cmd>lua require'telescope.builtin'.help_tags()<CR>", "Help Tags"  } ,
