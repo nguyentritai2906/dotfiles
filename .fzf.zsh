@@ -23,6 +23,6 @@ _fzf_compgen_dir() {
 
 # Key bindings
 # ------------
-source "$HOME/.fzf/shell/key-bindings.zsh"
+source "$HOME/.config/fzf/key-bindings.zsh"
 source "$HOME/.config/fzf/fzf.sh"
 source "$HOME/.config/fzf/pip-fzf.sh"
