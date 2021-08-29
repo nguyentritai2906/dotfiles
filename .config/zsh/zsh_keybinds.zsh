@@ -27,4 +27,4 @@ bindkey '^e' edit-command-line
 # Zsh accept and execute suggestion
 bindkey '^[M' autosuggest-execute
 
-bindkey -s '\eo' "ranger\n"
+bindkey -s 'ø' "ranger\n"

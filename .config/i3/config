@@ -37,7 +37,7 @@ bindsym $super+Shift+d exec --no-startup-id rofi -show drun -matching fuzzy
 bindsym $super+r exec --no-startup-id $HOME/.config/polybar/scripts/color-switch.sh
 
 # Use Rofi to select icons from Font Awesome Icon List
-bindsym $super+i exec --no-startup-id $HOME/rofi-fontawesome/fontawesome-menu/fontawesome-menu -f /home/solus/rofi-fontawesome/fa5-icon-list.txt -o '-matching fuzzy -i -columns 4' >/dev/null
+bindsym $super+i exec --no-startup-id $HOME/rofi-fontawesome/fontawesome-menu/fontawesome-menu -f /Users/mater/rofi-fontawesome/fa5-icon-list.txt -o '-matching fuzzy -i -columns 4' >/dev/null
 
 
 # file manager
@@ -285,7 +285,7 @@ exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id python3 $HOME/.config/i3/autotiling.py # Dependencies: python-i3ipc>=2.0.1 (i3ipc-python)
 
 #Change background/wallpaper setting in .config/nitrogen/bg-saved.cfg
-#exec_always --no-startup-id feh --bg-scale /home/solus/Pictures/Wallpapers/fern-green-black.jpg
+#exec_always --no-startup-id feh --bg-scale /Users/mater/Pictures/Wallpapers/fern-green-black.jpg
 
 # To change Capslock to Ctrl using Systemd's localectl tool to write an Xorg config file
 # https://www.reddit.com/r/archlinux/comments/72jbgq/something_surreptitiously_resetting_my_setxkbmap/

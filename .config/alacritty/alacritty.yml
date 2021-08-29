@@ -18,9 +18,9 @@ env:
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  TERM: alacritty
+  TERM: xterm-256color
 
-#window:
+window:
   # Window dimensions (changes require restart)
   #
   # Specified in number of columns/lines, not pixels.
@@ -57,7 +57,7 @@ env:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
-  #decorations: full
+  decorations: none
 
   # Startup Mode (changes require restart)
   #
@@ -68,7 +68,7 @@ env:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  #startup_mode: Windowed
+  startup_mode: Fullscreen
 
   # Window title
   #title: Alacritty
@@ -146,7 +146,7 @@ font:
     style: Bold Italic
 
   # Point size
-  size: 9.0
+  size: 13.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -320,7 +320,7 @@ colors:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.8
+window.opacity: 0.8
 
 #selection:
   # This string contains all characters that are used as separators for "semantic words" in Alacritty.
@@ -355,7 +355,7 @@ cursor:
   #thickness: 0.15
 
 # Live config reload (changes require restart)
-#live_config_reload: true
+live_config_reload: true
 
 # Shell
 #
@@ -367,9 +367,11 @@ cursor:
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
 shell:
- program: /usr/bin/tmux
-#  args:
-#    - --login
+ program: /bin/zsh
+ args:
+    - -l
+    - -c
+    - "tmux attach 2>/dev/null || tmux"
 
 # Startup directory
 #
@@ -400,7 +402,7 @@ mouse:
   #triple_click: { threshold: 300 }
 
   # If this is `true`, the cursor is temporarily hidden when typing.
-  #hide_when_typing: false
+  # hide_when_typing: false
 
   hints:
     # URL launcher
@@ -415,7 +417,7 @@ mouse:
     #   - (Linux/BSD) xdg-open
     #   - (Windows) explorer
     launcher:
-     program: xdg-open
+      program: open
     #  args: []
 
     # URL modifiers
@@ -690,9 +692,9 @@ key_bindings:
   # - { key: N,      mods: Shift,         mode: Vi, action: SearchPrevious          }
 
   # (Windows, Linux, and BSD only)
-  - { key: V,         mods: Control|Shift,           action: Paste            }
-  - { key: C,         mods: Control|Shift,           action: Copy             }
-  - { key: Return,    mods: Control,                 chars: "\x1bM"           }
+  #- { key: V,         mods: Control|Shift,           action: Paste            }
+  #- { key: C,         mods: Control|Shift,           action: Copy             }
+  #- { key: Return,    mods: Control,                 chars: "\x1bM"           }
   #- { key: V,        mods: Control|Shift,           action: Paste            }
   #- { key: C,        mods: Control|Shift,           action: Copy             }
   #- { key: F,        mods: Control|Shift,           action: SearchForward    }
@@ -709,6 +711,7 @@ key_bindings:
   #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
 
   # (macOS only)
+  - { key: Return,    mods: Control,                 chars: "\x1bM"           }
   #- { key: K,      mods: Command, mode: ~Vi, chars: "\x0c"            }
   #- { key: Key0,   mods: Command,            action: ResetFontSize    }
   #- { key: Equals, mods: Command,            action: IncreaseFontSize }

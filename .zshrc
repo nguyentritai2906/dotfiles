@@ -9,7 +9,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/solus/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -75,7 +75,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions fasd last-working-dir)
+plugins=(git zsh-autosuggestions fasd last-working-dir zsh_reload fzf-brew)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -96,8 +96,8 @@ export LANG=en_US.UTF-8
 if [[ -n $SSH_CONNECTION ]]; then
 	export EDITOR='vim'
 else
-    export SUDO_EDITOR='vim'
-	export EDITOR='nv'
+    export SUDO_EDITOR='nvim'
+	export EDITOR='nvim'
 fi
 
 # Disable flow control Ctrl+S, since it realy just annoys me
@@ -142,11 +142,12 @@ SPACESHIP_JOBS_SHOW=false
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
+
 # Load aliases and shortcuts if existent.
 [ -f "$HOME/.config/zsh/zsh_keybinds.zsh" ] && source "$HOME/.config/zsh/zsh_keybinds.zsh"
 [ -f "$HOME/.config/zsh/zsh_functions.zsh" ] && source "$HOME/.config/zsh/zsh_functions.zsh"
 [ -f "$HOME/.config/zsh/zsh_aliases.zsh" ] && source "$HOME/.config/zsh/zsh_aliases.zsh"
+
 # Use colors for less, man, etc.
 [[ -f ~/.config/less-termcap ]] && . ~/.config/less-termcap
 
@@ -157,32 +158,16 @@ HISTFILE=~/.cache/.zsh_history
 setopt inc_append_history
 setopt hist_ignore_dups
 
-# Add Rust to $PATH
-export PATH="$HOME/.cargo/bin:$PATH"
+# Add Python3 to $PATH
+export PATH="$HOME/Library/Python/3.8/bin:$PATH"
 
-# Add Black and Blackd to $PATH
-export PATH="$HOME/.local/bin:$PATH"
-
-# Add Java JDK
-export JAVA_HOME=/usr/lib64/openjdk-11/
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/solus/google-cloud-sdk/path.zsh.inc' ]; then . '/home/solus/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/solus/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/solus/google-cloud-sdk/completion.zsh.inc'; fi
+# Add homebrew to $PATH
+export PATH="/opt/homebrew/bin:$PATH"
 
 # Configure fzf, command line fuzzy finder
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 FD_OPTIONS="--hidden --exclude .git --exclude node_modules"
-export FZF_DEFAULT_OPTS="--no-mouse --height 50% -1 --reverse --multi
---tiebreak=length,begin,end,index --inline-info --preview='[[ \$(file --mime
-{}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers
-    --color=always {} || cat {}) 2> /dev/null | head -300'
-    --preview-window='right:70%:hidden:wrap'
-    --bind='ctrl-p:toggle-preview,ctrl-d:half-page-down,ctrl-u:half-page-up,ctrl-x:execute(rm
-    -i
-    {+})+abort,alt-k:preview-up,alt-j:preview-down,alt-d:preview-page-down,alt-u:preview-page-up'"
+export FZF_DEFAULT_OPTS="--no-mouse --height 50% -1 --reverse --multi --tiebreak=length,begin,end,index --inline-info --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' --preview-window='right:70%:hidden:wrap' --bind='ctrl-p:toggle-preview,ctrl-d:half-page-down,ctrl-u:half-page-up,ctrl-x:execute(rm -i {+})+abort,alt-k:preview-up,alt-j:preview-down,alt-d:preview-page-down,alt-u:preview-page-up'"
 # Use git-ls-files inside git repo, otherwise fd
 export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard || fd --type f --type l $FD_OPTIONS"
 export FZF_CTRL_T_COMMAND="fd --type f $FD_OPTIONS"
@@ -198,41 +183,14 @@ export PATH=$PATH:$GOPATH/bin
 # Load zsh-syntax-highlighting; should be last.
 source $HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-export KAGGLE_CONFIG_DIR="/home/solus/.config/kaggle"
-
-# Random wikipedia on this day fact
-#
-# for day in {1..365}; do
-# mkdir ~/.config/wikidates 2>/dev/null
-# date=$(date -d "now +$day days" +%B_%d)
-# w3m -cols 99999 -dump http://en.wikipedia.org/wiki/$date | sed -n '/^Events/,/^Births/p' | sed '1d;$d' | sed -n 's/^.*•//p' > ~/.config/wikidates/$date
-# echo $date
-# done
-
-# w3m -cols 99999 -dump http://en.wikipedia.org/wiki/February_29 | sed -n '/^Events/,/^Births/p' | sed '1d;$d' | sed -n 's/^.*•//p' > ~/.config/wikidates/February_29
-#
-cat ~/.config/wikidates/$(date +%B_%d) | shuf -n 1
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/solus/soft/anaconda3/bin/conda' 'shell.zsh' 'hook' 2>/dev/null)"
-if [ $? -eq 0 ]; then
-	eval "$__conda_setup"
-else
-	if [ -f "/home/solus/soft/anaconda3/etc/profile.d/conda.sh" ]; then
-		. "/home/solus/soft/anaconda3/etc/profile.d/conda.sh"
-	else
-		export PATH="/home/solus/soft/anaconda3/bin:$PATH"
-	fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+export KAGGLE_CONFIG_DIR="/Users/mater/.config/kaggle"
 
 export PATH=~/.npm-global/bin:~/node_modules/.bin:$PATH
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/cuda-11
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
+
+source $HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

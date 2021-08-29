@@ -2,6 +2,7 @@
 require("telescope").load_extension("gh")
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("project")
+require"telescope".load_extension("frecency")
 
 local actions = require('telescope.actions')
 local utils = require "telescope.utils"
@@ -49,7 +50,9 @@ require('telescope').setup{
     borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
     color_devicons = true,
     use_less = true,
-    path_display = {},
+    path_display = {
+        "absolute",
+    },
     set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
     file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
     grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
@@ -83,7 +86,6 @@ end
 
 function M.rg()
   require("telescope.builtin").grep_string {
-    path_display = { "shorten" },
     search = vim.fn.input "Rg❯  ",
   }
 end
@@ -151,14 +153,12 @@ function M.grep_notes()
   }
   opts.prompt_prefix = " ❯  "
   opts.prompt_title = "Grep Notes"
-  opts.path_display = { "shorten" }
   require("telescope.builtin").live_grep(opts)
 end
 
 function M.find_notes()
   require("telescope.builtin").find_files {
     prompt_title = "Find Notes",
-    path_display = { "shorten" },
     cwd = "~/Documents/notes/",
     layout_strategy = "horizontal",
     layout_config = { preview_width = 0.65, width = 0.75 },
@@ -178,7 +178,6 @@ end
 function M.file_explorer()
   require("telescope.builtin").file_browser {
     prompt_title = "File Browser",
-    path_display = { "shorten" },
     cwd = "~",
     layout_strategy = "horizontal",
     layout_config = { preview_width = 0.65, width = 0.75 },
@@ -199,7 +198,7 @@ vim.api.nvim_set_keymap("n", "<Leader>ff", [[<cmd>lua require'telescope.builtin'
 vim.api.nvim_set_keymap("n", "<Leader>fF", [[<cmd>lua require'telescope.builtin'.find_files({cwd = '~'})<CR>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<Leader>f;", [[<cmd>lua require'telescope.command'.load_command()<CR>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<Leader>fc", [[<cmd>lua require'telescope.builtin'.commands()<CR>]], { noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<Leader>fr", [[<cmd>lua require'telescope.builtin'.oldfiles({path_display =  {"shorten"}})<CR>]], { noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<Leader>fr", [[<Cmd>lua require('telescope').extensions.frecency.frecency()<CR>]], { noremap = true, silent = true})
 -- live grep slowness: https://github.com/nvim-telescope/telescope.nvim/issues/392
 vim.api.nvim_set_keymap("n", "<Leader>fl", [[<cmd>lua require'telescope.builtin'.live_grep()<CR>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<Leader>fk", [[<cmd>lua require'telescope.builtin'.keymaps()<CR>]], { noremap = true, silent = true})

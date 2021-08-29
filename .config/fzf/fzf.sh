@@ -62,7 +62,7 @@ cdf() {
 # Similar to "kill -9 **" fzf default completion
 fkill() {
 	local pid
-	pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+	pid=$(ps -ef | sed 1d | fzf -m  -q "$1"| awk '{print $2}')
 	if [ "x$pid" != "x"  ]; then
 		echo $pid | xargs kill -${1:-9}
 	fi
@@ -97,45 +97,6 @@ fzf-home-vim() (
   [[ -n "$files" ]] && ${EDITOR:-vim} "$HOME/${files[@]}"
 )
 bindkey -s '\et' "fzf-home-vim\n"
-
-#Search for installed packages
-pli() {
-    local inst=$(eopkg li | awk '{print $1}' | fzf --ansi --tiebreak=length,begin,end,index --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat" --preview-window=nohidden)
-    print -z -- "$(echo $inst | awk '{print $1;}')"
-}
-
-#Search for packages in the repositories and install
-pit() {
-    local inst=$(cat $HOME/.config/repo-la.txt | fzf -m --tiebreak=length,begin,end,index --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat" --preview-window=nohidden)
-    test -n "$inst" && print -z -- "sudo eopkg it $(echo $inst | cut -d' ' -f1 | tr '\n' ' ')"
-}
-
-#Search for installed packages and remove
-prm() {
-    local inst=$(eopkg li | awk '{print $1}' | fzf -m --tiebreak=length,begin,end,index --ansi --preview="echo {} | cut -d' ' -f1 | xargs -I{} eopkg info {} | bat" --preview-window=nohidden)
-    test -n "$inst" && print -z -- "sudo eopkg rm $(echo $inst | cut -d' ' -f1 | tr '\n' ' ')"
-}
-
-pca() {
-    echo "Caching available packages in Solus repository";
-    eopkg la | sed -e '1,3d' | awk '{print $1}'> $HOME/.config/repo-la.txt;
-    echo "Done!";
-}
-
-#Cache all available packages in the repositories for faster 'pit' search
-if [ -f "$HOME/.config/repo-la.txt" ]; then
-    if [ $(expr $(date +%s) - $(date +%s -r $HOME/.config/repo-la.txt)) -gt 1296000 ]; then
-    echo "[Cache available packages] Would you like to update? [Y/n]: \c"
-    read line
-        if [[ "$line" == Y* ]] || [[ "$line" == y* ]] || [ -z "$line" ]; then
-            pca;
-        else
-            echo "As you wish!";
-        fi
-    fi
-else
-    pca;
-fi
 
 # Fuzzy grep via Ag then open it in the default editor if it's defined,
 # otherwise Vim (with line number)

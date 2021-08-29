@@ -1,5 +1,5 @@
 # Command aliases
-alias vim='nv'
+alias vim='nvim'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -15,7 +15,6 @@ alias vcf="vim ~/.vimrc"
 alias zcf="vim ~/.zshrc"
 alias acf="vim ~/.config/alacritty/alacritty.yml"
 alias rcf="vim ~/.config/ranger/rc.conf"
-alias open='xdg-open'
 alias sv='sudo -E /usr/local/bin/nv'
 alias l='cd - >/dev/null'
 alias curl='curl --silent --show-error'
@@ -24,8 +23,6 @@ alias ls='exa -s=name --icons --color=always --group-directories-first'
 alias la='ls -a'
 alias ll='exa -lamgh -s=name --icons --color-scale --group-directories-first'
 alias tree='exa -lamghT --icons --color-scale --group-directories-first'
-alias mv='mv -i'
-alias rm='rm -I'
 alias cf='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias cfv='GIT_DIR=$HOME/.cfg GIT_WORK_TREE=$HOME vim'
 alias cfi='GIT_DIR=$HOME/.cfg GIT_WORK_TREE=$HOME vim ~/.config/nvim/init.vim'

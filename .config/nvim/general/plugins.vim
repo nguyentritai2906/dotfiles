@@ -47,6 +47,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
     Plug 'nvim-telescope/telescope-github.nvim'
     Plug 'nvim-telescope/telescope-project.nvim'
+    Plug 'nvim-telescope/telescope-frecency.nvim' | Plug 'tami5/sql.nvim'
     Plug 'AckslD/nvim-neoclip.lua'
     Plug 'kyazdani42/nvim-tree.lua'
     Plug 'simnalamburt/vim-mundo'
@@ -66,8 +67,10 @@ call plug#begin('~/.vim/plugged')
 	Plug 'kana/vim-textobj-line'
 	Plug 'kana/vim-textobj-entire'
 	Plug 'kana/vim-textobj-indent'
-    Plug 'bps/vim-textobj-python'
+    " Plug 'bps/vim-textobj-python'
 	Plug 'wellle/targets.vim'
+    Plug 'nvim-treesitter/nvim-treesitter', {'branch' : '0.5-compat'}
+    Plug 'nvim-treesitter/nvim-treesitter-textobjects', {'branch' : '0.5-compat'}
 
     " UI
     Plug 'hoob3rt/lualine.nvim'
