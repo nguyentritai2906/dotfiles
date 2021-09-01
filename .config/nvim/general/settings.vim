@@ -49,6 +49,8 @@ set ttyfast " faster redrawing
 set scrolloff=5
 set splitright
 set spell
+set listchars=eol:↴
+set list
 set spelllang=en
 if has('termguicolors')
     set termguicolors " Nvim-tree: this variable must be enabled for colors to be applied properly
