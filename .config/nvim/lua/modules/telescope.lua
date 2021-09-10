@@ -1,9 +1,3 @@
--- github CLI
-require("telescope").load_extension("gh")
-require("telescope").load_extension("fzf")
-require("telescope").load_extension("project")
-require"telescope".load_extension("frecency")
-
 local actions = require('telescope.actions')
 local utils = require "telescope.utils"
 
@@ -57,11 +51,24 @@ require('telescope').setup{
     file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
     grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
     qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
+    extensions = {
+        fzf = {
+            fuzzy = true,                        -- false will only do exact matching
+                override_generic_sorter = false, -- override the generic sorter
+                override_file_sorter = true,     -- override the file sorter
+                case_mode = "smart_case",        -- or "ignore_case" or "respect_case" the default case_mode is "smart_case"
+        }
+    },
 
     -- Developer configurations: Not meant for general override
     buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker,
   }
 }
+
+require("telescope").load_extension("gh")
+require("telescope").load_extension("fzf")
+require("telescope").load_extension("project")
+require"telescope".load_extension("frecency")
 
 local M = {}
 
