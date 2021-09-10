@@ -3,7 +3,6 @@ alias vim='nvim'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-alias cd..='cd ..'
 alias buds="bluetoothctl connect F4:7D:EF:EF:0B:79"
 alias sony="bluetoothctl connect 70:26:05:9D:51:81"
 alias speaker="bluetoothctl connect 98:52:3D:1C:51:73"
@@ -38,12 +37,8 @@ alias cfl="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME pull"
 alias cfm="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME mv"
 alias ranger='ranger --choosedir=$HOME/.config/ranger/rangerdir; LASTDIR=`cat $HOME/.config/ranger/rangerdir`; cd "$LASTDIR"'
 
-# Global aliases
-alias -g L='| less'
-alias -g G='| grep'
-alias -g grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
-
-# starts one or multiple args as programs in background
+# Starts one or multiple args as programs in background
+# Open GUI application with just filename without command prefix
 background() {
   for ((i=2;i<=$#;i++)); do
     ${@[1]} ${@[$i]} &> /dev/null &
@@ -51,18 +46,7 @@ background() {
 }
 
 alias -s html='background google-chrome-stable'
-alias -s {pdf,PDF}='background xdg-open'
+alias -s {pdf,PDF}='background open'
 alias -s {mp4,MP4,mov,MOV}='background vlc'
 alias -s {zip,ZIP}="unzip -l"
 alias -s {epub,EPUB}="epr"
-
-# Grep with exa
-lg() {
-    exa *$1*(D) -aghl --sort=name --color-scale
-}
-
-# Create an alias for cd and ls:
-function cs () {
-    cd $1;
-    ls
-}
