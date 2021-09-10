@@ -210,3 +210,9 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# Using GNU command line tools flavor instead of FreeBSD https://gist.github.com/skyzyx/3438280b18e4f7c490db8a2a2ca0b9da
+if type brew &>/dev/null; then
+  HOMEBREW_PREFIX=$(brew --prefix)
+  # GNUBin; GNUMan
+  for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnubin; do export PATH=$d:$PATH; done
+fi
