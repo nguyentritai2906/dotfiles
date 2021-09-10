@@ -7,7 +7,6 @@ let g:vimwiki_auto_header = 1
 let g:vimwiki_table_mappings = 0
 let g:vimwiki_filetypes = ['markdown']
 let g:vimwiki_global_ext = 0
-let g:vimwiki_autowriteall = 1
 
 " Set foldmethod in Vimwiki
 " autocmd BufEnter *.md setlocal foldmethod=indent
