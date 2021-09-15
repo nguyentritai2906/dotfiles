@@ -158,12 +158,6 @@ HISTFILE=~/.cache/.zsh_history
 setopt inc_append_history
 setopt hist_ignore_dups
 
-# Add Python3 to $PATH
-export PATH="$HOME/Library/Python/3.8/bin:$PATH"
-
-# Add homebrew to $PATH
-export PATH="/opt/homebrew/bin:$PATH"
-
 # Configure fzf, command line fuzzy finder
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 FD_OPTIONS="--hidden --exclude .git --exclude node_modules"
@@ -175,25 +169,6 @@ export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 
 # To get fasd working in a shell, some initialization code must be run
 eval "$(fasd --init auto)"
-
-# You should have $GOPATH env variable set and your $PATH should include $GOPATH/bin to run app from anywhere
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-
-# Load zsh-syntax-highlighting; should be last.
-source $HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-export KAGGLE_CONFIG_DIR="/Users/mater/.config/kaggle"
-
-export PATH=~/.npm-global/bin:~/node_modules/.bin:$PATH
-
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
-source $HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -216,3 +191,11 @@ if type brew &>/dev/null; then
   # GNUBin; GNUMan
   for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnubin; do export PATH=$d:$PATH; done
 fi
+
+# Auto activate env
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+# Load zsh-syntax-highlighting; should be last.
+source $HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
