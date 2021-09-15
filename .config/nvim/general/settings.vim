@@ -19,6 +19,7 @@ set wildmode=longest,full " Tab completion
 set wildmenu " enhanced command line completion
 set completeopt=menuone,noinsert,noselect
 set sessionoptions+=tabpages,globals
+set sessionoptions-=blank
 set wildcharm=<Tab>
 set pastetoggle=<F2>
 set dictionary+=/usr/share/dict/words

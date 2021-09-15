@@ -8,7 +8,6 @@ endif
 call plug#begin('~/.vim/plugged')
 
     " LSP
-    Plug 'nvim-lua/plenary.nvim'
     Plug 'neovim/nvim-lspconfig'
     Plug 'hrsh7th/nvim-compe'
     Plug 'ray-x/lsp_signature.nvim'
@@ -31,6 +30,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'SirVer/ultisnips' | Plug 'nguyentritai2906/vim-snippets'
     Plug 'mjbrownie/swapit' " Swap True-False
     Plug 'rlue/vim-barbaric' " Switch input method
+    Plug 'mfussenegger/nvim-jdtls'
 
     " Syntax
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -45,9 +45,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'gioele/vim-autoswap' " No more swap files!
     Plug 'nvim-lua/plenary.nvim' | Plug 'nvim-telescope/telescope.nvim' | Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+    Plug 'nvim-telescope/telescope-fzy-native.nvim'
     Plug 'nvim-telescope/telescope-github.nvim'
     Plug 'nvim-telescope/telescope-project.nvim'
-    Plug 'nvim-telescope/telescope-frecency.nvim' | Plug 'tami5/sql.nvim'
+    Plug 'nvim-telescope/telescope-frecency.nvim' | Plug 'tami5/sqlite.lua'
     Plug 'AckslD/nvim-neoclip.lua'
     Plug 'kyazdani42/nvim-tree.lua'
     Plug 'simnalamburt/vim-mundo'
@@ -61,6 +62,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'folke/which-key.nvim'
     Plug 'godlygeek/tabular'
     Plug 'kevinhwang91/nvim-bqf'
+    Plug 'tpope/vim-obsession'
 
     " Text object
     Plug 'kana/vim-textobj-user'

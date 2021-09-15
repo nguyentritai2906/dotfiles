@@ -125,7 +125,7 @@ wk.register({
             n    = { "<cmd>lua require'modules.telescope'.find_notes()<CR>", "Notes"     } ,
             e    = { "<cmd>lua require'telescope.builtin'.file_browser()<CR>", "Explorer"  } ,
             E    = { "<cmd>lua require'modules.telescope'.file_explorer()<CR>", "Explorer ~"  } ,
-            F    = { "<cmd>lua require'telescope.builtin'.find_files({cwd = '~'})<CR>", "Files ~" } ,
+            F    = { "<cmd>lua require'modules.telescope'.find_home()<CR>", "Files ~" } ,
             p    = { "<cmd>lua require'telescope'.extensions.project.project{}<CR>", "Projects" } ,
             K    = { "<cmd>lua require'telescope.builtin'.grep_string()<CR>", "Grep CWord" } ,
             m    = { "<cmd>lua require'telescope.builtin'.marks()<CR>", "Marks" } ,
