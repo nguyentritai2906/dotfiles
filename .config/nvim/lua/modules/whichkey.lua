@@ -123,7 +123,7 @@ wk.register({
             h    = { "<cmd>lua require'telescope.builtin'.help_tags()<CR>", "Help Tags"  } ,
             g    = { "<cmd>lua require'modules.telescope'.project_files()<CR>", "Git Files"  } ,
             n    = { "<cmd>lua require'modules.telescope'.find_notes()<CR>", "Notes"     } ,
-            e    = { "<cmd>lua require'telescope.builtin'.file_browser()<CR>", "Explorer"  } ,
+            e    = { "<cmd>lua require'telescope.builtin'.file_browser({ hidden = true })<CR>", "Explorer"  } ,
             E    = { "<cmd>lua require'modules.telescope'.file_explorer()<CR>", "Explorer ~"  } ,
             F    = { "<cmd>lua require'modules.telescope'.find_home()<CR>", "Files ~" } ,
             p    = { "<cmd>lua require'telescope'.extensions.project.project{}<CR>", "Projects" } ,
@@ -166,6 +166,8 @@ wk.register({
             l = { ":SLoad<CR>"     , "LoadSession"   } ,
             s = { ":Startify<CR>"  , "StartPage"     } ,
             S = { ":SSave<CR>"     , "SaveSession"   } ,
+            o = { ":Obsession<CR>"     , "TrackSession"   } ,
+            O = { ":Obsession!<CR>"     , "StopTrackSession"   } ,
         },
         a = {
             name = "+Actions"       ,

@@ -9,13 +9,21 @@ call plug#begin('~/.vim/plugged')
 
     " LSP
     Plug 'neovim/nvim-lspconfig'
-    Plug 'hrsh7th/nvim-compe'
     Plug 'ray-x/lsp_signature.nvim'
     Plug 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
 
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-path'
+    Plug 'hrsh7th/cmp-nvim-lua'
+    Plug 'kdheepak/cmp-latex-symbols'
+    Plug 'f3fora/cmp-spell'
+
     " Git
     Plug 'airblade/vim-gitgutter'
-    Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-fugitive', { 'commit': 'ef8e771b25e51917f0f52760f05988e9a5a5b829' }
     Plug 'tpope/vim-rhubarb'
     Plug 'tpope/vim-dispatch'
 
