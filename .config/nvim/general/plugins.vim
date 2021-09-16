@@ -23,7 +23,7 @@ call plug#begin('~/.vim/plugged')
 
     " Git
     Plug 'airblade/vim-gitgutter'
-    Plug 'tpope/vim-fugitive', { 'commit': 'ef8e771b25e51917f0f52760f05988e9a5a5b829' }
+    Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-rhubarb'
     Plug 'tpope/vim-dispatch'
 
