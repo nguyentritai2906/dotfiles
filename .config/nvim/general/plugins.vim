@@ -39,6 +39,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'mjbrownie/swapit' " Swap True-False
     Plug 'rlue/vim-barbaric' " Switch input method
     Plug 'mfussenegger/nvim-jdtls'
+    Plug 'mfussenegger/nvim-dap'
+    Plug 'theHamsta/nvim-dap-virtual-text'
+    Plug 'rcarriga/nvim-dap-ui'
 
     " Syntax
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
