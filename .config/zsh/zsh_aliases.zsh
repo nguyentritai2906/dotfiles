@@ -1,5 +1,6 @@
 # Command aliases
 alias vim='nvim'
+alias cd..='cd ..'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -22,18 +23,18 @@ alias ls='exa -s=name --icons --color=always --group-directories-first'
 alias la='ls -a'
 alias ll='exa -lamgh -s=name --icons --color-scale --group-directories-first'
 alias tree='exa -lamghT --icons --color-scale --group-directories-first'
-alias df='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias dfv='GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME vim'
-alias dfi='GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME vim ~/.config/nvim/init.vim'
-alias dfs="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME status"
-alias dfd="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME diff"
-alias dfa="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME add"
-alias dfc="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME commit"
-alias dfca="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME commit -a"
-alias dfp="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME push"
-alias dfl="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME pull"
-alias dfm="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME mv"
-alias dflog="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME log --graph --oneline --decorate --all"
+alias cf='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias cfv='GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME vim'
+alias cfi='GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME vim ~/.config/nvim/init.vim'
+alias cfs="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME status"
+alias cfd="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME diff"
+alias cfa="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME add"
+alias cfc="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME commit"
+alias cfca="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME commit -a"
+alias cfp="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME push"
+alias cfl="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME pull"
+alias cfm="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME mv"
+alias cflog="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME log --graph --oneline --decorate --all"
 alias ranger='ranger --choosedir=$HOME/.config/ranger/rangerdir; LASTDIR=`cat $HOME/.config/ranger/rangerdir`; cd "$LASTDIR"'
 
 # Starts one or multiple args as programs in background
