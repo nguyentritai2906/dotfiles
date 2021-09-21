@@ -19,15 +19,15 @@ nnoremap gm :call cursor(0, virtcol('$')/2)<CR>
 inoremap <C-e> <C-o>de
 
 " Tabs navigation
-nnoremap th gT
-nnoremap tl gt
-nnoremap tH :tabfirst<CR>
-nnoremap tL :tablast<CR>
-nnoremap tj :-tabmove<CR>
-nnoremap tk :+tabmove<CR>
-nnoremap tc :tabclose<CR>
-nnoremap tn :TablineTabNew<Space>
-nnoremap tr :TablineTabRename<Space>
+nnoremap <Leader>th gT
+nnoremap <Leader>tl gt
+nnoremap <Leader>tH :tabfirst<CR>
+nnoremap <Leader>tL :tablast<CR>
+nnoremap <Leader>tj :-tabmove<CR>
+nnoremap <Leader>tk :+tabmove<CR>
+nnoremap <Leader>tc :tabclose<CR>
+nnoremap <Leader>tn :TablineTabNew<CR>
+nnoremap <Leader>tr :TablineTabRename<Space>
 
 " Buffers navigation
 nmap <silent> <TAB> :TablineBufferNext<CR>
