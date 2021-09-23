@@ -41,13 +41,27 @@ local function on_attach(client, bufnr)
     buf_set_keymap('n' , '<space>lq'  , '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>'                         , opts)
     vim.cmd('command! -nargs=0 LSPVirtualTextToggle lua require("modules.lsp/virtual-text").toggle()')
 
-    -- Set some keybinds conditional on server capabilities
-    if client.resolved_capabilities.document_formatting then
-        buf_set_keymap("n", "<space>lf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    -- -- Set some keybinds conditional on server capabilities
+    -- if client.resolved_capabilities.document_formatting then
+        -- buf_set_keymap("n", "<space>lf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 
-        vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync({}, 1000)]]
-    elseif client.resolved_capabilities.document_range_formatting then
-        buf_set_keymap("n", "<space>lf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+        -- vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync({}, 1000)]]
+    -- elseif client.resolved_capabilities.document_range_formatting then
+        -- buf_set_keymap("n", "<space>lf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+    -- end
+
+    -- So that the only client with format capabilities is efm
+    if client.name ~= 'efm' then
+        client.resolved_capabilities.document_formatting = false
+    end
+
+    if client.resolved_capabilities.document_formatting then
+        vim.cmd [[
+        augroup Format
+        au! * <buffer>
+        au BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)
+        augroup END
+        ]]
     end
 
     require "lsp_signature".on_attach()
