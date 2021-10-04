@@ -258,7 +258,7 @@ vim.api.nvim_set_keymap("n", "<leader>fn", [[<cmd>lua require'modules.telescope'
 vim.api.nvim_set_keymap("n", "<leader>fe", [[<cmd>lua require'telescope.builtin'.file_browser({ hidden = true })<CR>]], { noremap = true, silent = true}) -- CWD
 vim.api.nvim_set_keymap("n", "<leader>fE", [[<cmd>lua require'modules.telescope'.file_explorer()<CR>]], { noremap = true, silent = true}) -- $HOME
 vim.api.nvim_set_keymap("n", "<leader>f.", [[<cmd>lua require'modules.telescope'.rg()<CR>]], { noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<leader>fp", [[<cmd>lua require'telescope'.extensions.project.project()<CR>]], { noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>fp", [[<cmd>lua require'telescope'.extensions.project.project{}<CR>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>fC", [[<cmd>lua require('telescope').extensions.neoclip.default()<CR>]], { noremap = true, silent = true})
 
 -- github branches
