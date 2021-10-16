@@ -170,21 +170,6 @@ export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 # To get fasd working in a shell, some initialization code must be run
 eval "$(fasd --init auto)"
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/mater/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/mater/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/mater/opt/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/mater/opt/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
 # Using GNU command line tools flavor instead of FreeBSD https://gist.github.com/skyzyx/3438280b18e4f7c490db8a2a2ca0b9da
 if type brew &>/dev/null; then
   HOMEBREW_PREFIX=$(brew --prefix)
@@ -199,3 +184,18 @@ fi
 
 # Load zsh-syntax-highlighting; should be last.
 source $HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/homebrew/Caskroom/miniforge/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/homebrew/Caskroom/miniforge/base/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
