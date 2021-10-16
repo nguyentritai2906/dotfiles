@@ -239,7 +239,7 @@ function M.nvim_config()
   }
 end
 
-vim.api.nvim_set_keymap("n", "<Leader>ff", [[<cmd>lua require'telescope.builtin'.find_files()<CR>]], { noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<Leader>ff", [[<cmd>lua require'telescope.builtin'.find_files({file_ignore_patterns = {"__pycache__", "%.jpeg", "%.png", "%.jpg", "Session.vim"}})<CR>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<Leader>fF", [[<cmd>lua require'modules.telescope'.find_home()<CR>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<Leader>f;", [[<cmd>lua require'telescope.command'.load_command()<CR>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<Leader>fc", [[<cmd>lua require'telescope.builtin'.commands()<CR>]], { noremap = true, silent = true})
