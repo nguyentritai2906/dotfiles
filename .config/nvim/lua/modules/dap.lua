@@ -2,7 +2,7 @@ local dap = require('dap')
 
 dap.adapters.python = {
   type = 'executable';
-  command = '/Users/mater/.virtualenvs/debugpy/bin/python3';
+  command = '/Users/mater/.virtualenvs/debugpy/bin/python3.9';
   args = { '-m', 'debugpy.adapter' };
 }
 
@@ -15,6 +15,7 @@ dap.configurations.python = {
 
     -- Options below are for debugpy, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for supported options
 
+    justMyCode = true;
     program = "${file}"; -- This configuration will launch the current file if used.
     pythonPath = function()
       -- debugpy supports launching an application with a different interpreter then the one used to launch debugpy itself.
@@ -26,7 +27,7 @@ dap.configurations.python = {
       elseif vim.fn.executable(cwd .. '/.env/bin/python') == 1 then
         return cwd .. '/.env/bin/python'
       else
-        return '/usr/bin/python'
+        return '/usr/bin/python3'
       end
     end;
   },
@@ -38,8 +39,13 @@ vim.fn.sign_define("DapStopped", { text = "⧐", texthl = "Success", linehl = ""
 -- Nvim DAP Virtual Text
 vim.g.dap_virtual_text = true
 
+local dap, dapui = require('dap'), require('dapui')
+dap.listeners.after.event_initialized['dapui_config'] = function() dapui.open() end
+dap.listeners.before.event_terminated['dapui_config'] = function() dapui.close() end
+dap.listeners.before.event_exited['dapui_config'] = function() dapui.close() end
+
 -- Nvim DAP UI
-require("dapui").setup({
+dapui.setup({
   icons = { expanded = "▾", collapsed = "▸" },
   mappings = {
     -- Use a table to apply multiple mappings
@@ -50,7 +56,6 @@ require("dapui").setup({
     repl = "r",
   },
   sidebar = {
-    open_on_start = true,
     -- You can change the order of elements in the sidebar
     elements = {
       -- Provide as ID strings or tables with "id" and "size" keys
@@ -60,15 +65,14 @@ require("dapui").setup({
       },
       { id = "breakpoints", size = 0.25 },
       { id = "stacks", size = 0.25 },
-      { id = "watches", size = 00.25 },
+      { id = "watches", size = 0.25 },
     },
-    size = 40,
+    size = 60,
     position = "left", -- Can be "left", "right", "top", "bottom"
   },
   tray = {
-    open_on_start = true,
     elements = { "repl" },
-    size = 10,
+    size = 17,
     position = "bottom", -- Can be "left", "right", "top", "bottom"
   },
   floating = {
