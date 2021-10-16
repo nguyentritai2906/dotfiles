@@ -12,6 +12,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'ray-x/lsp_signature.nvim'
     Plug 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
 
+    Plug 'onsails/lspkind-nvim'
     Plug 'hrsh7th/nvim-cmp'
     Plug 'quangnguyen30192/cmp-nvim-ultisnips'
     Plug 'hrsh7th/cmp-buffer'

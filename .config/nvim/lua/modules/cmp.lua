@@ -9,6 +9,8 @@ local check_back_space = function()
     return col == 0 or vim.fn.getline("."):sub(col, col):match("%s") ~= nil
 end
 
+local lspkind = require('lspkind')
+
 cmp.setup({
     snippet = {
         expand = function(args)
@@ -22,7 +24,7 @@ cmp.setup({
         { name = 'path'},
         { name = 'nvim_lua'},
         { name = 'latex_symbols'},
-        { name = 'spell'},
+        -- { name = 'spell'},
         -- more sources
     },
     -- Configure for <TAB> people
@@ -31,52 +33,30 @@ cmp.setup({
     -- - <TAB> to expand snippet when no completion item selected (you don't need to select the snippet from completion item to expand)
     -- - <C-space> to expand the selected snippet from completion menu
     mapping = {
-        ["<C-Space>"] = cmp.mapping(function(fallback)
-            if vim.fn.pumvisible() == 1 then
-                -- if vim.fn["UltiSnips#CanExpandSnippet"]() == 1 then
-                --     return vim.fn.feedkeys(t("<C-R>=UltiSnips#ExpandSnippet()<CR>"))
-                -- end
-
-                vim.fn.feedkeys(t("<C-n>"), "n")
-            elseif check_back_space() then
-                vim.fn.feedkeys(t("<cr>"), "n")
+        ['<CR>'] = cmp.mapping.confirm {
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true
+        },
+        ['<Tab>'] = function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
             else
                 fallback()
             end
-        end, {
-            "i",
-            "s",
-        }),
-        ["<Tab>"] = cmp.mapping(function(fallback)
-            -- if vim.fn.complete_info()["selected"] == -1 and vim.fn["UltiSnips#CanExpandSnippet"]() == 1 then
-            --     vim.fn.feedkeys(t("<C-R>=UltiSnips#ExpandSnippet()<CR>"))
-            -- elseif vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
-            --     vim.fn.feedkeys(t("<ESC>:call UltiSnips#JumpForwards()<CR>"))
-            -- elseif vim.fn.pumvisible() == 1 then
-            if vim.fn.pumvisible() == 1 then
-                vim.fn.feedkeys(t("<C-n>"), "n")
-            elseif check_back_space() then
-                vim.fn.feedkeys(t("<tab>"), "n")
+        end,
+        ['<S-Tab>'] = function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
             else
                 fallback()
             end
-        end, {
-            "i",
-            "s",
-        }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-            -- if vim.fn["UltiSnips#CanJumpBackwards"]() == 1 then
-            --     return vim.fn.feedkeys(t("<C-R>=UltiSnips#JumpBackwards()<CR>"))
-            if vim.fn.pumvisible() == 1 then
-                vim.fn.feedkeys(t("<C-p>"), "n")
-            else
-                fallback()
-            end
-        end, {
-            "i",
-            "s",
-        }),
-    }
+        end,
+        ['<C-d>'] = cmp.mapping.scroll_docs(5),
+        ['<C-u>'] = cmp.mapping.scroll_docs(-5),
+    },
+    formatting = {
+        format = lspkind.cmp_format({with_text = true, maxwidth = 50}),
+    },
 })
 
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
@@ -87,4 +67,3 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 require'lspconfig'.pyright.setup {
   capabilities = capabilities,
 }
-
