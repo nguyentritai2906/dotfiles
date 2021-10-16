@@ -39,7 +39,7 @@ alias ranger='ranger --choosedir=$HOME/.config/ranger/rangerdir; LASTDIR=`cat $H
 
 # Starts one or multiple args as programs in background
 # Open GUI application with just filename without command prefix
-background() {
+function background() {
   for ((i=2;i<=$#;i++)); do
     ${@[1]} ${@[$i]} &> /dev/null &
   done
@@ -50,3 +50,12 @@ alias -s {pdf,PDF}='background open'
 alias -s {mp4,MP4,mov,MOV}='background vlc'
 alias -s {zip,ZIP}="unzip -l"
 alias -s {epub,EPUB}="epr"
+alias -s {jpg,png}='background open'
+
+function _pip(){
+    if [[ $1 = "search" ]]; then
+        pip_search "$2";
+    else pip "$@";
+    fi;
+}
+alias pip=_pip
