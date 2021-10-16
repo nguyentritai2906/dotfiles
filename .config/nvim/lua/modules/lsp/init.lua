@@ -39,7 +39,8 @@ local function on_attach(client, bufnr)
     buf_set_keymap('n' , '<space>lgk' , '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>'                           , opts)
     buf_set_keymap('n' , '<space>lgj' , '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>'                           , opts)
     buf_set_keymap('n' , '<space>lq'  , '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>'                         , opts)
-    vim.cmd('command! -nargs=0 LSPVirtualTextToggle lua require("modules.lsp/virtual-text").toggle()')
+    buf_set_keymap('n' , '<space>lv'  , '<cmd>lua require("modules.lsp/virtual-text").toggle()<CR>'                         , opts)
+    buf_set_keymap('n' , '<space>lE'  , '<cmd>lua require"toggle_lsp_diagnostics".toggle_virtual_text()<CR>'                         , opts)
 
     -- -- Set some keybinds conditional on server capabilities
     -- if client.resolved_capabilities.document_formatting then
@@ -67,6 +68,9 @@ local function on_attach(client, bufnr)
     require "lsp_signature".on_attach()
 
 end
+
+local tog = require("toggle_lsp_diagnostics")
+tog.init()
 
 -- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches
