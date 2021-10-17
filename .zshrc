@@ -75,7 +75,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions fasd last-working-dir zsh_reload fzf-brew)
+plugins=(git zsh-autosuggestions fasd last-working-dir fzf-brew)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -199,3 +199,5 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+alias luamake=/Users/mater/soft/lua-language-server/3rd/luamake/luamake
