@@ -24,6 +24,7 @@ cmp.setup({
         { name = 'path'},
         { name = 'nvim_lua'},
         { name = 'latex_symbols'},
+        { name = 'look', keyword_length=2, opts={convert_case=true, loud=true} }
         -- { name = 'spell'},
         -- more sources
     },
