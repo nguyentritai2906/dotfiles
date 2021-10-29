@@ -60,27 +60,5 @@ function s:MaybeMiddle()
     endif
 endfunction
 
-" 29
-command! LSPCodeAction lua require 'modules.utils'.code_action()
-command! LSPDeclaration lua require 'modules.utils'.declaration()
-command! LSPDefinition lua require 'modules.utils'.definition()
-command! LSPDocumentSymbol lua require 'modules.utils'.document_symbol()
-command! LSPFormatting lua require 'modules.utils'.formatting()
-command! LSPFormattingSync lua require 'modules.utils'.formatting_sync()
-command! LSPHover lua require 'modules.utils'.hover()
-command! LSPImplementation lua require 'modules.utils'.implementation()
-command! LSPRangeCodeAction lua require 'modules.utils'.range_code_action()
-command! LSPRangeFormatting lua require 'modules.utils'.range_formatting()
-command! LSPReferences lua require 'modules.utils'.references()
-command! LSPRename lua require 'modules.utils'.rename()
-command! LSPTypeDefinition lua require 'modules.utils'.type_definition()
-command! LSPWorkspaceSymbol lua require 'modules.utils'.workspace_symbol()
-command! LSPGotoNext lua require 'modules.utils'.goto_next()
-command! LSPGotoPrev lua require 'modules.utils'.goto_prev()
-command! LSPShowLineDiagnostics lua require 'modules.utils'.show_line_diagnostics()
-command! LSPSignatureHelp lua require 'modules.utils'.signature_help()
-command! LSPSetLocList lua require 'modules.utils'.set_loclist()
-command! LSPAddWorkspaceFolder lua require 'modules.utils'.add_workspace_folder()
-command! LSPRemoveWorkspaceFolder lua require 'modules.utils'.remove_workspace_folder()
-command! LSPListWorkspaceFolders lua require 'modules.utils'.list_workspace_folders()
+" Write with no autocmds
 command! W noa w

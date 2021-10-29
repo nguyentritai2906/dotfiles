@@ -69,11 +69,11 @@ fkill() {
 }
 
 # Search with fzf and open in vim
-fzf-vim() (
+fv() (
   IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 )
-bindkey -s '^t' "fzf-vim\n"
+bindkey -s '^t' "fv\n"
 
 #fzf-vim() {
     #setopt localoptions pipefail no_aliases 2> /dev/null
@@ -92,11 +92,12 @@ bindkey -s '^t' "fzf-vim\n"
 #bindkey '^t' fzf-vim
 
 # Search with fzf and open in vim from anywhere to anyfile
-fzf-home-vim() (
+# fzf-home-vim() (
+fhv() (
   IFS=$'\n' files=($(cd $HOME && fzf --query="$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && ${EDITOR:-vim} "$HOME/${files[@]}"
 )
-bindkey -s '\et' "fzf-home-vim\n"
+bindkey -s '†' "fhv\n"
 
 # Fuzzy grep via Ag then open it in the default editor if it's defined,
 # otherwise Vim (with line number)
@@ -128,4 +129,4 @@ fzf-home-cd-widget() {
   return $ret
 }
 zle     -N    fzf-home-cd-widget
-bindkey '\ed' fzf-home-cd-widget
+bindkey '∂' fzf-home-cd-widget

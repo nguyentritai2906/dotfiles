@@ -35,7 +35,7 @@ alias cfp="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME push"
 alias cfl="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME pull"
 alias cfm="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME mv"
 alias cflog="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME log --graph --oneline --decorate --all"
-alias ranger='ranger --choosedir=$HOME/.config/ranger/rangerdir; LASTDIR=`cat $HOME/.config/ranger/rangerdir`; cd "$LASTDIR"'
+alias ra='ranger --choosedir=$HOME/.config/ranger/rangerdir; LASTDIR=`cat $HOME/.config/ranger/rangerdir`; cd "$LASTDIR"'
 
 # Starts one or multiple args as programs in background
 # Open GUI application with just filename without command prefix

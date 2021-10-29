@@ -29,6 +29,12 @@ runtime! macros/matchit.vim
 
 " Better alternative for autochdir
 " autocmd BufEnter * silent! lcd %:p:h
+nnoremap <silent> <Leader>lcd :call ChangeDirCurBuf()<CR>
+
+function ChangeDirCurBuf()
+    execute 'lcd %:p:h'
+    execute 'pwd'
+endfunction
 
 " Set textwidth in Markdown files
 autocmd BufEnter *.md set textwidth=80
@@ -42,3 +48,8 @@ if !exists('*ReloadVimrc')
    endfun
 endif
 autocmd! BufWritePost $MYVIMRC call ReloadVimrc()
+
+augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=150}
+augroup END

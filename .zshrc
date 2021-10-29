@@ -103,37 +103,29 @@ fi
 # Disable flow control Ctrl+S, since it realy just annoys me
 stty -ixon &>/dev/null
 
-SPACESHIP_PROMPT_ADD_NEWLINE=false
-SPACESHIP_PROMPT_SEPARATE_LINE=false
-#SPACESHIP_CHAR_SYMBOL=🞂🞂
+SPACESHIP_PROMPT_ADD_NEWLINE=true
+SPACESHIP_PROMPT_SEPARATE_LINE=true
 SPACESHIP_CHAR_SYMBOL=❯
 SPACESHIP_CHAR_SUFFIX=" "
-SPACESHIP_HG_SHOW=false
-SPACESHIP_PACKAGE_SHOW=false
-SPACESHIP_NODE_SHOW=false
-SPACESHIP_RUBY_SHOW=false
-SPACESHIP_ELM_SHOW=false
-SPACESHIP_ELIXIR_SHOW=false
-SPACESHIP_XCODE_SHOW_LOCAL=false
-SPACESHIP_SWIFT_SHOW_LOCAL=false
-SPACESHIP_GOLANG_SHOW=false
-SPACESHIP_PHP_SHOW=false
-SPACESHIP_RUST_SHOW=false
-SPACESHIP_JULIA_SHOW=false
-SPACESHIP_DOCKER_SHOW=false
-SPACESHIP_DOCKER_CONTEXT_SHOW=false
-SPACESHIP_AWS_SHOW=false
-SPACESHIP_GCLOUD_SHOW=false
 SPACESHIP_CONDA_SHOW=true
 SPACESHIP_VENV_SHOW=true
 SPACESHIP_PYENV_SHOW=true
-SPACESHIP_DOTNET_SHOW=false
-SPACESHIP_EMBER_SHOW=false
-SPACESHIP_KUBECONTEXT_SHOW=false
-SPACESHIP_TERRAFORM_SHOW=false
-SPACESHIP_TERRAFORM_SHOW=false
-SPACESHIP_VI_MODE_SHOW=false
-SPACESHIP_JOBS_SHOW=false
+
+# /Users/mater/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh
+SPACESHIP_PROMPT_ORDER=(
+    time          # Time stampts section
+    user          # Username section
+    dir           # Current directory section
+    host          # Hostname section
+    git           # Git section (git_branch + git_status)
+    venv          # virtualenv section
+    conda         # conda virtualenv section
+    pyenv         # Pyenv section
+    exec_time     # Execution time
+    line_sep      # Line break
+    exit_code     # Exit code section
+    char          # Prompt character
+)
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -157,6 +149,7 @@ SAVEHIST=10000
 HISTFILE=~/.cache/.zsh_history
 setopt inc_append_history
 setopt hist_ignore_dups
+setopt extended_glob # For 'all files *except*' e.g. `rm ^foo.bar`
 
 # Configure fzf, command line fuzzy finder
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -201,3 +194,37 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 alias luamake=/Users/mater/soft/lua-language-server/3rd/luamake/luamake
+export PYENV_SHELL=zsh
+source '/opt/homebrew/Cellar/pyenv/2.2.2/completions/pyenv.zsh'
+command pyenv rehash 2>/dev/null
+pyenv() {
+  local command
+  command="${1:-}"
+  if [ "$#" -gt 0 ]; then
+    shift
+  fi
+
+  case "$command" in
+  activate|deactivate|rehash|shell)
+    eval "$(pyenv "sh-$command" "$@")"
+    ;;
+  *)
+    command pyenv "$command" "$@"
+    ;;
+  esac
+}
+export PATH="/opt/homebrew/Cellar/pyenv-virtualenv/1.1.5/shims:${PATH}";
+export PYENV_VIRTUALENV_INIT=1;
+_pyenv_virtualenv_hook() {
+  local ret=$?
+  if [ -n "$VIRTUAL_ENV" ]; then
+    eval "$(pyenv sh-activate --quiet || pyenv sh-deactivate --quiet || true)" || true
+  else
+    eval "$(pyenv sh-activate --quiet || true)" || true
+  fi
+  return $ret
+};
+typeset -g -a precmd_functions
+if [[ -z $precmd_functions[(r)_pyenv_virtualenv_hook] ]]; then
+  precmd_functions=(_pyenv_virtualenv_hook $precmd_functions);
+fi

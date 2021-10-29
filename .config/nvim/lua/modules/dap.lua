@@ -37,7 +37,7 @@ vim.fn.sign_define("DapBreakpoint", { text = "⧐", texthl = "Error", linehl = "
 vim.fn.sign_define("DapStopped", { text = "⧐", texthl = "Success", linehl = "", numhl = "" })
 
 -- Nvim DAP Virtual Text
-vim.g.dap_virtual_text = true
+require("nvim-dap-virtual-text").setup()
 
 local dap, dapui = require('dap'), require('dapui')
 dap.listeners.after.event_initialized['dapui_config'] = function() dapui.open() end

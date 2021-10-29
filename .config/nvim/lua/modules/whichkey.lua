@@ -129,7 +129,6 @@ wk.register({
         p    = "Projects",
         K    = "Grep CWord",
         m    = "Marks",
-        C    = "Clipboard",
         [";"] = "Telescope",
         ["."] = "Rip Grep",
         ["/"] = "Nvim Config",
@@ -158,6 +157,13 @@ wk.register({
             i    = "Implementation",
             k    = "PrevDiagnostic",
             j    = "NextDiagnostic",
+        },
+        p    = {
+            name = "+Preview",
+            d    = "Definition",
+            r    = "References",
+            i    = "Implementation",
+            c    = "CloseAllPreview",
         },
     },
     s = {

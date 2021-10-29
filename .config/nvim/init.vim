@@ -22,7 +22,6 @@ source ~/.config/nvim/config/easymotion.vim
 source ~/.config/nvim/config/firenvim.vim
 source ~/.config/nvim/config/fugitive.vim
 source ~/.config/nvim/config/gitgutter.vim
-source ~/.config/nvim/config/incsearch.vim
 source ~/.config/nvim/config/indentline.vim
 source ~/.config/nvim/config/ipythoncell.vim
 source ~/.config/nvim/config/jupytext.vim

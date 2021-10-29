@@ -11,6 +11,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'neovim/nvim-lspconfig'
     Plug 'ray-x/lsp_signature.nvim'
     Plug 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
+    Plug 'rmagatti/goto-preview'
 
     Plug 'onsails/lspkind-nvim'
     Plug 'hrsh7th/nvim-cmp'
@@ -62,7 +63,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'nvim-telescope/telescope-github.nvim'
     Plug 'nvim-telescope/telescope-project.nvim'
     Plug 'nvim-telescope/telescope-frecency.nvim' | Plug 'tami5/sqlite.lua'
-    Plug 'AckslD/nvim-neoclip.lua'
     Plug 'kyazdani42/nvim-tree.lua'
     Plug 'simnalamburt/vim-mundo'
     Plug 'luochen1990/rainbow' | Plug 'p00f/nvim-ts-rainbow' | Plug 'jiangmiao/auto-pairs'
@@ -82,17 +82,15 @@ call plug#begin('~/.vim/plugged')
 	Plug 'kana/vim-textobj-line'
 	Plug 'kana/vim-textobj-entire'
 	Plug 'kana/vim-textobj-indent'
-    " Plug 'bps/vim-textobj-python'
+    Plug 'bps/vim-textobj-python'
 	Plug 'wellle/targets.vim'
-    Plug 'nvim-treesitter/nvim-treesitter', {'branch' : '0.5-compat'}
-    Plug 'nvim-treesitter/nvim-treesitter-textobjects', {'branch' : '0.5-compat'}
+    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
     " UI
     Plug 'hoob3rt/lualine.nvim'
     Plug 'kdheepak/tabline.nvim'
     Plug 'norcalli/nvim-colorizer.lua'
     Plug 'Yggdroot/indentLine'
-    Plug 'haya14busa/is.vim' " Incremental search improved
     Plug 'PeterRincker/vim-searchlight' " Highlight current search match
     Plug 'markonm/traces.vim' " Range, pattern and substitute preview
     Plug 'kshenoy/vim-signature' " Place, toggle and display marks
@@ -104,6 +102,7 @@ call plug#begin('~/.vim/plugged')
     " Colorschemes
     Plug 'dracula/vim', { 'as': 'dracula'  }
     Plug 'sainnhe/edge'
+    Plug 'bluz71/vim-nightfly-guicolors'
 
     " Navigation
     Plug 'easymotion/vim-easymotion' " Vim motions on speed

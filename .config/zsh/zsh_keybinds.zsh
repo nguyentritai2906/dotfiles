@@ -17,9 +17,6 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
-# Map ii to ESC
-bindkey -M viins '^[' vi-cmd-mode
-
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
@@ -27,4 +24,4 @@ bindkey '^e' edit-command-line
 # Zsh accept and execute suggestion
 bindkey '^[M' autosuggest-execute
 
-bindkey -s 'ø' "ranger\n"
+bindkey -s 'ø' "ra\n"

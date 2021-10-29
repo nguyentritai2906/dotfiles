@@ -46,9 +46,9 @@ require('telescope').setup{
                 mirror = false,
             },
         },
-        -- file_sorter =  require'telescope.sorters'.get_fuzzy_file,
+        file_sorter =  require'telescope.sorters'.get_fuzzy_file,
         file_ignore_patterns = {},
-        -- generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
+        generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
         winblend = 0,
         border = {},
         borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
@@ -61,18 +61,6 @@ require('telescope').setup{
         file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
         grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
         qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
-        extensions = {
-            -- fzf = {
-            --     fuzzy = true,                        -- false will only do exact matching
-            --         override_generic_sorter = false, -- override the generic sorter
-            --         override_file_sorter = true,     -- override the file sorter
-            --         case_mode = "smart_case",        -- or "ignore_case" or "respect_case" the default case_mode is "smart_case"
-            -- },
-            fzy_native = {
-                override_generic_sorter = false,
-                override_file_sorter = true,
-            }
-        },
 
         -- Developer configurations: Not meant for general override
         buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker,
@@ -80,8 +68,8 @@ require('telescope').setup{
 }
 
 require("telescope").load_extension("gh")
--- require("telescope").load_extension("fzf")
-require("telescope").load_extension("fzy_native")
+require("telescope").load_extension("fzf")
+-- require("telescope").load_extension("fzy_native")
 require("telescope").load_extension("project")
 require"telescope".load_extension("frecency")
 
@@ -239,13 +227,13 @@ function M.nvim_config()
   }
 end
 
-vim.api.nvim_set_keymap("n", "<Leader>ff", [[<cmd>lua require'telescope.builtin'.find_files({file_ignore_patterns = {"__pycache__", "%.jpeg", "%.png", "%.jpg", "Session.vim"}})<CR>]], { noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<Leader>ff", [[<cmd>lua require'telescope.builtin'.find_files({file_ignore_patterns = {"__pycache__", "%.jpeg", "%.png", "%.jpg", "%.json", "%.txt", "%.xml", "Session.vim"}})<CR>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<Leader>fF", [[<cmd>lua require'modules.telescope'.find_home()<CR>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<Leader>f;", [[<cmd>lua require'telescope.command'.load_command()<CR>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<Leader>fc", [[<cmd>lua require'telescope.builtin'.commands()<CR>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<Leader>fr", [[<Cmd>lua require('telescope').extensions.frecency.frecency()<CR>]], { noremap = true, silent = true})
 -- live grep slowness: https://github.com/nvim-telescope/telescope.nvim/issues/392
-vim.api.nvim_set_keymap("n", "<Leader>fl", [[<cmd>lua require'telescope.builtin'.live_grep()<CR>]], { noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<Leader>fl", [[<cmd>lua require'telescope.builtin'.live_grep({file_ignore_patterns = {"__pycache__", "%.jpeg", "%.png", "%.jpg", "%.json", "%.txt", "%.xml", "Session.vim"}})<CR>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<Leader>fk", [[<cmd>lua require'telescope.builtin'.keymaps()<CR>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<Leader>fb", [[<cmd>lua require'telescope.builtin'.buffers()<CR>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<Leader>fh", [[<cmd>lua require'telescope.builtin'.help_tags()<CR>]], { noremap = true, silent = true})
@@ -259,7 +247,6 @@ vim.api.nvim_set_keymap("n", "<leader>fe", [[<cmd>lua require'telescope.builtin'
 vim.api.nvim_set_keymap("n", "<leader>fE", [[<cmd>lua require'modules.telescope'.file_explorer()<CR>]], { noremap = true, silent = true}) -- $HOME
 vim.api.nvim_set_keymap("n", "<leader>f.", [[<cmd>lua require'modules.telescope'.rg()<CR>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>fp", [[<cmd>lua require'telescope'.extensions.project.project{}<CR>]], { noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<leader>fC", [[<cmd>lua require('telescope').extensions.neoclip.default()<CR>]], { noremap = true, silent = true})
 
 -- github branches
 -- vim.api.nvim_set_keymap("n", "<leader>fgb", [[<cmd>lua require'telescope.builtin'.git_branches()<CR>]], { noremap = true, silent = true})

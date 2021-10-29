@@ -20,23 +20,17 @@ cmp.setup({
     sources = {
         { name = 'ultisnips' },
         { name = 'nvim_lsp'},
-        { name = 'buffer'},
-        { name = 'path'},
         { name = 'nvim_lua'},
-        { name = 'latex_symbols'},
-        { name = 'look', keyword_length=2, opts={convert_case=true, loud=true} }
-        -- { name = 'spell'},
-        -- more sources
+        { name = 'path'},
+        { name = 'buffer', keyword_length=5, max_item_count=3 },
+        { name = 'tmux', keyword_length=5, max_item_count=3 },
+        { name = 'rg', keyword_length=5, max_item_count=3 },
+        { name = 'look', keyword_length=5, options={convert_case=true, loud=true}, max_item_count=3 },
     },
-    -- Configure for <TAB> people
-    -- - <TAB> and <S-TAB>: cycle forward and backward through autocompletion items
-    -- - <TAB> and <S-TAB>: cycle forward and backward through snippets tabstops and placeholders
-    -- - <TAB> to expand snippet when no completion item selected (you don't need to select the snippet from completion item to expand)
-    -- - <C-space> to expand the selected snippet from completion menu
     mapping = {
         ['<CR>'] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true
+            behavior = cmp.ConfirmBehavior.Insert,
+            select = True,
         },
         ['<Tab>'] = function(fallback)
             if cmp.visible() then

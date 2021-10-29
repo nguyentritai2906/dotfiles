@@ -41,29 +41,29 @@ tmux_conf_new_session_prompt=false
 
 # -- display -------------------------------------------------------------------
 
-# # Edge
-# white='#c5cdd9'
-# black='#2c2e34'
-# grey='#88909f'
-# red='#ec7279'
-# green='#a0c980'
-# cyan='#5dbbc1'
-# yellow='#deb974'
-# blue='#6cb6eb'
-# magenta='#d38aea'
-# acolor='#bd93f9'
-
-# Dracula
-white='#f8f8f2'
-black='#282a36'
+# Edge
+white='#c5cdd9'
+black='#2c2e34'
 grey='#88909f'
-red='#ff5555'
-green='#50fa7b'
-cyan='#8be9fd'
-yellow='#f1fa8c'
-blue='#8be9fd'
-magenta='#bd93f9'
-acolor='#bd93f9'
+red='#ec7279'
+green='#a0c980'
+cyan='#5dbbc1'
+yellow='#deb974'
+blue='#6cb6eb'
+magenta='#d38aea'
+acolor='#d38aea'
+
+# # Dracula
+# white='#f8f8f2'
+# black='#282a36'
+# grey='#88909f'
+# red='#ff5555'
+# green='#50fa7b'
+# cyan='#8be9fd'
+# yellow='#f1fa8c'
+# blue='#8be9fd'
+# magenta='#bd93f9'
+# acolor='#bd93f9'
 
 # RGB 24-bit colour support (tmux >= 2.2), possible values are:
 #  - true
@@ -206,9 +206,10 @@ tmux_conf_theme_right_separator_sub='\uE0B3'  #   PowerlineSymbols.otf font, see
 #     - #{uptime_s}
 #     - #{username}
 #     - #{username_ssh}
-tmux_conf_theme_status_left=' ❐ #S | ↑#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} '
+# tmux_conf_theme_status_left=' ❐ #S | ↑#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} '
+tmux_conf_theme_status_left=' ❐ #S | ↑#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{ #{uptime_h}h}#{ #{uptime_m}m} '
 # tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} | #{username}#{root} | #{hostname} '
-tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} #{?battery_percentage, #{battery_percentage},} , %R , %A %d %b | #{username}#{root} | #{hostname} '
+tmux_conf_theme_status_right='#{prefix}#{synchronized} #{?battery_percentage, #{battery_percentage},} , %I:%M %a %d %b | #{username}#{root} | #{hostname} '
 #tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} #{?battery_status, #{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} , %R , %d %b | #{username}#{root} | #{hostname} '
 
 # status left style
@@ -328,8 +329,8 @@ bind-key x kill-pane
 bind-key & kill-window
 
 # move windown left/right
-bind-key < swap-window -t -
-bind-key > swap-window -t +
+bind -r > swap-window -t +\; select-window -t +       # swap current window with the next one
+bind -r < swap-window -t -\; select-window -t -       # swap current window with the previous one
 
-# move status line to top
-#skt -g status-position top
+bind -r ˙ previous-window
+bind -r ¬ next-window

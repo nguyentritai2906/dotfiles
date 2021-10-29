@@ -5,10 +5,10 @@ require('distant').setup {
     -- 2. Provides navigation bindings for remote directories
     -- 3. Provides keybinding to jump into a remote file's parent directory
     ['*'] = require('distant.settings').chip_default(),
-    ['pc1.cerebro.host'] = {
+    ['crb'] = {
         mode = 'ssh',
         ssh = {
-            port = 11022,
+            port = 10022,
             user = 'nttai',
         },
     },
