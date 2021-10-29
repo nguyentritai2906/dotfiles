@@ -23,6 +23,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'octaltree/cmp-look'
     Plug 'kdheepak/cmp-latex-symbols'
     Plug 'f3fora/cmp-spell'
+    Plug 'lukas-reineke/cmp-rg'
+    Plug 'andersevenrud/compe-tmux'
 
     " Git
     Plug 'airblade/vim-gitgutter'
@@ -34,9 +36,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
     Plug 'goerz/jupytext.vim'
     Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
-    Plug 'jmcantrell/vim-virtualenv'
     Plug 'jpalardy/vim-slime'
-    Plug 'turbio/bracey.vim'
     Plug 'metakirby5/codi.vim'
     Plug 'SirVer/ultisnips' | Plug 'nguyentritai2906/vim-snippets'
     Plug 'mjbrownie/swapit' " Swap True-False
@@ -45,13 +45,13 @@ call plug#begin('~/.vim/plugged')
     Plug 'mfussenegger/nvim-dap'
     Plug 'theHamsta/nvim-dap-virtual-text'
     Plug 'rcarriga/nvim-dap-ui'
+    Plug 'chipsenkbeil/distant.nvim'
 
     " Syntax
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'sheerun/vim-polyglot'
 
     " Tags
-    Plug 'majutsushi/tagbar'
     Plug 'xolox/vim-easytags'
     Plug 'xolox/vim-misc'
 
@@ -65,7 +65,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'nvim-telescope/telescope-frecency.nvim' | Plug 'tami5/sqlite.lua'
     Plug 'kyazdani42/nvim-tree.lua'
     Plug 'simnalamburt/vim-mundo'
-    Plug 'luochen1990/rainbow' | Plug 'p00f/nvim-ts-rainbow' | Plug 'jiangmiao/auto-pairs'
+    Plug 'p00f/nvim-ts-rainbow'
+    Plug 'steelsojka/pears.nvim'
     Plug 'tpope/vim-surround'
     Plug 'preservim/nerdcommenter' | Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-eunuch'
@@ -97,7 +98,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'mhinz/vim-startify'
     Plug 'ryanoasis/vim-devicons'
     Plug 'kyazdani42/nvim-web-devicons'
-    Plug 'machakann/vim-highlightedyank'
 
     " Colorschemes
     Plug 'dracula/vim', { 'as': 'dracula'  }
