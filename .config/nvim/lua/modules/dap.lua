@@ -89,13 +89,14 @@ local opt = { noremap = true, silent = true }
 vim.api.nvim_set_keymap('n', '<leader>db', '<cmd>lua require"dap".toggle_breakpoint()<CR>', opt)
 vim.api.nvim_set_keymap('n', '<leader>dB', '<cmd>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>', opt)
 vim.api.nvim_set_keymap('n', '<leader>dE', '<cmd>lua require"dap".set_exception_breakpoints({"all"})<CR>', opt)
+vim.api.nvim_set_keymap('n', '<leader>dc', '<cmd>lua require("dap.breakpoints").clear()<CR>', opt)
 
 vim.api.nvim_set_keymap('n', '<leader>dh', '<cmd>lua require"dap".step_out()<CR>', opt)
 vim.api.nvim_set_keymap('n', '<leader>dl', '<cmd>lua require"dap".step_into()<CR>', opt)
 vim.api.nvim_set_keymap('n', '<leader>dk', '<cmd>lua require"dap".step_back()<CR>', opt)
 vim.api.nvim_set_keymap('n', '<leader>dj', '<cmd>lua require"dap".step_over()<CR>', opt)
 vim.api.nvim_set_keymap('n', '<leader>dd', '<cmd>lua require"dap".continue()<CR>', opt)
-vim.api.nvim_set_keymap('n', '<leader>dc', '<cmd>lua require"dap".run_to_cursor()<CR>', opt)
+vim.api.nvim_set_keymap('n', '<leader>dC', '<cmd>lua require"dap".run_to_cursor()<CR>', opt)
 vim.api.nvim_set_keymap('n', '<leader>dq', '<cmd>lua require"dap".disconnect({ terminateDebuggee = true });require"dap".close()<CR>', opt)
 
 vim.api.nvim_set_keymap('n', '<leader>dK', '<cmd>lua require"dap".up()<CR>', opt)
