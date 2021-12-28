@@ -35,6 +35,7 @@ source ~/.config/nvim/config/ultisnips.vim
 source ~/.config/nvim/config/vimmove.vim
 source ~/.config/nvim/config/vimwiki.vim
 source ~/.config/nvim/config/winresize.vim
+source ~/.config/nvim/config/fzf.vim
 
 lua require('plenary.reload').reload_module('modules', true)
 lua require('modules.lsp')
@@ -43,7 +44,6 @@ lua require('modules.lsp.bash-ls')
 lua require('modules.lsp.pyright-ls')
 lua require('modules.cmp')
 lua require('modules.treesitter')
-lua require('modules.telescope')
 lua require('modules.whichkey')
 lua require('modules.lualine')
 lua require('modules.tabline')
