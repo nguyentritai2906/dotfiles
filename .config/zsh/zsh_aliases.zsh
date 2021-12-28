@@ -28,6 +28,7 @@ alias cfv='GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME vim'
 alias cfi='GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME vim ~/.config/nvim/init.vim'
 alias cfs="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME status"
 alias cfd="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME diff"
+alias cfb="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME branch"
 alias cfa="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME add"
 alias cfc="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME commit"
 alias cfca="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME commit -a"
