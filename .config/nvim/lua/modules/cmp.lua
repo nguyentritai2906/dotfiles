@@ -18,10 +18,9 @@ cmp.setup({
         end,
     },
     sources = {
-        { name = 'ultisnips' },
-        { name = 'nvim_lsp'},
-        { name = 'nvim_lua'},
-        { name = 'path'},
+        { name = 'ultisnips', keyword_length=3 },
+        { name = 'nvim_lsp', keyword_length=3 },
+        { name = 'path', keyword_length=3 },
         { name = 'buffer', keyword_length=5, max_item_count=3 },
         { name = 'tmux', keyword_length=5, max_item_count=3 },
         { name = 'rg', keyword_length=5, max_item_count=3 },
