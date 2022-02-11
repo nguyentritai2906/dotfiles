@@ -63,6 +63,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'simnalamburt/vim-mundo'
     Plug 'p00f/nvim-ts-rainbow'
     Plug 'steelsojka/pears.nvim'
+    "Plug 'windwp/nvim-autopairs'
+    Plug 'abecodes/tabout.nvim'
     Plug 'tpope/vim-surround'
     Plug 'preservim/nerdcommenter' | Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-eunuch'
