@@ -30,11 +30,12 @@ nnoremap <silent> <Leader>f? : Lines<CR>
 nnoremap <silent> <Leader>ff : Files<CR>
 nnoremap <silent> <Leader>fb : Buffers<CR>
 nnoremap <silent> <Leader>fc : Commands<CR>
+nnoremap <silent> <Leader>fC : Files ~/.config<CR>
 nnoremap <silent> <Leader>fh : Helptags<CR>
 nnoremap <silent> <Leader>fg : GFiles<CR>
 nnoremap <silent> <Leader>fm : Maps<CR>
 nnoremap <silent> <Leader>fr : History<CR>
-nnoremap <silent> <Leader>f: : History:<CR>
+nnoremap <silent> <Leader>f; : History:<CR>
 nnoremap <silent> <Leader>fs : Snippets<CR>
 nnoremap <silent> <Leader>ft : FZF ~<CR>
 nnoremap <silent> <Leader>fp : PFiles<CR>
