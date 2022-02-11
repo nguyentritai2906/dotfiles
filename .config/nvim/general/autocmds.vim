@@ -1,9 +1,7 @@
 " Write, compile and execute
 autocmd filetype python nnoremap <buffer> <F6> :w<CR> :te  python3 ./%<CR>
-autocmd filetype java nnoremap <buffer> <F6> :te java %<<CR>
-autocmd filetype c,cpp nnoremap <buffer> <F6> :te ./%<<CR>
-autocmd filetype java nnoremap <buffer> <Leader><F6> :w<CR> :!javac %<CR>
-autocmd filetype c,cpp nnoremap <buffer> <Leader><F6> :w<CR> :!gcc % -o %<<CR>
+autocmd filetype java nnoremap <buffer> <F6> :w<CR> :!javac %<CR> :te java %<<CR>
+autocmd filetype c,cpp nnoremap <buffer> <F6> :w<CR> :!g++ % -o %<<CR> :te ./%<<CR>
 
 " Automatically VimResized
 autocmd VimResized * wincmd =
