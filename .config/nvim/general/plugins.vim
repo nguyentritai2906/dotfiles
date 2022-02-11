@@ -45,6 +45,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'theHamsta/nvim-dap-virtual-text'
     Plug 'rcarriga/nvim-dap-ui'
     Plug 'chipsenkbeil/distant.nvim'
+    Plug 'github/copilot.vim'
 
     " Syntax
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
