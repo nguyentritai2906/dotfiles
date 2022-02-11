@@ -195,7 +195,7 @@ unset __conda_setup
 
 alias luamake=/Users/mater/soft/lua-language-server/3rd/luamake/luamake
 export PYENV_SHELL=zsh
-source '/opt/homebrew/Cellar/pyenv/2.2.2/completions/pyenv.zsh'
+source '/opt/homebrew/Cellar/pyenv/2.2.3/completions/pyenv.zsh'
 command pyenv rehash 2>/dev/null
 pyenv() {
   local command
