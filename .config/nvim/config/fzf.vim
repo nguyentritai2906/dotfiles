@@ -4,7 +4,8 @@ let g:fzf_action = {
             \ 'ctrl-v': 'vsplit' }
 let g:fzf_layout = {'window': {'width': 0.9, 'height': 0.6}}
 let g:fzf_colors =
-            \ { 'fg'    : ['fg', 'Normal'],
+            \ {
+            \ 'fg'    : ['fg', 'Normal'],
             \ 'bg'      : ['bg', 'Normal'],
             \ 'hl'      : ['fg', 'Comment'],
             \ 'fg+'     : ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
@@ -16,52 +17,31 @@ let g:fzf_colors =
             \ 'pointer' : ['fg', 'Exception'],
             \ 'marker'  : ['fg', 'Keyword'],
             \ 'spinner' : ['fg', 'Label'],
-            \ 'header'  : ['fg', 'Comment'] }
+            \ 'header'  : ['fg', 'Comment']
+            \ }
 let g:fzf_buffers_jump = 1
 
 if has('nvim') || has('gui_running')
-    let $FZF_DEFAULT_OPTS .= ' --inline-info'
-    " let $FZF_DEFAULT_OPTS .= ' --inline-info --preview-window=:nohidden'
+    " let $FZF_DEFAULT_OPTS .= ' --inline-info'
+    let $FZF_DEFAULT_OPTS .= ' --inline-info --preview-window=:nohidden'
 endif
 nnoremap <silent> <Leader>f/ : BLines<CR>
 nnoremap <silent> <Leader>f? : Lines<CR>
 nnoremap <silent> <Leader>ff : Files<CR>
 nnoremap <silent> <Leader>fb : Buffers<CR>
 nnoremap <silent> <Leader>fc : Commands<CR>
+nnoremap <silent> <Leader>fC : Files ~/.config<CR>
 nnoremap <silent> <Leader>fh : Helptags<CR>
 nnoremap <silent> <Leader>fg : GFiles<CR>
-nnoremap <silent> <Leader>fj : JumpToTab<CR>
 nnoremap <silent> <Leader>fm : Maps<CR>
 nnoremap <silent> <Leader>fr : History<CR>
+nnoremap <silent> <Leader>f; : History:<CR>
 nnoremap <silent> <Leader>fs : Snippets<CR>
 nnoremap <silent> <Leader>ft : FZF ~<CR>
+nnoremap <silent> <Leader>fp : PFiles<CR>
 nnoremap <silent> <Leader>f` : Marks<CR>
 nnoremap <silent> <leader>f. : Ag<CR>
-" nnoremap <silent> K          : call SearchWordWithAg()<CR>
 vnoremap <silent> K          : call SearchVisualSelectionWithAg()<CR>
-
-" Jump to tab
-" Source get a list of strings whose format is ['tabNumber tabName']
-" JumpToTab receives the selected item,
-" Get the tab number using split()
-" And then execute command ':normal #gt'
-function TabName(n)
-    let buflist = tabpagebuflist(a:n)
-    let winnr = tabpagewinnr(a:n)
-    return fnamemodify(bufname(buflist[winnr - 1]), ':t')
-endfunction
-
-function! s:JumpToTab(line)
-    let pair = split(a:line, ' ')
-    let cmd = pair[0].'gt'
-    execute 'normal' cmd
-endfunction
-
-command! JumpToTab call fzf#run(fzf#wrap({
-            \   'source':  map(range(1, tabpagenr('$')),
-            \   'v:val." "." ".TabName(v:val)'),
-            \   'sink':    function('<SID>JumpToTab'),
-            \   }))
 
 function! SearchWordWithAg()
     execute 'Ag' expand('<cword>')
@@ -117,3 +97,5 @@ function! AgGrepWrap(grep_command, bang) abort
                 \ )
 endfunction
 
+" Project files
+command! -bang PFiles call fzf#vim#files('~/Documents/projects', <bang>0)

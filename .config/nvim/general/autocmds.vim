@@ -1,9 +1,7 @@
 " Write, compile and execute
 autocmd filetype python nnoremap <buffer> <F6> :w<CR> :te  python3 ./%<CR>
-autocmd filetype java nnoremap <buffer> <F6> :te java %<<CR>
-autocmd filetype c,cpp nnoremap <buffer> <F6> :te ./%<<CR>
-autocmd filetype java nnoremap <buffer> <Leader><F6> :w<CR> :!javac %<CR>
-autocmd filetype c,cpp nnoremap <buffer> <Leader><F6> :w<CR> :!gcc % -o %<<CR>
+autocmd filetype java nnoremap <buffer> <F6> :w<CR> :!javac %<CR> :te java %<<CR>
+autocmd filetype c,cpp nnoremap <buffer> <F6> :w<CR> :!g++ % -o %<<CR> :te ./%<<CR>
 
 " Automatically VimResized
 autocmd VimResized * wincmd =
@@ -28,7 +26,13 @@ autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 
 runtime! macros/matchit.vim
 
 " Better alternative for autochdir
-autocmd BufEnter * silent! lcd %:p:h
+" autocmd BufEnter * silent! lcd %:p:h
+nnoremap <silent> <Leader>lcd :call ChangeDirCurBuf()<CR>
+
+function ChangeDirCurBuf()
+    execute 'lcd %:p:h'
+    execute 'pwd'
+endfunction
 
 " Set textwidth in Markdown files
 autocmd BufEnter *.md set textwidth=80
@@ -42,3 +46,8 @@ if !exists('*ReloadVimrc')
    endfun
 endif
 autocmd! BufWritePost $MYVIMRC call ReloadVimrc()
+
+augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=150}
+augroup END

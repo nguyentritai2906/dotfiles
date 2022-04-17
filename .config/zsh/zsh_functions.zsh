@@ -10,26 +10,11 @@ bindkey "^Z" Resume
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    #alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
-
-## Use lf to switch directories
-#lfcd () {
-    #tmp="$(mktemp)"
-    #lf -last-dir-path="$tmp" "$@"
-    #if [ -f "$tmp" ]; then
-        #dir="$(cat "$tmp")"
-        #rm -f "$tmp"
-        #[ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
-    #fi
-#}
-#bindkey -s '\eo' "lfcd\n"
 
 # Search and replace with ag
 agr() { ag -0 -l "$1" | AGR_FROM="$1" AGR_TO="$2" xargs -r0 perl -pi -e 's/$ENV{AGR_FROM}/$ENV{AGR_TO}/g';  }
@@ -83,7 +68,10 @@ magic-enter () {
     fi
 }
 zle -N magic-enter
-bindkey "^K" magic-enter
+bindkey "^M" magic-enter
+# To clear the autosuggest part behind cursor
+# https://github.com/zsh-users/zsh-autosuggestions/issues/525#issuecomment-623977378
+ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(magic-enter)
 
 # Archive Extraction
 # Usage: Ex <File>
@@ -94,7 +82,7 @@ ex ()
       *.tar.bz2)   tar xjf $1   ;;
       *.tar.gz)    tar xzf $1   ;;
       *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1   ;;
+      *.rar)       unar $1      ;;
       *.gz)        gunzip $1    ;;
       *.tar)       tar xf $1    ;;
       *.tbz2)      tar xjf $1   ;;
@@ -131,4 +119,20 @@ function cd() {
         deactivate
       fi
   fi
+}
+
+# Create an alias for cd and ls:
+function cs () {
+    cd $1;
+    exa -s=name --icons --color=always --group-directories-first
+}
+
+function cl () {
+    cd $1;
+    exa -lamgh -s=name --icons --color-scale --group-directories-first
+}
+
+# List then Grep with Exa
+lg() {
+    exa *$1*(D) -aghl --sort=name --color-scale
 }

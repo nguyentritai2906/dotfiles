@@ -1,26 +1,36 @@
 require'nvim-treesitter.configs'.setup {
-    ensure_installed = "maintained",
-    highlight = {
-        enable = true,
-        custom_captures = {
-            -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
-            ["foo.bar"] = "Identifier",
-        },
-    },
+    ensure_installed = "python",
     incremental_selection = {
         enable = true,
         keymaps = {
-            init_selection = "+",
-            scope_incremental = "+",
-            node_incremental = "+",
-            node_decremental = "_",
+            init_selection = "gsn",
+            scope_incremental = "gsn",
+            node_incremental = "gsi",
+            node_decremental = "gsd",
         },
     },
-    -- indent = {
-        -- enable = true
-    -- },
+    indent = {
+        enable = true,
+        disable = {"python"}
+    },
     rainbow = {
         enable = true,
-        disable = {'bash'} -- please disable bash until I figure #1 out
-    }
+    disable = {'bash'} -- please disable bash until I figure #1 out
+    },
+    textobjects = {
+        select = {
+            enable = true,
+
+            -- Automatically jump forward to textobj, similar to targets.vim
+            lookahead = true,
+
+            keymaps = {
+                -- You can use the capture groups defined in textobjects.scm
+                ["af"] = "@function.outer",
+                ["if"] = "@function.inner",
+                ["ac"] = "@class.outer",
+                ["ic"] = "@class.inner",
+            },
+        },
+    },
 }

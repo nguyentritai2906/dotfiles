@@ -1,9 +1,13 @@
+local function getWords()
+  return tostring(vim.fn.wordcount().words)
+end
+
 require'lualine'.setup {
     options = {
         icons_enabled = true,
-        theme = 'dracula',
-        component_separators = {'', ''},
-        section_separators = {'', ''},
+        theme = 'edge',
+        component_separators = {left = '', right = ''},
+        section_separators = {left = '', right = ''},
         disabled_filetypes = {}
     },
     sections = {
@@ -12,7 +16,7 @@ require'lualine'.setup {
         lualine_c = {'filename'},
         lualine_x = {'encoding', 'fileformat', 'filetype'},
         lualine_y = {'progress'},
-        lualine_z = {'location'}
+        lualine_z = {getWords, 'location'}
     },
     inactive_sections = {
         lualine_a = {},

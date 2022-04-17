@@ -19,6 +19,7 @@ set wildmode=longest,full " Tab completion
 set wildmenu " enhanced command line completion
 set completeopt=menuone,noinsert,noselect
 set sessionoptions+=tabpages,globals
+set sessionoptions-=blank
 set wildcharm=<Tab>
 set pastetoggle=<F2>
 set dictionary+=/usr/share/dict/words
@@ -48,7 +49,6 @@ set cursorline
 set ttyfast " faster redrawing
 set scrolloff=5
 set splitright
-set spell
 set spelllang=en
 if has('termguicolors')
     set termguicolors " Nvim-tree: this variable must be enabled for colors to be applied properly
@@ -73,5 +73,5 @@ call matchadd('ColorColumn', '\%81v', 100)
 " Center search hit and automatically clear highlight with is.vim
 nnoremap <silent> <F4> :call <SID>SearchMode()<CR>
 " Default to 'Middle'
-nmap <silent> n <Plug>(is-n)zz
-nmap <silent> N <Plug>(is-N)zz
+nmap <silent> n nzz
+nmap <silent> N Nzz

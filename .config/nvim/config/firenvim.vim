@@ -15,7 +15,7 @@ endfunction
 function! OnUIEnter(event) abort
     if s:IsFirenvimActive(a:event)
         set laststatus=0
-        set guifont=hack:h8
+        set guifont=Hack\ Nerd\ Font\ Regular:h15
         set completeopt=menuone,noselect
         highlight MyGroup gui=bold
         match MyGroup /./

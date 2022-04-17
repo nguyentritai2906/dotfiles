@@ -9,7 +9,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/solus/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -96,44 +96,36 @@ export LANG=en_US.UTF-8
 if [[ -n $SSH_CONNECTION ]]; then
 	export EDITOR='vim'
 else
-    export SUDO_EDITOR='vim'
-	export EDITOR='nv'
+    export SUDO_EDITOR='nvim'
+	export EDITOR='nvim'
 fi
 
 # Disable flow control Ctrl+S, since it realy just annoys me
 stty -ixon &>/dev/null
 
-SPACESHIP_PROMPT_ADD_NEWLINE=false
-SPACESHIP_PROMPT_SEPARATE_LINE=false
-#SPACESHIP_CHAR_SYMBOL=🞂🞂
+SPACESHIP_PROMPT_ADD_NEWLINE=true
+SPACESHIP_PROMPT_SEPARATE_LINE=true
 SPACESHIP_CHAR_SYMBOL=❯
 SPACESHIP_CHAR_SUFFIX=" "
-SPACESHIP_HG_SHOW=false
-SPACESHIP_PACKAGE_SHOW=false
-SPACESHIP_NODE_SHOW=false
-SPACESHIP_RUBY_SHOW=false
-SPACESHIP_ELM_SHOW=false
-SPACESHIP_ELIXIR_SHOW=false
-SPACESHIP_XCODE_SHOW_LOCAL=false
-SPACESHIP_SWIFT_SHOW_LOCAL=false
-SPACESHIP_GOLANG_SHOW=false
-SPACESHIP_PHP_SHOW=false
-SPACESHIP_RUST_SHOW=false
-SPACESHIP_JULIA_SHOW=false
-SPACESHIP_DOCKER_SHOW=false
-SPACESHIP_DOCKER_CONTEXT_SHOW=false
-SPACESHIP_AWS_SHOW=false
-SPACESHIP_GCLOUD_SHOW=false
 SPACESHIP_CONDA_SHOW=true
 SPACESHIP_VENV_SHOW=true
 SPACESHIP_PYENV_SHOW=true
-SPACESHIP_DOTNET_SHOW=false
-SPACESHIP_EMBER_SHOW=false
-SPACESHIP_KUBECONTEXT_SHOW=false
-SPACESHIP_TERRAFORM_SHOW=false
-SPACESHIP_TERRAFORM_SHOW=false
-SPACESHIP_VI_MODE_SHOW=false
-SPACESHIP_JOBS_SHOW=false
+
+# /Users/mater/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh
+SPACESHIP_PROMPT_ORDER=(
+    time          # Time stampts section
+    user          # Username section
+    dir           # Current directory section
+    host          # Hostname section
+    git           # Git section (git_branch + git_status)
+    venv          # virtualenv section
+    conda         # conda virtualenv section
+    pyenv         # Pyenv section
+    exec_time     # Execution time
+    line_sep      # Line break
+    exit_code     # Exit code section
+    char          # Prompt character
+)
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -142,11 +134,12 @@ SPACESHIP_JOBS_SHOW=false
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
+
 # Load aliases and shortcuts if existent.
 [ -f "$HOME/.config/zsh/zsh_keybinds.zsh" ] && source "$HOME/.config/zsh/zsh_keybinds.zsh"
 [ -f "$HOME/.config/zsh/zsh_functions.zsh" ] && source "$HOME/.config/zsh/zsh_functions.zsh"
 [ -f "$HOME/.config/zsh/zsh_aliases.zsh" ] && source "$HOME/.config/zsh/zsh_aliases.zsh"
+
 # Use colors for less, man, etc.
 [[ -f ~/.config/less-termcap ]] && . ~/.config/less-termcap
 
@@ -156,33 +149,12 @@ SAVEHIST=10000
 HISTFILE=~/.cache/.zsh_history
 setopt inc_append_history
 setopt hist_ignore_dups
-
-# Add Rust to $PATH
-export PATH="$HOME/.cargo/bin:$PATH"
-
-# Add Black and Blackd to $PATH
-export PATH="$HOME/.local/bin:$PATH"
-
-# Add Java JDK
-export JAVA_HOME=/usr/lib64/openjdk-11/
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/solus/google-cloud-sdk/path.zsh.inc' ]; then . '/home/solus/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/solus/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/solus/google-cloud-sdk/completion.zsh.inc'; fi
+setopt extended_glob # For 'all files *except*' e.g. `rm ^foo.bar`
 
 # Configure fzf, command line fuzzy finder
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 FD_OPTIONS="--hidden --exclude .git --exclude node_modules"
-export FZF_DEFAULT_OPTS="--no-mouse --height 50% -1 --reverse --multi
---tiebreak=length,begin,end,index --inline-info --preview='[[ \$(file --mime
-{}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers
-    --color=always {} || cat {}) 2> /dev/null | head -300'
-    --preview-window='right:70%:hidden:wrap'
-    --bind='ctrl-p:toggle-preview,ctrl-d:half-page-down,ctrl-u:half-page-up,ctrl-x:execute(rm
-    -i
-    {+})+abort,alt-k:preview-up,alt-j:preview-down,alt-d:preview-page-down,alt-u:preview-page-up'"
+export FZF_DEFAULT_OPTS="--no-mouse --height 50% -1 --reverse --multi --tiebreak=length,begin,end,index --inline-info --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' --preview-window='right:70%:hidden:wrap' --bind='ctrl-p:toggle-preview,ctrl-d:half-page-down,ctrl-u:half-page-up,ctrl-x:execute(rm -i {+})+abort,alt-k:preview-up,alt-j:preview-down,alt-d:preview-page-down,alt-u:preview-page-up'"
 # Use git-ls-files inside git repo, otherwise fd
 export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard || fd --type f --type l $FD_OPTIONS"
 export FZF_CTRL_T_COMMAND="fd --type f $FD_OPTIONS"
@@ -191,48 +163,68 @@ export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 # To get fasd working in a shell, some initialization code must be run
 eval "$(fasd --init auto)"
 
-# You should have $GOPATH env variable set and your $PATH should include $GOPATH/bin to run app from anywhere
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+# Using GNU command line tools flavor instead of FreeBSD https://gist.github.com/skyzyx/3438280b18e4f7c490db8a2a2ca0b9da
+if type brew &>/dev/null; then
+  HOMEBREW_PREFIX=$(brew --prefix)
+  # GNUBin; GNUMan
+  for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnubin; do export PATH=$d:$PATH; done
+fi
+
+# Auto activate env
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 
 # Load zsh-syntax-highlighting; should be last.
 source $HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-export KAGGLE_CONFIG_DIR="/home/solus/.config/kaggle"
-
-# Random wikipedia on this day fact
-#
-# for day in {1..365}; do
-# mkdir ~/.config/wikidates 2>/dev/null
-# date=$(date -d "now +$day days" +%B_%d)
-# w3m -cols 99999 -dump http://en.wikipedia.org/wiki/$date | sed -n '/^Events/,/^Births/p' | sed '1d;$d' | sed -n 's/^.*•//p' > ~/.config/wikidates/$date
-# echo $date
-# done
-
-# w3m -cols 99999 -dump http://en.wikipedia.org/wiki/February_29 | sed -n '/^Events/,/^Births/p' | sed '1d;$d' | sed -n 's/^.*•//p' > ~/.config/wikidates/February_29
-#
-cat ~/.config/wikidates/$(date +%B_%d) | shuf -n 1
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/solus/soft/anaconda3/bin/conda' 'shell.zsh' 'hook' 2>/dev/null)"
+__conda_setup="$('/opt/homebrew/Caskroom/miniforge/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
-	eval "$__conda_setup"
+    eval "$__conda_setup"
 else
-	if [ -f "/home/solus/soft/anaconda3/etc/profile.d/conda.sh" ]; then
-		. "/home/solus/soft/anaconda3/etc/profile.d/conda.sh"
-	else
-		export PATH="/home/solus/soft/anaconda3/bin:$PATH"
-	fi
+    if [ -f "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/homebrew/Caskroom/miniforge/base/bin:$PATH"
+    fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-export PATH=~/.npm-global/bin:~/node_modules/.bin:$PATH
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/cuda-11
+alias luamake=/Users/mater/soft/lua-language-server/3rd/luamake/luamake
+export PYENV_SHELL=zsh
+source /opt/homebrew/Cellar/pyenv/2.2.*/completions/pyenv.zsh
+command pyenv rehash 2>/dev/null
+pyenv() {
+  local command
+  command="${1:-}"
+  if [ "$#" -gt 0 ]; then
+    shift
+  fi
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
+  case "$command" in
+  activate|deactivate|rehash|shell)
+    eval "$(pyenv "sh-$command" "$@")"
+    ;;
+  *)
+    command pyenv "$command" "$@"
+    ;;
+  esac
+}
+export PATH="/opt/homebrew/Cellar/pyenv-virtualenv/1.1.5/shims:${PATH}";
+export PYENV_VIRTUALENV_INIT=1;
+_pyenv_virtualenv_hook() {
+  local ret=$?
+  if [ -n "$VIRTUAL_ENV" ]; then
+    eval "$(pyenv sh-activate --quiet || pyenv sh-deactivate --quiet || true)" || true
+  else
+    eval "$(pyenv sh-activate --quiet || true)" || true
+  fi
+  return $ret
+};
+typeset -g -a precmd_functions
+if [[ -z $precmd_functions[(r)_pyenv_virtualenv_hook] ]]; then
+  precmd_functions=(_pyenv_virtualenv_hook $precmd_functions);
 fi

@@ -1,11 +1,5 @@
-" source ~/.config/nvim/config/edge.vim
-colorscheme dracula
-
-" Spell underline
-hi clear SpellBad
-hi clear SpellCap
-hi clear SpellRare
-hi clear SpellLocal
+source ~/.config/nvim/config/edge.vim
+colorscheme edge
 
 " Highlight
 highlight		Normal		guibg=NONE	 ctermbg=NONE

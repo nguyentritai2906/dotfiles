@@ -5,5 +5,5 @@ let g:vim_markdown_math = 1
 let g:vim_markdown_frontmatter = 1
 let g:tex_conceal = "abd"
 
-autocmd BufRead,BufNewFile /home/solus/Documents/blog/nguyentritaiblog/content/posts/** set tw=80 | set wrap
-autocmd InsertLeave,TextChanged /home/solus/Documents/blog/nguyentritaiblog/content/posts/** silent write
+autocmd BufRead,BufNewFile /Users/mater/Documents/blog/nguyentritaiblog/content/posts/** set tw=80 | set wrap
+autocmd InsertLeave,TextChanged /Users/mater/Documents/blog/nguyentritaiblog/content/posts/** silent write

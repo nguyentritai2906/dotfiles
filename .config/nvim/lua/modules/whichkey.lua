@@ -1,187 +1,270 @@
 require("which-key").setup {
-  plugins = {
-    marks = true, -- shows a list of your marks on ' and `
-    registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
-    spelling = {
-      enabled = false, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-      suggestions = 20, -- how many suggestions should be shown in the list?
+    plugins = {
+        marks = true, -- shows a list of your marks on ' and `
+        registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+        spelling = {
+            enabled = false, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
+            suggestions = 20, -- how many suggestions should be shown in the list?
+        },
+        -- the presets plugin, adds help for a bunch of default keybindings in Neovim
+        -- No actual key bindings are created
+        presets = {
+            operators = true, -- adds help for operators like d, y, ... and registers them for motion / text object completion
+            motions = true, -- adds help for motions
+            text_objects = true, -- help for text objects triggered after entering an operator
+            windows = true, -- default bindings on <c-w>
+            nav = true, -- misc bindings to work with windows
+            z = true, -- bindings for folds, spelling and others prefixed with z
+            g = true, -- bindings for prefixed with g
+        },
     },
-    -- the presets plugin, adds help for a bunch of default keybindings in Neovim
-    -- No actual key bindings are created
-    presets = {
-      operators = true, -- adds help for operators like d, y, ... and registers them for motion / text object completion
-      motions = true, -- adds help for motions
-      text_objects = true, -- help for text objects triggered after entering an operator
-      windows = true, -- default bindings on <c-w>
-      nav = true, -- misc bindings to work with windows
-      z = true, -- bindings for folds, spelling and others prefixed with z
-      g = true, -- bindings for prefixed with g
+    -- add operators that will trigger motion and text object completion
+    -- to enable all native operators, set the preset / operators plugin above
+    operators = { gc = "Comments" },
+    key_labels = {
+        -- override the label used to display some keys. It doesn't effect WK in any other way.
+        -- For example:
+        ["<space>"] = "SPC",
+        ["<cr>"] = "RET",
+        ["<CR>"] = "RET",
+        ["<tab>"] = "TAB",
     },
-  },
-  -- add operators that will trigger motion and text object completion
-  -- to enable all native operators, set the preset / operators plugin above
-  operators = { gc = "Comments" },
-  key_labels = {
-    -- override the label used to display some keys. It doesn't effect WK in any other way.
-    -- For example:
-    ["<space>"] = "SPC",
-    ["<cr>"] = "RET",
-    ["<CR>"] = "RET",
-    ["<tab>"] = "TAB",
-  },
-  icons = {
-    breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-    separator = "➜", -- symbol used between a key and it's label
-    group = "+", -- symbol prepended to a group
-  },
-  window = {
-    border = "double", -- none, single, double, shadow
-    position = "bottom", -- bottom, top
-    margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
-    padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-  },
-  layout = {
-    height = { min = 2, max = 25 }, -- min and max height of the columns
-    width = { min = 20, max = 35 }, -- min and max width of the columns
-    spacing = 4, -- spacing between columns
-    align = "center", -- align columns left, center or right
-  },
-  ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
-  hidden = { "<silent>", "<cmd>", "<cmd>", "<CR>", "call", "lua", "^:", "^ "}, -- hide mapping boilerplate
-  show_help = true, -- show help message on the command line when the popup is visible
-  triggers = "auto", -- automatically setup triggers
-  -- triggers = {"<leader>"} -- or specify a list manually
-  triggers_blacklist = {
-    -- list of mode / prefixes that should never be hooked by WhichKey
-    -- this is mostly relevant for key maps that start with a native binding
-    -- most people should not need to change this
-    i = { "j", "k" },
-    v = { "j", "k" },
-  },
+    icons = {
+        breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
+        separator = "➜", -- symbol used between a key and it's label
+        group = "+", -- symbol prepended to a group
+    },
+    window = {
+        border = "double", -- none, single, double, shadow
+        position = "bottom", -- bottom, top
+        margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
+        padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
+    },
+    layout = {
+        height = { min = 2, max = 25 }, -- min and max height of the columns
+        width = { min = 20, max = 35 }, -- min and max width of the columns
+        spacing = 4, -- spacing between columns
+        align = "center", -- align columns left, center or right
+    },
+    ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
+    hidden = { "<silent>", "<cmd>", "<cmd>", "<CR>", "call", "lua", "^:", "^ "}, -- hide mapping boilerplate
+    show_help = true, -- show help message on the command line when the popup is visible
+    triggers = "auto", -- automatically setup triggers
+    -- triggers = {"<leader>"} -- or specify a list manually
+    triggers_blacklist = {
+        -- list of mode / prefixes that should never be hooked by WhichKey
+        -- this is mostly relevant for key maps that start with a native binding
+        -- most people should not need to change this
+        i = { "j", "k" },
+        v = { "j", "k" },
+    },
 }
 
 local wk = require("which-key")
 
+-- Normal mappings with Prefix
 wk.register({
-        i = {
-            name =   "+Ipython"                         ,
-            s    = { ":SlimeSend1 ipython --matplotlib<CR>" , "Start"           } ,
-            r    = { ":IPythonCellRun<CR>"                  , "RunAll"          } ,
-            t    = { ":IPythonCellRunTime<CR>"              , "RunAndTimeExec"  } ,
-            c    = { ":IPythonCellExecuteCell<CR>"          , "ExecCell"        } ,
-            C    = { ":IPythonCellExecuteCellJump<CR>"      , "ExecCellGoNext"  } ,
-            l    = { ":IPythonCellClear<CR>"                , "ClearScreen"     } ,
-            x    = { ":IPythonCellClose<CR>"                , "CloseFigure"     } ,
-            h    = { "<Plug>SlimeLineSend"              , "ExecCurrentLine" } ,
-            R    = { ":IPythonCellRestart<CR>"              , "Restart"         } ,
-            j    = { ":IPythonCellNextCell<CR>"             , "NextCell"        } ,
-            k    = { ":IPythonCellPrevCell<CR>"             , "PrevCell"        } ,
-            h    = { "<Plug>SlimeRegionSend"            , "ExecCurrentSelection", mode = "v" } ,
+    i = {
+        name = "+Ipython",
+        s    = "Start",
+        r    = "RunAll",
+        t    = "RunAndTimeExec",
+        c    = "ExecCell",
+        C    = "ExecCellGoNext",
+        l    = "ClearScreen",
+        x    = "CloseFigure",
+        h    = "ExecCurrentLine",
+        R    = "Restart",
+        j    = "NextCell",
+        k    = "PrevCell",
+    },
+    c = {
+        name = "+Commenter",
+        c    = "CommentLine",
+        i    = "InvertComment",
+        u    = "UncommentLine",
+    },
+    g = {
+        name = "+GitGutter",
+        k    = "PrevHunk",
+        j    = "NextHunk",
+        p    = "PreviewHunk",
+        s    = "StageHunk",
+        u    = "UndoHunk",
+    },
+    w = {
+        name = "+Vimwiki",
+        i    = "DiaryIndex",
+        s    = "UISelect",
+        t    = "TabIndex",
+        w    = "Index",
+        d    = "DeleteFile",
+        h    = "ToHTML",
+        hh   = "HTMLBrowse",
+        n    = "Goto",
+        r    = "RenameFile",
+        ["<space>"]    = {
+            name = "+Diary",
+            i    = "GenerateLinks",
+            t    = "TabMakeNote",
+            w    = "MakeNote",
+            y    = "MakeYesterdayDiaryNote",
+            m    = "MakeTomorrowDiaryNote",
+        } ,
+    },
+    f = {
+        name  = "+Find",
+        ['/'] = "BLines",
+        ['?'] = "Lines",
+        f     = "Files",
+        b     = "Buffers",
+        c     = "Commands",
+        C     = "Config",
+        h     = "Helptags",
+        g     = "GFiles",
+        m     = "Maps",
+        r     = "Recent",
+        [";"] = "CHistory",
+        s     = "Snippets",
+        t     = "HFiles",
+        p     = "PFiles",
+        ["`"] = "Marks",
+        ["."] = "Ag",
+    },
+    l = {
+        name = "+LSP",
+        k    = "SignatureHelp",
+        d    = "TypeDefinition",
+        e    = "ShowLineDiagnostics",
+        E    = "ToggleDiagnostic",
+        q    = "ListDiagnosticsLocation",
+        r    = "Rename",
+        f    = "Formatting",
+        v    = "VirtualText",
+        w    = {
+            name = "+Workspace",
+            a    = "AddWorkspaceFolder",
+            r    = "RemoveWorkspaceFolder",
+            l    = "ListWorkspaceFolders",
         },
+        g    = {
+            name = "+GoTo",
+            D    = "Declaration",
+            d    = "Definition",
+            r    = "References",
+            i    = "Implementation",
+            k    = "PrevDiagnostic",
+            j    = "NextDiagnostic",
+        },
+        p    = {
+            name = "+Preview",
+            d    = "Definition",
+            r    = "References",
+            i    = "Implementation",
+            c    = "CloseAllPreview",
+        },
+    },
+    s = {
+        name = "+Session"  ,
+        c = { ":SClose<CR>"    , "CloseSession"  } ,
+        d = { ":SDelete<CR>"   , "DeleteSession" } ,
+        l = { ":SLoad<CR>"     , "LoadSession"   } ,
+        s = { ":Startify<CR>"  , "StartPage"     } ,
+        S = { ":SSave<CR>"     , "SaveSession"   } ,
+        o = { ":Obsession<CR>"     , "TrackSession"   } ,
+        O = { ":Obsession!<CR>"     , "StopTrackSession"   } ,
+    },
+    a = {
+        name = "+Actions"       ,
+        c = { ":ColorizerToggle<CR>" , "Colorizer"             } ,
+        h = { ":nohl<CR>"            , "NoHighlight"           } ,
+        l = { ":Bracey<CR>"          , "BraceyStartLiveServer" } ,
+        L = { ":BraceyStop<CR>"      , "BraceyStopLiveServer"  } ,
+        v = { ":Codi<CR>"            , "CodiVirtualREPL"       } ,
+        V = { ":Codi!<CR>"           , "CodiVirtualREPLOff"    } ,
+    },
+    ["<space>"] = "Easy Motion",
+    ["<cr>"] = "Source Config",
+    j = "Newline Below",
+    k = "Newline Above",
+    E = "Resize",
+    t = {
+        name = "+Tab",
+        h = "TabLeft",
+        l = "TabRight",
+        H = "TabFirst",
+        L = "TabLast",
+        j = "TabMoveLeft",
+        k = "TabMoveRight",
+        c = "TabClose",
+        n = "TabNew",
+        r = "TabRename",
+    },
+    d = {
+        name = "+DAP",
+        b = "Breakpoint",
+        B = "ConditionalBreakpoint",
+        E = "ExceptionBreakpoint",
+        h = "StepOut",
+        l = "StepInto",
+        j = "StepBack",
+        k = "StepOver",
+        d = "Continue",
+        c = "ClearAllBreakpoints",
+        C = "RunToCursor",
+        q = "Quit",
+        K = "Up",
+        J = "Down",
+        e = "Evaluate",
+        u = "ToggleUI",
+        i = {
+            name = "+Info",
+            i = "Interactive",
+            b = "Breakpoint",
+            r = "REPL",
+            s = "Scope",
+            t = "Stack",
+            w = "Watch",
+        },
+    },
+},
+{
+    prefix = "<Leader>"
+})
+
+-- Normal mappings without Prefix
+wk.register({
         c = {
-            name =   "+Commenter"                   ,
-            c    = { "<Plug>NERDCommenterComment"   , "CommentLine"   } ,
-            i    = { "<Plug>NERDCommenterInvert"    , "InvertComment" } ,
-            u    = { "<Plug>NERDCommenterUncomment" , "UncommentLine" } ,
+            r = {
+                name = "+AbolisCoercion",
+                s = "snake_case",
+                m = "MixedCase",
+                c = "camelCase",
+                u = "UPPER_CASE",
+                t = "Title Case",
+                ["-"] = "dash-case",
+                ["."] = "dot.case",
+                ["<space>"] = "space case",
+            }
         },
         g = {
-            name =   "+GitGutter"                   ,
-            k    = { "<Plug>(GitGutterPrevHunk)"    , "PrevHunk"    } ,
-            j    = { "<Plug>(GitGutterNextHunk)"    , "NextHunk"    } ,
-            p    = { "<Plug>(GitGutterPreviewHunk)" , "PreviewHunk" } ,
-            s    = { "<Plug>(GitGutterStageHunk)"   , "StageHunk"   } ,
-            u    = { "<Plug>(GitGutterUndoHunk)"    , "UndoHunk"    } ,
-        },
-        w = {
-            name =   "+Vimwiki"                  ,
-            i    = { "<Plug>VimwikiDiaryIndex"   , "DiaryIndex" } ,
-            s    = { "<Plug>VimwikiUISelect"     , "UISelect"   } ,
-            t    = { "<Plug>VimwikiTabIndex"     , "TabIndex"   } ,
-            w    = { "<Plug>VimwikiIndex"        , "Index"      } ,
-            d    = { "<Plug>VimwikiDeleteFile"   , "DeleteFile" } ,
-            h    = { "<Plug>Vimwiki2HTML"        , "ToHTML"     } ,
-            hh   = { "<Plug>Vimwiki2HTMLBrowse"  , "HTMLBrowse" } ,
-            n    = { "<Plug>VimwikiGoto"         , "Goto"       } ,
-            r    = { "<Plug>VimwikiRenameFile"   , "RenameFile" } ,
-            ["<space>"]    = {
-                name =   "+Diary"                              ,
-                i    = { "<Plug>VimwikiDiaryGenerateLinks"     , "GenerateLinks"          } ,
-                t    = { "<Plug>VimwikiTabMakeDiaryNote"       , "TabMakeNote"            } ,
-                w    = { "<Plug>VimwikiMakeDiaryNote"          , "MakeNote"               } ,
-                y    = { "<Plug>VimwikiMakeYesterdayDiaryNote" , "MakeYesterdayDiaryNote" } ,
-                m    = { "<Plug>VimwikiMakeTomorrowDiaryNote"  , "MakeTomorrowDiaryNote"  } ,
-            } ,
-        },
-        f = {
-            name =   "+Find"                   ,
-            f    = { "<cmd>lua require'telescope.builtin'.find_files()<CR>", "Files"     } ,
-            c    = { "<cmd>lua require'telescope.builtin'.commands()<CR>", "Commands"  } ,
-            r    = { "<cmd>lua require'telescope.builtin'.oldfiles({ path_display =  {'shorten'} })<CR>", "Recent"    } ,
-            l    = { "<cmd>lua require'telescope.builtin'.grep_string{only_sort_text = true, search = ''}<CR>", "Live Grep" } ,
-            k    = { "<cmd>lua require'telescope.builtin'.keymaps()<CR>", "Keymaps"   } ,
-            b    = { "<cmd>lua require'telescope.builtin'.buffers()<CR>", "Buffers"   } ,
-            h    = { "<cmd>lua require'telescope.builtin'.help_tags()<CR>", "Help Tags"  } ,
-            g    = { "<cmd>lua require'modules.telescope'.project_files()<CR>", "Git Files"  } ,
-            n    = { "<cmd>lua require'modules.telescope'.find_notes()<CR>", "Notes"     } ,
-            e    = { "<cmd>lua require'telescope.builtin'.file_browser()<CR>", "Explorer"  } ,
-            E    = { "<cmd>lua require'modules.telescope'.file_explorer()<CR>", "Explorer ~"  } ,
-            F    = { "<cmd>lua require'telescope.builtin'.find_files({cwd = '~'})<CR>", "Files ~" } ,
-            p    = { "<cmd>lua require'telescope'.extensions.project.project{}<CR>", "Projects" } ,
-            K    = { "<cmd>lua require'telescope.builtin'.grep_string()<CR>", "Grep CWord" } ,
-            m    = { "<cmd>lua require'telescope.builtin'.marks()<CR>", "Marks" } ,
-            C    = { "<cmd>lua require('telescope').extensions.neoclip.default()<CR>", "Clipboard" } ,
-            [";"]    = { "<cmd>lua require'telescope.command'.load_command()<CR>", "Telescope" } ,
-            ["."]    = { "<cmd>lua require'modules.telescope'.rg()<CR>", "Rip Grep"   } ,
-            ["/"]    = { "<cmd>lua require'modules.telescope'.nvim_config()<CR>", "Nvim Config"   } ,
-        },
-        l = {
-            name =   "+LSP"                         ,
-            k    = { ":LSPSignatureHelp<CR>"             , "SignatureHelp"           } ,
-            d    = { ":LSPTypeDefinition<CR>"            , "TypeDefinition"          } ,
-            e    = { ":LSPShowLineDiagnostics<CR>"       , "ShowLineDiagnostics"     } ,
-            q    = { ":LSPSetLocList<CR>"                , "ListDiagnosticsLocation" } ,
-            r    = { ":LSPRename<CR>"                    , "Rename"                  } ,
-            f    = { ":LSPFormatting<CR>"                , "Formatting"              } ,
-            v    = { ":LSPVirtualTextToggle<CR>"         , "VirtualText"             } ,
-            w    = {
-                name =   "+Workspace"               ,
-                a    = { ":LSPAddWorkspaceFolder<CR>"    , "AddWorkspaceFolder"      } ,
-                r    = { ":LSPRemoveWorkspaceFolder<CR>" , "RemoveWorkspaceFolder"   } ,
-                l    = { ":LSPListWorkspaceFolders<CR>"  , "ListWorkspaceFolders"    } ,
-            },
-            g    = {
-                name =   "+GoTo"                    ,
-                D    = { ":LSPDeclaration<CR>"           , "Declaration"             } ,
-                d    = { ":LSPDefinition<CR>"            , "Definition"              } ,
-                r    = { ":LSPReferences<CR>"            , "References"              } ,
-                i    = { ":LSPImplementation<CR>"        , "Implementation"          } ,
-                k    = { ":LSPGotoPrev<CR>"              , "PrevDiagnostic"          } ,
-                j    = { ":LSPGotoNext<CR>"              , "NextDiagnostic"          } ,
-            },
-        },
-        s = {
-            name = "+Session"  ,
-            c = { ":SClose<CR>"    , "CloseSession"  } ,
-            d = { ":SDelete<CR>"   , "DeleteSession" } ,
-            l = { ":SLoad<CR>"     , "LoadSession"   } ,
-            s = { ":Startify<CR>"  , "StartPage"     } ,
-            S = { ":SSave<CR>"     , "SaveSession"   } ,
-        },
-        a = {
-            name = "+Actions"       ,
-            c = { ":ColorizerToggle<CR>" , "Colorizer"             } ,
-            h = { ":nohl<CR>"            , "NoHighlight"           } ,
-            l = { ":Bracey<CR>"          , "BraceyStartLiveServer" } ,
-            L = { ":BraceyStop<CR>"      , "BraceyStopLiveServer"  } ,
-            v = { ":Codi<CR>"            , "CodiVirtualREPL"       } ,
-            V = { ":Codi!<CR>"           , "CodiVirtualREPLOff"    } ,
-        },
-        ["<space>"] = {"<Plug>(easymotion-overwin-f2)", "Easy Motion"},
-        ["<cr>"] = {" :so $MYVIMRC<CR>", "Source Config"},
-        j = {"mao<Esc>`a", "Newline Below"},
-        k = {"maO<Esc>`a", "Newline Above"},
-        E = {":WinResizerStartResize<CR>", "Resize"},
-    },
-    {
-        prefix = "<Leader>"
-    })
+            s = {
+                name = "+TSScope",
+                n = "Init",
+                i = "Incremental",
+                d = "Decremental",
+            }
+        }
+})
+
+-- Visual mappings with Prefix
+wk.register({
+    i = {
+    name = "+Ipython",
+    h    = "ExecCurrentSelection",
+    }
+},
+{
+    prefix = "<Leader>",
+    mode = "v"
+})

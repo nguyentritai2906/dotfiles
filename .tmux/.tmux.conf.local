@@ -3,6 +3,8 @@
 #         without any warranty.
 #         Copyright 2012— Gregory Pakosz (@gpakosz).
 
+# set shell
+set -g default-shell /bin/zsh
 
 # -- navigation ----------------------------------------------------------------
 
@@ -39,29 +41,29 @@ tmux_conf_new_session_prompt=false
 
 # -- display -------------------------------------------------------------------
 
-# # Edge
-# white='#c5cdd9'
-# black='#2c2e34'
-# grey='#88909f'
-# red='#ec7279'
-# green='#a0c980'
-# cyan='#5dbbc1'
-# yellow='#deb974'
-# blue='#6cb6eb'
-# magenta='#d38aea'
-# acolor='#bd93f9'
-
-# Dracula
-white='#f8f8f2'
-black='#282a36'
+# Edge
+white='#c5cdd9'
+black='#2c2e34'
 grey='#88909f'
-red='#ff5555'
-green='#50fa7b'
-cyan='#8be9fd'
-yellow='#f1fa8c'
-blue='#8be9fd'
-magenta='#bd93f9'
-acolor='#bd93f9'
+red='#ec7279'
+green='#a0c980'
+cyan='#5dbbc1'
+yellow='#deb974'
+blue='#6cb6eb'
+magenta='#d38aea'
+acolor='#d38aea'
+
+# # Dracula
+# white='#f8f8f2'
+# black='#282a36'
+# grey='#88909f'
+# red='#ff5555'
+# green='#50fa7b'
+# cyan='#8be9fd'
+# yellow='#f1fa8c'
+# blue='#8be9fd'
+# magenta='#bd93f9'
+# acolor='#bd93f9'
 
 # RGB 24-bit colour support (tmux >= 2.2), possible values are:
 #  - true
@@ -97,17 +99,17 @@ tmux_conf_theme_pane_active_indicator=$acolor         # green
 # status line style
 tmux_conf_theme_message_fg=$black                    # black
 tmux_conf_theme_message_bg=$acolor                    # green
-tmux_conf_theme_message_attr='bold'
+tmux_conf_theme_message_attr='none'
 
 # status line command style (<prefix> : Escape)
 tmux_conf_theme_message_command_fg=$acolor            # green
 tmux_conf_theme_message_command_bg=$black            # black
-tmux_conf_theme_message_command_attr='bold'
+tmux_conf_theme_message_command_attr='none'
 
 # window modes style
 tmux_conf_theme_mode_fg=$black                       # black
 tmux_conf_theme_mode_bg=$acolor                       # green
-tmux_conf_theme_mode_attr='bold'
+tmux_conf_theme_mode_attr='none'
 
 # status line style
 tmux_conf_theme_status_fg=$grey                     # light gray
@@ -149,7 +151,7 @@ tmux_conf_theme_window_status_format='#I #W'
 #     - #{username_ssh}
 tmux_conf_theme_window_status_current_fg=$black      # black
 tmux_conf_theme_window_status_current_bg=$green      # kind of green
-tmux_conf_theme_window_status_current_attr='bold'
+tmux_conf_theme_window_status_current_attr='none'
 tmux_conf_theme_window_status_current_format='#I #W'
 #tmux_conf_theme_window_status_current_format='#{circled_window_index} #W'
 #tmux_conf_theme_window_status_current_format='#I #W#{?window_zoomed_flag,🔍,}'
@@ -204,8 +206,10 @@ tmux_conf_theme_right_separator_sub='\uE0B3'  #   PowerlineSymbols.otf font, see
 #     - #{uptime_s}
 #     - #{username}
 #     - #{username_ssh}
-tmux_conf_theme_status_left=' ❐ #S | ↑#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} '
-tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} | #{username}#{root} | #{hostname} '
+# tmux_conf_theme_status_left=' ❐ #S | ↑#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} '
+tmux_conf_theme_status_left=' ❐ #S | ↑#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{ #{uptime_h}h}#{ #{uptime_m}m} '
+# tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} | #{username}#{root} | #{hostname} '
+tmux_conf_theme_status_right='#{prefix}#{synchronized} #{?battery_percentage, #{battery_percentage},} , %I:%M %a %d %b | #{username}#{root} | #{hostname} '
 #tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} #{?battery_status, #{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} , %R , %d %b | #{username}#{root} | #{hostname} '
 
 # status left style
@@ -310,7 +314,7 @@ set -s escape-time 0
 
 # force Vi mode
 #   really you should export VISUAL or EDITOR environment variable, see manual
-#set -g status-keys vi
+set -g status-keys vi
 set -g mode-keys vi
 
 # replace C-b by C-a instead of using both prefixes
@@ -325,8 +329,8 @@ bind-key x kill-pane
 bind-key & kill-window
 
 # move windown left/right
-bind-key < swap-window -t -
-bind-key > swap-window -t +
+bind -r > swap-window -t +\; select-window -t +       # swap current window with the next one
+bind -r < swap-window -t -\; select-window -t -       # swap current window with the previous one
 
-# move status line to top
-#skt -g status-position top
+bind -r ˙ previous-window
+bind -r ¬ next-window

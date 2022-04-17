@@ -62,18 +62,18 @@ cdf() {
 # Similar to "kill -9 **" fzf default completion
 fkill() {
 	local pid
-	pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+	pid=$(ps -ef | sed 1d | fzf -m  -q "$1"| awk '{print $2}')
 	if [ "x$pid" != "x"  ]; then
 		echo $pid | xargs kill -${1:-9}
 	fi
 }
 
 # Search with fzf and open in vim
-fzf-vim() (
+fv() (
   IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 )
-bindkey -s '^t' "fzf-vim\n"
+bindkey -s '^t' "fv\n"
 
 #fzf-vim() {
     #setopt localoptions pipefail no_aliases 2> /dev/null
@@ -128,4 +128,4 @@ fzf-home-cd-widget() {
   return $ret
 }
 zle     -N    fzf-home-cd-widget
-bindkey '\ed' fzf-home-cd-widget
+bindkey '∂' fzf-home-cd-widget

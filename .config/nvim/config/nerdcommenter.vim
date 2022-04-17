@@ -1,6 +1,6 @@
 let g:NERDCreateDefaultMappings = 0
-let g:NERDSpaceDelims = 1
 let g:NERDRemoveExtraSpaces = 1
+let g:NERDDefaultAlign = 'left'
 
 vmap <Leader>cc <Plug>NERDCommenterComment
 nmap <Leader>cc <Plug>NERDCommenterComment
