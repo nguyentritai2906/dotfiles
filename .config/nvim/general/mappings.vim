@@ -30,8 +30,8 @@ nnoremap <Leader>tn :TablineTabNew<CR>
 nnoremap <Leader>tr :TablineTabRename<Space>
 
 " Buffers navigation
-nmap <silent> ¬ :TablineBufferNext<CR>
-nmap <silent> ˙ :TablineBufferPrevious<CR>
+nmap <silent> <A-L> :TablineBufferNext<CR>
+nmap <silent> <A-H> :TablineBufferPrevious<CR>
 
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j

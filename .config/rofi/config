@@ -1,2 +1,2 @@
-#rofi.theme: /Users/mater/.config/rofi/Arc-Dark.rasi
-rofi.theme: /Users/mater/.config/rofi/tmenu.rasi
+#rofi.theme: .config/rofi/Arc-Dark.rasi
+rofi.theme: .config/rofi/tmenu.rasi

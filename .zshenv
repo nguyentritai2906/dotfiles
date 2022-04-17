@@ -1,4 +1,3 @@
-export JAVA_HOME=$(/usr/libexec/java_home)
 export PATH="$HOME/Library/Python/3.8/bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 export GOPATH=$HOME/go

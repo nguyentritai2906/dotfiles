@@ -111,7 +111,7 @@ SPACESHIP_CONDA_SHOW=true
 SPACESHIP_VENV_SHOW=true
 SPACESHIP_PYENV_SHOW=true
 
-# /Users/mater/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh
+# $HOME/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh
 SPACESHIP_PROMPT_ORDER=(
     time          # Time stampts section
     user          # Username section
@@ -193,9 +193,13 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-alias luamake=/Users/mater/soft/lua-language-server/3rd/luamake/luamake
+alias luamake=$HOME/soft/lua-language-server/3rd/luamake/luamake
+
+export PYENV_ROOT="$HOME/soft/pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
 export PYENV_SHELL=zsh
-source /opt/homebrew/Cellar/pyenv/2.2.*/completions/pyenv.zsh
+source $HOME/soft/pyenv/completions/pyenv.zsh
 command pyenv rehash 2>/dev/null
 pyenv() {
   local command
@@ -213,7 +217,7 @@ pyenv() {
     ;;
   esac
 }
-export PATH="/opt/homebrew/Cellar/pyenv-virtualenv/1.1.5/shims:${PATH}";
+export PATH="${PYENV_ROOT}/pyenv-virtualenv/1.1.5/shims:${PATH}";
 export PYENV_VIRTUALENV_INIT=1;
 _pyenv_virtualenv_hook() {
   local ret=$?
