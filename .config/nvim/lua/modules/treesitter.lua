@@ -1,5 +1,5 @@
 require'nvim-treesitter.configs'.setup {
-    ensure_installed = "maintained",
+    ensure_installed = "python",
     incremental_selection = {
         enable = true,
         keymaps = {

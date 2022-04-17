@@ -39,7 +39,6 @@ local function on_attach(client, bufnr)
     buf_set_keymap('n' , '<space>lwl' , '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>' , opts)
     buf_set_keymap('n' , '<space>ld'  , '<cmd>lua vim.lsp.buf.type_definition()<CR>'                            , opts)
     buf_set_keymap('n' , '<space>lr'  , '<cmd>lua vim.lsp.buf.rename()<CR>'                                     , opts)
-    buf_set_keymap('n' , '<space>le'  , '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>'               , opts)
     buf_set_keymap('n' , '<space>lgk' , '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>'                           , opts)
     buf_set_keymap('n' , '<space>lgj' , '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>'                           , opts)
     buf_set_keymap('n' , '<space>lq'  , '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>'                         , opts)
@@ -55,7 +54,7 @@ local function on_attach(client, bufnr)
         -- buf_set_keymap("n", "<space>lf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
     -- end
 
-    -- So that the only client with format capabilities is efm
+    -- Only EMF has format capabilities
     if client.name ~= 'efm' then
         client.resolved_capabilities.document_formatting = false
     end

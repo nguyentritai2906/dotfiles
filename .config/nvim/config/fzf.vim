@@ -97,4 +97,5 @@ function! AgGrepWrap(grep_command, bang) abort
                 \ )
 endfunction
 
+" Project files
 command! -bang PFiles call fzf#vim#files('~/Documents/projects', <bang>0)

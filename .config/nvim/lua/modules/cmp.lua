@@ -19,9 +19,9 @@ cmp.setup({
     },
     sources = {
         { name = 'ultisnips', keyword_length=3 },
-        { name = 'nvim_lsp', keyword_length=3 },
+        { name = 'nvim_lsp', keyword_length=1 },
         { name = 'path', keyword_length=3 },
-        { name = 'buffer', keyword_length=5, max_item_count=3 },
+        { name = 'buffer', keyword_length=3, max_item_count=3 },
         { name = 'tmux', keyword_length=5, max_item_count=3 },
         { name = 'rg', keyword_length=5, max_item_count=3 },
         { name = 'look', keyword_length=5, options={convert_case=true, loud=true}, max_item_count=3 },
@@ -52,12 +52,3 @@ cmp.setup({
         format = lspkind.cmp_format({with_text = true, maxwidth = 50}),
     },
 })
-
--- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-
--- The following example advertise capabilities to `clangd`.
-require'lspconfig'.pyright.setup {
-  capabilities = capabilities,
-}

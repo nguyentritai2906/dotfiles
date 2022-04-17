@@ -1,5 +1,5 @@
-require('pears').setup()
---require('nvim-autopairs').setup{}
+-- require('pears').setup()
+require('nvim-autopairs').setup{}
 require('goto-preview').setup{}
 require('tabout').setup {
 tabkey = '<Tab>', -- key to trigger tabout, set to an empty string to disable
