@@ -14,6 +14,8 @@ set -g default-shell /bin/zsh
 #   - and iTerm2 is configured to send [1;9A -> [1;9D for option + arrow keys
 # then uncomment the following line to make Meta + arrow keys mapping work
 #set -ga terminal-overrides "*:kUP3=\e[1;9A,*:kDN3=\e[1;9B,*:kRIT3=\e[1;9C,*:kLFT3=\e[1;9D"
+#set -g default-terminal "tmux-256color"
+set -ag terminal-overrides ",xterm-256color:RGB"
 
 
 # -- windows & pane creation ---------------------------------------------------
@@ -40,30 +42,6 @@ tmux_conf_new_session_prompt=false
 
 
 # -- display -------------------------------------------------------------------
-
-# Edge
-white='#c5cdd9'
-black='#2c2e34'
-grey='#88909f'
-red='#ec7279'
-green='#a0c980'
-cyan='#5dbbc1'
-yellow='#deb974'
-blue='#6cb6eb'
-magenta='#d38aea'
-acolor='#d38aea'
-
-# # Dracula
-# white='#f8f8f2'
-# black='#282a36'
-# grey='#88909f'
-# red='#ff5555'
-# green='#50fa7b'
-# cyan='#8be9fd'
-# yellow='#f1fa8c'
-# blue='#8be9fd'
-# magenta='#bd93f9'
-# acolor='#bd93f9'
 
 # RGB 24-bit colour support (tmux >= 2.2), possible values are:
 #  - true
@@ -306,7 +284,7 @@ tmux_conf_copy_to_os_clipboard=true
 # this is the place to override or undo settings
 
 # increase history size
-#set -g history-limit 10000
+set -g history-limit 100000
 
 # start with mouse mode enabled
 set -g mouse on

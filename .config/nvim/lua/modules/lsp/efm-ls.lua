@@ -35,10 +35,7 @@ local shellcheck = {
 }
 
 -- go get -u github.com/mvdan/sh/cmd/shfmt
-local shfmt = {
-  formatCommand = 'shfmt -ci -s -bn',
-  formatStdin = true
-}
+local shfmt = {formatCommand = 'shfmt -ci -s -bn', formatStdin = true}
 
 local root_markers = {".zshrc", ".git/"}
 
@@ -58,7 +55,7 @@ require"lspconfig".efm.setup {
             html = {prettier},
             css = {prettier},
             json = {prettier},
-            yaml = {prettier_yaml},
+            yaml = {prettier_yaml}
         }
     }
 }

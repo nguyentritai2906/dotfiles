@@ -1,4 +1,5 @@
 -- require('pears').setup()
+require'colorizer'.setup({'*';}, {rgb_fn = true})
 require('nvim-autopairs').setup{}
 require('goto-preview').setup{}
 require('tabout').setup {

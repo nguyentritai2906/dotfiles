@@ -34,10 +34,10 @@ ZSH_THEME="spaceship"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
+DISABLE_UPDATE_PROMPT="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+export UPDATE_ZSH_DAYS=30
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 DISABLE_MAGIC_FUNCTIONS=true
@@ -75,19 +75,11 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions fasd last-working-dir fzf-brew)
+plugins=(git zsh-autosuggestions fasd last-working-dir fzf-brew fzf-conda)
 
 source $ZSH/oh-my-zsh.sh
 
-# Load Git completion
-zstyle ':completion:*:*:git:*' script ~/.config/zsh/git-completion.bash
-fpath=(~/.config/zsh $fpath)
-
-autoload -Uz compinit && compinit
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
+# USER CONFIGURATION
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
@@ -128,7 +120,7 @@ SPACESHIP_PROMPT_ORDER=(
 )
 
 # Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+export ARCHFLAGS="-arch arm64"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -140,12 +132,15 @@ SPACESHIP_PROMPT_ORDER=(
 [ -f "$HOME/.config/zsh/zsh_functions.zsh" ] && source "$HOME/.config/zsh/zsh_functions.zsh"
 [ -f "$HOME/.config/zsh/zsh_aliases.zsh" ] && source "$HOME/.config/zsh/zsh_aliases.zsh"
 
+# Load custom colorscheme
+source "$HOME/.config/zsh/colors.zsh"
+
 # Use colors for less, man, etc.
 [[ -f ~/.config/less-termcap ]] && . ~/.config/less-termcap
 
 # History in cache directory:
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
 HISTFILE=~/.cache/.zsh_history
 setopt inc_append_history
 setopt hist_ignore_dups
@@ -153,30 +148,22 @@ setopt extended_glob # For 'all files *except*' e.g. `rm ^foo.bar`
 
 # Configure fzf, command line fuzzy finder
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-FD_OPTIONS="--hidden --exclude .git --exclude node_modules"
+FD_OPTIONS="--hidden"
 export FZF_DEFAULT_OPTS="--no-mouse --height 50% -1 --reverse --multi --tiebreak=length,begin,end,index --inline-info --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -300' --preview-window='right:70%:hidden:wrap' --bind='ctrl-p:toggle-preview,ctrl-d:half-page-down,ctrl-u:half-page-up,ctrl-x:execute(rm -i {+})+abort,alt-k:preview-up,alt-j:preview-down,alt-d:preview-page-down,alt-u:preview-page-up'"
-# Use git-ls-files inside git repo, otherwise fd
-export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard || fd --type f --type l $FD_OPTIONS"
+export FZF_DEFAULT_COMMAND="fd --type f --type l $FD_OPTIONS"
 export FZF_CTRL_T_COMMAND="fd --type f $FD_OPTIONS"
 export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 
 # To get fasd working in a shell, some initialization code must be run
 eval "$(fasd --init auto)"
 
-# Using GNU command line tools flavor instead of FreeBSD https://gist.github.com/skyzyx/3438280b18e4f7c490db8a2a2ca0b9da
+# Using GNU command line tools flavor instead of FreeBSD
+# https://gist.github.com/skyzyx/3438280b18e4f7c490db8a2a2ca0b9da
 if type brew &>/dev/null; then
   HOMEBREW_PREFIX=$(brew --prefix)
   # GNUBin; GNUMan
   for d in ${HOMEBREW_PREFIX}/opt/*/libexec/gnubin; do export PATH=$d:$PATH; done
 fi
-
-# Auto activate env
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
-# Load zsh-syntax-highlighting; should be last.
-source $HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -193,9 +180,8 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-alias luamake=/Users/mater/soft/lua-language-server/3rd/luamake/luamake
 export PYENV_SHELL=zsh
-source /opt/homebrew/Cellar/pyenv/2.2.*/completions/pyenv.zsh
+source /opt/homebrew/Cellar/pyenv/*/completions/pyenv.zsh
 command pyenv rehash 2>/dev/null
 pyenv() {
   local command
@@ -228,3 +214,11 @@ typeset -g -a precmd_functions
 if [[ -z $precmd_functions[(r)_pyenv_virtualenv_hook] ]]; then
   precmd_functions=(_pyenv_virtualenv_hook $precmd_functions);
 fi
+
+# Auto activate env
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+# Load zsh-syntax-highlighting; should be last.
+source $HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

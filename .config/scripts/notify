@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+access_token='Access-Token: <Access-Token>'
+date_time="$(date +"%H:%M:%S %d/%m/%Y")"
+
+$@
+shell_return=$?
+
+body="User: $(whoami)@$(hostname -s)\nCommand: $@\nExit code: $shell_return\n$date_time"
+
+curl -s --header "$access_token" -X POST https://api.pushbullet.com/v2/pushes --header 'Content-Type: application/json' --data-binary '{"type": "note", "title": "Execution Done", "body": "'"$body"'"}' &>/dev/null
+

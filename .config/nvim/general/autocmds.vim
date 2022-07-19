@@ -1,8 +1,3 @@
-" Write, compile and execute
-autocmd filetype python nnoremap <buffer> <F6> :w<CR> :te  python3 ./%<CR>
-autocmd filetype java nnoremap <buffer> <F6> :w<CR> :!javac %<CR> :te java %<<CR>
-autocmd filetype c,cpp nnoremap <buffer> <F6> :w<CR> :!g++ % -o %<<CR> :te ./%<<CR>
-
 " Automatically VimResized
 autocmd VimResized * wincmd =
 
@@ -24,18 +19,6 @@ autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 
 
 " Load the version of matchit.vim that ships with Vim
 runtime! macros/matchit.vim
-
-" Better alternative for autochdir
-" autocmd BufEnter * silent! lcd %:p:h
-nnoremap <silent> <Leader>lcd :call ChangeDirCurBuf()<CR>
-
-function ChangeDirCurBuf()
-    execute 'lcd %:p:h'
-    execute 'pwd'
-endfunction
-
-" Set textwidth in Markdown files
-autocmd BufEnter *.md set textwidth=80
 
 " Reloads vimrc after saving but keep cursor position
 if !exists('*ReloadVimrc')

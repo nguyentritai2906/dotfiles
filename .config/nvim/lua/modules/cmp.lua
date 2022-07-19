@@ -1,4 +1,4 @@
-local cmp = require'cmp'
+local cmp = require 'cmp'
 
 local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -18,13 +18,14 @@ cmp.setup({
         end,
     },
     sources = {
-        { name = 'ultisnips', keyword_length=3 },
-        { name = 'nvim_lsp', keyword_length=1 },
-        { name = 'path', keyword_length=3 },
-        { name = 'buffer', keyword_length=3, max_item_count=3 },
-        { name = 'tmux', keyword_length=5, max_item_count=3 },
-        { name = 'rg', keyword_length=5, max_item_count=3 },
-        { name = 'look', keyword_length=5, options={convert_case=true, loud=true}, max_item_count=3 },
+        { name = 'ultisnips', keyword_length = 1 },
+        { name = 'nvim_lsp', keyword_length = 1 },
+        { name = 'path', keyword_length = 1, max_item_count = 3 },
+        { name = 'buffer', keyword_length = 1, max_item_count = 3 },
+        -- rg -> high cpu usage
+        -- { name = 'tmux', keyword_length=1, max_item_count=3 },
+        -- { name = 'rg', keyword_length=1, max_item_count=3 },
+        -- { name = 'look', keyword_length=1, options={convert_case=true, loud=true}, max_item_count=3 },
     },
     mapping = {
         ['<CR>'] = cmp.mapping.confirm {
@@ -49,6 +50,6 @@ cmp.setup({
         ['<C-u>'] = cmp.mapping.scroll_docs(-5),
     },
     formatting = {
-        format = lspkind.cmp_format({with_text = true, maxwidth = 50}),
+        format = lspkind.cmp_format({ with_text = true, maxwidth = 50 }),
     },
 })

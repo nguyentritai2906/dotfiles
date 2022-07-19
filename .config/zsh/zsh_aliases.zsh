@@ -38,6 +38,41 @@ alias cfm="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME mv"
 alias cflog="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME log --graph --oneline --decorate --all"
 alias ra='ranger --choosedir=$HOME/.config/ranger/rangerdir; LASTDIR=`cat $HOME/.config/ranger/rangerdir`; cd "$LASTDIR"'
 alias p='python3'
+alias luamake='/Users/mater/soft/lua-language-server/3rd/luamake/luamake'
+
+if [ "$(uname)" = "Darwin" ]; then
+    alias rm='move_to_trash'
+    function move_to_trash() {
+        local args=("$@")
+        for i in "${args[@]}"; do
+            if mv -t $HOME/.Trash/ "$i" 2>/dev/null; then
+                echo "$(realpath $i) => $HOME/.Trash/$(basename $i)"
+            else
+                local count=$(ls -ald $HOME/.Trash/$(basename $i)*/ | wc -l)
+                if mv "$i" $HOME/.Trash/$(basename $i)_$count; then
+                    echo "$(realpath $i) => $HOME/.Trash/$(basename $i)_$count"
+                fi
+            fi
+        done
+    }
+    alias ept='\rm -rf $HOME/.Trash/*'
+elif [ "$(expr substr $(uname -s) 1 5)" = "Linux" ]; then
+    alias rm='move_to_trash'
+    function move_to_trash() {
+        local args=("$@")
+        for i in "${args[@]}"; do
+            if mv -t $XDG_DATA_HOME/Trash/ "$i" 2>/dev/null; then
+                echo "$(realpath $i) => $XDG_DATA_HOME/Trash/$(basename $i)"
+            else
+                local count=$(ls -ald $XDG_DATA_HOME/Trash/$(basename $i)*/ | wc -l)
+                if mv "$i" $XDG_DATA_HOME/Trash/$(basename $i)_$count; then
+                    echo "$(realpath $i) => $XDG_DATA_HOME/Trash/$(basename $i)_$count"
+                fi
+            fi
+        done
+    }
+    alias ept='\rm -rf $XDG_DATA_HOME/Trash/*'
+fi
 
 # Starts one or multiple args as programs in background
 # Open GUI application with just filename without command prefix

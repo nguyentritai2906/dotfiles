@@ -12,4 +12,11 @@ require('distant').setup {
             user = 'nttai',
         },
     },
+    ['pc1'] = {
+        mode = 'ssh',
+        ssh = {
+            port = 11022,
+            user = 'nttai',
+        },
+    },
 }

@@ -23,8 +23,9 @@ let g:fzf_buffers_jump = 1
 
 if has('nvim') || has('gui_running')
     " let $FZF_DEFAULT_OPTS .= ' --inline-info'
-    let $FZF_DEFAULT_OPTS .= ' --inline-info --preview-window=:nohidden'
+    let $FZF_DEFAULT_OPTS .= ' --bind "å:select-all" --inline-info --preview-window=:nohidden' " alt+a:select all
 endif
+
 nnoremap <silent> <Leader>f/ : BLines<CR>
 nnoremap <silent> <Leader>f? : Lines<CR>
 nnoremap <silent> <Leader>ff : Files<CR>
@@ -60,7 +61,7 @@ function! SearchVisualSelectionWithAg() range
 endfunction
 
 " Default options are --nogroup --column --color
-let s:ag_options = ' --one-device --skip-vcs-ignores --smart-case '
+let s:ag_options = '-t --one-device --skip-vcs-ignores --smart-case '
 
 " command! -bang -nargs=* Ag
 "             \ call fzf#vim#ag(

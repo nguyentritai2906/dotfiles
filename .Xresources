@@ -1,5 +1,6 @@
 #include "$HOME/.config/Xresources/color/edge"
 #include "$HOME/.config/Xresources/rofi"
+#include "$HOME/.config/Xresources/color/catppucin"
 
 ! *.acolor: #d38aea
 ! *.background:   #2c2e34

@@ -5,7 +5,7 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/config/nvim/plugged')
 
     " LSP
     Plug 'neovim/nvim-lspconfig'
@@ -39,7 +39,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'metakirby5/codi.vim'
     Plug 'SirVer/ultisnips' | Plug 'nguyentritai2906/vim-snippets'
     Plug 'mjbrownie/swapit' " Swap True-False
-    Plug 'rlue/vim-barbaric' " Switch input method
     Plug 'mfussenegger/nvim-jdtls'
     Plug 'mfussenegger/nvim-dap'
     Plug 'theHamsta/nvim-dap-virtual-text'
@@ -52,8 +51,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'sheerun/vim-polyglot'
 
     " Tags
-    Plug 'xolox/vim-easytags'
-    Plug 'xolox/vim-misc'
+    " Plug 'xolox/vim-easytags'
+    " Plug 'xolox/vim-misc'
 
     " Make life easier
     Plug 'gioele/vim-autoswap' " No more swap files!
@@ -69,7 +68,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-eunuch'
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-abolish'
-    Plug 'simeji/winresizer'
     Plug 'folke/which-key.nvim'
     Plug 'godlygeek/tabular'
     Plug 'kevinhwang91/nvim-bqf'
@@ -100,6 +98,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'dracula/vim', { 'as': 'dracula'  }
     Plug 'sainnhe/edge'
     Plug 'bluz71/vim-nightfly-guicolors'
+    Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+    Plug 'nguyentritai2906/dark-notify'
 
     " Navigation
     Plug 'easymotion/vim-easymotion' " Vim motions on speed
@@ -110,6 +110,8 @@ call plug#begin('~/.vim/plugged')
     " Writing
     Plug 'vimwiki/vimwiki'
     Plug 'plasticboy/vim-markdown'	" Syntax highlighting, matching rules and mappings Markdown
+    Plug 'junegunn/goyo.vim'
+    Plug 'ellisonleao/glow.nvim', {'branch': 'main'}
 
 call plug#end()
 

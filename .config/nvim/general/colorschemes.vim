@@ -1,5 +1,5 @@
 source ~/.config/nvim/config/edge.vim
-colorscheme edge
+" colorscheme catppuccin
 
 " Highlight
 highlight		Normal		guibg=NONE	 ctermbg=NONE
