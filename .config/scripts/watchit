@@ -1,0 +1,32 @@
+#!/bin/bash
+
+if [ -z "$@" ]; then
+    echo "Usage: watchit <command>"
+    exit 1
+fi
+
+# Quit if q is pressed
+trap "echo 'Exiting...'; exit" SIGINT
+
+HOME=$(tput cup 0 0)
+ED=$(tput ed)
+EL=$(tput el)
+printf '%s%s' "$HOME" "$ED"
+while true
+do
+    ROWS=$(tput lines)
+    COLS=$(tput cols)
+    CMD="$@"
+    ${SHELL:=sh} -c "$CMD" | head -n $ROWS | while IFS= read LINE; do
+        printf '%-*.*s%s\n' $COLS $COLS "$LINE" "$EL"
+    done
+    printf '%s%s' "$ED" "$HOME"
+
+    read -t 1 -n 1 exitwhile;
+
+    if [ -n "$exitwhile" ]; then
+        break;
+    fi
+done
+
+clear
