@@ -75,7 +75,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions fasd last-working-dir fzf-brew fzf-conda)
+plugins=(git zsh-autosuggestions fasd last-working-dir fzf-brew fzf-conda zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -219,6 +219,3 @@ fi
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
-
-# Load zsh-syntax-highlighting; should be last.
-source $HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
