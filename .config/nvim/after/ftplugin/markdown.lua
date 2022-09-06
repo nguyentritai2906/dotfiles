@@ -1,10 +1,10 @@
-vim.cmd[[source ~/.config/nvim/config/markdown.vim]]
+vim.cmd [[source ~/.config/nvim/config/markdown.vim]]
 
 -- markdown ftplugin
 vim.opt.autoindent = true
 vim.opt.linebreak = true
 vim.opt_local.conceallevel = 2
-vim.opt.textwidth = 80
+vim.opt.textwidth = 120
 vim.opt.wrap = true
 
 -- -- @TODOUA:
@@ -25,3 +25,5 @@ vim.cmd "hi matchURL guifg=DodgerBlue"
 vim.fn.matchadd("matchStrike", [[[~]\{2}.\+[~]\{2}]])
 vim.cmd "hi matchStrike guifg=gray"
 
+-- if file path begin with ~/Documents/notes then set textwidth to 120
+vim.cmd [[autocmd BufEnter * if (expand("%:p:h") == "~/Documents/notes") | set textwidth=120 | endif]]
