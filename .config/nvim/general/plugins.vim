@@ -5,7 +5,7 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
-call plug#begin('~/config/nvim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
     " LSP
     Plug 'neovim/nvim-lspconfig'

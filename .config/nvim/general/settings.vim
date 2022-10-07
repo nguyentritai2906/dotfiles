@@ -62,6 +62,7 @@ set shiftwidth=4 " number of spaces to use for indent and unindent
 set shiftround " round indent to a multiple of 'shiftwidth'
 set expandtab
 set guicursor=n-v-sm:block,i-c-ci-ve:ver25,r-cr-o:hor20
+set synmaxcol=2048
 
 " Make the 81st column stand out
 " IMPORTANT: load the colorscheme before ctermbg settings in .vimrc
