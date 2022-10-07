@@ -1,5 +1,7 @@
 # Command aliases
 alias vim='nvim'
+alias d='docker'
+alias dc='docker-compose'
 alias cd..='cd ..'
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -55,7 +57,7 @@ if [ "$(uname)" = "Darwin" ]; then
             fi
         done
     }
-    alias ept='\rm -rf $HOME/.Trash/*'
+    alias ept='\rm -rf $HOME/.Trash/.*; \rm -rf $HOME/.Trash/*'
 elif [ "$(expr substr $(uname -s) 1 5)" = "Linux" ]; then
     alias rm='move_to_trash'
     function move_to_trash() {
@@ -71,7 +73,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" = "Linux" ]; then
             fi
         done
     }
-    alias ept='\rm -rf $XDG_DATA_HOME/Trash/*'
+    alias ept='\rm -rf $XDG_DATA_HOME/Trash/.*; \rm -rf $XDG_DATA_HOME/Trash/*'
 fi
 
 # Starts one or multiple args as programs in background
