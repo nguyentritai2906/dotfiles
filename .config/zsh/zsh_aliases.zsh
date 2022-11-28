@@ -43,38 +43,27 @@ alias p='python3'
 alias luamake='/Users/mater/soft/lua-language-server/3rd/luamake/luamake'
 
 if [ "$(uname)" = "Darwin" ]; then
-    alias rm='move_to_trash'
-    function move_to_trash() {
-        local args=("$@")
-        for i in "${args[@]}"; do
-            if mv -t $HOME/.Trash/ "$i" 2>/dev/null; then
-                echo "$(realpath $i) => $HOME/.Trash/$(basename $i)"
-            else
-                local count=$(ls -ald $HOME/.Trash/$(basename $i)*/ | wc -l)
-                if mv "$i" $HOME/.Trash/$(basename $i)_$count; then
-                    echo "$(realpath $i) => $HOME/.Trash/$(basename $i)_$count"
-                fi
-            fi
-        done
-    }
-    alias ept='\rm -rf $HOME/.Trash/.*; \rm -rf $HOME/.Trash/*'
+    export TRASH=$HOME/.Trash
 elif [ "$(expr substr $(uname -s) 1 5)" = "Linux" ]; then
-    alias rm='move_to_trash'
-    function move_to_trash() {
-        local args=("$@")
-        for i in "${args[@]}"; do
-            if mv -t $XDG_DATA_HOME/Trash/ "$i" 2>/dev/null; then
-                echo "$(realpath $i) => $XDG_DATA_HOME/Trash/$(basename $i)"
-            else
-                local count=$(ls -ald $XDG_DATA_HOME/Trash/$(basename $i)*/ | wc -l)
-                if mv "$i" $XDG_DATA_HOME/Trash/$(basename $i)_$count; then
-                    echo "$(realpath $i) => $XDG_DATA_HOME/Trash/$(basename $i)_$count"
-                fi
-            fi
-        done
-    }
-    alias ept='\rm -rf $XDG_DATA_HOME/Trash/.*; \rm -rf $XDG_DATA_HOME/Trash/*'
+    export TRASH=$XDG_DATA_HOME/Trash
 fi
+function move_to_trash() {
+    local args=("$@")
+    for i in "${args[@]}"; do
+        local bname=$(basename "$i")
+        local rpath=$(realpath "$i")
+        if mv -t $TRASH "$i" 2>/dev/null; then
+            echo "$rpath => $TRASH/$bname"
+        else
+            local count=$(ls -ald $TRASH/$bname*/ | wc -l)
+            if mv "$i" $TRASH/"$bname"_$count; then
+                echo "$rpath => $TRASH/"$bname"_$count"
+            fi
+        fi
+    done
+}
+alias rm='move_to_trash'
+alias ept='(\rm -rf $TRASH/.*) 2> /dev/null; (\rm -rf $TRASH/*) 2> /dev/null'
 
 # Starts one or multiple args as programs in background
 # Open GUI application with just filename without command prefix
