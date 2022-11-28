@@ -26,5 +26,5 @@ require'lspconfig'.pyright.setup{
         },
     },
     single_file_support = true,
-    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 }

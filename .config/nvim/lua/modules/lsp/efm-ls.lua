@@ -3,11 +3,13 @@
 local flake8 = {
     LintCommand = "flake8 --stdin-display-name ${INPUT} -",
     lintStdin = true,
+    formatStdin = true,
     lintFormats = {"%f:%l:%c: %m"}
 }
 local isort = {formatCommand = "isort --quiet -", formatStdin = true}
 local yapf = {formatCommand = "yapf --quiet", formatStdin = true}
 local autopep8 = {formatCommand = "autopep8 -", formatStdin = true}
+local black = {formatCommand = "black --quiet -", formatStdin = true}
 
 -- lua
 local luaFormat = {
@@ -16,12 +18,12 @@ local luaFormat = {
 }
 
 -- JavaScript/React/TypeScript
-local prettier = {formatCommand = "./node_modules..bin/prettier --stdin-filepath ${INPUT}", formatStdin = true}
+local prettier = {formatCommand = "prettier --stdin-filepath ${INPUT}", formatStdin = true}
 
 local prettier_yaml = {formatCommand = "prettier --stdin-filepath ${INPUT}", formatStdin = true}
 
 local eslint = {
-    lintCommand = "./node_modules..bin/eslint -f unix --stdin --stdin-filename ${INPUT}",
+    lintCommand = "eslint -f unix --stdin --stdin-filename ${INPUT}",
     lintIgnoreExitCode = true,
     lintStdin = true,
     lintFormats = {"%f:%l:%c: %m"},
@@ -42,13 +44,19 @@ local root_markers = {".zshrc", ".git/"}
 require"lspconfig".efm.setup {
     on_attach = require('modules.lsp').on_attach,
     root_dir = require"lspconfig".util.root_pattern(unpack(root_markers)),
-    init_options = {documentFormatting = true, codeAction = true},
+    init_options = {
+        documentFormatting = true,
+        hover = true,
+        documentSymbol = true,
+        codeAction = true,
+        completion = true
+    },
     filetypes = {"lua", "python", "javascriptreact", "javascript", "sh", "html", "css", "json", "yaml"},
     settings = {
         rootMarkers = {".git/"},
         languages = {
             lua = {luaFormat},
-            python = {yapf, isort},
+            python = {black, flake8, yapf, isort, autopep8},
             javascriptreact = {prettier, eslint},
             javascript = {prettier, eslint},
             sh = {shfmt, shellcheck},

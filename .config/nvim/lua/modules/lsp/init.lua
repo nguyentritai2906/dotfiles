@@ -4,7 +4,7 @@ local nvim_lsp = require('lspconfig')
 
 local function on_attach(client, bufnr)
     -- Set autocommands conditional on server_capabilities
-    if client.resolved_capabilities.document_highlight then
+    if client.server_capabilities.document_highlight then
         vim.api.nvim_exec([[
       augroup lsp_document_highlight
         autocmd! * <buffer>
@@ -17,6 +17,7 @@ local function on_attach(client, bufnr)
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
     end
+
     local function buf_set_option(...)
         vim.api.nvim_buf_set_option(bufnr, ...)
     end
@@ -46,27 +47,12 @@ local function on_attach(client, bufnr)
     buf_set_keymap('n', '<space>lv', '<cmd>lua require("modules.lsp/virtual-text").toggle()<CR>', opts)
     buf_set_keymap('n', '<space>lE', '<cmd>lua require"toggle_lsp_diagnostics".toggle_virtual_text()<CR>', opts)
 
-    -- -- Set some keybinds conditional on server capabilities
-    -- if client.resolved_capabilities.document_formatting then
-    -- buf_set_keymap("n", "<space>lf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-
-    -- vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync({}, 1000)]]
-    -- elseif client.resolved_capabilities.document_range_formatting then
-    -- buf_set_keymap("n", "<space>lf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
-    -- end
-
     -- Only EMF has format capabilities
-    if client.name ~= 'efm' then client.resolved_capabilities.document_formatting = false end
+    if client.name ~= 'efm' then client.server_capabilities.documentFormattingProvider = false end
 
-    if client.resolved_capabilities.document_formatting then
-        vim.cmd [[
-        augroup Format
-        au! * <buffer>
-        au BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
-        augroup END
-        ]]
+    if client.server_capabilities.documentFormattingProvider then
+        vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
     end
-    -- au BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)
 
     require"lsp_signature".on_attach()
 
@@ -78,7 +64,7 @@ tog.init()
 -- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches
 -- local servers = {"vimls"} -- Somehow this cause handler.lua error 'format expected number, got nil'
-local servers = {}
+local servers = {'tsserver'}
 for _, lsp in ipairs(servers) do nvim_lsp[lsp].setup {on_attach = on_attach} end
 
 local user_define = {}
