@@ -155,7 +155,7 @@ export FZF_CTRL_T_COMMAND="fd --type f $FD_OPTIONS"
 export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 
 # To get fasd working in a shell, some initialization code must be run
-eval "$(fasd --init auto)"
+# eval "$(fasd --init auto)"
 
 # Using GNU command line tools flavor instead of FreeBSD
 # https://gist.github.com/skyzyx/3438280b18e4f7c490db8a2a2ca0b9da
