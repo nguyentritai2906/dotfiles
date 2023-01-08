@@ -14,14 +14,16 @@ local lspkind = require('lspkind')
 cmp.setup({
     snippet = {
         expand = function(args)
-            vim.fn["UltiSnips#Anon"](args.body)
+            require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+            -- vim.fn["UltiSnips#Anon"](args.body)
         end,
     },
     sources = {
-        { name = 'ultisnips', keyword_length = 1 },
+        { name = 'luasnip', keyword_length = 1 },
         { name = 'nvim_lsp', keyword_length = 1 },
         { name = 'path', keyword_length = 1, max_item_count = 3 },
         { name = 'buffer', keyword_length = 1, max_item_count = 3 },
+        -- { name = 'ultisnips', keyword_length = 1 },
         -- rg -> high cpu usage
         -- { name = 'tmux', keyword_length=1, max_item_count=3 },
         -- { name = 'rg', keyword_length=1, max_item_count=3 },

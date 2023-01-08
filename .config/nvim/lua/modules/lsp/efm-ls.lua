@@ -43,6 +43,8 @@ local shellcheck = {
 -- go get -u github.com/mvdan/sh/cmd/shfmt
 local shfmt = {formatCommand = 'shfmt -ci -s -bn', formatStdin = true}
 
+local rustfmt = {formatCommand = "rustfmt", formatStdin = true}
+
 local root_markers = {".zshrc", ".git/"}
 
 require"lspconfig".efm.setup {
@@ -55,7 +57,7 @@ require"lspconfig".efm.setup {
         codeAction = true,
         completion = true
     },
-    filetypes = {"lua", "python", "javascriptreact", "javascript", "sh", "html", "css", "json", "yaml"},
+    filetypes = {"lua", "python", "javascriptreact", "javascript", "sh", "html", "css", "json", "yaml", "rust", "go"},
     settings = {
         rootMarkers = {".git/"},
         languages = {
@@ -67,7 +69,9 @@ require"lspconfig".efm.setup {
             html = {prettier},
             css = {prettier},
             json = {prettier},
-            yaml = {prettier_yaml}
+            yaml = {prettier_yaml},
+            rust = {rustfmt},
+            go = {}
         }
     }
 }

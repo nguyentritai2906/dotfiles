@@ -7,23 +7,30 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 
-    " LSP
+    " LSP Support
     Plug 'neovim/nvim-lspconfig'
+    Plug 'VonHeikemen/lsp-zero.nvim'
+    Plug 'williamboman/mason.nvim'
+    Plug 'williamboman/mason-lspconfig.nvim'
+
+    " Autocompletion
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-path'
+    Plug 'saadparwaiz1/cmp_luasnip'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-nvim-lua'
+    Plug 'onsails/lspkind-nvim'
+
+    "  Snippets
+    Plug 'L3MON4D3/LuaSnip'
+    Plug 'rafamadriz/friendly-snippets' " Snippet collection (Optional)
+    " Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+    " Plug 'SirVer/ultisnips' | Plug 'nguyentritai2906/vim-snippets'
+
     Plug 'ray-x/lsp_signature.nvim'
     Plug 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
     Plug 'rmagatti/goto-preview'
-
-    Plug 'onsails/lspkind-nvim'
-    Plug 'hrsh7th/nvim-cmp'
-    Plug 'quangnguyen30192/cmp-nvim-ultisnips'
-    Plug 'hrsh7th/cmp-buffer'
-    Plug 'hrsh7th/cmp-nvim-lsp'
-    Plug 'hrsh7th/cmp-path'
-    Plug 'octaltree/cmp-look'
-    Plug 'kdheepak/cmp-latex-symbols'
-    Plug 'f3fora/cmp-spell'
-    Plug 'lukas-reineke/cmp-rg'
-    Plug 'andersevenrud/compe-tmux'
 
     " Git
     Plug 'airblade/vim-gitgutter'
@@ -37,7 +44,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
     Plug 'jpalardy/vim-slime'
     Plug 'metakirby5/codi.vim'
-    Plug 'SirVer/ultisnips' | Plug 'nguyentritai2906/vim-snippets'
     Plug 'mjbrownie/swapit' " Swap True-False
     Plug 'mfussenegger/nvim-jdtls'
     Plug 'mfussenegger/nvim-dap'
@@ -45,14 +51,11 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'rcarriga/nvim-dap-ui'
     Plug 'chipsenkbeil/distant.nvim'
     Plug 'github/copilot.vim'
+    Plug 'simrat39/rust-tools.nvim'
 
     " Syntax
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'sheerun/vim-polyglot'
-
-    " Tags
-    " Plug 'xolox/vim-easytags'
-    " Plug 'xolox/vim-misc'
 
     " Make life easier
     Plug 'gioele/vim-autoswap' " No more swap files!

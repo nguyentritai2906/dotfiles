@@ -1,0 +1,90 @@
+HISTSIZE=10000
+HISTFILESIZE=20000
+export PATH=$PATH:$HOME/.local/bin
+export PUSHBULLET_ACCESS_TOKEN=o.SO2A5MlJHr4WI5gMIjNLUf24B2f0uDrg
+export EDITOR=vim
+export HISTTIMEFORMAT="%F %T "
+
+alias l='cd -'
+alias ll='ls -alhF --group-directories-first'
+alias g='git '
+alias ga='git add'
+alias gc='git commit'
+alias gd='git diff'
+alias gl='git pull'
+alias gp='git push'
+alias gr='git remote'
+alias gf='git fetch'
+alias gst='git status'
+alias gco='git checkout'
+alias gcl='git clone'
+alias nvi='nvidia-smi'
+alias p='python'
+alias ..='cd ..'
+alias cd..='cd ..'
+alias cd...='cd ../..'
+alias gpu0='CUDA_VISIBLE_DEVICES=0'
+alias gpu1='CUDA_VISIBLE_DEVICES=1'
+alias d='docker'
+alias dc='docker-compose'
+
+if [ "$(uname)" = "Darwin" ]; then
+    export TRASH=$HOME/.Trash
+elif [ "$(expr substr $(uname -s) 1 5)" = "Linux" ]; then
+    export TRASH=$HOME/Trash
+fi
+function move_to_trash() {
+    local args=("$@")
+    for i in "${args[@]}"; do
+        local bname=$(basename "$i")
+        local rpath=$(realpath "$i")
+        if mv -t $TRASH "$i" 2>/dev/null; then
+            echo "$rpath => $TRASH/$bname"
+        else
+            local count=$(ls -ald $TRASH/$bname*/ | wc -l)
+            if mv "$i" $TRASH/"$bname"_$count; then
+                echo "$rpath => $TRASH/"$bname"_$count"
+            fi
+        fi
+    done
+}
+alias rm='move_to_trash'
+alias ept='(\rm -rf $TRASH/.*) 2> /dev/null; (\rm -rf $TRASH/*) 2> /dev/null'
+
+# Conda
+if ! command -v conda >/dev/null; then
+    echo 'conda command not found: please install via https://conda.io/'
+fi
+
+if ! command -v fzf >/dev/null; then
+    echo 'fzf command not found: please install via "apt install fzf"'
+fi
+
+# functions
+function fuzzy_conda_activate() {
+    if [[ -z "$1" ]]; then
+        printf "No environment name provided.\n"
+        local env=$(conda env list | awk '3<=NR && NR<($Num) {print$1}' | fzf --query="$1")
+    elif [ -z "$(conda env list | grep $1)" ]; then
+        local env="$1"
+        printf "Environment '$env' not found.\n"
+        printf "Creating environment '$env'...\n"
+        conda create -n "$env"
+    else
+        local env="$1"
+    fi
+
+    if [ "$(echo $CONDA_DEFAULT_ENV)" ]; then
+        printf "Deactivating environment '$CONDA_DEFAULT_ENV'...\n"
+        conda deactivate && conda activate "$env"
+    else
+        conda activate "$env"
+    fi
+}
+
+alias cda='fuzzy_conda_activate'
+alias cdd='conda deactivate'
+alias cdel='conda env list'
+alias cdl='conda list'
+alias cdc='conda create -n'
+alias cdi='conda install'

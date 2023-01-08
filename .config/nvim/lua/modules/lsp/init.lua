@@ -61,16 +61,55 @@ end
 local tog = require("toggle_lsp_diagnostics")
 tog.init()
 
--- Use a loop to conveniently both setup defined servers
--- and map buffer local keybindings when the language server attaches
--- local servers = {"vimls"} -- Somehow this cause handler.lua error 'format expected number, got nil'
-local servers = {'tsserver'}
-for _, lsp in ipairs(servers) do nvim_lsp[lsp].setup {on_attach = on_attach} end
+-- -- Use a loop to conveniently both setup defined servers
+-- -- and map buffer local keybindings when the language server attaches
+-- -- local servers = {"vimls"} -- Somehow this cause handler.lua error 'format expected number, got nil'
+-- local servers = {'tsserver'}
+-- for _, lsp in ipairs(servers) do nvim_lsp[lsp].setup {on_attach = on_attach} end
+
+local lsp = require('lsp-zero')
+lsp.preset('recommended')
+
+-- Install these servers
+lsp.ensure_installed({
+    'tsserver',
+    'eslint',
+    'sumneko_lua',
+    'pyright',
+    'bashls',
+    'vimls',
+    'jsonls',
+    'yamlls',
+    'dockerls',
+    'html',
+    'cssls',
+    'tailwindcss',
+    'gopls',
+})
+
+-- Pass arguments to a language server
+lsp.configure('tsserver', {
+    on_attach = function(client, bufnr)
+        print('hello tsserver')
+    end,
+    settings = {
+        completions = {
+            completeFunctionCalls = true
+        }
+    }
+})
+
+-- Configure lua language server for neovim
+lsp.nvim_workspace()
+
+lsp.on_attach = on_attach
+lsp.setup()
 
 local user_define = {}
-
 function user_define.on_attach(client, bufnr)
     on_attach(client, bufnr)
 end
-
 return user_define
+
+
+

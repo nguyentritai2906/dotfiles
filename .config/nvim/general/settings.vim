@@ -53,6 +53,8 @@ set spelllang=en
 if has('termguicolors')
     set termguicolors " Nvim-tree: this variable must be enabled for colors to be applied properly
 endif
+set listchars=tab:»\ ,trail:·,nbsp:␣,extends:❯,precedes:❮,eol:↵
+set list
 
 " Tab control
 set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
