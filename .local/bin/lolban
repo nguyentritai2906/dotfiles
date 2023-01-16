@@ -6,4 +6,4 @@
 # to get urxvt working with 256 colors use
 # sudo apt-get install rxvt-unicode-256color
 
-figlet $1 -t -f 3d.flf | lolcat
+figlet $1 | lolcat
