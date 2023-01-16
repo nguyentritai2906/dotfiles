@@ -75,14 +75,15 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'godlygeek/tabular'
     Plug 'kevinhwang91/nvim-bqf'
     Plug 'tpope/vim-obsession'
+    Plug 'ervandew/supertab'
 
     " Text object
     Plug 'kana/vim-textobj-user'
-	Plug 'kana/vim-textobj-line'
-	Plug 'kana/vim-textobj-entire'
-	Plug 'kana/vim-textobj-indent'
+    Plug 'kana/vim-textobj-line'
+    Plug 'kana/vim-textobj-entire'
+    Plug 'kana/vim-textobj-indent'
     Plug 'bps/vim-textobj-python'
-	Plug 'wellle/targets.vim'
+   :Plug 'wellle/targets.vim'
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
     " UI
@@ -114,7 +115,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'vimwiki/vimwiki'
     Plug 'plasticboy/vim-markdown'	" Syntax highlighting, matching rules and mappings Markdown
     Plug 'junegunn/goyo.vim'
-    Plug 'ellisonleao/glow.nvim', {'branch': 'main'}
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+    " Plug 'ellisonleao/glow.nvim', {'branch': 'main'}
 
 call plug#end()
 

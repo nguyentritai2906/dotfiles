@@ -35,15 +35,4 @@ source ~/.config/nvim/config/vimwiki.vim
 source ~/.config/nvim/config/fzf.vim
 
 lua require('plenary.reload').reload_module('modules', true)
-lua require('modules.lsp')
-lua require('modules.lsp.efm-ls')
-lua require('modules.cmp')
-lua require('modules.treesitter')
-lua require('modules.whichkey')
-lua require('modules.lualine')
-lua require('modules.tabline')
-lua require('modules.dap')
-lua require('modules.distant')
-lua require('modules.copilot')
-lua require('modules.catppuccin')
-lua require('modules.others')
+lua require('modules')
