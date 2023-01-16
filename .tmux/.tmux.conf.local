@@ -146,7 +146,6 @@ tmux_conf_theme_window_status_bell_attr='blink,bold'
 
 # window last status style
 tmux_conf_theme_window_status_last_fg=$green         # kind of green
-
 tmux_conf_theme_window_status_last_bg='default'
 tmux_conf_theme_window_status_last_attr='none'
 
@@ -316,3 +315,6 @@ bind -r < swap-window -t -\; select-window -t -       # swap current window with
 
 bind -r ˙ previous-window
 bind -r ¬ next-window
+
+# synchronize all panes in a window
+bind C-y set-window-option synchronize-panes
