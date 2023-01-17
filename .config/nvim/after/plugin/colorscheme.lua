@@ -1,4 +1,10 @@
-local catppuccin = require("catppuccin")
+-- Highlight
+vim.cmd('highlight Normal guibg=NONE ctermbg=NONE')
+vim.cmd('highlight link Searchlight IncSearch')
+
+-- Add DONE to TODO highlighting group
+-- https://stackoverflow.com/questions/4162664/vim-highlight-a-list-of-words
+vim.cmd('match Todo /DONE\\|NOTE\\|TODO/')
 
 require("catppuccin").setup({
     compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
@@ -31,22 +37,23 @@ require("catppuccin").setup({
     custom_highlights = {}
 })
 
--- vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
--- vim.cmd[[colorscheme catppuccin]]
+vim.cmd [[colorscheme catppuccin]]
 
-local dn = require('dark_notify')
--- Configure
-dn.run({
-    schemes = {dark = "catppuccin", light = "catppuccin"},
-    before = function(mode)
-        -- os.execute("$HOME/.config/scripts/switch_theme.sh " .. mode)
-        if mode == "dark" then
-            vim.g.catppuccin_flavour = "macchiato"
-        else
-            vim.g.catppuccin_flavour = "latte"
+-- If machine is macOS, use the following
+if vim.fn.has('mac') == 1 then
+    local dn = require('dark_notify')
+    -- Configure
+    dn.run({
+        schemes = {dark = "catppuccin", light = "catppuccin"},
+        before = function(mode)
+            if mode == "dark" then
+                vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
+            else
+                vim.g.catppuccin_flavour = "frappe"
+            end
+        end,
+        after = function(_)
         end
-    end,
-    after = function(mode)
-    end
-})
-dn.update()
+    })
+    dn.update()
+end

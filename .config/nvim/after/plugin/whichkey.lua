@@ -79,7 +79,29 @@ wk.register({
         k = "PrevCell"
     },
     c = {name = "+Commenter", c = "CommentLine", i = "InvertComment", u = "UncommentLine"},
-    g = {name = "+GitGutter", k = "PrevHunk", j = "NextHunk", p = "PreviewHunk", s = "StageHunk", u = "UndoHunk"},
+    g = {
+        name = "+GitGutter",
+        k = "PrevHunk",
+        j = "NextHunk",
+        p = "PreviewHunk",
+        s = "StageHunk",
+        S = "StageBuffer",
+        u = "UndoStageHunk",
+        r = "ResetHunk",
+        R = "ResetBuffer",
+        d = "DiffHunk",
+        D = "DiffBuffer",
+        b = "BlameLine",
+        t = {
+            name = "+Toggle",
+            n = "ToggleNumsHL",
+            l = "ToggleLineHL",
+            b = "ToggleBlame",
+            s = "ToggleSigns",
+            d = "ToggleDeleted",
+            w = "ToggleWordDiff"
+        }
+    },
     w = {
         name = "+Vimwiki",
         i = "DiaryIndex",
@@ -129,8 +151,7 @@ wk.register({
         r = "Rename",
         f = "Formatting",
         w = {name = "+Workspace", a = "AddWorkspaceFolder", r = "RemoveWorkspaceFolder", l = "ListWorkspaceFolders"},
-        g = {name = "+GoTo", k = "PrevDiagnostic", j = "NextDiagnostic"},
-        p = {name = "+Preview", d = "Definition", r = "References", i = "Implementation", c = "CloseAllPreview"}
+        g = {name = "+GoTo", k = "PrevDiagnostic", j = "NextDiagnostic"}
     },
     s = {
         name = "+Session",
@@ -142,16 +163,11 @@ wk.register({
         o = {":Obsession<CR>", "TrackSession"},
         O = {":Obsession!<CR>", "StopTrackSession"}
     },
-    a = {
-        name = "+Actions",
-        c = {":ColorizerToggle<CR>", "Colorizer"},
-        h = {":nohl<CR>", "NoHighlight"},
-        o = {":hi! Normal ctermbg=none ctermfg=none guifg=none guibg=none<CR>", "Opacity"}
-    },
-    ["<space>"] = "Easy Motion",
-    ["<cr>"] = "Source Config",
-    j = "Newline Below",
-    k = "Newline Above",
+    a = {name = "+Actions", c = {":ColorizerToggle<CR>", "Colorizer"}, h = {":nohl<CR>", "NoHighlight"}},
+    ["<space>"] = "EasyMotion",
+    ["<cr>"] = "SourceConfig",
+    j = "NewlineBelow",
+    k = "NewlineAbove",
     t = {
         name = "+Tab",
         h = "TabLeft",
@@ -199,8 +215,7 @@ wk.register({
             ["."] = "dot.case",
             ["<space>"] = "space case"
         }
-    },
-    g = {s = {name = "+TSScope", n = "Init", i = "Incremental", d = "Decremental"}}
+    }
 })
 
 -- Visual mappings with Prefix

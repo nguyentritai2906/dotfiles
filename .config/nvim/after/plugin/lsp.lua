@@ -32,10 +32,6 @@ local function on_attach(client, bufnr)
     buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
     buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    buf_set_keymap('n', '<space>lpd', '<cmd>lua require("goto-preview").goto_preview_definition()<CR>', opts)
-    buf_set_keymap('n', '<space>lpi', '<cmd>lua require("goto-preview").goto_preview_implementation()<CR>', opts)
-    buf_set_keymap('n', '<space>lpr', '<cmd>lua require("goto-preview").goto_preview_references()<CR>', opts)
-    buf_set_keymap('n', '<space>lpc', '<cmd>lua require("goto-preview").close_all_win()<CR>', opts)
     buf_set_keymap('n', '<space>lk', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     buf_set_keymap('n', '<space>lwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
     buf_set_keymap('n', '<space>lwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
@@ -84,7 +80,7 @@ lsp.setup_nvim_cmp({
         {name = 'buffer', keyword_length = 1, max_item_count = 3}
     },
     mapping = cmp.mapping.preset.insert({
-        ['<C-j>'] = cmp.mapping.confirm {behavior = cmp.ConfirmBehavior.Insert, select = true},
+        ['<CR>'] = cmp.mapping.confirm {behavior = cmp.ConfirmBehavior.Insert, select = false},
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
@@ -150,7 +146,6 @@ local servers = {
     html = {},
     cssls = {},
     tailwindcss = {},
-    gopls = {},
     sumneko_lua = {
         Lua = {workspace = {checkThirdParty = false}, telemetry = {enable = false}, diagnostics = {globals = {'vim'}}}
     }

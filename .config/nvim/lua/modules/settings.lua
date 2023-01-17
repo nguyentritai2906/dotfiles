@@ -43,5 +43,5 @@ vim.o.expandtab = true
 vim.o.breakindent = true
 vim.cmd("let @/ = ''")
 
-vim.cmd [[ set listchars=tab:»\ ,space:·,trail:·,nbsp:␣,extends:❯,precedes:❮,eol:↵ ]]
+vim.cmd [[ set listchars=tab:»\ ,trail:·,nbsp:␣,extends:❯,precedes:❮,eol:↵ ]]
 vim.opt.list = true
