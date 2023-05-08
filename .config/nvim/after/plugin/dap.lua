@@ -1,46 +1,12 @@
 local dap = require('dap')
-
-dap.adapters.python = {
-    type = 'executable',
-    -- command = os.getenv('CONDA_PREFIX') .. '/bin/python',
-    command = function()
-        if os.getenv('CONDA_PREFIX') then
-            return os.getenv('CONDA_PREFIX') .. '/bin/python'
-        else
-            return '$HOME/.virtualenvs/debugpy/bin/python3.9';
-        end
-    end,
-    args = {'-m', 'debugpy.adapter'}
-}
-
-dap.configurations.python = {
-    {
-        -- The first three options are required by nvim-dap
-        type = 'python', -- the type here established the link to the adapter definition: `dap.adapters.python`
-        request = 'launch',
-        name = "Launch file",
-
-        -- Options below are for debugpy, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for supported options
-
-        justMyCode = true,
-        program = "${file}", -- This configuration will launch the current file if used.
-        pythonPath = function()
-            -- debugpy supports launching an application with a different interpreter then the one used to launch debugpy itself.
-            -- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
-            -- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
-            local cwd = vim.fn.getcwd()
-            if vim.fn.executable(cwd .. '/env/bin/python') == 1 then
-                return cwd .. '/env/bin/python'
-            elseif vim.fn.executable(cwd .. '/.env/bin/python') == 1 then
-                return cwd .. '/.env/bin/python'
-            elseif vim.fn.executable(os.getenv('CONDA_PREFIX') .. '/bin/python') == 1 then
-                return os.getenv("CONDA_PREFIX") .. "/bin/python"
-            else
-                return '/usr/bin/python3'
-            end
-        end
-    }
-}
+require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
+require('dap-python').resolve_python = function()
+    if os.getenv('CONDA_PREFIX') then
+        return os.getenv('CONDA_PREFIX') .. '/bin/python'
+    else
+        return '$HOME/.virtualenvs/debugpy/bin/python3.9';
+    end
+end
 
 vim.fn.sign_define("DapBreakpoint", {text = "⧐", texthl = "Error", linehl = "", numhl = ""})
 vim.fn.sign_define("DapStopped", {text = "⧐", texthl = "Success", linehl = "", numhl = ""})
@@ -48,7 +14,7 @@ vim.fn.sign_define("DapStopped", {text = "⧐", texthl = "Success", linehl = "",
 -- Nvim DAP Virtual Text
 require("nvim-dap-virtual-text").setup()
 
-local dap, dapui = require('dap'), require('dapui')
+local dapui = require('dapui')
 dap.listeners.after.event_initialized['dapui_config'] = function()
     dapui.open()
 end
@@ -111,6 +77,9 @@ dapui.setup({
     }
 })
 
+-- Enable type checking
+require("neodev").setup({library = {plugins = {"nvim-dap-ui"}, types = true}})
+
 local opt = {noremap = true, silent = true}
 vim.api.nvim_set_keymap('n', '<leader>db', '<cmd>lua require"dap".toggle_breakpoint()<CR>', opt)
 vim.api.nvim_set_keymap('n', '<leader>dB',
@@ -125,7 +94,8 @@ vim.api.nvim_set_keymap('n', '<leader>dj', '<cmd>lua require"dap".step_over()<CR
 vim.api.nvim_set_keymap('n', '<leader>dd', '<cmd>lua require"dap".continue()<CR>', opt)
 vim.api.nvim_set_keymap('n', '<leader>dC', '<cmd>lua require"dap".run_to_cursor()<CR>', opt)
 vim.api.nvim_set_keymap('n', '<leader>dq',
-                        '<cmd>lua require"dap".disconnect({ terminateDebuggee = true });require"dap".close()<CR>', opt)
+                        '<cmd>lua require"dap".disconnect({ terminateDebuggee = true });require"dap".close();require"dapui".close()<CR>',
+                        opt)
 
 vim.api.nvim_set_keymap('n', '<leader>dK', '<cmd>lua require"dap".up()<CR>', opt)
 vim.api.nvim_set_keymap('n', '<leader>dJ', '<cmd>lua require"dap".down()<CR>', opt)

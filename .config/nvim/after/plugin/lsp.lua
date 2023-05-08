@@ -2,6 +2,7 @@ local lsp = require('lsp-zero')
 local cmp = require('cmp')
 local lspkind = require('lspkind')
 local luasnip = require("luasnip")
+require('luasnip.loaders.from_snipmate').lazy_load()
 
 local function on_attach(client, bufnr)
     -- Set autocommands conditional on server_capabilities
@@ -68,6 +69,8 @@ local has_words_before = function()
 end
 
 lsp.setup_nvim_cmp({
+    preselect = 'none',
+    completion = {completeopt = 'menu,menuone,noinsert,noselect,preview'},
     snippet = {
         expand = function(args)
             require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
@@ -80,6 +83,8 @@ lsp.setup_nvim_cmp({
         {name = 'buffer', keyword_length = 1, max_item_count = 3}
     },
     mapping = cmp.mapping.preset.insert({
+        ["<C-p>"] = cmp.mapping.select_prev_item(),
+        ["<C-n>"] = cmp.mapping.select_next_item(),
         ['<CR>'] = cmp.mapping.confirm {behavior = cmp.ConfirmBehavior.Insert, select = false},
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
@@ -87,7 +92,7 @@ lsp.setup_nvim_cmp({
                 -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
                 -- they way you will only jump inside the snippet region
             elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
+                luasnip.jump(1)
             elseif has_words_before() then
                 cmp.complete()
             else
@@ -135,18 +140,20 @@ vim.diagnostic.config({virtual_text = true})
 -- Setup mason so it can manage external tooling
 require('mason').setup()
 local servers = {
-    tsserver = {},
-    eslint = {},
-    pyright = {},
     bashls = {},
-    vimls = {},
-    jsonls = {},
-    yamlls = {},
-    dockerls = {},
-    html = {},
     cssls = {},
+    dockerls = {},
+    efm = {},
+    eslint = {},
+    gopls = {},
+    html = {},
+    jsonls = {},
+    pyright = {},
     tailwindcss = {},
-    sumneko_lua = {
+    tsserver = {},
+    vimls = {},
+    yamlls = {},
+    lua_ls = {
         Lua = {workspace = {checkThirdParty = false}, telemetry = {enable = false}, diagnostics = {globals = {'vim'}}}
     }
 }

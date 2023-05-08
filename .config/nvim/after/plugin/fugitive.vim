@@ -1,2 +1,3 @@
-nmap <leader>gh :diffget //2<CR>]czt
-nmap <leader>gl :diffget //3<CR>]czt
+nmap <leader>gh :diffget //2<CR>]czz
+nmap <leader>gl :diffget //3<CR>]czz
+nmap <leader>gm :Gvdiffsplit!<CR>

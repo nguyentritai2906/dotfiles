@@ -78,3 +78,12 @@ vim.keymap.set('n', 'q:', '<Esc>:', {silent = true})
 vim.keymap.set('v', 'q:', '<Esc>:', {silent = true})
 
 vim.keymap.set('n', '<leader>s', ":%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>", {silent = true})
+
+-- Better alternative for autochdir
+-- autocmd BufEnter * silent! lcd %:p:h
+function ChangeDirCurBuf()
+    vim.cmd('lcd %:p:h')
+    vim.cmd('pwd')
+end
+
+vim.api.nvim_set_keymap('n', '<leader>lcd', ':lua ChangeDirCurBuf()<CR>', {noremap = true, silent = true})

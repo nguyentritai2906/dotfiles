@@ -37,10 +37,9 @@ require("catppuccin").setup({
     custom_highlights = {}
 })
 
-vim.cmd [[colorscheme catppuccin]]
-
 -- If machine is macOS, use the following
 if vim.fn.has('mac') == 1 then
+    vim.cmd [[colorscheme catppuccin]]
     local dn = require('dark_notify')
     -- Configure
     dn.run({
@@ -56,4 +55,8 @@ if vim.fn.has('mac') == 1 then
         end
     })
     dn.update()
+else
+    vim.g.catppuccin_flavour = "macchiato"
+    vim.cmd [[colorscheme catppuccin]]
+    vim.cmd [[hi Normal guibg=#22273E ctermbg=NONE]]
 end

@@ -83,6 +83,8 @@ wk.register({
         name = "+GitGutter",
         k = "PrevHunk",
         j = "NextHunk",
+        h = "GetLeftHunk",
+        l = "GetRightHunk",
         p = "PreviewHunk",
         s = "StageHunk",
         S = "StageBuffer",
@@ -92,6 +94,7 @@ wk.register({
         d = "DiffHunk",
         D = "DiffBuffer",
         b = "BlameLine",
+        m = "ThreeWayDiff",
         t = {
             name = "+Toggle",
             n = "ToggleNumsHL",
@@ -104,6 +107,7 @@ wk.register({
     },
     w = {
         name = "+Vimwiki",
+        c = "ColorizeLine",
         i = "DiaryIndex",
         s = "UISelect",
         t = "TabIndex",

@@ -37,3 +37,7 @@ vim.cmd "hi matchStrike guifg=gray"
 
 -- if file path begin with ~/Documents/notes then set textwidth to 120
 vim.cmd [[autocmd BufEnter * if (expand("%:p:h") == "~/Documents/notes") | set textwidth=120 | endif]]
+vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
+    pattern = "*.md",
+    command = vim.cmd [[set ft=markdown syntax=markdown]]
+})

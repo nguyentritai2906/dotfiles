@@ -20,8 +20,8 @@ return require('packer').startup(function(use)
             'hrsh7th/cmp-nvim-lua', -- Lua source for nvim-cmp
             'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
             -- Snippets
-            'L3MON4D3/LuaSnip', -- Snippets plugin
-            'rafamadriz/friendly-snippets', -- Snippet collection (Optional)
+            'L3MON4D3/LuaSnip', -- Snippet engine plugin
+            'honza/vim-snippets', -- Snippet collection (Optional)
             -- UI
             'j-hui/fidget.nvim', -- Useful status updates for LSP
             'onsails/lspkind-nvim', -- Pictograms for LSP
@@ -38,16 +38,29 @@ return require('packer').startup(function(use)
         end
     }
 
+    -- Text objects
     use {
-        'p00f/nvim-ts-rainbow', -- Rainbow parentheses
         'nvim-treesitter/nvim-treesitter-textobjects', -- Additional text objects via treesitter-
-        'kana/vim-textobj-line', -- Select line
-        'kana/vim-textobj-entire', -- Select entire buffer
-        'kana/vim-textobj-indent', -- "ii" to select current indent level
-        'kana/vim-textobj-user', -- Text object plugin (required by others)
-        'wellle/targets.vim', -- Additional text objects
-        after = 'nvim-treesitter'
+        after = 'nvim-treesitter',
+        requires = 'nvim-treesitter/nvim-treesitter'
     }
+    use 'kana/vim-textobj-user' -- Text object plugin (required by others)
+    use {
+        'kana/vim-textobj-line', -- Select line
+        after = 'vim-textobj-user',
+        requires = 'kana/vim-textobj-user'
+    }
+    use {
+        'kana/vim-textobj-entire', -- Select entire buffer
+        after = 'vim-textobj-user',
+        requires = 'kana/vim-textobj-user'
+    }
+    use {
+        'kana/vim-textobj-indent', -- "ii" to select current indent level
+        after = 'vim-textobj-user',
+        requires = 'kana/vim-textobj-user'
+    }
+    use 'wellle/targets.vim' -- Additional text objects
 
     -- Git
     use 'lewis6991/gitsigns.nvim'
@@ -57,38 +70,36 @@ return require('packer').startup(function(use)
     -- Dev
     use {
         'glacambre/firenvim',
-        'mjbrownie/swapit', -- Swap True-False
         run = function()
             vim.fn['firenvim#install'](0)
         end
     }
-    use('hanschen/vim-ipython-cell', {ft = 'python'})
+    use 'mjbrownie/swapit' -- Swap True-False
+    use {'hanschen/vim-ipython-cell', requires = 'jpalardy/vim-slime'}
     use 'chipsenkbeil/distant.nvim'
 
-    use {
-        "zbirenbaum/copilot.lua",
-        after = "nvim-lspconfig",
-        config = function()
-            vim.defer_fn(function()
-                require("copilot").setup()
-            end, 100)
-        end
-    }
+    use {"zbirenbaum/copilot.lua", after = "nvim-lspconfig"}
 
     -- Debuger
-    use {'mfussenegger/nvim-dap', 'theHamsta/nvim-dap-virtual-text', 'rcarriga/nvim-dap-ui'}
+    use 'mfussenegger/nvim-dap'
+    use 'mfussenegger/nvim-dap-python'
+    use 'theHamsta/nvim-dap-virtual-text'
+    use 'rcarriga/nvim-dap-ui'
 
     -- Fuzzy finder - Faster than Telescope - Requires silversearcher-ag
     use {
         'junegunn/fzf',
-        'junegunn/fzf.vim',
         run = function()
             vim.fn['fzf#install']()
-        end
+        end,
+        requires = 'junegunn/fzf.vim'
     }
 
     -- Make life easier
-    use 'nvim-tree/nvim-tree.lua' -- File explorer
+    use {
+        'nvim-tree/nvim-tree.lua', -- File explorer
+        requires = 'nvim-tree/nvim-web-devicons'
+    }
     use 'simnalamburt/vim-mundo' -- Undo tree
     use 'windwp/nvim-autopairs' -- Auto close brackets
     use 'tpope/vim-surround' -- Surround text objects
@@ -103,6 +114,7 @@ return require('packer').startup(function(use)
     use 'tpope/vim-obsession' -- Session management
     use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
     use 'preservim/nerdcommenter' -- <leader>cc (or ci, cu) to comment visual regions/lines
+    use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'} -- Fold
 
     -- UI
     use 'hoob3rt/lualine.nvim' -- Statusline
@@ -114,7 +126,11 @@ return require('packer').startup(function(use)
     use 'kshenoy/vim-signature' -- Place, toggle and display marks
     use 'mhinz/vim-startify' -- Fancy start screen
     use 'ryanoasis/vim-devicons' -- Icons
-    use 'nvim-tree/nvim-web-devicons'
+    use {
+        'p00f/nvim-ts-rainbow', -- Rainbow parentheses
+        after = 'nvim-treesitter',
+        requires = 'nvim-treesitter/nvim-treesitter'
+    }
 
     -- Colorschemes
     use {"catppuccin/nvim", as = "catppuccin"} -- Catppuccin
@@ -126,7 +142,19 @@ return require('packer').startup(function(use)
     use 'christoomey/vim-tmux-navigator' -- Seamless navigation between tmux panes and vim splits
 
     -- Writing
-    use 'vimwiki/vimwiki' -- Personal wiki for all your notes
+    use({
+        'vimwiki/vimwiki', -- Personal wiki for all your notes
+        setup = function()
+            vim.g.vimwiki_list = {
+                {path = '$HOME/Documents/notes/', syntax = 'markdown', ext = '.md', links_space_char = '-'}
+            }
+            vim.g.vimwiki_auto_header = 1
+            -- vim.g.vimwiki_folding = 'custom'
+            vim.g.vimwiki_table_mappings = 0
+            vim.g.vimwiki_filetypes = {'markdown'}
+            vim.g.vimwiki_global_ext = 0
+        end
+    })
     use({
         "iamcco/markdown-preview.nvim",
         run = "cd app && npm install",
@@ -135,5 +163,6 @@ return require('packer').startup(function(use)
         end,
         ft = {"markdown"}
     })
+    use({'preservim/vim-markdown'})
 
 end)
