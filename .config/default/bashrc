@@ -27,59 +27,70 @@ alias gpu0='CUDA_VISIBLE_DEVICES=0'
 alias gpu1='CUDA_VISIBLE_DEVICES=1'
 alias d='docker'
 alias dc='docker-compose'
+alias dpsn='docker ps --format "table {{.ID}}\t{{.Names}}"'
 
 if [ "$(uname)" = "Darwin" ]; then
-    export TRASH=$HOME/.Trash
+	export TRASH=$HOME/.Trash
+	if [ ! -d $TRASH ]; then
+		mkdir -p $TRASH
+	fi
 elif [ "$(expr substr $(uname -s) 1 5)" = "Linux" ]; then
-    export TRASH=$HOME/Trash
+	export TRASH=$HOME/Trash
+	if [ ! -d $TRASH ]; then
+		mkdir -p $TRASH
+	fi
 fi
 function move_to_trash() {
-    local args=("$@")
-    for i in "${args[@]}"; do
-        local bname=$(basename "$i")
-        local rpath=$(realpath "$i")
-        if mv -t $TRASH "$i" 2>/dev/null; then
-            echo "$rpath => $TRASH/$bname"
-        else
-            local count=$(ls -ald $TRASH/$bname*/ | wc -l)
-            if mv "$i" $TRASH/"$bname"_$count; then
-                echo "$rpath => $TRASH/"$bname"_$count"
-            fi
-        fi
-    done
+	local args=("$@")
+	for i in "${args[@]}"; do
+		local bname=$(basename "$i")
+		local rpath=$(realpath "$i")
+		if mv -t $TRASH "$i" 2>/dev/null; then
+			echo "$rpath => $TRASH/$bname"
+		else
+			local count=$(ls -ald $TRASH/$bname*/ | wc -l)
+			if mv "$i" $TRASH/"$bname"_$count; then
+				echo "$rpath => $TRASH/"$bname"_$count"
+			fi
+		fi
+	done
 }
 alias rm='move_to_trash'
 alias ept='(\rm -rf $TRASH/.*) 2> /dev/null; (\rm -rf $TRASH/*) 2> /dev/null'
 
 # Conda
 if ! command -v conda >/dev/null; then
-    echo 'conda command not found: please install via https://conda.io/'
+	if ! command -v micromamba >/dev/null; then
+		echo 'conda command not found: please install via https://conda.io/'
+	else
+		alias conda='micromamba'
+	fi
 fi
 
 if ! command -v fzf >/dev/null; then
-    echo 'fzf command not found: please install via "apt install fzf"'
+	echo 'fzf command not found: please install via "apt install fzf"'
 fi
 
 # functions
 function fuzzy_conda_activate() {
-    if [[ -z "$1" ]]; then
-        printf "No environment name provided.\n"
-        local env=$(conda env list | awk '3<=NR && NR<($Num) {print$1}' | fzf --query="$1")
-    elif [ -z "$(conda env list | grep $1)" ]; then
-        local env="$1"
-        printf "Environment '$env' not found.\n"
-        printf "Creating environment '$env'...\n"
-        conda create -n "$env"
-    else
-        local env="$1"
-    fi
+	if [[ -z $1 ]]; then
+		printf "No environment name provided.\n"
+		local env=$(conda env list | awk '3<=NR && NR<($Num) {print$1}' | fzf --query="$1")
+	elif [ -z "$(conda env list | grep $1)" ]; then
+		local env="$1"
+		printf "Environment '$env' not found.\n"
+		printf "Creating environment '$env'...\n"
+		conda create -n "$env"
+	else
+		local env="$1"
+	fi
 
-    if [ "$(echo $CONDA_DEFAULT_ENV)" ]; then
-        printf "Deactivating environment '$CONDA_DEFAULT_ENV'...\n"
-        conda deactivate && conda activate "$env"
-    else
-        conda activate "$env"
-    fi
+	if [ "$(echo $CONDA_DEFAULT_ENV)" ]; then
+		printf "Deactivating environment '$CONDA_DEFAULT_ENV'...\n"
+		conda deactivate && conda activate "$env"
+	else
+		conda activate "$env"
+	fi
 }
 
 alias cda='fuzzy_conda_activate'
