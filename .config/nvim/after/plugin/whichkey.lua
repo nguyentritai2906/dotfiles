@@ -102,7 +102,8 @@ wk.register({
             b = "ToggleBlame",
             s = "ToggleSigns",
             d = "ToggleDeleted",
-            w = "ToggleWordDiff"
+            w = "ToggleWordDiff",
+            t = "ToggleLineHL+Deleted"
         }
     },
     w = {

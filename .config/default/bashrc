@@ -26,7 +26,7 @@ alias cd...='cd ../..'
 alias gpu0='CUDA_VISIBLE_DEVICES=0'
 alias gpu1='CUDA_VISIBLE_DEVICES=1'
 alias d='docker'
-alias dc='docker-compose'
+alias dc='docker compose'
 alias dpsn='docker ps --format "table {{.ID}}\t{{.Names}}"'
 
 if [ "$(uname)" = "Darwin" ]; then

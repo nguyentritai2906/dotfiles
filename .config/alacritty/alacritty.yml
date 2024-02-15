@@ -67,7 +67,7 @@ window:
   #
   # Window opacity as a floating point number from `0.0` to `1.0`.
   # The value `0.0` is completely transparent and `1.0` is opaque.
-  opacity: 1.0
+  opacity: 0.6
 
   # Startup Mode (changes require restart)
   #
@@ -117,7 +117,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: Hack Nerd Font
+    family: JetBrainsMono Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Regular
@@ -128,7 +128,7 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Hack Nerd Font
+    family: JetBrainsMono Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Bold
@@ -139,7 +139,7 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Hack Nerd Font
+    family: JetBrainsMono Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Italic
@@ -150,13 +150,13 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Hack Nerd Font
+    family: JetBrainsMono Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Bold Italic
 
   # Point size
-  size: 15.0
+  size: 14.0
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
@@ -183,42 +183,42 @@ font:
 
 # Colors (Tomorrow Night)
 colors:
-  # COLORSCHEME: catppuccin_dark.yaml
+  # COLORSCHEME: catppuccin_light.yaml
   # Default colors
   primary:
-    background: "#23273C"
-    foreground: "#CAD3F5"
+    background: '#EFF1F5'
+    foreground: '#4C4F69'
 
   # Normal colors
   normal:
-    black: "#6C7086"
-    red: "#ED8796"
-    green: "#A6DA95"
-    yellow: "#EED49F"
-    blue: "#8AADF4"
-    magenta: "#C6A0F6"
-    cyan: "#91D7E3"
-    white: "#CAD3F5"
+    black: '#181825'
+    red: '#D20F39'
+    green: '#40A02B'
+    yellow: '#df8e1d'
+    blue: '#1e66f5'
+    magenta: '#8839EF'
+    cyan: '#04A5E5'
+    white: '#4C4F69'
 
   # Bright colors
   bright:
-    black: "#6C7086"
-    red: "#F38BA8"
-    green: "#A6E3A1"
-    yellow: "#F9E2AF"
-    blue: "#89B4FA"
-    magenta: "#CBA6F7"
-    cyan: "#89DCEB"
-    white: "#CDD6F4"
+    black: '#9CA0B0'
+    red: '#D20F39'
+    green: '#40A02B'
+    yellow: '#df8e1d'
+    blue: '#1e66f5'
+    magenta: '#8839EF'
+    cyan: '#04A5E5'
+    white: '#4C4F69'
 
   cursor:
-    text: "0xeeeeee"
-    cursor: "0x878787"
+    text: '0xeeeeee'
+    cursor: '0x878787'
 
   # Normal colors
   selection:
-    background: "#f2f2f2"
-    text: "#403f53"
+    background: '#f2f2f2'
+    text: '#403f53'
 cursor:
   # Cursor style
   style:
@@ -279,8 +279,8 @@ shell:
   program: /bin/zsh
   args:
     - -l
-    - -c
-    - tmux attach 2>/dev/null || tmux
+    # - -c
+    # - tmux attach 2>/dev/null || tmux
 
 # Startup directory
 #
@@ -678,20 +678,21 @@ key_bindings:
   #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
 
   # (macOS only)
-  - { key: Return, mods: Control, chars: "\eM" }
-  - { key: Key0, mods: Alt, chars: "\e0" }
-  - { key: Key1, mods: Alt, chars: "\e1" }
-  - { key: Key2, mods: Alt, chars: "\e2" }
-  - { key: Key3, mods: Alt, chars: "\e3" }
-  - { key: Key4, mods: Alt, chars: "\e4" }
-  - { key: Key5, mods: Alt, chars: "\e5" }
-  - { key: Key6, mods: Alt, chars: "\e6" }
-  - { key: Key7, mods: Alt, chars: "\e7" }
-  - { key: Key8, mods: Alt, chars: "\e8" }
-  - { key: Key9, mods: Alt, chars: "\e9" }
-  - { key: F, mods: Alt, chars: "\ef" }
-  - { key: B, mods: Alt, chars: "\eb" }
-  - { key: F, mods: Command|Control, action: ToggleFullscreen }
+  - {key: Return, mods: Control, chars: "\eM"}
+  - {key: Key0, mods: Alt, chars: "\e0"}
+  - {key: Key1, mods: Alt, chars: "\e1"}
+  - {key: Key2, mods: Alt, chars: "\e2"}
+  - {key: Key3, mods: Alt, chars: "\e3"}
+  - {key: Key4, mods: Alt, chars: "\e4"}
+  - {key: Key5, mods: Alt, chars: "\e5"}
+  - {key: Key6, mods: Alt, chars: "\e6"}
+  - {key: Key7, mods: Alt, chars: "\e7"}
+  - {key: Key8, mods: Alt, chars: "\e8"}
+  - {key: Key9, mods: Alt, chars: "\e9"}
+  - {key: F, mods: Alt, chars: "\ef"}
+  - {key: B, mods: Alt, chars: "\eb"}
+  - {key: F, mods: Command|Control, action: ToggleFullscreen}
+  - {key: N, mods: Command, command: {program: open, args: [-n, /Applications/Alacritty.app]}}
 
   #- { key: K,              mods: Command, mode: ~Vi|~Search, chars: "\x0c"                 }
   #- { key: K,              mods: Command, mode: ~Vi|~Search, action: ClearHistory          }

@@ -5,17 +5,6 @@ local luasnip = require("luasnip")
 require('luasnip.loaders.from_snipmate').lazy_load()
 
 local function on_attach(client, bufnr)
-    -- Set autocommands conditional on server_capabilities
-    if client.server_capabilities.document_highlight then
-        vim.api.nvim_exec([[
-          augroup lsp_document_highlight
-            autocmd! * <buffer>
-            autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-            autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-          augroup END
-    ]], false)
-    end
-
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
     end
@@ -45,12 +34,31 @@ local function on_attach(client, bufnr)
     buf_set_keymap('n', '<space>lE', '<cmd>lua require"toggle_lsp_diagnostics".toggle_virtual_text()<CR>', opts)
     buf_set_keymap('n', '<space>le', '<cmd>lua vim.diagnostic.open_float(0, {scope = "line"})<CR>', opts)
 
+    -- Set autocommands conditional on server_capabilities
+    if client.server_capabilities.documentHighlightProvider then
+        vim.cmd([[
+          augroup lsp_document_highlight
+            autocmd! * <buffer>
+            autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+            autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()
+            autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+          augroup END
+    ]])
+    end
+
     -- Only EMF has format capabilities
     if client.name ~= 'efm' then client.server_capabilities.documentFormattingProvider = false end
 
-    if client.server_capabilities.documentFormattingProvider then
-        vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
+    if client.name == 'pyright' then client.server_capabilities.signatureHelpProvider = false end
+
+    if client.name == 'pylsp' then
+        client.server_capabilities.renameProvider = false
+        client.server_capabilities.hoverProvider = false
     end
+
+    -- if client.server_capabilities.documentFormattingProvider then
+    --     vim.cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]])
+    -- end
 
     require"lsp_signature".on_attach()
 end
@@ -90,7 +98,7 @@ lsp.setup_nvim_cmp({
             if cmp.visible() then
                 cmp.select_next_item()
                 -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-                -- they way you will only jump inside the snippet region
+                -- that way you will only jump inside the snippet region
             elseif luasnip.expand_or_jumpable() then
                 luasnip.jump(1)
             elseif has_words_before() then
@@ -148,14 +156,52 @@ local servers = {
     gopls = {},
     html = {},
     jsonls = {},
-    pyright = {},
+    -- jedi_language_server = {},
+    pyright = {
+        flags = {debounce_text_changes = 300},
+        python = {
+            analysis = {
+                autoSearchPaths = true,
+                diagnosticMode = "openFilesOnly",
+                typeCheckingMode = "basic",
+                autoImportCompletion = true,
+                useLibraryCodeForTypes = true,
+                -- diagnosticSeverityOverrides = {
+                --     reportGeneralTypeIssues = "none",
+                --     reportOptionalMemberAccess = "none",
+                --     reportOptionalSubscript = "none",
+                --     reportPrivateImportUsage = "none"
+                -- }
+            },
+            linting = {pylintEnabled = false}
+        }
+    },
+    pylsp = {
+        pylsp = {
+            plugins = {
+                flake8 = {enabled = false},
+                jedi_completion = {enabled = false},
+                jedi_definition = {enabled = false},
+                yapf = {enabled = false},  -- really slow
+                rope_completion = {enabled = false},
+                pylint = {enabled = false},
+                pydocstyle = {enabled = false},
+                preload = {enabled = false},
+                mccabe = {enabled = false},
+                jedi_symbols = {enabled = false},
+                jedi_references = {enabled = false},
+                pyflakes = {enabled = false},
+                pycodestyle = {enabled = false}
+            }
+        }
+    },
     tailwindcss = {},
     tsserver = {},
     vimls = {},
     yamlls = {},
     lua_ls = {
         Lua = {workspace = {checkThirdParty = false}, telemetry = {enable = false}, diagnostics = {globals = {'vim'}}}
-    }
+    },
 }
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
@@ -170,15 +216,33 @@ mason_lspconfig.setup_handlers {
     end
 }
 
+-- Csharp
+local pid = vim.fn.getpid()
+local omnisharp_bin = "/Users/mater/.local/share/nvim/mason/packages/omnisharp/omnisharp"
+require'lspconfig'.omnisharp.setup({
+    handlers = {
+        ["textDocument/definition"] = require('omnisharp_extended').handler,
+    },
+    cmd = {"omnisharp", "--languageserver", "--hostPID", tostring(pid)},
+    root_dir = function(startpath)
+        return require'lspconfig'.util.root_pattern("*.sln")(startpath)
+            or require'lspconfig'.util.root_pattern("*.csproj")(startpath)
+            or require'lspconfig'.util.root_pattern("*.fsproj")(startpath)
+            or require'lspconfig'.util.root_pattern(".git")(startpath)
+    end,
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
 -- efm-langserver
 local flake8 = {
-    LintCommand = "flake8 --max-line-length 120 --stdin-display-name ${INPUT} -",
+    LintCommand = "flake8 --config ~/.config/flake8/flake8 --max-line-length 120 --stdin-display-name ${INPUT} -",
     lintStdin = true,
     formatStdin = true,
     lintFormats = {"%f:%l:%c: %m"}
 }
 local isort = {formatCommand = "isort --quiet -", formatStdin = true}
-local yapf = {formatCommand = "yapf --quiet", formatStdin = true}
+local yapf = {formatCommand = "yapf --quiet", formatStdin = true} -- really slow
 local autopep8 = {formatCommand = "autopep8 -", formatStdin = true}
 local autoflake = {
     formatCommand = "autoflake --in-place --remove-unused-variables --remove-all-unused-imports -",
@@ -222,7 +286,7 @@ require"lspconfig".efm.setup {
         rootMarkers = {".git/"},
         languages = {
             lua = {luaFormat},
-            python = {autoflake, isort, yapf, flake8, autopep8, black},
+            python = {autoflake, isort, flake8, black},
             javascriptreact = {prettier, eslint},
             javascript = {prettier, eslint},
             sh = {shfmt, shellcheck},
@@ -231,7 +295,16 @@ require"lspconfig".efm.setup {
             json = {prettier},
             yaml = {prettier_yaml},
             rust = {rustfmt},
-            go = {}
+            go = {},
         }
     }
 }
+
+lsp.format_on_save({
+    format_opts = {async = false, timeout_ms = 10000},
+    servers = {
+        ['lua_ls'] = {'lua'},
+        ['rust_analyzer'] = {'rust'},
+        ['efm'] = {'python', 'javascript', 'javascriptreact', 'sh', 'html', 'css', 'json', 'yaml', 'rust', 'go'},
+    }
+})

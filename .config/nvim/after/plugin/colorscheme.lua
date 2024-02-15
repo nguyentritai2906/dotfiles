@@ -4,7 +4,7 @@ vim.cmd('highlight link Searchlight IncSearch')
 
 -- Add DONE to TODO highlighting group
 -- https://stackoverflow.com/questions/4162664/vim-highlight-a-list-of-words
-vim.cmd('match Todo /DONE\\|NOTE\\|TODO/')
+vim.cmd('match Todo /DONE\\|NOTE\\|TODO\\|IMPORTANCE/')
 
 require("catppuccin").setup({
     compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
@@ -48,7 +48,7 @@ if vim.fn.has('mac') == 1 then
             if mode == "dark" then
                 vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
             else
-                vim.g.catppuccin_flavour = "frappe"
+                vim.g.catppuccin_flavour = "latte"
             end
         end,
         after = function(_)

@@ -65,6 +65,8 @@ require('gitsigns').setup {
         -- Actions
         map({'n', 'v'}, '<leader>gs', ':Gitsigns stage_hunk<CR>')
         map({'n', 'v'}, '<leader>gr', ':Gitsigns reset_hunk<CR>')
+        map('n', '<leader>gj', gs.next_hunk)
+        map('n', '<leader>gk', gs.prev_hunk)
         map('n', '<leader>gS', gs.stage_buffer)
         map('n', '<leader>gu', gs.undo_stage_hunk)
         map('n', '<leader>gR', gs.reset_buffer)
@@ -83,6 +85,11 @@ require('gitsigns').setup {
         map('n', '<leader>gts', gs.toggle_signs)
         map('n', '<leader>gtd', gs.toggle_deleted)
         map('n', '<leader>gtw', gs.toggle_word_diff)
+        -- toggle both linehl and deleted
+        map('n', '<leader>gtt', function()
+            gs.toggle_linehl()
+            gs.toggle_deleted()
+        end)
 
         -- Text object (in hunk)
         map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')

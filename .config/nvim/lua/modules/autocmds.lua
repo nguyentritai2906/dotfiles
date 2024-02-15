@@ -28,8 +28,8 @@ autocmd({"BufReadPost"}, {
     end
 })
 
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', {clear = true})
-vim.api.nvim_create_autocmd('TextYankPost', {
+local highlight_group = augroup('YankHighlight', {clear = true})
+autocmd('TextYankPost', {
     callback = function()
         vim.highlight.on_yank()
     end,
@@ -39,3 +39,20 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- Write with no autocmds
 command("W", 'noa w', {})
+
+-- -- Remember folds
+-- local remember_fold = augroup('RememberFold', {clear = true})
+-- autocmd("BufWinLeave", {
+--     pattern = "*.*",
+--     callback = function()
+--         vim.cmd("silent! mkview")
+--     end,
+--     group = remember_fold
+-- })
+-- autocmd("BufWinEnter", {
+--     pattern = "*.*",
+--     callback = function()
+--         vim.cmd("silent! loadview")
+--     end,
+--     group = remember_fold
+-- })

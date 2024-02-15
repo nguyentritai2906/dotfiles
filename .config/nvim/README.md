@@ -49,6 +49,12 @@ sudo apt install golang
 ./font.sh
 ```
 
+- [PyNvim](https://github.com/neovim/pynvim)
+
+```bash
+pip install pynvim
+```
+
 ## Installation
 
 Clone this repo to ~/.config/nvim

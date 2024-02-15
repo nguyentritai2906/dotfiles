@@ -103,7 +103,7 @@ SPACESHIP_CONDA_SHOW=true
 SPACESHIP_VENV_SHOW=true
 SPACESHIP_PYENV_SHOW=true
 
-# /Users/mater/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh
+# $HOME/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh
 SPACESHIP_PROMPT_ORDER=(
     time          # Time stampts section
     user          # Username section
@@ -180,8 +180,25 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'mamba init' !!
+export MAMBA_EXE='/opt/homebrew/bin/micromamba';
+export MAMBA_ROOT_PREFIX="$HOME/micromamba";
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__mamba_setup"
+else
+    alias micromamba="$MAMBA_EXE"  # Fallback on help from mamba activate
+fi
+unset __mamba_setup
+# <<< mamba initialize <<<
+
 export PYENV_SHELL=zsh
-source /opt/homebrew/Cellar/pyenv/*/completions/pyenv.zsh
+# if Darwin, use homebrew's pyenv
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  source /opt/homebrew/Cellar/pyenv/*/completions/pyenv.zsh
+  export PATH="/opt/homebrew/Cellar/pyenv-virtualenv/1.1.5/shims:${PATH}";
+fi
 command pyenv rehash 2>/dev/null
 pyenv() {
   local command
@@ -199,7 +216,6 @@ pyenv() {
     ;;
   esac
 }
-export PATH="/opt/homebrew/Cellar/pyenv-virtualenv/1.1.5/shims:${PATH}";
 export PYENV_VIRTUALENV_INIT=1;
 _pyenv_virtualenv_hook() {
   local ret=$?
@@ -221,4 +237,5 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 # Auto activate conda dev
-conda activate dev
+micromamba activate dev
+alias conda='micromamba'

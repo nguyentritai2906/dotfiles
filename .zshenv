@@ -9,3 +9,6 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export JDTLS_HOME=$HOME/.vim/plugged/nvim-jdtls
+export HOMEBREW_NO_AUTO_UPDATE="1"
+. "$HOME/.cargo/env"
+. "$HOME/.zshenv.secrets"

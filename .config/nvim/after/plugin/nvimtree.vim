@@ -53,8 +53,33 @@ nnoremap <C-n> :NvimTreeToggle<CR>
 " highlight NvimTreeFolderIcon guibg=blue
 
 lua <<EOF
-local tree = require'nvim-tree'
-local tree_cb = require'nvim-tree.config'.nvim_tree_callback
+
+-- disable netrw at the very start of your init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- set termguicolors to enable highlight groups
+vim.opt.termguicolors = true
+
+-- empty setup using defaults
+require("nvim-tree").setup()
+
+-- OR setup with some options
+require("nvim-tree").setup({
+  sort_by = "case_sensitive",
+  view = {
+    width = 30,
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+})
+
+-- local tree = require'nvim-tree'
+-- local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 -- vim.g.nvim_tree_bindings = {
     -- { key = {"<CR>", "o", "<2-LeftMouse>"}, cb = tree_cb("edit") },
     -- { key = {"<2-RightMouse>", "<C-]>"},    cb = tree_cb("cd") },
@@ -88,5 +113,5 @@ local tree_cb = require'nvim-tree.config'.nvim_tree_callback
     -- { key = "q",                            cb = tree_cb("close") },
     -- { key = "g?",                           cb = tree_cb("toggle_help") },
     -- }
-tree.setup()
+-- tree.setup()
 EOF

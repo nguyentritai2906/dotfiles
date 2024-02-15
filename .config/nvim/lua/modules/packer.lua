@@ -23,13 +23,13 @@ return require('packer').startup(function(use)
             'L3MON4D3/LuaSnip', -- Snippet engine plugin
             'honza/vim-snippets', -- Snippet collection (Optional)
             -- UI
-            'j-hui/fidget.nvim', -- Useful status updates for LSP
             'onsails/lspkind-nvim', -- Pictograms for LSP
             'ray-x/lsp_signature.nvim', -- Signature help for LSP
             'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim', -- Toggle LSP diagnostics
             'folke/neodev.nvim' -- Additional lua config, makes nvim stuff amazing
         }
     }
+    use {'j-hui/fidget.nvim', tag = "legacy"} -- Useful status updates for LSP
 
     use { -- Highlight, edit, and navigate code
         'nvim-treesitter/nvim-treesitter',
@@ -79,6 +79,7 @@ return require('packer').startup(function(use)
     use 'chipsenkbeil/distant.nvim'
 
     use {"zbirenbaum/copilot.lua", after = "nvim-lspconfig"}
+    use {"Hoffs/omnisharp-extended-lsp.nvim"}
 
     -- Debuger
     use 'mfussenegger/nvim-dap'
@@ -109,7 +110,6 @@ return require('packer').startup(function(use)
     use 'folke/which-key.nvim' -- Show keybindings
     use 'godlygeek/tabular' -- Align text
     use 'kevinhwang91/nvim-bqf' -- Better quickfix list
-    use 'ervandew/supertab' -- Tab completion
     use 'gioele/vim-autoswap' -- No more swap files! TODO
     use 'tpope/vim-obsession' -- Session management
     use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
