@@ -376,7 +376,7 @@ bind C-y set-window-option synchronize-panes # synchronize all panes in a window
 bind C-x send-keys 'C-x'
 bind - split-window -h
 bind _ split-window -v
-bind + split-window -v -p 20 # New Vimux like horizontal pane
+bind + split-window -l '20%' # New Vimux like horizontal pane
 bind = run 'cut -c3- ~/.tmux.conf | sh -s _maximize_pane "#{session_name}" #D'
 bind Space last-window        # move to last active window
 # kill without confirmation
