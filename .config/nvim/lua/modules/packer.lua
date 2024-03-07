@@ -76,7 +76,7 @@ return require('packer').startup(function(use)
     }
     use 'mjbrownie/swapit' -- Swap True-False
     use {'hanschen/vim-ipython-cell', requires = 'jpalardy/vim-slime'}
-    use 'chipsenkbeil/distant.nvim'
+    -- use 'chipsenkbeil/distant.nvim'
 
     use {"zbirenbaum/copilot.lua", after = "nvim-lspconfig"}
     use {"Hoffs/omnisharp-extended-lsp.nvim"}

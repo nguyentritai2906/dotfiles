@@ -7,7 +7,7 @@ vim.cmd [[
     let g:vim_markdown_frontmatter = 1
     let g:tex_conceal = "abd"
 
-    autocmd InsertLeave,TextChanged /Users/mater/Documents/blog/nguyentritaiblog/content/posts/** silent write
+    autocmd InsertLeave,TextChanged $HOME/Documents/blog/nguyentritaiblog/content/posts/** silent write
 ]]
 
 -- markdown ftplugin

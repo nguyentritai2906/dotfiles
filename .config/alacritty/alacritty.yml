@@ -183,42 +183,42 @@ font:
 
 # Colors (Tomorrow Night)
 colors:
-  # COLORSCHEME: catppuccin_light.yaml
+  # COLORSCHEME: catppuccin_dark.yaml
   # Default colors
   primary:
-    background: '#EFF1F5'
-    foreground: '#4C4F69'
+    background: "#23273C"
+    foreground: "#CAD3F5"
 
   # Normal colors
   normal:
-    black: '#181825'
-    red: '#D20F39'
-    green: '#40A02B'
-    yellow: '#df8e1d'
-    blue: '#1e66f5'
-    magenta: '#8839EF'
-    cyan: '#04A5E5'
-    white: '#4C4F69'
+    black: "#6C7086"
+    red: "#ED8796"
+    green: "#A6DA95"
+    yellow: "#EED49F"
+    blue: "#8AADF4"
+    magenta: "#C6A0F6"
+    cyan: "#91D7E3"
+    white: "#CAD3F5"
 
   # Bright colors
   bright:
-    black: '#9CA0B0'
-    red: '#D20F39'
-    green: '#40A02B'
-    yellow: '#df8e1d'
-    blue: '#1e66f5'
-    magenta: '#8839EF'
-    cyan: '#04A5E5'
-    white: '#4C4F69'
+    black: "#6C7086"
+    red: "#F38BA8"
+    green: "#A6E3A1"
+    yellow: "#F9E2AF"
+    blue: "#89B4FA"
+    magenta: "#CBA6F7"
+    cyan: "#89DCEB"
+    white: "#CDD6F4"
 
   cursor:
-    text: '0xeeeeee'
-    cursor: '0x878787'
+    text: "0xeeeeee"
+    cursor: "0x878787"
 
   # Normal colors
   selection:
-    background: '#f2f2f2'
-    text: '#403f53'
+    background: "#f2f2f2"
+    text: "#403f53"
 cursor:
   # Cursor style
   style:
@@ -279,8 +279,8 @@ shell:
   program: /bin/zsh
   args:
     - -l
-    # - -c
-    # - tmux attach 2>/dev/null || tmux
+    - -c
+    - tmux attach 2>/dev/null || tmux
 
 # Startup directory
 #
@@ -678,21 +678,25 @@ key_bindings:
   #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
 
   # (macOS only)
-  - {key: Return, mods: Control, chars: "\eM"}
-  - {key: Key0, mods: Alt, chars: "\e0"}
-  - {key: Key1, mods: Alt, chars: "\e1"}
-  - {key: Key2, mods: Alt, chars: "\e2"}
-  - {key: Key3, mods: Alt, chars: "\e3"}
-  - {key: Key4, mods: Alt, chars: "\e4"}
-  - {key: Key5, mods: Alt, chars: "\e5"}
-  - {key: Key6, mods: Alt, chars: "\e6"}
-  - {key: Key7, mods: Alt, chars: "\e7"}
-  - {key: Key8, mods: Alt, chars: "\e8"}
-  - {key: Key9, mods: Alt, chars: "\e9"}
-  - {key: F, mods: Alt, chars: "\ef"}
-  - {key: B, mods: Alt, chars: "\eb"}
-  - {key: F, mods: Command|Control, action: ToggleFullscreen}
-  - {key: N, mods: Command, command: {program: open, args: [-n, /Applications/Alacritty.app]}}
+  - { key: Return, mods: Control, chars: "\eM" }
+  - { key: Key0, mods: Alt, chars: "\e0" }
+  - { key: Key1, mods: Alt, chars: "\e1" }
+  - { key: Key2, mods: Alt, chars: "\e2" }
+  - { key: Key3, mods: Alt, chars: "\e3" }
+  - { key: Key4, mods: Alt, chars: "\e4" }
+  - { key: Key5, mods: Alt, chars: "\e5" }
+  - { key: Key6, mods: Alt, chars: "\e6" }
+  - { key: Key7, mods: Alt, chars: "\e7" }
+  - { key: Key8, mods: Alt, chars: "\e8" }
+  - { key: Key9, mods: Alt, chars: "\e9" }
+  - { key: F, mods: Alt, chars: "\ef" }
+  - { key: B, mods: Alt, chars: "\eb" }
+  - { key: F, mods: Command|Control, action: ToggleFullscreen }
+  - {
+      key: N,
+      mods: Command,
+      command: { program: open, args: [-n, /Applications/Alacritty.app] },
+    }
 
   #- { key: K,              mods: Command, mode: ~Vi|~Search, chars: "\x0c"                 }
   #- { key: K,              mods: Command, mode: ~Vi|~Search, action: ClearHistory          }
