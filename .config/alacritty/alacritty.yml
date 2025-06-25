@@ -10,7 +10,6 @@
 # to the user's home directory starting with `~/`.
 #import:
 #  - /path/to/alacritty.yml
-
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty itself.
@@ -32,7 +31,6 @@ window:
   #dimensions:
   #  columns: 0
   #  lines: 0
-
   # Window position (changes require restart)
   #
   # Specified in number of pixels.
@@ -40,7 +38,6 @@ window:
   #position:
   #  x: 0
   #  y: 0
-
   # Window padding (changes require restart)
   #
   # Blank space added around the window in pixels. This padding is scaled
@@ -48,10 +45,8 @@ window:
   #padding:
   #  x: 0
   #  y: 0
-
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: false
-
   # Window decorations
   #
   # Values for `decorations`:
@@ -79,20 +74,16 @@ window:
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
   startup_mode: Maximized
-
   # Window title
   #title: Alacritty
-
   # Allow terminal applications to change Alacritty's window title.
   #dynamic_title: true
-
   # Window class (Linux/BSD only):
   #class:
   # Application instance name
   #instance: Alacritty
   # General application class
   #general: Alacritty
-
   # GTK theme variant (Linux/BSD only)
   #
   # Override the variant of the GTK theme. Commonly supported values are `dark`
@@ -157,21 +148,18 @@ font:
 
   # Point size
   size: 14.0
-
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
   # spacing.
   #offset:
   #  x: 0
   #  y: 0
-
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the
   # right, increasing `y` moves the glyph upward.
   #glyph_offset:
   #  x: 0
   #  y: 0
-
   # Thin stroke font rendering (macOS only)
   #
   # Thin strokes are suitable for retina displays, but for non-retina screens
@@ -180,7 +168,6 @@ font:
 
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
-
 # Colors (Tomorrow Night)
 colors:
   # COLORSCHEME: catppuccin_dark.yaml
@@ -253,7 +240,6 @@ cursor:
   # If this is `true`, the cursor will be rendered as a hollow box when the
   # window is not focused.
   unfocused_hollow: true
-
   # Thickness of the cursor relative to the cell width as floating point number
   # from `0.0` to `1.0`.
   #thickness: 0.15
@@ -287,13 +273,10 @@ shell:
 # Directory the shell is started in. If this is unset, or `None`, the working
 # directory of the parent process will be used.
 #working_directory: None
-
 # Send ESC (\x1b) before characters when alt is pressed.
 #alt_send_esc: true
-
 # Offer IPC using `alacritty msg` (unix only)
 #ipc_socket: true
-
 #mouse:
 # Click settings
 #
@@ -302,10 +285,8 @@ shell:
 # or triple click.
 #double_click: { threshold: 300 }
 #triple_click: { threshold: 300 }
-
 # If this is `true`, the cursor is temporarily hidden when typing.
 #hide_when_typing: false
-
 # Regex hints
 #
 # Terminal hints can be used to find text in the visible part of the terminal
@@ -313,7 +294,6 @@ shell:
 #hints:
 # Keys used for the hint labels.
 #alphabet: "jfkdls;ahgurieowpq"
-
 # List with all available hints
 #
 # Each hint must have a `regex` and either an `action` or a `command` field.
@@ -349,7 +329,6 @@ shell:
 #   binding:
 #     key: U
 #     mods: Control|Shift
-
 # Mouse bindings
 #
 # Mouse bindings are specified as a list of objects, much like the key
@@ -381,7 +360,6 @@ shell:
 #mouse_bindings:
 #  - { mouse: Right,             action: ExpandSelection }
 #  - { mouse: Middle, mode: ~Vi, action: PasteSelection  }
-
 # Key bindings
 #
 # Key bindings are specified as a list of objects. For example, this is the
@@ -597,7 +575,6 @@ key_bindings:
   #- { key: PageDown,  mods: Shift,   mode: ~Alt,        action: ScrollPageDown }
   #- { key: Home,      mods: Shift,   mode: ~Alt,        action: ScrollToTop,   }
   #- { key: End,       mods: Shift,   mode: ~Alt,        action: ScrollToBottom }
-
   # Vi Mode
   #- { key: Space,  mods: Shift|Control, mode: ~Search,    action: ToggleViMode            }
   #- { key: Space,  mods: Shift|Control, mode: Vi|~Search, action: ScrollToBottom          }
@@ -646,7 +623,6 @@ key_bindings:
   #- { key: Slash,  mods: Shift,         mode: Vi|~Search, action: SearchBackward          }
   #- { key: N,                           mode: Vi|~Search, action: SearchNext              }
   #- { key: N,      mods: Shift,         mode: Vi|~Search, action: SearchPrevious          }
-
   # Search Mode
   #- { key: Return,                mode: Search|Vi,  action: SearchConfirm         }
   #- { key: Escape,                mode: Search,     action: SearchCancel          }
@@ -659,7 +635,6 @@ key_bindings:
   #- { key: Down,                  mode: Search,     action: SearchHistoryNext     }
   #- { key: Return,                mode: Search|~Vi, action: SearchFocusNext       }
   #- { key: Return, mods: Shift,   mode: Search|~Vi, action: SearchFocusPrevious   }
-
   # (Windows, Linux, and BSD only)
   #- { key: V,              mods: Control|Shift, mode: ~Vi,        action: Paste            }
   #- { key: C,              mods: Control|Shift,                   action: Copy             }
@@ -673,10 +648,8 @@ key_bindings:
   #- { key: NumpadAdd,      mods: Control,                         action: IncreaseFontSize }
   #- { key: Minus,          mods: Control,                         action: DecreaseFontSize }
   #- { key: NumpadSubtract, mods: Control,                         action: DecreaseFontSize }
-
   # (Windows only)
   #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
-
   # (macOS only)
   - { key: Return, mods: Control, chars: "\eM" }
   - { key: Key0, mods: Alt, chars: "\e0" }
@@ -691,13 +664,20 @@ key_bindings:
   - { key: Key9, mods: Alt, chars: "\e9" }
   - { key: F, mods: Alt, chars: "\ef" }
   - { key: B, mods: Alt, chars: "\eb" }
-  - { key: F, mods: Command|Control, action: ToggleFullscreen }
+  - {
+      key: F,
+      mods: Command|Control,
+      action: ToggleFullscreen
+    }
   - {
       key: N,
       mods: Command,
-      command: { program: open, args: [-n, /Applications/Alacritty.app] },
+      command:
+        {
+          program: open,
+          args: [ -n, /Applications/Alacritty.app ]
+        }
     }
-
   #- { key: K,              mods: Command, mode: ~Vi|~Search, chars: "\x0c"                 }
   #- { key: K,              mods: Command, mode: ~Vi|~Search, action: ClearHistory          }
   #- { key: Key0,           mods: Command,                    action: ResetFontSize         }
@@ -717,13 +697,13 @@ key_bindings:
   #- { key: N,              mods: Command,                    action: SpawnNewInstance      }
   #- { key: F,              mods: Command, mode: ~Search,     action: SearchForward         }
   #- { key: B,              mods: Command, mode: ~Search,     action: SearchBackward        }
+theme: Catppuccin
+
 #debug:
 # Display the time it takes to redraw each frame.
 #render_timer: false
-
 # Keep the log file after quitting Alacritty.
 #persistent_logging: false
-
 # Log level
 #
 # Values for `log_level`:
@@ -734,6 +714,5 @@ key_bindings:
 #   - Debug
 #   - Trace
 #log_level: Warn
-
 # Print all received window events.
 #print_events: false
