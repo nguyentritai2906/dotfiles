@@ -15,7 +15,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="spaceship"
+# ZSH_THEME="spaceship"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -101,9 +101,9 @@ SPACESHIP_CHAR_SYMBOL=❯
 SPACESHIP_CHAR_SUFFIX=" "
 SPACESHIP_CONDA_SHOW=true
 SPACESHIP_VENV_SHOW=true
-SPACESHIP_PYENV_SHOW=true
+SPACESHIP_PYTHON_SHOW=true
 
-# $HOME/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh
+source "$HOME/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh"
 SPACESHIP_PROMPT_ORDER=(
     time          # Time stampts section
     user          # Username section
@@ -112,7 +112,7 @@ SPACESHIP_PROMPT_ORDER=(
     git           # Git section (git_branch + git_status)
     venv          # virtualenv section
     conda         # conda virtualenv section
-    pyenv         # Pyenv section
+    python        # Python section
     exec_time     # Execution time
     line_sep      # Line break
     exit_code     # Exit code section
@@ -142,9 +142,12 @@ source "$HOME/.config/zsh/colors.zsh"
 HISTSIZE=100000
 SAVEHIST=100000
 HISTFILE=~/.cache/.zsh_history
-setopt inc_append_history
-setopt hist_ignore_dups
+setopt append_history # Don't overwrite history file
+setopt extended_history # Save timestamp of command
+setopt inc_append_history # Add commands as they are typed
+setopt hist_ignore_dups # Ignore duplication command history
 setopt extended_glob # For 'all files *except*' e.g. `rm ^foo.bar`
+setopt share_history # Share history between all sessions
 
 # Configure fzf, command line fuzzy finder
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -156,6 +159,8 @@ export FZF_ALT_C_COMMAND="fd --type d $FD_OPTIONS"
 
 # To get fasd working in a shell, some initialization code must be run
 # eval "$(fasd --init auto)"
+# Alternatively use Zoxide since fasd is archived
+eval "$(zoxide init zsh --cmd j --hook pwd)"
 
 # Using GNU command line tools flavor instead of FreeBSD
 # https://gist.github.com/skyzyx/3438280b18e4f7c490db8a2a2ca0b9da
@@ -167,14 +172,14 @@ fi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/homebrew/Caskroom/miniforge/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/opt/homebrew/Caskroom/mambaforge/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh" ]; then
-        . "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh"
+    if [ -f "/opt/homebrew/Caskroom/mambaforge/base/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/Caskroom/mambaforge/base/etc/profile.d/conda.sh"
     else
-        export PATH="/opt/homebrew/Caskroom/miniforge/base/bin:$PATH"
+        export PATH="/opt/homebrew/Caskroom/mambaforge/base/bin:$PATH"
     fi
 fi
 unset __conda_setup
@@ -239,3 +244,10 @@ fi
 # Auto activate conda dev
 micromamba activate dev
 alias conda='micromamba'
+
+# kubectl completion
+[ -f /usr/local/opt/kubectl/share/zsh/_kubectl ] && source /usr/local/opt/kubectl/share/zsh/_kubectl
+source <(kubectl completion zsh)
+
+# GitHub Copilot CLI
+eval "$(gh copilot alias -- zsh)"

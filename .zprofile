@@ -15,3 +15,7 @@ export MANPATH="/opt/local/share/man:$MANPATH"
 
 export SHELL_SESSIONS_DISABLE=1
 export PATH="/opt/homebrew/Cellar/postgresql/14.4/bin:$PATH"
+
+# export DOTNET_ROOT=$HOME/.dotnet
+export DOTNET_ROOT="/usr/local/share/dotnet/"
+export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools:$HOME/.dotnet/tools
