@@ -109,6 +109,8 @@ function cd() {
     ## If env folder is found then activate the vitualenv
       if [[ -d ./.env ]] ; then
         source ./.env/bin/activate
+      elif [[ -d ./.venv ]] ; then
+        source ./.venv/bin/activate
       fi
   else
     ## check the current folder belong to earlier VIRTUAL_ENV folder
@@ -124,15 +126,15 @@ function cd() {
 # Create an alias for cd and ls:
 function cs () {
     cd $1;
-    exa -s=name --icons --color=always --group-directories-first
+    eza -lamgh -s=name --icons --color-scale --group-directories-first
 }
 
 function cl () {
     cd $1;
-    exa -lamgh -s=name --icons --color-scale --group-directories-first
+    eza -lamgh -s=name --icons --color-scale --group-directories-first
 }
 
-# List then Grep with Exa
+# List then Grep with Eza
 lg() {
-    exa *$1*(D) -aghl --sort=name --color-scale
+    eza *$1*(D) -aghl --sort=name --color-scale
 }

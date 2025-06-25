@@ -1,5 +1,5 @@
 # Command aliases
-alias vim='nvim'
+alias vim='nnvim'
 alias d='docker'
 alias dc='docker-compose'
 alias dst='docker stack'
@@ -7,6 +7,8 @@ alias dsr='docker service'
 alias dl='docker logs'
 alias dls='docker service logs'
 alias dsw='docker swarm'
+alias docker_clean_images='docker rmi $(docker images -a --filter=dangling=true -q)'
+alias docker_clean_ps='docker rm $(docker ps --filter=status=exited --filter=status=created -q)'
 alias cd..='cd ..'
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -90,7 +92,7 @@ alias -s {jpg,png}='background open'
 function _pip(){
     if [[ $1 = "search" ]]; then
         pip_search "$2";
-    else pip "$@";
+    else python3 -m pip "$@";
     fi;
 }
 alias pip=_pip
