@@ -36,4 +36,3 @@ require'lualine'.setup {
     },
     extensions = {}
 }
-

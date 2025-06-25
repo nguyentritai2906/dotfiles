@@ -5,7 +5,7 @@ let g:fzf_action = {
 let g:fzf_layout = {'window': {'width': 0.9, 'height': 0.6}}
 let g:fzf_colors =
             \ {
-            \ 'fg'    : ['fg', 'Normal'],
+            \ 'fg'      : ['fg', 'Normal'],
             \ 'bg'      : ['bg', 'Normal'],
             \ 'hl'      : ['fg', 'Comment'],
             \ 'fg+'     : ['fg', 'CursorLine', 'CursorColumn', 'Normal'],

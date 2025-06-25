@@ -22,6 +22,7 @@ local function on_attach(client, bufnr)
     buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
     buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+    buf_set_keymap('n', '<space>lf', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
     buf_set_keymap('n', '<space>lk', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     buf_set_keymap('n', '<space>lwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
     buf_set_keymap('n', '<space>lwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
@@ -31,7 +32,7 @@ local function on_attach(client, bufnr)
     buf_set_keymap('n', '<space>lgk', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
     buf_set_keymap('n', '<space>lgj', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
     buf_set_keymap('n', '<space>lq', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-    buf_set_keymap('n', '<space>lE', '<cmd>lua require"toggle_lsp_diagnostics".toggle_virtual_text()<CR>', opts)
+    buf_set_keymap('n', '<space>lE', '<cmd>lua vim.diagnostic.enable(not vim.diagnostic.is_enabled())<CR>', opts)
     buf_set_keymap('n', '<space>le', '<cmd>lua vim.diagnostic.open_float(0, {scope = "line"})<CR>', opts)
 
     -- Set autocommands conditional on server_capabilities
@@ -47,18 +48,27 @@ local function on_attach(client, bufnr)
     end
 
     -- Only EMF has format capabilities
-    if client.name ~= 'efm' then client.server_capabilities.documentFormattingProvider = false end
+    if client.name ~= 'efm' then
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentFormattingRangeProvider = false
+    end
 
     if client.name == 'pyright' then client.server_capabilities.signatureHelpProvider = false end
+
+    if client.name == 'ruff_lsp' then
+        -- client.server_capabilities.renameProvider = false
+        client.server_capabilities.hoverProvider = false
+    end
 
     if client.name == 'pylsp' then
         client.server_capabilities.renameProvider = false
         client.server_capabilities.hoverProvider = false
     end
 
-    -- if client.server_capabilities.documentFormattingProvider then
-    --     vim.cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]])
-    -- end
+    -- Somehow really slow
+    if client.server_capabilities.documentFormattingProvider then
+        vim.cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]])
+    end
 
     require"lsp_signature".on_attach()
 end
@@ -76,8 +86,8 @@ local has_words_before = function()
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
-lsp.setup_nvim_cmp({
-    preselect = 'none',
+cmp.setup({
+    preselect = 'None',
     completion = {completeopt = 'menu,menuone,noinsert,noselect,preview'},
     snippet = {
         expand = function(args)
@@ -122,7 +132,16 @@ lsp.setup_nvim_cmp({
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort()
     }),
-    formatting = {format = lspkind.cmp_format({with_text = true, maxwidth = 50})}
+    formatting = {
+        format = lspkind.cmp_format({
+            mode = 'symbol', -- show only symbol annotations
+            maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+            -- can also be a function to dynamically calculate max width such as
+            -- maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
+            ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+            show_labelDetails = true, -- show labelDetails in menu. Disabled by default
+        })
+  }
 })
 
 lsp.set_preferences({
@@ -137,12 +156,11 @@ lsp.set_preferences({
 })
 
 -- Configure lua language server for neovim
-lsp.nvim_workspace()
+-- lsp.nvim_workspace()
 
 lsp.on_attach = on_attach
 lsp.setup()
 
-require('toggle_lsp_diagnostics').init({start_on = true})
 vim.diagnostic.config({virtual_text = true})
 
 -- Setup mason so it can manage external tooling
@@ -156,82 +174,92 @@ local servers = {
     gopls = {},
     html = {},
     jsonls = {},
-    -- jedi_language_server = {},
     pyright = {
-        flags = {debounce_text_changes = 300},
-        python = {
-            analysis = {
-                autoSearchPaths = true,
-                diagnosticMode = "openFilesOnly",
-                typeCheckingMode = "basic",
-                autoImportCompletion = true,
-                useLibraryCodeForTypes = true,
-                -- diagnosticSeverityOverrides = {
-                --     reportGeneralTypeIssues = "none",
-                --     reportOptionalMemberAccess = "none",
-                --     reportOptionalSubscript = "none",
-                --     reportPrivateImportUsage = "none"
-                -- }
-            },
-            linting = {pylintEnabled = false},
+        settings = {
+            disableOrganizeImports = true,
+            flags = {debounce_text_changes = 300},
+            python = {
+                analysis = {
+                    -- ignore = {"*"},
+                    autoSearchPaths = true,
+                    diagnosticMode = "openFilesOnly",
+                    typeCheckingMode = "basic",
+                    autoImportCompletion = true,
+                    useLibraryCodeForTypes = true,
+                    -- diagnosticSeverityOverrides = {
+                    --     reportGeneralTypeIssues = "none",
+                    --     reportOptionalMemberAccess = "none",
+                    --     reportOptionalSubscript = "none",
+                    --     reportPrivateImportUsage = "none"
+                    -- }
+                },
+                linting = {pylintEnabled = false},
+            }
         }
     },
     pylsp = {
-        pylsp = {
-            plugins = {
-                flake8 = {enabled = false},
-                jedi_completion = {enabled = false},
-                jedi_definition = {enabled = false},
-                yapf = {enabled = false},  -- really slow
-                rope_completion = {enabled = false},
-                pylint = {enabled = false},
-                pydocstyle = {enabled = false},
-                preload = {enabled = false},
-                mccabe = {enabled = false},
-                jedi_symbols = {enabled = false},
-                jedi_references = {enabled = false},
-                pyflakes = {enabled = false},
-                pycodestyle = {enabled = false}
+        settings = {
+            pylsp = {
+                plugins = {
+                    flake8 = {enabled = false},
+                    jedi_completion = {enabled = false},
+                    jedi_definition = {enabled = false},
+                    yapf = {enabled = false},  -- really slow
+                    rope_completion = {enabled = false},
+                    pylint = {enabled = false},
+                    pydocstyle = {enabled = false},
+                    preload = {enabled = false},
+                    mccabe = {enabled = false},
+                    jedi_symbols = {enabled = false},
+                    jedi_references = {enabled = false},
+                    pyflakes = {enabled = false},
+                    pycodestyle = {enabled = false}
+                }
             }
         }
     },
     tailwindcss = {},
-    tsserver = {},
+    ts_ls = {},
     vimls = {},
     yamlls = {},
     lua_ls = {
         Lua = {workspace = {checkThirdParty = false}, telemetry = {enable = false}, diagnostics = {globals = {'vim'}}}
     },
+    omnisharp = {
+        handlers = {
+            ["textDocument/definition"] = require('omnisharp_extended').definition_handler,
+            ["textDocument/typeDefinition"] = require('omnisharp_extended').type_definition_handler,
+            ["textDocument/references"] = require('omnisharp_extended').references_handler,
+            ["textDocument/implementation"] = require('omnisharp_extended').implementation_handler,
+        },
+    },
+    kotlin_language_server = {},
 }
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
 mason_lspconfig.setup {ensure_installed = vim.tbl_keys(servers)}
 mason_lspconfig.setup_handlers {
     function(server_name)
+        -- check if the server has a custom setup
+        -- if has settings or handlers then use them
+        -- else {} is used to avoid nil
+        if servers[server_name] == nil then
+            servers[server_name] = {
+                settings = {},
+                handlers = {}
+            }
+        else
+            if servers[server_name].settings == nil then servers[server_name].settings = {} end
+            if servers[server_name].handlers == nil then servers[server_name].handlers = {} end
+        end
         require('lspconfig')[server_name].setup {
             capabilities = capabilities,
             on_attach = on_attach,
-            settings = servers[server_name]
+            settings = servers[server_name].settings,
+            handlers = servers[server_name].handlers
         }
     end
 }
-
--- Csharp
-local pid = vim.fn.getpid()
-require'lspconfig'.omnisharp.setup({
-    handlers = {
-        ["textDocument/definition"] = require('omnisharp_extended').handler,
-    },
-    cmd = {"omnisharp", "--languageserver", "--hostPID", tostring(pid)},
-    root_dir = function(startpath)
-        return require'lspconfig'.util.root_pattern("*.sln")(startpath)
-            or require'lspconfig'.util.root_pattern("*.csproj")(startpath)
-            or require'lspconfig'.util.root_pattern("*.fsproj")(startpath)
-            or require'lspconfig'.util.root_pattern(".git")(startpath)
-    end,
-    on_attach = on_attach,
-    capabilities = capabilities,
-})
 
 -- efm-langserver
 local flake8 = {
@@ -269,6 +297,9 @@ local shellcheck = {
 local shfmt = {formatCommand = 'shfmt -ci -s -bn', formatStdin = true}
 local rustfmt = {formatCommand = "rustfmt", formatStdin = true}
 local root_markers = {".zshrc", ".git/"}
+local ruff = {formatCommand = "ruff format --stdin-filename ${INPUT}", formatStdin = true}
+local clang_format = {formatCommand = "clang-format", formatStdin = true}
+local jq = {formatCommand = "jq .", formatStdin = true}
 
 require"lspconfig".efm.setup {
     on_attach = on_attach,
@@ -285,13 +316,14 @@ require"lspconfig".efm.setup {
         rootMarkers = {".git/"},
         languages = {
             lua = {luaFormat},
-            python = {autoflake, isort, flake8, black},
+            -- python = {autoflake, isort, flake8, black, ruff},
+            python = {autoflake, isort, ruff},
             javascriptreact = {prettier, eslint},
             javascript = {prettier, eslint},
             sh = {shfmt, shellcheck},
             html = {prettier},
             css = {prettier},
-            json = {prettier},
+            json = {prettier, jq},
             yaml = {prettier_yaml},
             rust = {rustfmt},
             go = {},

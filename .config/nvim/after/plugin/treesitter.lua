@@ -1,5 +1,5 @@
 require'nvim-treesitter.configs'.setup {
-    ensure_installed = {'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'vimdoc', 'vim'},
+    ensure_installed = {'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'vimdoc', 'vim', 'markdown', 'markdown_inline', 'luadoc', 'c', 'query'},
     incremental_selection = {
         enable = true,
         keymaps = {

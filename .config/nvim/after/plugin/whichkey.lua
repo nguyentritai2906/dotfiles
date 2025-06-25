@@ -1,227 +1,166 @@
 require("which-key").setup {
-    plugins = {
-        marks = true, -- shows a list of your marks on ' and `
-        registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
-        spelling = {
-            enabled = false, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-            suggestions = 20 -- how many suggestions should be shown in the list?
-        },
-        -- the presets plugin, adds help for a bunch of default keybindings in Neovim
-        -- No actual key bindings are created
-        presets = {
-            operators = true, -- adds help for operators like d, y, ... and registers them for motion / text object completion
-            motions = true, -- adds help for motions
-            text_objects = true, -- help for text objects triggered after entering an operator
-            windows = true, -- default bindings on <c-w>
-            nav = true, -- misc bindings to work with windows
-            z = true, -- bindings for folds, spelling and others prefixed with z
-            g = true -- bindings for prefixed with g
-        }
-    },
-    -- add operators that will trigger motion and text object completion
-    -- to enable all native operators, set the preset / operators plugin above
-    operators = {gc = "Comments"},
-    key_labels = {
-        -- override the label used to display some keys. It doesn't effect WK in any other way.
-        -- For example:
-        ["<space>"] = "SPC",
-        ["<cr>"] = "RET",
-        ["<CR>"] = "RET",
-        ["<tab>"] = "TAB"
-    },
-    icons = {
-        breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-        separator = "➜", -- symbol used between a key and it's label
-        group = "+" -- symbol prepended to a group
-    },
-    window = {
-        border = "double", -- none, single, double, shadow
-        position = "bottom", -- bottom, top
-        margin = {1, 0, 1, 0}, -- extra window margin [top, right, bottom, left]
-        padding = {2, 2, 2, 2} -- extra window padding [top, right, bottom, left]
-    },
-    layout = {
-        height = {min = 2, max = 25}, -- min and max height of the columns
-        width = {min = 20, max = 35}, -- min and max width of the columns
-        spacing = 4, -- spacing between columns
-        align = "center" -- align columns left, center or right
-    },
-    ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
-    hidden = {"<silent>", "<cmd>", "<cmd>", "<CR>", "call", "lua", "^:", "^ "}, -- hide mapping boilerplate
-    show_help = true, -- show help message on the command line when the popup is visible
-    triggers = "auto", -- automatically setup triggers
-    -- triggers = {"<leader>"} -- or specify a list manually
-    triggers_blacklist = {
-        -- list of mode / prefixes that should never be hooked by WhichKey
-        -- this is mostly relevant for key maps that start with a native binding
-        -- most people should not need to change this
-        i = {"j", "k"},
-        v = {"j", "k"}
-    }
+  preset = "modern",
+  icons = {
+    -- set to false to disable all mapping icons,
+    -- both those explicitely added in a mapping
+    -- and those from rules
+    mappings = false,
+  },
 }
 
 local wk = require("which-key")
 
 -- Normal mappings with Prefix
-wk.register({
-    i = {
-        name = "+Ipython",
-        s = "Start",
-        r = "RunAll",
-        t = "RunAndTimeExec",
-        c = "ExecCell",
-        C = "ExecCellGoNext",
-        l = "ClearScreen",
-        x = "CloseFigure",
-        h = "ExecCurrentLine",
-        R = "Restart",
-        j = "NextCell",
-        k = "PrevCell"
-    },
-    c = {name = "+Commenter", c = "CommentLine", i = "InvertComment", u = "UncommentLine"},
-    g = {
-        name = "+GitGutter",
-        k = "PrevHunk",
-        j = "NextHunk",
-        h = "GetLeftHunk",
-        l = "GetRightHunk",
-        p = "PreviewHunk",
-        s = "StageHunk",
-        S = "StageBuffer",
-        u = "UndoStageHunk",
-        r = "ResetHunk",
-        R = "ResetBuffer",
-        d = "DiffHunk",
-        D = "DiffBuffer",
-        b = "BlameLine",
-        m = "ThreeWayDiff",
-        t = {
-            name = "+Toggle",
-            n = "ToggleNumsHL",
-            l = "ToggleLineHL",
-            b = "ToggleBlame",
-            s = "ToggleSigns",
-            d = "ToggleDeleted",
-            w = "ToggleWordDiff",
-            t = "ToggleLineHL+Deleted"
-        }
-    },
-    w = {
-        name = "+Vimwiki",
-        c = "ColorizeLine",
-        i = "DiaryIndex",
-        s = "UISelect",
-        t = "TabIndex",
-        w = "Index",
-        d = "DeleteFile",
-        h = "ToHTML",
-        hh = "HTMLBrowse",
-        n = "Goto",
-        r = "RenameFile",
-        ["<space>"] = {
-            name = "+Diary",
-            i = "GenerateLinks",
-            t = "TabMakeNote",
-            w = "MakeNote",
-            y = "MakeYesterdayDiaryNote",
-            m = "MakeTomorrowDiaryNote"
-        }
-    },
-    f = {
-        name = "+Find",
-        ['/'] = "BLines",
-        ['?'] = "Lines",
-        f = "Files",
-        b = "Buffers",
-        c = "Commands",
-        C = "Config",
-        h = "Helptags",
-        g = "GFiles",
-        m = "Maps",
-        r = "Recent",
-        [";"] = "CHistory",
-        s = "Snippets",
-        t = "HFiles",
-        p = "PFiles",
-        ["`"] = "Marks",
-        ["."] = "Ag"
-    },
-    l = {
-        name = "+LSP",
-        k = "SignatureHelp",
-        d = "TypeDefinition",
-        e = "ShowLineDiagnostics",
-        E = "ToggleDiagnostic",
-        q = "ListDiagnosticsLocation",
-        r = "Rename",
-        f = "Formatting",
-        w = {name = "+Workspace", a = "AddWorkspaceFolder", r = "RemoveWorkspaceFolder", l = "ListWorkspaceFolders"},
-        g = {name = "+GoTo", k = "PrevDiagnostic", j = "NextDiagnostic"}
-    },
-    s = {
-        name = "+Session",
-        c = {":SClose<CR>", "CloseSession"},
-        d = {":SDelete<CR>", "DeleteSession"},
-        l = {":SLoad<CR>", "LoadSession"},
-        s = {":Startify<CR>", "StartPage"},
-        S = {":SSave<CR>", "SaveSession"},
-        o = {":Obsession<CR>", "TrackSession"},
-        O = {":Obsession!<CR>", "StopTrackSession"}
-    },
-    a = {name = "+Actions", c = {":ColorizerToggle<CR>", "Colorizer"}, h = {":nohl<CR>", "NoHighlight"}},
-    ["<space>"] = "EasyMotion",
-    ["<cr>"] = "SourceConfig",
-    j = "NewlineBelow",
-    k = "NewlineAbove",
-    t = {
-        name = "+Tab",
-        h = "TabLeft",
-        l = "TabRight",
-        H = "TabFirst",
-        L = "TabLast",
-        j = "TabMoveLeft",
-        k = "TabMoveRight",
-        c = "TabClose",
-        n = "TabNew",
-        r = "TabRename"
-    },
-    d = {
-        name = "+DAP",
-        b = "Breakpoint",
-        B = "ConditionalBreakpoint",
-        E = "ExceptionBreakpoint",
-        h = "StepOut",
-        l = "StepInto",
-        j = "StepBack",
-        k = "StepOver",
-        d = "Continue",
-        c = "ClearAllBreakpoints",
-        C = "RunToCursor",
-        q = "Quit",
-        K = "Up",
-        J = "Down",
-        e = "Evaluate",
-        u = "ToggleUI",
-        i = {name = "+Info", i = "Interactive", b = "Breakpoint", r = "REPL", s = "Scope", t = "Stack", w = "Watch"}
-    }
-}, {prefix = "<Leader>"})
-
--- Normal mappings without Prefix
-wk.register({
-    c = {
-        r = {
-            name = "+AbolisCoercion",
-            s = "snake_case",
-            m = "MixedCase",
-            c = "camelCase",
-            u = "UPPER_CASE",
-            t = "Title Case",
-            ["-"] = "dash-case",
-            ["."] = "dot.case",
-            ["<space>"] = "space case"
-        }
-    }
+wk.add({
+    { "<leader>i", group = "+Ipython"},
+    { "<leader>is", desc = "Start"},
+    { "<leader>ir", desc = "RunAll"},
+    { "<leader>it", desc = "RunAndTimeExec"},
+    { "<leader>ic", desc = "ExecCell"},
+    { "<leader>iC", desc = "ExecCellGoNext", mode = { "n", "v" }},
+    { "<leader>il", desc = "ClearScreen"},
+    { "<leader>ix", desc = "CloseFigure"},
+    { "<leader>ih", desc = "ExecCurrentLine", mode = { "n", "v" }},
+    { "<leader>i<space>", desc = "ExecCurrentLine", mode = { "n", "v" }},
+    { "<leader>iR", desc = "Restart"},
+    { "<leader>ij", desc = "NextCell"},
+    { "<leader>ik", desc = "PrevCell"},
+    { "<leader>c", group = "+Commenter"},
+    { "<leader>cc", desc = "CommentLine"},
+    { "<leader>ci", desc = "InvertComment"},
+    { "<leader>cu", desc = "UncommentLine"},
+    { "<leader>g", group = "+GitGutter"},
+    { "<leader>gk", desc = "PrevHunk"},
+    { "<leader>gj", desc = "NextHunk"},
+    { "<leader>gh", desc = "GetLeftHunk"},
+    { "<leader>gl", desc = "GetRightHunk"},
+    { "<leader>gp", desc = "PreviewHunk"},
+    { "<leader>gs", desc = "StageHunk"},
+    { "<leader>gS", desc = "StageBuffer"},
+    { "<leader>gu", desc = "UndoStageHunk"},
+    { "<leader>gr", desc = "ResetHunk"},
+    { "<leader>gR", desc = "ResetBuffer"},
+    { "<leader>gd", desc = "DiffHunk"},
+    { "<leader>gD", desc = "DiffBuffer"},
+    { "<leader>gb", desc = "BlameLine"},
+    { "<leader>gm", desc = "ThreeWayDiff"},
+    { "<leader>gt", group = "+Toggle"},
+    { "<leader>gtl", desc = "ToggleLineHL"},
+    { "<leader>gtn", desc = "ToggleNumsHL"},
+    { "<leader>gtb", desc = "ToggleBlame"},
+    { "<leader>gts", desc = "ToggleSigns"},
+    { "<leader>gtd", desc = "ToggleDeleted"},
+    { "<leader>gtw", desc = "ToggleWordDiff"},
+    { "<leader>gtt", desc = "ToggleLineHL+Deleted"},
+    { "<leader>w", group = "+Vimwiki"},
+    { "<leader>wc", desc = "ColorizeLine"},
+    { "<leader>wi", desc = "DiaryIndex"},
+    { "<leader>ws", desc = "UISelect"},
+    { "<leader>wt", desc = "TabIndex"},
+    { "<leader>ww", desc = "Index"},
+    { "<leader>wd", desc = "DeleteFile"},
+    { "<leader>wh", desc = "ToHTML"},
+    { "<leader>whh", desc = "HTMLBrowse"},
+    { "<leader>wn", desc = "Goto"},
+    { "<leader>wr", desc = "RenameFile"},
+    { "<leader>w<space>", group = "+Diary"},
+    { "<leader>w<space>i", desc = "GenerateLinks"},
+    { "<leader>w<space>t", desc = "TabMakeNote"},
+    { "<leader>w<space>w", desc = "MakeNote"},
+    { "<leader>w<space>y", desc = "MakeYesterdayDiaryNote"},
+    { "<leader>w<space>m", desc = "MakeTomorrowDiaryNote"},
+    { "<leader>f", group = "+Find" },
+    { "<leader>ff", desc = "Files" },
+    { "<leader>fb", desc = "Buffers" },
+    { "<leader>fc", desc = "Commands" },
+    { "<leader>fC", desc = "Config" },
+    { "<leader>fh", desc = "Helptags" },
+    { "<leader>fg", desc = "GFiles" },
+    { "<leader>fm", desc = "Maps" },
+    { "<leader>fr", desc = "Recent" },
+    { "<leader>f;", desc = "CHistory" },
+    { "<leader>fs", desc = "Snippets" },
+    { "<leader>ft", desc = "HFiles" },
+    { "<leader>fp", desc = "PFiles" },
+    { "<leader>f`", desc = "Marks" },
+    { "<leader>f.", desc = "Ag"},
+    { "<leader>f/", desc = "BLines"},
+    { "<leader>f?", desc = "Lines"},
+    { "<leader>l", group = "+LSP"},
+    { "<leader>lk", desc = "SignatureHelp"},
+    { "<leader>ld", desc = "TypeDefinition"},
+    { "<leader>le", desc = "ShowLineDiagnostics"},
+    { "<leader>lE", desc = "ToggleDiagnostic"},
+    { "<leader>lq", desc = "ListDiagnosticsLocation"},
+    { "<leader>lr", desc = "Rename"},
+    { "<leader>lf", desc = "Formatting"},
+    { "<leader>lw", group = "+Workspace"},
+    { "<leader>lwa", desc = "AddWorkspaceFolder"},
+    { "<leader>lwr", desc = "RemoveWorkspaceFolder"},
+    { "<leader>lwl", desc = "ListWorkspaceFolders"},
+    { "<leader>lg", group = "+GoTo"},
+    { "<leader>lgk", desc = "PrevDiagnostic"},
+    { "<leader>lgj", desc = "NextDiagnostic"},
+    { "<leader>s", group = "+Session"},
+    { "<leader>sc", ":SClose<CR>", desc = "CloseSession"},
+    { "<leader>sd", ":SDelete<CR>", desc = "DeleteSession"},
+    { "<leader>sl", ":SLoad<CR>", desc = "LoadSession"},
+    { "<leader>ss", ":Startify<CR>", desc = "StartPage"},
+    { "<leader>sS", ":SSave<CR>", desc = "SaveSession"},
+    { "<leader>so", ":Obsession<CR>", desc = "TrackSession"},
+    { "<leader>sO", ":Obsession!<CR>", desc = "StopTrackSession"},
+    { "<leader>a", group = "+Actions"},
+    { "<leader>ac", ":ColorizerToggle<CR>", desc = "Colorizer"},
+    { "<leader>ah", ":nohl<CR>", desc = "NoHighlight"},
+    { "<leader><space>", desc = "EasyMotion"},
+    { "<leader><CR>", desc = "SourceConfig"},
+    { "<leader>j", desc = "NewlineBelow"},
+    { "<leader>k", desc = "NewlineAbove"},
+    { "<leader>t", group = "+Tab"},
+    { "<leader>th", desc = "TabLeft"},
+    { "<leader>tl", desc = "TabRight"},
+    { "<leader>tH", desc = "TabFirst"},
+    { "<leader>tL", desc = "TabLast"},
+    { "<leader>tj", desc = "TabMoveLeft"},
+    { "<leader>tk", desc = "TabMoveRight"},
+    { "<leader>tc", desc = "TabClose"},
+    { "<leader>tn", desc = "TabNew"},
+    { "<leader>tr", desc = "TabRename"},
+    { "<leader>d", group = "+DAP"},
+    { "<leader>db", desc = "Breakpoint"},
+    { "<leader>dB", desc = "ConditionalBreakpoint"},
+    { "<leader>dE", desc = "ExceptionBreakpoint"},
+    { "<leader>dh", desc = "StepOut"},
+    { "<leader>dl", desc = "StepInto"},
+    { "<leader>dj", desc = "StepBack"},
+    { "<leader>dk", desc = "StepOver"},
+    { "<leader>dd", desc = "Continue"},
+    { "<leader>dc", desc = "ClearAllBreakpoints"},
+    { "<leader>dC", desc = "RunToCursor"},
+    { "<leader>dq", desc = "Quit"},
+    { "<leader>dK", desc = "Up"},
+    { "<leader>dJ", desc = "Down"},
+    { "<leader>de", desc = "Evaluate"},
+    { "<leader>du", desc = "ToggleUI"},
+    { "<leader>di", group = "+Info"},
+    { "<leader>dii", desc = "Interactive"},
+    { "<leader>dib", desc = "Breakpoint"},
+    { "<leader>dir", desc = "REPL"},
+    { "<leader>dis", desc = "Scope"},
+    { "<leader>dit", desc = "Stack"},
+    { "<leader>diw", desc = "Watch"}
 })
 
--- Visual mappings with Prefix
-wk.register({i = {name = "+Ipython", h = "ExecCurrentSelection"}}, {prefix = "<Leader>", mode = "v"})
+-- Normal mappings without Prefix
+wk.add({
+    { "cr", group = "AbolisCoercion" },
+    { "cr-", desc = "dash-case" },
+    { "cr.", desc = "dot.case" },
+    { "cr<space>", desc = "space case" },
+    { "crc", desc = "camelCase" },
+    { "crm", desc = "MixedCase" },
+    { "crs", desc = "snake_case" },
+    { "crt", desc = "Title Case" },
+    { "cru", desc = "UPPER_CASE" },
+})
+

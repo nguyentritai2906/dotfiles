@@ -25,7 +25,6 @@ return require('packer').startup(function(use)
             -- UI
             'onsails/lspkind-nvim', -- Pictograms for LSP
             'ray-x/lsp_signature.nvim', -- Signature help for LSP
-            'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim', -- Toggle LSP diagnostics
             'folke/neodev.nvim' -- Additional lua config, makes nvim stuff amazing
         }
     }
@@ -76,16 +75,19 @@ return require('packer').startup(function(use)
     }
     use 'mjbrownie/swapit' -- Swap True-False
     use {'hanschen/vim-ipython-cell', requires = 'jpalardy/vim-slime'}
-    -- use 'chipsenkbeil/distant.nvim'
 
     use {"zbirenbaum/copilot.lua", after = "nvim-lspconfig"}
-    use {"Hoffs/omnisharp-extended-lsp.nvim"}
 
     -- Debuger
-    use 'mfussenegger/nvim-dap'
-    use 'mfussenegger/nvim-dap-python'
-    use 'theHamsta/nvim-dap-virtual-text'
-    use 'rcarriga/nvim-dap-ui'
+    use {
+        "rcarriga/nvim-dap-ui",
+        requires = {
+            "mfussenegger/nvim-dap",
+            'mfussenegger/nvim-dap-python',
+            "nvim-neotest/nvim-nio",
+            'theHamsta/nvim-dap-virtual-text'
+        }
+    }
 
     -- Fuzzy finder - Faster than Telescope - Requires silversearcher-ag
     use {
@@ -117,8 +119,10 @@ return require('packer').startup(function(use)
     use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'} -- Fold
 
     -- UI
-    use 'hoob3rt/lualine.nvim' -- Statusline
-    use 'kdheepak/tabline.nvim' -- Tabline
+    use {
+        'nvim-lualine/lualine.nvim', -- Statusline
+        requires = "kdheepak/tabline.nvim"
+    }
     use 'NvChad/nvim-colorizer.lua' -- Color highlighter
     use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
     use 'PeterRincker/vim-searchlight' -- Highlight current search match
@@ -127,7 +131,7 @@ return require('packer').startup(function(use)
     use 'mhinz/vim-startify' -- Fancy start screen
     use 'ryanoasis/vim-devicons' -- Icons
     use {
-        'p00f/nvim-ts-rainbow', -- Rainbow parentheses
+        'hiphish/rainbow-delimiters.nvim', -- Rainbow parentheses
         after = 'nvim-treesitter',
         requires = 'nvim-treesitter/nvim-treesitter'
     }
@@ -164,5 +168,7 @@ return require('packer').startup(function(use)
         ft = {"markdown"}
     })
     use({'preservim/vim-markdown'})
+
+    use({'Hoffs/omnisharp-extended-lsp.nvim'})
 
 end)

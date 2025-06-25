@@ -35,7 +35,6 @@ require('gitsigns').setup {
         row = 0,
         col = 1
     },
-    yadm = {enable = false},
     on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
 
@@ -65,8 +64,14 @@ require('gitsigns').setup {
         -- Actions
         map({'n', 'v'}, '<leader>gs', ':Gitsigns stage_hunk<CR>')
         map({'n', 'v'}, '<leader>gr', ':Gitsigns reset_hunk<CR>')
-        map('n', '<leader>gj', gs.next_hunk)
-        map('n', '<leader>gk', gs.prev_hunk)
+        map('n', '<leader>gj', function()
+            gs.next_hunk()
+            vim.cmd('norm! zz')
+        end)
+        map('n', '<leader>gk', function()
+            gs.prev_hunk()
+            vim.cmd('norm! zz')
+        end)
         map('n', '<leader>gS', gs.stage_buffer)
         map('n', '<leader>gu', gs.undo_stage_hunk)
         map('n', '<leader>gR', gs.reset_buffer)

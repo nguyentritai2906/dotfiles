@@ -9,12 +9,18 @@ require('copilot').setup({
         auto_trigger = true,
         debounce = 75,
         keymap = {
-            accept = "<C-l>",
-            accept_word = false,
-            accept_line = false,
-            next = "‘", -- <Opt-]>
-            prev = "“", -- <Opt-[>
-            dismiss = "<C-]>"
+            -- accept = "<C-l>",
+            -- accept_word = false,
+            -- accept_line = false,
+            -- next = "‘", -- <Opt-]>
+            -- prev = "“", -- <Opt-[>
+            -- dismiss = "<C-]>"
+            accept = "¬", -- <Opt-l>
+            accept_word = "˚", -- <Opt-k>
+            accept_line = "∆", -- <Opt-j>
+            next = "…", -- <Opt-;>
+            prev = "˙", -- <Opt-h>
+            dismiss = "œ" -- <Opt-q>
         }
     },
     filetypes = {
