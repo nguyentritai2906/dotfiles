@@ -126,6 +126,6 @@ args = ["-l", "-c", "tmux attach 2>/dev/null || tmux"]
 program = "/bin/zsh"
 
 [window]
-decorations = "none"
+decorations = "buttonless"
 opacity = 0.8
 startup_mode = "Maximized"
