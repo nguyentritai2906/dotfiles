@@ -100,10 +100,12 @@ SPACESHIP_PROMPT_SEPARATE_LINE=true
 SPACESHIP_CHAR_SYMBOL=❯
 SPACESHIP_CHAR_SUFFIX=" "
 SPACESHIP_CONDA_SHOW=true
+SPACESHIP_CONDA_ASYNC=true
 SPACESHIP_VENV_SHOW=true
 SPACESHIP_PYTHON_SHOW=true
 
-source "$HOME/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh"
+# source "$HOME/.oh-my-zsh/custom/themes/spaceship-prompt/spaceship.zsh"
+source /opt/homebrew/opt/spaceship/spaceship.zsh
 SPACESHIP_PROMPT_ORDER=(
     time          # Time stampts section
     user          # Username section
@@ -186,14 +188,14 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 # >>> mamba initialize >>>
-# !! Contents within this block are managed by 'mamba init' !!
+# !! Contents within this block are managed by 'micromamba shell init' !!
 export MAMBA_EXE='/opt/homebrew/bin/micromamba';
-export MAMBA_ROOT_PREFIX="$HOME/micromamba";
+export MAMBA_ROOT_PREFIX="$HOME/.local/share/mamba";
 __mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__mamba_setup"
 else
-    alias micromamba="$MAMBA_EXE"  # Fallback on help from mamba activate
+    alias micromamba="$MAMBA_EXE"  # Fallback on help from micromamba activate
 fi
 unset __mamba_setup
 # <<< mamba initialize <<<
@@ -202,7 +204,7 @@ export PYENV_SHELL=zsh
 # if Darwin, use homebrew's pyenv
 if [[ "$OSTYPE" == "darwin"* ]]; then
   source /opt/homebrew/Cellar/pyenv/*/completions/pyenv.zsh
-  export PATH="/opt/homebrew/Cellar/pyenv-virtualenv/1.1.5/shims:${PATH}";
+  export PATH="/opt/homebrew/Cellar/pyenv-virtualenv/1.2.4/shims:${PATH}";
 fi
 command pyenv rehash 2>/dev/null
 pyenv() {
@@ -241,9 +243,15 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-# Auto activate conda dev
-micromamba activate dev
-alias conda='micromamba'
+# Spaceship require `conda` and `CONDA_ENVS_DIRS` to be set
+# https://spaceship-prompt.sh/sections/conda/#Options
+if [[ -z "$CONDA_ENVS_DIRS" ]]; then
+  export CONDA_ENVS_DIRS="$MAMBA_ROOT_PREFIX/envs"
+  alias conda='miniconda'
+fi
+
+# Defined in $HOME/.config/zsh/zsh_functions.zsh
+auto_activate_env
 
 # kubectl completion
 [ -f /usr/local/opt/kubectl/share/zsh/_kubectl ] && source /usr/local/opt/kubectl/share/zsh/_kubectl

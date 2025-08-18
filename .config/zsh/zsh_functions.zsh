@@ -100,28 +100,60 @@ ex ()
   fi
 }
 
-# Auto activate virtual environment when in project folder
-# https://stackoverflow.com/a/50830617/12434677
-function cd() {
-  builtin cd "$@"
+# Function to check and activate virtualenv if present
+auto_activate_env() {
+  # interactive shells only
+  [[ -o interactive ]] || return
 
-  if [[ -z "$VIRTUAL_ENV" ]] ; then
-    ## If env folder is found then activate the vitualenv
-      if [[ -d ./.env ]] ; then
-        source ./.env/bin/activate
-      elif [[ -d ./.venv ]] ; then
-        source ./.venv/bin/activate
-      fi
-  else
-    ## check the current folder belong to earlier VIRTUAL_ENV folder
-    # if yes then do nothing
-    # else deactivate
-      parentdir="$(dirname "$VIRTUAL_ENV")"
-      if [[ "$PWD"/ != "$parentdir"/* ]] ; then
-        deactivate
-      fi
+  # If already in a venv, ensure it still belongs to $PWD; otherwise deactivate
+  if [[ -n "$VIRTUAL_ENV" ]]; then
+    local parentdir="${VIRTUAL_ENV%/*}"
+    if [[ "$PWD"/ != "$parentdir"/* ]]; then
+      deactivate 2>/dev/null || true
+    fi
   fi
+
+  # Prefer project-local .env/.venv
+  if [[ -d ./.env || -d ./.venv ]]; then
+    # Deactivate any active conda/mamba env before entering a project venv
+    if [[ -n "$CONDA_PREFIX" || -n "$CONDA_DEFAULT_ENV" ]]; then
+      if command -v micromamba >/dev/null 2>&1; then
+        micromamba deactivate 2>/dev/null || true
+      elif command -v mamba >/dev/null 2>&1; then
+        mamba deactivate 2>/dev/null || true
+      elif command -v miniconda >/dev/null 2>&1; then
+        miniconda deactivate 2>/dev/null || true
+      elif command -v conda >/dev/null 2>&1; then
+        conda deactivate 2>/dev/null || true
+      fi
+    fi
+
+    # Activate the project virtualenv
+    if [[ -d ./.env ]]; then
+      source ./.env/bin/activate
+    else
+      source ./.venv/bin/activate
+    fi
+  elif [[ -z "$CONDA_DEFAULT_ENV" && -z "$CONDA_PREFIX" && -z "$VIRTUAL_ENV" ]]; then
+    # If no project venv, no conda active, and no virtualenv active, activate the 'dev' env if available
+    if command -v micromamba >/dev/null 2>&1; then
+      micromamba activate dev 2>/dev/null || true
+    elif command -v mamba >/dev/null 2>&1; then
+      mamba activate dev 2>/dev/null || true
+    elif command -v miniconda >/dev/null 2>&1; then
+      miniconda activate dev 2>/dev/null || true
+    elif command -v conda >/dev/null 2>&1; then
+      conda activate dev 2>/dev/null || true
+    fi
+  fi
+
+  # Refresh prompt only during interactive line editing
+  if (( $+ZLE )); then zle reset-prompt; fi
 }
+
+# Register on directory change (covers cd, zoxide, pushd/popd)
+autoload -Uz add-zsh-hook
+add-zsh-hook chpwd auto_activate_env
 
 # Create an alias for cd and ls:
 function cs () {
@@ -138,3 +170,4 @@ function cl () {
 lg() {
     eza *$1*(D) -aghl --sort=name --color-scale
 }
+
